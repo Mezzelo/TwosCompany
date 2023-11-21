@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	  <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	  <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+	  <OutputPath>C:\Program Files (x86)\Steam\steamapps\common\Cobalt Core\ModLibrary\TwosCompany</OutputPath>
+    <Configurations>Debug;Release;Empty</Configurations>
+    <BaseIntermediateOutputPath />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="CobaltCore">
+      <HintPath>References\CobaltCore.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CobaltCoreModding.Definitions">
+      <HintPath>References\CobaltCoreModding.Definitions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Refs\CobaltCoreModding.Definitions.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
