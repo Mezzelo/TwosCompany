@@ -165,7 +165,7 @@ namespace TwosCompany.Helper {
             "HookAndDrag",
             "LightningStrikes",
             "MeasureBreak",
-            "SideSwipe",
+            "Sideswipe",
             "Shove",
             "SuddenShift",
         };

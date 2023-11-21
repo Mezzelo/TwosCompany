@@ -17,9 +17,9 @@ namespace TwosCompany.Cards.Isabelle {
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            actions.Add(new ACostDecreasePlayedHint() {
-                amount = 1
-            });
+            actions.Add(new APDMove() {
+                isRight = true
+            }) ;
             actions.Add(new AAttack() {
                 damage = GetDmg(s, 1),
             });

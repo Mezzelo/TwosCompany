@@ -22,12 +22,12 @@ namespace TwosCompany.Cards.Nola {
                 amount = 1
             });
             actions.Add(new AEnergy() {
-                changeAmount = upgrade == Upgrade.A ? 3 : 2
+                changeAmount = upgrade == Upgrade.A ? 4 : 2
             });
             if (upgrade == Upgrade.B)
                 actions.Add(new AStatus() {
                     status = Status.energyNextTurn,
-                    statusAmount = 1,
+                    statusAmount = 2,
                     targetPlayer = true
                 });
             return actions;

@@ -29,7 +29,8 @@
             });
             actions.Add(new AStatus() {
                 status = Status.tempShield,
-                statusAmount = -2,
+                statusAmount = GetHeatAmt(s),
+                xHint = 1,
                 targetPlayer = true
             });
             if (upgrade == Upgrade.A)
