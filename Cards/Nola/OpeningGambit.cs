@@ -5,20 +5,25 @@ namespace TwosCompany.Cards.Nola {
     public class OpeningGambit : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 0,
+                cost = Math.Max(0, GetRound(state) - roundDrawn),
                 retain = true,
                 buoyant = true,
                 exhaust = true
             };
         }
 
-        public int costIncrease = 0;
-        public bool wasPlayed = false;
+        public int roundDrawn = 0;
+
+        private int GetRound(State s) {
+            int currentRound = 0;
+            if (s.route is Combat)
+                currentRound = ((Combat)s.route).turn;
+            return currentRound;
+        }
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
-
-            actions.Add(new AOtherPlayedHint() {
+            actions.Add(new ATurnIncreaseHint() {
                 amount = 1
             });
             actions.Add(new AEnergy() {
@@ -32,25 +37,17 @@ namespace TwosCompany.Cards.Nola {
                 });
             return actions;
         }
-        public override void AfterWasPlayed(State state, Combat c) {
-            costIncrease = 0;
-        }
         public override void OnExitCombat(State s, Combat c) {
-            // this.discount -= costIncrease;
-            costIncrease = 0;
-            wasPlayed = false;
+            roundDrawn = 0;
         }
-
-        public override void OnOtherCardPlayedWhileThisWasInHand(State s, Combat c, int handPosition) {
-            this.discount += 1;
-            costIncrease++;
+        public override void OnDraw(State s, Combat c) {
+            roundDrawn = c.turn;
+        }
+        public override void AfterWasPlayed(State state, Combat c) {
+            roundDrawn = 0;
         }
         public override void OnDiscard(State s, Combat c) {
-            if (wasPlayed)
-                wasPlayed = false;
-            else
-                this.discount -= costIncrease;
-            costIncrease = 0;
+            roundDrawn = 0;
         }
 
 

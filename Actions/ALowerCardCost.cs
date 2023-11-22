@@ -6,9 +6,9 @@
         public override void Begin(G g, State s, Combat c) {
             if (!hand) {
                 if (selectedIndex > -1) {
-                    if (c.hand.Count <= selectedIndex)
+                    if (s.deck.Count <= selectedIndex)
                         return;
-                    this.selectedCard = c.hand[selectedIndex];
+                    this.selectedCard = s.deck[selectedIndex];
                 }
                 Card selectedCard = this.selectedCard ?? throw new Exception("no card selected?");
                 if (selectedCard == null)
@@ -23,11 +23,7 @@
             Audio.Play(FSPRO.Event.Status_PowerUp);
 
         }
-        public override List<Tooltip> GetTooltips(State s) {
-            var list = new List<Tooltip>();
-            var glossary = new TTGlossary(Manifest.Glossary["LowerCostHint"]?.Head ?? throw new Exception("missing glossary entry: LowerCostHint"), amount);
-            list.Add(glossary);
-            return list;
-        }
+        public override List<Tooltip> GetTooltips(State s) => new List<Tooltip>() { new TTGlossary(Manifest.Glossary["LowerCostHint"]?.Head ??
+                throw new Exception("missing glossary entry: LowerCostHint"), amount) };
     }
 }

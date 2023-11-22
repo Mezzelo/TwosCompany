@@ -49,7 +49,7 @@ namespace TwosCompany.Cards.Nola {
                         doubleInf = true;
                 }
                 if (preventPlay)
-                    actions.Add(new AllHandsDiscard() {
+                    actions.Add(new ADiscardSpecific() {
                         selectedCard = this
                     });
                 else
@@ -59,7 +59,7 @@ namespace TwosCompany.Cards.Nola {
                         exhaustThisCardAfterwards = false,
                     });
                 if (doubleInf)
-                    actions.Add(new AllHandsDiscard() {
+                    actions.Add(new ADiscardSpecific() {
                         selectedCard = this
                     });
             }

@@ -9,7 +9,7 @@
         private int GetHeatAmt(State s) {
             int heatAmt = 0;
             if (s.route is Combat)
-                heatAmt = s.ship.Get(Status.heat) + (upgrade == Upgrade.A ? 1 : 0);
+                heatAmt = s.ship.Get(Status.heat) + (upgrade == Upgrade.B ? 2 : 0);
             return heatAmt;
         }
 
@@ -17,21 +17,22 @@
             List<CardAction> actions = new List<CardAction>();
 
 
-            actions.Add(new AMove() {
-                dir = upgrade == Upgrade.A ? 1 : 2,
-                isRandom = true,
-                targetPlayer = true
-            });
             if (upgrade == Upgrade.A)
                 actions.Add(new AStatus() {
                     status = Status.evade,
                     statusAmount = 1,
                     targetPlayer = true,
                 });
+            else
+                actions.Add(new AMove() {
+                    dir = 1,
+                    isRandom = true,
+                    targetPlayer = true
+                });
             if (upgrade == Upgrade.B)
                 actions.Add(new AStatus() {
                     status = Status.heat,
-                    statusAmount = 1,
+                    statusAmount = 2,
                     targetPlayer = true,
                 });
             actions.Add((CardAction)new AVariableHint() {

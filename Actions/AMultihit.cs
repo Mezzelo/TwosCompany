@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TwosCompany.Actions {
-    internal class AMultihit {
+﻿namespace TwosCompany.Actions {
+    public class AMultiHit : CardAction {
+        public bool checkHit() {
+            return true;
+        }
+        public override void Begin(G g, State s, Combat c) {
+            // if ()
+            // c.QueueImmediate
+        }
     }
 }

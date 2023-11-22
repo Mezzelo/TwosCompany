@@ -124,6 +124,7 @@ namespace TwosCompany {
             addSprite("IconRaiseCostHint", "energyPerPlay", "icons", artReg);
             addSprite("IconLowerPerPlay", "lowerPerPlay", "icons", artReg);
             addSprite("IconLowerCostHint", "lowerPerPlay", "icons", artReg);
+            addSprite("IconTurnIncreaseCost", "turnIncreaseCost", "icons", artReg);
             addSprite("IconAllIncrease", "allIncrease", "icons", artReg);
             addSprite("IconAllIncreaseCombat", "allIncreaseCombat", "icons", artReg);
             addSprite("IconTempStrafe", "tempStrafe", "icons", artReg);
@@ -133,8 +134,8 @@ namespace TwosCompany {
             addSprite("IconEvadeCostOff", "evadeCostOff", "icons", artReg);
             addSprite("IconHeatCost", "heatCost", "icons", artReg);
             addSprite("IconHeatCostOff", "heatCostOff", "icons", artReg);
-            addSprite("IconPersonalDefenseLeft", "pdLeft", "icons", artReg);
-            addSprite("IconPersonalDefense", "pdRight", "icons", artReg);
+            addSprite("IconPointDefenseLeft", "pdLeft", "icons", artReg);
+            addSprite("IconPointDefense", "pdRight", "icons", artReg);
 
             addSprite("NolaFrame", "char_nola", "panels", artReg);
             addSprite("IsabelleFrame", "char_isabelle", "panels", artReg);
@@ -280,10 +281,13 @@ namespace TwosCompany {
                 "This card's cost increases by <c=downside>{0}</c> when played. Resets when discarded, or when combat ends."
                 , registry);
             addGlossary("LowerCostHint", "Discount Other",
-                "Lower a card's cost by <c=keyword>{0}</c> less energy until played, or until combat ends."
+                "Lower a card's cost by <c=keyword>{0}</c> until played, or until combat ends."
                 , registry);
             addGlossary("RaiseCostHint", "Expensive Other",
-                "Raise a card's cost by <c=keyword>{0}</c> more energy until played, or until combat ends."
+                "Raise a card's cost by <c=keyword>{0}</c> until played, or until combat ends."
+                , registry);
+            addGlossary("TurnIncreaseCost", "Timed Cost",
+                "This card's cost increases by <c=keyword>{0}</c> every turn while held. Resets when played, or until combat ends."
                 , registry);
             addGlossary("LowerPerPlay", "Lowering Cost",
                 "This card's cost decreases by <c=keyword>{0}</c> when played. Resets when discarded, or when combat ends."
@@ -297,9 +301,9 @@ namespace TwosCompany {
             addGlossary("TempStrafe", "Temporary Strafe",
                 "Your strafe decreases by <c=downside>{0}</c> at the start of your next turn."
                 , registry);
-            addGlossary("PersonalDefense", "Personal Defense",
-                "Move your cannon to the next <c=cardtrait>{0}most</c> non-asteroid midrow object above your ship. " +
-                "If none is available, this card <c=downside> cannot be played</c>."
+            addGlossary("PointDefense", "Point Defense",
+                "Align your cannon {0} to the {1} hostile <c=drone>midrow object</c> over your ship. " +
+                "If there are none, <c=downside>discard instead</c>."
                 , registry);
         }
     }

@@ -5,19 +5,37 @@
             string cardText;
             if (upgrade == Upgrade.None)
                 cardText = String.Format(Loc.GetLocString(Manifest.Cards?["Remise"].DescLocKey ?? throw new Exception("Missing card description")),
-                    GetIncomingTotal(state).ToString());
+                    IncomingString(state, true), IncomingString(state, false));
             else if (upgrade == Upgrade.A)
                 cardText = String.Format(Loc.GetLocString(Manifest.Cards?["Remise"].DescALocKey ?? throw new Exception("Missing card description")),
-                    GetIncomingTotal(state).ToString());
+                    IncomingString(state, true), IncomingString(state, false));
             else
                 cardText = String.Format(Loc.GetLocString(Manifest.Cards?["Remise"].DescBLocKey ?? throw new Exception("Missing card description")),
-                    GetIncomingTotal(state).ToString());
+                    IncomingString(state, true), IncomingString(state, false));
 
             return new CardData() {
-                cost = 2,
+                cost = 3,
                 description = cardText,
                 retain = upgrade == Upgrade.A
             };
+        }
+        private string IncomingString(State s, bool half) {
+            int incomingTotal = 0;
+            if (s.route is Combat route) {
+                foreach (Part part in route.otherShip.parts) {
+                    if (part.intent is IntentAttack intent)
+                        incomingTotal += intent.multiHit;
+                }
+                if (half)
+                    incomingTotal /= 2;
+            }
+            else {
+                return half ? "<c=status>X/2</c>" : "<c=hurt>X</c>";
+            }
+            if (half)
+                return "half (<c=status>" + incomingTotal.ToString() + "</c>)";
+            else
+                return incomingTotal.ToString();
         }
         private int GetIncomingTotal(State s) {
             int incomingTotal = 0;
@@ -38,7 +56,7 @@
 
             actions.Add(new AStatus() {
                 status = Status.evade,
-                statusAmount = incoming,
+                statusAmount = incoming / 2,
                 targetPlayer = true,
             });
             if (upgrade == Upgrade.B)
