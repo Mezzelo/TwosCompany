@@ -195,7 +195,7 @@ namespace TwosCompany {
         void ICardManifest.LoadManifest(ICardRegistry registry) {
             ManifHelper.DefineCards(0, 20, "Nola", NolaDeck ?? throw new Exception("missing deck"), Cards ?? throw new Exception("missing dictionary: cards"), Sprites, registry);
             ManifHelper.DefineCards(20, 24, "Isabelle", IsabelleDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
-            ManifHelper.DefineCards(42, 21, "Ilya", IlyaDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
+            ManifHelper.DefineCards(44, 21, "Ilya", IlyaDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
 
             /*
             Cards.Add("Adaptation",
