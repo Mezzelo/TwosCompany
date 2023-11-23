@@ -1,7 +1,43 @@
-﻿using TwosCompany.Actions;
+﻿using System.Collections;
+using CobaltCoreModding.Definitions.ExternalItems;
+using CobaltCoreModding.Definitions.ModContactPoints;
+using TwosCompany.Actions;
 
 namespace TwosCompany {
     public class PatchLogic {
+
+        public static bool MoveBegin(AMove __instance, G g, State s, Combat c) {
+            bool flag = FeatureFlags.Debug && Input.shift;
+            Ship ship = __instance.targetPlayer ? s.ship : c.otherShip;
+            if (!flag && ship == s.ship && (Enumerable.Any<TrashAnchor>(Enumerable.OfType<TrashAnchor>(c.hand)) ||
+                ship.Get(Status.lockdown) > 0 || ship.Get(Status.engineStall) > 0))
+                return true;
+            ExternalStatus strafeStatus = Manifest.Statuses?["TempStrafe"] ?? throw new Exception("status missing: temp strafe");
+            if (strafeStatus.Id == null) return true;
+            if (s.ship.Get((Status) strafeStatus.Id) > 0)
+                c.QueueImmediate(new AAttack() {
+                    damage = Card.GetActualDamage(s, ship.Get((Status) strafeStatus.Id)),
+                    targetPlayer = !__instance.targetPlayer,
+                    fast = true,
+                    storyFromStrafe = true
+                });
+
+            return true;
+        }
+        public static void MoveEnd(AMove __instance, G g, State s, Combat c) {
+            return;
+        }
+
+        public static bool TurnBegin(Ship __instance, State s, Combat c) {
+            ExternalStatus strafeStatus = Manifest.Statuses?["TempStrafe"] ?? throw new Exception("status missing: temp strafe");
+            if (strafeStatus.Id == null) return true;
+            if (__instance.Get(Status.timeStop) <= 0) {
+                if (__instance.Get((Status)strafeStatus.Id) > 0)
+                    __instance.Set((Status)strafeStatus.Id, 0);
+            }
+
+            return true;
+        }
 
         public static bool Card_StatCostAction_Prefix(G g, State state, ref CardAction action, bool dontDraw) {
             int iconWidth = 6;
@@ -11,7 +47,6 @@ namespace TwosCompany {
             Status statusReq;
             int statusCost = 0;
             int cumulative = 0;
-            int statAmount = 0;
 
             if (dontDraw)
                 return true;

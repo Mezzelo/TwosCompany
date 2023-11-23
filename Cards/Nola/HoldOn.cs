@@ -1,4 +1,6 @@
-﻿namespace TwosCompany.Cards.Nola {
+﻿using CobaltCoreModding.Definitions.ExternalItems;
+
+namespace TwosCompany.Cards.Nola {
     [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class HoldOn : Card {
         public override CardData GetData(State state) {
@@ -22,13 +24,14 @@
                     status = Status.evade,
                     statusAmount = 1
                 });
-            else if (upgrade == Upgrade.B)
-                actions.Add(new AStatus()
-                {
+            else if (upgrade == Upgrade.B) {
+                ExternalStatus strafeStatus = Manifest.Statuses?["TempStrafe"] ?? throw new Exception("status missing: temp strafe");
+                actions.Add(new AStatus() {
                     targetPlayer = true,
-                    status = Status.strafe,
+                    status = strafeStatus.Id != null ? (Status)strafeStatus.Id : Status.strafe,
                     statusAmount = 1
                 });
+            }
             return actions;
         }
 

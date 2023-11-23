@@ -11,7 +11,7 @@ using HarmonyLib;
 using System.Reflection;
 
 namespace TwosCompany {
-    public class Manifest : ISpriteManifest, ICardManifest, IDeckManifest, ICharacterManifest, IAnimationManifest, IGlossaryManifest, IModManifest {
+    public class Manifest : ISpriteManifest, ICardManifest, IDeckManifest, ICharacterManifest, IAnimationManifest, IGlossaryManifest, IStatusManifest, IModManifest {
         public DirectoryInfo? ModRootFolder { get; set; }
         public DirectoryInfo? GameRootFolder { get; set; }
 
@@ -25,6 +25,8 @@ namespace TwosCompany {
         public static Dictionary<string, ExternalCard>? Cards = new Dictionary<string, ExternalCard>();
 
         public static Dictionary<string, ExternalGlossary> Glossary = new Dictionary<string, ExternalGlossary>();
+
+        public static Dictionary<string, ExternalStatus> Statuses = new Dictionary<string, ExternalStatus>();
 
         public static ExternalCharacter? NolaCharacter { get; private set; }
         public static ExternalDeck? NolaDeck { get; private set; }
@@ -92,6 +94,13 @@ namespace TwosCompany {
             animReg.RegisterAnimation(Animations[spriteName + "Anim"]);
 
         }
+        private void addStatus(string name, string displayName, string desc, bool isGood, 
+            System.Drawing.Color mainColor, System.Drawing.Color? borderColor, IStatusRegistry statReg, bool timeStop) {
+            Statuses.Add(name, new ExternalStatus("Mezz.TwosCompany." + name, isGood, 
+                mainColor, borderColor.HasValue ? borderColor : null, Manifest.Sprites["Icon" + name], timeStop));
+            Statuses[name].AddLocalisation(displayName, desc);
+            statReg.RegisterStatus(Statuses[name]);
+        }
 
         private void addGlossary(string name, string displayName, string desc, IGlossaryRegisty glossReg) {
             Glossary.Add(name, new ExternalGlossary("Mezz.TwosCompany." + name, name, false, ExternalGlossary.GlossayType.action, Manifest.Sprites["Icon" + name]));
@@ -105,6 +114,17 @@ namespace TwosCompany {
             harmony.Patch(
                 original: AccessTools.DeclaredMethod(typeof(Card), nameof(Card.RenderAction)),
                 prefix: new HarmonyMethod(typeof (PatchLogic), nameof(PatchLogic.Card_StatCostAction_Prefix))
+            );
+
+            harmony.Patch(
+                original: AccessTools.DeclaredMethod(typeof(AMove), nameof(AMove.Begin)),
+                prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.MoveBegin)),
+                postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.MoveEnd))
+            );
+
+            harmony.Patch(
+                original: AccessTools.DeclaredMethod(typeof(Ship), nameof(Ship.OnBeginTurn)),
+                prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.TurnBegin))
             );
 
             /*
@@ -179,7 +199,7 @@ namespace TwosCompany {
             NolaDeck = new ExternalDeck(
                 "Mezz.TwosCompany.NolaDeck",
                 NolaColor,
-                System.Drawing.Color.White,
+                System.Drawing.Color.Black,
                 ExternalSprite.GetRaw((int)Spr.cards_colorless),
                 borderSprite,
                 null
@@ -190,7 +210,7 @@ namespace TwosCompany {
             IsabelleDeck = new ExternalDeck(
                 "Mezz.TwosCompany.IsabelleDeck",
                 IsabelleColor,
-                System.Drawing.Color.White,
+                System.Drawing.Color.Black,
                 ExternalSprite.GetRaw((int)Spr.cards_colorless),
                 borderSprite,
                 null
@@ -201,7 +221,7 @@ namespace TwosCompany {
             IlyaDeck = new ExternalDeck(
                 "Mezz.TwosCompany.IlyaDeck",
                 IlyaColor,
-                System.Drawing.Color.White,
+                System.Drawing.Color.Black,
                 ExternalSprite.GetRaw((int)Spr.cards_colorless),
                 borderSprite,
                 null
@@ -288,6 +308,25 @@ namespace TwosCompany {
             );
 
             registry.RegisterCharacter(IlyaCharacter);
+        }
+        public void LoadManifest(IStatusRegistry registry) {
+            addStatus("TempStrafe", "Temporary Strafe", "Fire for {0} damage immediately after every move you make. <c=downside>Goes away at start of next turn.</c>",
+                true, System.Drawing.Color.Violet, System.Drawing.Color.FromArgb(unchecked((int)0xff5e5ce3)), registry, true);
+            /* addStatus("Relentless", "Relentless", "Gain {0} <c=status>TEMPORARY SHIELD</c> for every card played this turn. <c=downside>Goes away at start of next turn.</c>",
+                true, System.Drawing.Color.Violet, null, registry, true);
+            addStatus("Control", "Control", "Gain {0} <c=status>EVADE</c> each turn. If you don't hit your enemy before your turn ends, <c=downside>lose this status.</c>",
+                true, System.Drawing.Color.Cyan, null, registry, true);
+            addStatus("Encore", "Encore", "Play your next card <c=keyword>an additional time</c>. Reduce this status by <c=keyword>1</c> for every card played.",
+                true, System.Drawing.Color.Cyan, null, registry, true);
+            addStatus("EncoreB", "Encore B", "Play your next card <c=keyword>two more times</c>. Reduce this status by <c=keyword>1</c> for every card played.",
+                true, System.Drawing.Color.Cyan, null, registry, true);
+            addStatus("UncannyEvasion", "Uncanny Evasion", "Once per turn when shields are broken, gain {0} <c=status>AUTODODGE</c>.",
+                true, System.Drawing.Color.Cyan, null, registry, true);
+            addStatus("FalseOpening", "False Opening", "Gain {0} <c=status>OVERDRIVE</c> for every hit received this turn. <c=downside>Goes away at start of next turn.</c>",
+                true, System.Drawing.Color.Tomato, null, registry, true);
+            addStatus("FalseOpeningB", "False Opening B", "Gain {0} <c=status>POWERDRIVE</c> for every hit received this turn. <c=downside>Goes away at start of next turn.</c>",
+                true, System.Drawing.Color.Wheat, null, registry, true);
+            */
         }
 
         public void LoadManifest(IGlossaryRegisty registry) {
