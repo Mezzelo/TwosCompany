@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-
-namespace TwosCompany.Actions {
-    public class StatCostAction : CardAction {
+﻿namespace TwosCompany.Actions {
+    public class StatCostAttack : AAttack {
         public Status statusReq;
         public int statusCost = 1;
         public int cumulative = 0;

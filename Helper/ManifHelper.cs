@@ -10,11 +10,12 @@ namespace TwosCompany.Helper {
 
     public static class ManifHelper {
         public static String[] cardNames = new string[] {
-            // 0-19 Nola
+            // 0-20 Nola
             "Adaptation",
             "Anticipation",
             "AllHands",
             "BattlePlan",
+            "CallAndResponse",
             "CaptainsOrders",
             "Contingency",
             "DoubleDown",
@@ -34,7 +35,7 @@ namespace TwosCompany.Helper {
             "SuddenShift",
             "UncannyEvasion",
             "WeakPoint",
-            // 20-43: Isabelle
+            // 21-44: Isabelle
             "Bind",
             "Couch",
             "CoupDeGrace",
@@ -59,7 +60,7 @@ namespace TwosCompany.Helper {
             "WildStrikes",
             "WildStrike",
             "WildDodge",
-            // 44 - 64: Ilya
+            // 45 - 65: Ilya
             "Apex",
             "Backdraft",
             "BlastShield",
@@ -84,11 +85,12 @@ namespace TwosCompany.Helper {
         };
 
         public static String[] cardLocs = new string[] {
-            // 0-19: Nola
+            // 0-20: Nola
             "Adaptation",
             "Anticipation",
             "All Hands",
             "Battle Plan",
+            "Call and Response",
             "Captain's Orders",
             "Contingency",
             "Double Down",
@@ -108,7 +110,7 @@ namespace TwosCompany.Helper {
             "Sudden Shift",
             "Uncanny Evasion",
             "Weak Point",
-            // 20-43: Isabelle
+            // 21-44: Isabelle
             "Bind",
             "Couch",
             "Coup de Grace",
@@ -133,7 +135,7 @@ namespace TwosCompany.Helper {
             "Wild Strikes",
             "Wild Strike",
             "Wild Dodge",
-            // 44 - 64: Ilya
+            // 45 - 65: Ilya
             "Apex",
             "Backdraft",
             "Blast Shield",

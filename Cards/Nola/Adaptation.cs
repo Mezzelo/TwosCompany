@@ -1,4 +1,6 @@
-﻿namespace TwosCompany.Cards.Nola {
+﻿using TwosCompany.Actions;
+
+namespace TwosCompany.Cards.Nola {
     [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class Adaptation : Card {
         public override CardData GetData(State state) {
@@ -14,16 +16,14 @@
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            actions.Add(new AStatus() {
-                status = Status.evade,
-                targetPlayer = true,
-                statusAmount = -1,
-                disabled = flipped
-            });
-            actions.Add(new AStatus() {
-                status = Status.shield,
-                targetPlayer = true,
-                statusAmount = 3,
+            actions.Add(new StatCostAction() {
+                action = new AStatus() {
+                    status = Status.shield,
+                    targetPlayer = true,
+                    statusAmount = upgrade == Upgrade.B ? 4 : 3,
+                },
+                statusReq = Status.evade,
+                statusCost = upgrade == Upgrade.B ? 2 : 1,
                 disabled = flipped
             });
             if (upgrade == Upgrade.A)
@@ -34,18 +34,23 @@
                     disabled = flipped
                 });
             actions.Add(new ADummyAction());
-            actions.Add(new AStatus() {
-                status = Status.shield,
-                targetPlayer = true,
-                statusAmount = upgrade == Upgrade.B ? -2 : -1,
+            actions.Add(new StatCostAction() {
+                action = new AStatus() {
+                    status = Status.evade,
+                    targetPlayer = true,
+                    statusAmount = upgrade == Upgrade.B ? 3 : 2,
+                },
+                statusReq = Status.shield,
+                statusCost = upgrade == Upgrade.B ? 2 : 1,
                 disabled = !flipped
             });
-            actions.Add(new AStatus() {
-                status = Status.evade,
-                targetPlayer = true,
-                statusAmount = upgrade == Upgrade.B ? 3 : 2,
-                disabled = !flipped
-            });
+            if (upgrade == Upgrade.A)
+                actions.Add(new AStatus() {
+                    status = Status.tempShield,
+                    targetPlayer = true,
+                    statusAmount = 1,
+                    disabled = !flipped
+                });
 
             return actions;
         }

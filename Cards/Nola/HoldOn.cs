@@ -3,7 +3,7 @@
     public class HoldOn : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = upgrade == Upgrade.B ? 2 : 1,
+                cost = 1,
             };
         }
 

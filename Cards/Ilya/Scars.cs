@@ -13,11 +13,15 @@
 
             actions.Add(new AHurt() {
                 hurtAmount = upgrade == Upgrade.A ? 2 : 3,
-                targetPlayer = true
+                targetPlayer = true,
+                hurtShieldsFirst = false
             });
             actions.Add(new AHullMax() {
                 amount = 1,
                 targetPlayer = true
+            });
+            actions.Add(new AEnergy() {
+                changeAmount = 1
             });
             actions.Add(new ADrawCard() {
                 count = 2

@@ -1,21 +1,23 @@
-﻿using CobaltCoreModding.Definitions.ExternalItems;
+﻿using CobaltCoreModding.Definitions;
+using CobaltCoreModding.Definitions.ExternalItems;
 using CobaltCoreModding.Definitions.ModContactPoints;
 using CobaltCoreModding.Definitions.ModManifests;
 using TwosCompany.Helper;
-using System.Drawing;
-using System.Reflection;
-using System.Xml.Linq;
-using Microsoft.Win32;
 using TwosCompany.Cards.Nola;
 using TwosCompany.Cards.Isabelle;
 using TwosCompany.Cards.Ilya;
-using System.Collections.Generic;
-using System.Numerics;
-using System;
+using Microsoft.Extensions.Logging;
+using HarmonyLib;
+using System.Reflection;
 
 namespace TwosCompany {
-    public class Manifest : ISpriteManifest, ICardManifest, IDeckManifest, ICharacterManifest, IAnimationManifest, IGlossaryManifest {
-        public IEnumerable<string> Dependencies => new string[0];
+    public class Manifest : ISpriteManifest, ICardManifest, IDeckManifest, ICharacterManifest, IAnimationManifest, IGlossaryManifest, IModManifest {
+        public DirectoryInfo? ModRootFolder { get; set; }
+        public DirectoryInfo? GameRootFolder { get; set; }
+
+        public string Name { get; init; } = "Mezz.TwosCompany";
+        public IEnumerable<DependencyEntry> Dependencies => Array.Empty<DependencyEntry>();
+        public ILogger? Logger { get; set; }
 
         public static Dictionary<string, ExternalSprite> Sprites = new Dictionary<string, ExternalSprite>();
         public static Dictionary<string, ExternalAnimation> Animations = new Dictionary<string, ExternalAnimation>();
@@ -48,13 +50,7 @@ namespace TwosCompany {
             "mini", "neutral", "gameover", "bashful", "blush", "happy", "intense", "shocked", "side", "squint"
         };
 
-
-        public DirectoryInfo? ModRootFolder { get; set; }
-        public DirectoryInfo? GameRootFolder { get; set; }
-
-        public string Name { get; init; } = "Mezz.TwosCompany";
-
-        private void addCharSprite(string charName, string emote, string subfolder, IArtRegistry artReg) {
+        private void addCharSprite(string charName, string emote, string subfolder, ISpriteRegistry artReg) {
             if (ModRootFolder == null)
                 throw new Exception("Root Folder not set");
 
@@ -69,7 +65,7 @@ namespace TwosCompany {
             }
         }
         
-        private void addSprite(string name, string spriteName, string subfolder, IArtRegistry artReg) {
+        private void addSprite(string name, string spriteName, string subfolder, ISpriteRegistry artReg) {
             if (ModRootFolder == null)
                 throw new Exception("Root Folder not set");
 
@@ -78,7 +74,7 @@ namespace TwosCompany {
                 )));
             artReg.RegisterArt(Sprites[name]);
         }
-        private void addSprite(string name, string subfolder, IArtRegistry artReg) {
+        private void addSprite(string name, string subfolder, ISpriteRegistry artReg) {
             addSprite(name, name, subfolder, artReg);
         }
 
@@ -103,7 +99,27 @@ namespace TwosCompany {
             glossReg.RegisterGlossary(Glossary[name]);
         }
 
-        void ISpriteManifest.LoadManifest(IArtRegistry artReg) {
+        public void BootMod(IModLoaderContact contact) {
+            Harmony harmony = new Harmony("Mezz.TwosCompany.Harmony");
+
+            harmony.Patch(
+                original: AccessTools.DeclaredMethod(typeof(Card), nameof(Card.RenderAction)),
+                prefix: new HarmonyMethod(typeof (PatchLogic), nameof(PatchLogic.Card_StatCostAction_Prefix))
+            );
+
+            /*
+            //create action draw code for agrow cluster
+            var harmony = new Harmony("EWanderer.JohannaTheTrucker.AGrowClusterRendering");
+
+            var card_render_action_method = typeof(Card).GetMethod("RenderAction", BindingFlags.Public | BindingFlags.Static) ?? throw new Exception();
+
+            var card_render_action_prefix = this.GetType().GetMethod("AGrowClusterRenderActionPrefix", BindingFlags.NonPublic | BindingFlags.Static);
+
+            harmony.Patch(card_render_action_method, prefix: new HarmonyMethod(card_render_action_prefix));
+            */
+        }
+
+        void ISpriteManifest.LoadManifest(ISpriteRegistry artReg) {
             if (ModRootFolder == null)
                 throw new Exception("Root Folder not set");
 
@@ -136,6 +152,7 @@ namespace TwosCompany {
             addSprite("IconHeatCostOff", "heatCostOff", "icons", artReg);
             addSprite("IconPointDefenseLeft", "pdLeft", "icons", artReg);
             addSprite("IconPointDefense", "pdRight", "icons", artReg);
+            addSprite("IconCallAndResponseHint", "callAndResponseHint", "icons", artReg);
 
             addSprite("NolaFrame", "char_nola", "panels", artReg);
             addSprite("IsabelleFrame", "char_isabelle", "panels", artReg);
@@ -193,9 +210,9 @@ namespace TwosCompany {
         }
 
         void ICardManifest.LoadManifest(ICardRegistry registry) {
-            ManifHelper.DefineCards(0, 20, "Nola", NolaDeck ?? throw new Exception("missing deck"), Cards ?? throw new Exception("missing dictionary: cards"), Sprites, registry);
-            ManifHelper.DefineCards(20, 24, "Isabelle", IsabelleDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
-            ManifHelper.DefineCards(44, 21, "Ilya", IlyaDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
+            ManifHelper.DefineCards(0, 21, "Nola", NolaDeck ?? throw new Exception("missing deck"), Cards ?? throw new Exception("missing dictionary: cards"), Sprites, registry);
+            ManifHelper.DefineCards(21, 24, "Isabelle", IsabelleDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
+            ManifHelper.DefineCards(45, 21, "Ilya", IlyaDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
 
             /*
             Cards.Add("Adaptation",
@@ -287,7 +304,7 @@ namespace TwosCompany {
                 "Raise a card's cost by <c=keyword>{0}</c> until played, or until combat ends."
                 , registry);
             addGlossary("TurnIncreaseCost", "Timed Cost",
-                "This card's cost increases by <c=keyword>{0}</c> every turn while held. Resets when played, or until combat ends."
+                "This card's cost increases by <c=keyword>{0}</c> every turn while held. Resets when played, discarded, or when combat ends."
                 , registry);
             addGlossary("LowerPerPlay", "Lowering Cost",
                 "This card's cost decreases by <c=keyword>{0}</c> when played. Resets when discarded, or when combat ends."
@@ -304,6 +321,19 @@ namespace TwosCompany {
             addGlossary("PointDefense", "Point Defense",
                 "Align your cannon {0} to the {1} hostile <c=drone>midrow object</c> over your ship. " +
                 "If there are none, <c=downside>discard instead</c>."
+                , registry);
+            addGlossary("CallAndResponseHint", "Call and Response",
+                "Whenever you play this card, draw the selected card from the <c=keyword>draw or discard pile</c>{0}.\n" +
+                "If the stored card was <c=cardtrait>exhausted</c> or <c=downside>single use</c>, choose another."
+                , registry);
+            addGlossary("ShieldCost", "Shield Cost",
+                "Lose {0} <c=status>SHIELD</c>. If you don't have enough, this action does not happen."
+                , registry);
+            addGlossary("EvadeCost", "Evade Cost",
+                "Lose {0} <c=status>EVADE</c>. If you don't have enough, this action does not happen."
+                , registry);
+            addGlossary("HeatCost", "Heat Cost",
+                "Lose {0} <c=status>HEAT</c>. If you don't have enough, this action does not happen."
                 , registry);
         }
     }
