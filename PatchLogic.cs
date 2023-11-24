@@ -34,8 +34,12 @@ namespace TwosCompany {
                 ExternalStatus mobileStatus = Manifest.Statuses?["MobileDefense"] ?? throw new Exception("status missing: mobile defense");
                 if (mobileStatus.Id != null)
                     if (ship.Get((Status)mobileStatus.Id) > 0)
-                        ship.statusEffects[Status.tempShield] += Math.Abs(ship.Get((Status)mobileStatus.Id));
-                
+                        c.QueueImmediate(new AStatus() {
+                            status = Status.tempShield,
+                            statusAmount = ship.Get((Status)mobileStatus.Id),
+                            targetPlayer = __instance.targetPlayer,
+                        });
+
             }
             return;
         }
@@ -52,30 +56,59 @@ namespace TwosCompany {
         }
         public static bool AttackBegin(AAttack __instance, State s, Combat c, out healthStats __state) {
             Ship ship = __instance.targetPlayer ? s.ship : c.otherShip;
-            __state = new healthStats(ship.hull, ship.Get(Status.shield), ship.Get(Status.maxShield));
+            __state = new healthStats(ship.hull, ship.Get(Status.shield), ship.Get(Status.tempShield));
 
             return true;
         }
         public static void AttackEnd(AAttack __instance, State s, Combat c, healthStats __state) {
             Ship ship = __instance.targetPlayer ? s.ship : c.otherShip;
             if (ship.hull < __state.hull || ship.Get(Status.shield) < __state.shield || ship.Get(Status.tempShield) < __state.tempShield) {
-                ExternalStatus falseStatus = Manifest.Statuses?["FalseOpening"] ?? throw new Exception("status missing: temp strafe");
+                ExternalStatus falseStatus = Manifest.Statuses?["FalseOpening"] ?? throw new Exception("status missing: falseopening");
                 if (falseStatus.Id != null) {
                     if (ship.Get((Status)falseStatus.Id) > 0)
                         c.QueueImmediate(new AStatus() {
                             status = Status.overdrive,
                             statusAmount = ship.Get((Status)falseStatus.Id),
                             targetPlayer = __instance.targetPlayer,
-                            timer = -1,
                         });
-                    ExternalStatus falseBStatus = Manifest.Statuses?["FalseOpeningB"] ?? throw new Exception("status missing: temp strafe");
+                    ExternalStatus falseBStatus = Manifest.Statuses?["FalseOpeningB"] ?? throw new Exception("status missing: falseopeningb");
                     if (falseBStatus.Id != null) {
                         if (ship.Get((Status)falseBStatus.Id) > 0)
                             c.QueueImmediate(new AStatus() {
                                 status = Status.powerdrive,
                                 statusAmount = ship.Get((Status)falseBStatus.Id),
                                 targetPlayer = __instance.targetPlayer,
-                                timer = -1,
+                            });
+                    }
+                }
+            }
+            return;
+        }
+
+        public static bool MissileHitBegin(AMissileHit __instance, State s, Combat c, out healthStats __state) {
+            Ship ship = __instance.targetPlayer ? s.ship : c.otherShip;
+            __state = new healthStats(ship.hull, ship.Get(Status.shield), ship.Get(Status.tempShield));
+
+            return true;
+        }
+        public static void MissileHitEnd(AMissileHit __instance, State s, Combat c, healthStats __state) {
+            Ship ship = __instance.targetPlayer ? s.ship : c.otherShip;
+            if (ship.hull < __state.hull || ship.Get(Status.shield) < __state.shield || ship.Get(Status.tempShield) < __state.tempShield) {
+                ExternalStatus falseStatus = Manifest.Statuses?["FalseOpening"] ?? throw new Exception("status missing: falseopening");
+                if (falseStatus.Id != null) {
+                    if (ship.Get((Status)falseStatus.Id) > 0)
+                        c.QueueImmediate(new AStatus() {
+                            status = Status.overdrive,
+                            statusAmount = ship.Get((Status)falseStatus.Id),
+                            targetPlayer = __instance.targetPlayer,
+                        });
+                    ExternalStatus falseBStatus = Manifest.Statuses?["FalseOpeningB"] ?? throw new Exception("status missing: falseopeningb");
+                    if (falseBStatus.Id != null) {
+                        if (ship.Get((Status)falseBStatus.Id) > 0)
+                            c.QueueImmediate(new AStatus() {
+                                status = Status.powerdrive,
+                                statusAmount = ship.Get((Status)falseBStatus.Id),
+                                targetPlayer = __instance.targetPlayer,
                             });
                     }
                 }
@@ -85,14 +118,22 @@ namespace TwosCompany {
 
         public static bool TurnBegin(Ship __instance, State s, Combat c) {
             ExternalStatus strafeStatus = Manifest.Statuses?["TempStrafe"] ?? throw new Exception("status missing: temp strafe");
-            if (strafeStatus.Id == null) return true;
+            if (strafeStatus.Id != null) {
                 if (__instance.Get((Status)strafeStatus.Id) > 0 && __instance.Get(Status.timeStop) <= 0)
                     __instance.Set((Status)strafeStatus.Id, 0);
+            }
 
-            ExternalStatus mobileStatus = Manifest.Statuses?["MobileDefense"] ?? throw new Exception("status missing: mobile defense");
-            if (mobileStatus.Id == null) return true;
-            if (__instance.Get((Status)mobileStatus.Id) > 0 && __instance.Get(Status.timeStop) <= 0)
-                __instance.Set((Status)mobileStatus.Id, 0);
+
+            ExternalStatus falseStatus = Manifest.Statuses?["FalseOpening"] ?? throw new Exception("status missing: falseopening");
+            if (falseStatus.Id != null) {
+                if (__instance.Get((Status)falseStatus.Id) > 0 && __instance.Get(Status.timeStop) <= 0)
+                    __instance.Set((Status)falseStatus.Id, 0);
+            }
+            ExternalStatus falseBStatus = Manifest.Statuses?["FalseOpeningB"] ?? throw new Exception("status missing: falseopeningb");
+            if (falseBStatus.Id != null) {
+                if (__instance.Get((Status)falseBStatus.Id) > 0 && __instance.Get(Status.timeStop) <= 0)
+                    __instance.Set((Status)falseBStatus.Id, 0);
+            }
             /*
             ExternalStatus outmaneuverStatus = Manifest.Statuses?["Outmaneuver"] ?? throw new Exception("status missing: mobile defense");
             if (outmaneuverStatus.Id == null) return true;
@@ -122,6 +163,11 @@ namespace TwosCompany {
                     statusAmount = __instance.Get((Status) dodgeStatus.Id),
                     targetPlayer = __instance.isPlayerShip
                 });
+
+            ExternalStatus mobileStatus = Manifest.Statuses?["MobileDefense"] ?? throw new Exception("status missing: mobile defense");
+            if (mobileStatus.Id == null) return true;
+            if (__instance.Get((Status)mobileStatus.Id) > 0 && __instance.Get(Status.timeStop) <= 0)
+                __instance.Set((Status)mobileStatus.Id, __instance.Get((Status)mobileStatus.Id) - 1);
 
             ExternalStatus onslaughtStatus = Manifest.Statuses?["Onslaught"] ?? throw new Exception("status missing: repeat");
             if (onslaughtStatus.Id == null) return true;
@@ -164,12 +210,18 @@ namespace TwosCompany {
                                 break;
                             }
                             ((Combat)s.route).DrawCardIdx(s, drawIdx, CardDestination.Deck);
+                            Audio.Play(FSPRO.Event.CardHandling);
                             count++;
                             continue;
                         }
                     }
                     if (drawIdx == 0) {
-                        s.ship.Set((Status)onslaughtStatus.Id, 0);
+                        ((Combat)s.route).QueueImmediate(new AStatus() {
+                            status = (Status)onslaughtStatus.Id,
+                            statusAmount = 0,
+                            mode = AStatusMode.Set,
+                            targetPlayer = true,
+                        });
                     }
                 }
             }

@@ -1,8 +1,10 @@
-﻿namespace TwosCompany.Cards.Isabelle {
+﻿using TwosCompany.Actions;
+
+namespace TwosCompany.Cards.Isabelle {
     [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.B }, dontOffer = true)]
     public class Jab : Card, DisguisedCard {
         public bool disguised = false;
-        public bool wasPlayed = false;
+        // public bool wasPlayed = false;
         bool DisguisedCard.disguised { get => disguised; set => disguised = value; }
         public override CardData GetData(State state) {
             return new CardData() {
@@ -16,6 +18,11 @@
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
+            if (disguised)
+                actions.Add(new ADisguisedHint() {
+                    perma = upgrade == Upgrade.B,
+                    actualCard = new List<Card> { new Fleche() { upgrade = Upgrade.B } },
+                });
             actions.Add(new AAttack() {
                 damage = GetDmg(s, 1),
             });
@@ -34,8 +41,8 @@
         }
         */
         public override void AfterWasPlayed(State state, Combat c) {
-            wasPlayed = true;
-            disguised = false;
+            // wasPlayed = true;
+            disguised = upgrade == Upgrade.B;
         }
 
         public override string Name() => disguised ? "Jab?" : "Jab";

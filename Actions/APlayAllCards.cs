@@ -37,7 +37,13 @@
                     firstPlay = false
                 });
         }
-        public override List<Tooltip> GetTooltips(State s) => new List<Tooltip>() { new TTGlossary("action.bypass") };
+        public override List<Tooltip> GetTooltips(State s) {
+            List<Tooltip> list = new List<Tooltip>() { new TTGlossary("action.bypass") };
+            if (gainHeat > 0) {
+                list.Add(new TTGlossary("status.heat", 1));
+            }
+            return list;
+        }
     public override Icon? GetIcon(State s) => new Icon?(new Icon(Spr.icons_bypass, 0, Colors.textMain));
     }
 }

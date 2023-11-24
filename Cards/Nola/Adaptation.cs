@@ -20,7 +20,7 @@ namespace TwosCompany.Cards.Nola {
                 action = new AStatus() {
                     status = Status.shield,
                     targetPlayer = true,
-                    statusAmount = upgrade == Upgrade.B ? 4 : 3,
+                    statusAmount = upgrade == Upgrade.B ? 4 : 2,
                 },
                 statusReq = Status.evade,
                 statusCost = upgrade == Upgrade.B ? 2 : 1,

@@ -137,6 +137,13 @@ namespace TwosCompany {
                 postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.AttackEnd))
             );
 
+            // missilehit patch
+            harmony.Patch(
+                original: AccessTools.DeclaredMethod(typeof(AMissileHit), nameof(AMissileHit.Update)),
+                prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.MissileHitBegin)),
+                postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.MissileHitEnd))
+            );
+
             // turn start/end patch
             harmony.Patch(
                 original: AccessTools.DeclaredMethod(typeof(Ship), nameof(Ship.OnBeginTurn)),
@@ -201,6 +208,8 @@ namespace TwosCompany {
             addSprite("IconPointDefenseLeft", "pdLeft", "icons", artReg);
             addSprite("IconPointDefense", "pdRight", "icons", artReg);
             addSprite("IconCallAndResponseHint", "callAndResponseHint", "icons", artReg);
+            addSprite("IconDisguisedHint", "disguisedHint", "icons", artReg);
+            addSprite("IconDisguisedPermaHint", "disguisedPermaHint", "icons", artReg);
 
             // status icons
             addSprite("IconTempStrafe", "tempStrafe", "icons", artReg);
@@ -271,8 +280,8 @@ namespace TwosCompany {
 
         void ICardManifest.LoadManifest(ICardRegistry registry) {
             ManifHelper.DefineCards(0, 21, "Nola", NolaDeck ?? throw new Exception("missing deck"), Cards ?? throw new Exception("missing dictionary: cards"), Sprites, registry);
-            ManifHelper.DefineCards(21, 24, "Isabelle", IsabelleDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
-            ManifHelper.DefineCards(45, 21, "Ilya", IlyaDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
+            ManifHelper.DefineCards(21, 25, "Isabelle", IsabelleDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
+            ManifHelper.DefineCards(46, 21, "Ilya", IlyaDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
 
             /*
             Cards.Add("Adaptation",
@@ -305,7 +314,7 @@ namespace TwosCompany {
                 NolaDeck ?? throw new Exception("Missing Deck"),
                 Sprites["NolaFrame"] ?? throw new Exception("Missing Portrait"),
                 // new Type[] { typeof(ReelIn), typeof(ClusterRocket) },
-                new Type[] { typeof(LetLoose), typeof(SuddenShift) },
+                new Type[] { typeof(LetLoose), typeof(Relentless) },
                 new Type[0],
                 Animations["NolaNeutralAnim"] ?? throw new Exception("missing default animation"),
                 Animations["NolaMiniAnim"] ?? throw new Exception("missing mini animation"));
@@ -352,12 +361,12 @@ namespace TwosCompany {
         public void LoadManifest(IStatusRegistry registry) {
             addStatus("TempStrafe", "Temp Strafe", "Fire for {0} damage immediately after every move you make. <c=downside>Goes away at start of next turn.</c>",
                 true, System.Drawing.Color.Violet, System.Drawing.Color.FromArgb(unchecked((int)0xff5e5ce3)), registry, true);
-            addStatus("MobileDefense", "Mobile Defense", "Gain {0} <c=status>TEMPORARY SHIELD</c> for every card played this turn. <c=downside>Goes away at start of next turn.</c>",
+            addStatus("MobileDefense", "Mobile Defense", "Whenever this ship moves, it gains {0} <c=status>TEMP SHIELD</c>. <c=downside>Decreases by 1 at end of turn.</c>",
                 true, System.Drawing.Color.Cyan, null, registry, true);
             // addStatus("Outmaneuver", "Outmaneuver", "Gain {0} <c=status>EVADE</c> for every attack targeting your ship at the start of your turn.</c>",
             //     true, System.Drawing.Color.Cyan, null, registry, true);
-            addStatus("Onslaught", "Onslaught", "Whenever you play a card this turn, draw a card of the <c=keyword>same color<c/> from your draw pile." +
-                " <c=downside>Goes away at end of turn, or if no cards of the same color are found.</c>",
+            addStatus("Onslaught", "Onslaught", "Whenever you play a card this turn, draw a card of the <c=keyword>same color</c> from your draw pile." +
+                " <c=downside>Goes away at end of turn</c>, or if no cards of the same color are found.",
                 true, System.Drawing.Color.Cyan, null, registry, true);
             // addStatus("Dominance", "Dominance", "Gain {0} <c=status>EVADE</c> each turn. If you don't hit your enemy before your turn ends, <c=downside>lose this status.</c>",
             //     true, System.Drawing.Color.FromArgb(unchecked((int)0x2F48B7)), null, registry, true);
@@ -365,16 +374,16 @@ namespace TwosCompany {
             //     true, System.Drawing.Color.Cyan, null, registry, true);
             // addStatus("Threepeat", "Encore B", "Play your next card <c=keyword>two more times</c>. Reduce this status by <c=keyword>1</c> for every card played.",
             //     true, System.Drawing.Color.Cyan, null, registry, true);
-            addStatus("UncannyEvasion", "Uncanny Evasion", "Gain {0} <c=status>AUTODODGE</c> if you end your turn without any shields.",
-                true, System.Drawing.Color.FromArgb(unchecked((int)0xff44b6)), null, registry, true);
+            addStatus("UncannyEvasion", "Damage Control", "Gain {0} <c=status>AUTODODGE</c> if you end your turn without any <c=status>SHIELD</c>, temporary or otherwise.",
+                true, System.Drawing.Color.FromArgb(unchecked((int)0xffff44b6)), null, registry, true);
             addStatus("FalseOpening", "False Opening", "Gain {0} <c=status>OVERDRIVE</c> whenever you receieve damage from an attack or missile this turn. " +
                 "<c=downside>Goes away at start of next turn.</c>",
-                true, System.Drawing.Color.FromArgb(unchecked((int)0xff3838)), null, registry, true);
+                true, System.Drawing.Color.FromArgb(unchecked((int)0xffff3838)), null, registry, true);
             addStatus("FalseOpeningB", "False Opening B", "Gain {0} <c=status>POWERDRIVE</c> whenever you receieve damage from an attack or missile this turn. " +
                 "<c=downside>Goes away at start of next turn.</c>",
-                true, System.Drawing.Color.FromArgb(unchecked((int)0xffd33e)), System.Drawing.Color.FromArgb(unchecked((int)0xff9e48)), registry, false);
-            addStatus("Enflamed", "Enflamed", "Gain {0} <c=downside>EVADE</c> every turn.",
-                true, System.Drawing.Color.Violet, System.Drawing.Color.FromArgb(unchecked((int)0xff6666)), registry, true);
+                true, System.Drawing.Color.FromArgb(unchecked((int)0xffffd33e)), System.Drawing.Color.FromArgb(unchecked((int)0xffff9e48)), registry, false);
+            addStatus("Enflamed", "Enflamed", "Gain {0} <c=downside>HEAT</c> every turn.",
+                true, System.Drawing.Color.FromArgb(unchecked((int)0xffff6666)), null, registry, true);
 
         }
 
@@ -405,7 +414,8 @@ namespace TwosCompany {
                 , registry);
             addGlossary("PointDefense", "Point Defense",
                 "Align your cannon {0} to the {1} hostile <c=drone>midrow object</c> over your ship. " +
-                "If there are none, <c=downside>discard instead</c>."
+                "If there are none, <c=downside>discard instead</c>." +
+                "Removes retain for this turn when played."
                 , registry);
             addGlossary("CallAndResponseHint", "Call and Response",
                 "Whenever you play this card, draw the selected card from the <c=keyword>draw or discard pile</c>{0}.\n" +
@@ -419,6 +429,12 @@ namespace TwosCompany {
                 , registry);
             addGlossary("HeatCost", "Heat Cost",
                 "Lose {0} <c=status>HEAT</c>. If you don't have enough, this action does not happen."
+                , registry);
+            addGlossary("DisguisedHint", "Disguised Card",
+                "This card may actually be one or more <c=keyword>different</c> kinds of cards, and will not reveal itself until played."
+                , registry);
+            addGlossary("DisguisedPermaHint", "Permanent Disguise",
+                "This card may actually be one or more <c=keyword>different</c> kinds of cards, and <c=downside>will not reveal itself even if played</c>."
                 , registry);
         }
     }

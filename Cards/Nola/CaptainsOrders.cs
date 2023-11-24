@@ -34,7 +34,7 @@ namespace TwosCompany.Cards.Nola {
             });
             if (upgrade == Upgrade.A)
                 actions.Add(new ADrawCard() {
-                    count = 1
+                    count = 2
                 });
             return actions;
         }

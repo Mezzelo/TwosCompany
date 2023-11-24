@@ -1,10 +1,10 @@
 ﻿using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Isabelle {
-    [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.B }, dontOffer = true, dontLoc = true)]
+    [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.B }, dontOffer = true)]
     public class Fleche : Card, DisguisedCard {
         public bool disguised = false;
-        public bool wasPlayed = false;
+        // public bool wasPlayed = false;
         bool DisguisedCard.disguised { get => disguised;  set => disguised = value; }
 
         public override CardData GetData(State state) {
@@ -21,10 +21,15 @@ namespace TwosCompany.Cards.Isabelle {
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
+            if (disguised)
+                actions.Add(new ADisguisedHint() {
+                    perma = upgrade == Upgrade.B,
+                    actualCard = new List<Card> { new Fleche() { upgrade = Upgrade.B } },
+                });
             actions.Add(new ADisguisedAttack() {
-                damage = GetDmg(s, this.disguised ? 1 : (upgrade == Upgrade.B ? 3 : 5)),
+                damage = GetDmg(s, this.disguised ? 1 : (upgrade == Upgrade.B ? 4 : 5)),
                 stunEnemy = this.disguised ? false : true,
-                realDamage = GetDmg(s, 5),
+                realDamage = GetDmg(s, (upgrade == Upgrade.B ? 4 : 5)),
                 realStun = true,
                 disguised = this.disguised
             });
@@ -44,8 +49,8 @@ namespace TwosCompany.Cards.Isabelle {
         }
         */
         public override void AfterWasPlayed(State state, Combat c) {
-            wasPlayed = true;
-            disguised = false;
+            // wasPlayed = true;
+            disguised = upgrade == Upgrade.B;
         }
         public override string Name() => disguised ? "Jab?" : "Fleche";
     }

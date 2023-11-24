@@ -21,11 +21,6 @@
                 status = new Status?(Status.shield)
             });
 
-            actions.Add(new AStatus() {
-                status = Status.shield,
-                statusAmount = -3,
-                targetPlayer = true
-            });
             if (upgrade == Upgrade.B) {
                 actions.Add(new AStatus() {
                     status = Status.tempShield,
@@ -34,6 +29,12 @@
                     xHint = 1
                 });
             }
+            actions.Add(new AStatus() {
+                status = Status.shield,
+                statusAmount = upgrade == Upgrade.B ? 0 : -3,
+                mode = upgrade == Upgrade.B ? AStatusMode.Set : AStatusMode.Add,
+                targetPlayer = true
+            });
             actions.Add(new AStatus() {
                 status = Status.maxShield,
                 statusAmount = 2,

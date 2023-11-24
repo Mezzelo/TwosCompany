@@ -4,11 +4,9 @@ namespace TwosCompany.Cards.Isabelle {
     [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class Couch : Card {
 
-        public int roundDrawn = 0;
         public int initialX = 0;
 
         public override CardData GetData(State state) {
-            int finalCost = upgrade == Upgrade.A ? 1 : 2;
             string cardText;
             if (upgrade == Upgrade.None)
                 cardText = String.Format(Loc.GetLocString(Manifest.Cards?["Couch"].DescLocKey ?? throw new Exception("Missing card description")),
@@ -20,11 +18,9 @@ namespace TwosCompany.Cards.Isabelle {
                 cardText = String.Format(Loc.GetLocString(Manifest.Cards?["Couch"].DescBLocKey ?? throw new Exception("Missing card description")),
                     GetDistanceString(state));
 
-            if (upgrade == Upgrade.B)
-                finalCost = 3;
             return new CardData() {
-                cost = finalCost + Math.Max(0, GetRound(state) - roundDrawn),
-                description = cardText,
+                cost = upgrade == Upgrade.None ? 2 : 3,
+            description = cardText,
                 retain = upgrade == Upgrade.A
             };
         }
@@ -57,18 +53,18 @@ namespace TwosCompany.Cards.Isabelle {
             return actions;
         }
         public override void OnExitCombat(State s, Combat c) {
-            roundDrawn = 0;
+            // roundDrawn = 0;
             initialX = 0;
         }
         public override void OnDraw(State s, Combat c) {
-            roundDrawn = c.turn;
+            // roundDrawn = c.turn;
             initialX = s.ship.x;
         }
         public override void AfterWasPlayed(State state, Combat c) {
-            roundDrawn = 0;
+            // roundDrawn = 0;
         }
         public override void OnDiscard(State s, Combat c) {
-            roundDrawn = 0;
+            // roundDrawn = 0;
         }
 
 

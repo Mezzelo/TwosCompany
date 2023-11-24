@@ -14,7 +14,7 @@
                     "2", IncomingString(state));
 
             return new CardData() {
-                cost = 3,
+                cost = 2,
                 description = cardText,
                 retain = upgrade == Upgrade.A,
                 exhaust = upgrade == Upgrade.B
@@ -29,13 +29,13 @@
         }
         private int GetIncomingTotal(State s) {
             int incomingTotal = 0;
-            if (s.route is Combat route) {
-                for (int i = 0; i < s.ship.parts.Count; i++) {
-                    if (i < route.otherShip.x)
+            if (s.route is Combat c) {
+                for (int i = 0; i < c.otherShip.parts.Count; i++) {
+                    if (i + c.otherShip.x < s.ship.x)
                         continue;
-                    else if (i >= route.otherShip.x + route.otherShip.parts.Count)
+                    else if (i + c.otherShip.x >= s.ship.x + s.ship.parts.Count)
                         break;
-                    if (route.otherShip.parts[i].intent is IntentAttack)
+                    if (c.otherShip.parts[i].intent is IntentAttack)
                         incomingTotal++;
                 }
             }
@@ -45,15 +45,14 @@
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            int incoming = GetIncomingTotal(s);
             actions.Add(new AStatus() {
                 status = Status.evade,
-                statusAmount = incoming * GetIncomingTotal(s),
+                statusAmount = GetIncomingTotal(s),
                 targetPlayer = true,
             });
             return actions;
         }
 
-        public override string Name() => "Outmaneuver";
+        public override string Name() => "Out Maneuver";
     }
 }
