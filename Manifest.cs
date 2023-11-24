@@ -111,11 +111,13 @@ namespace TwosCompany {
         public void BootMod(IModLoaderContact contact) {
             Harmony harmony = new Harmony("Mezz.TwosCompany.Harmony");
 
+            // cost icon card rendering patch
             harmony.Patch(
                 original: AccessTools.DeclaredMethod(typeof(Card), nameof(Card.RenderAction)),
                 prefix: new HarmonyMethod(typeof (PatchLogic), nameof(PatchLogic.Card_StatCostAction_Prefix))
             );
 
+            // 
             harmony.Patch(
                 original: AccessTools.DeclaredMethod(typeof(AMove), nameof(AMove.Begin)),
                 prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.MoveBegin)),
@@ -125,6 +127,11 @@ namespace TwosCompany {
             harmony.Patch(
                 original: AccessTools.DeclaredMethod(typeof(Ship), nameof(Ship.OnBeginTurn)),
                 prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.TurnBegin))
+            );
+
+            harmony.Patch(
+                original: AccessTools.DeclaredMethod(typeof(Card), nameof(Card.GetFullDisplayName)),
+                prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.DisguisedCardName))
             );
 
             /*
@@ -310,7 +317,7 @@ namespace TwosCompany {
             registry.RegisterCharacter(IlyaCharacter);
         }
         public void LoadManifest(IStatusRegistry registry) {
-            addStatus("TempStrafe", "Temporary Strafe", "Fire for {0} damage immediately after every move you make. <c=downside>Goes away at start of next turn.</c>",
+            addStatus("TempStrafe", "Temp Strafe", "Fire for {0} damage immediately after every move you make. <c=downside>Goes away at start of next turn.</c>",
                 true, System.Drawing.Color.Violet, System.Drawing.Color.FromArgb(unchecked((int)0xff5e5ce3)), registry, true);
             /* addStatus("Relentless", "Relentless", "Gain {0} <c=status>TEMPORARY SHIELD</c> for every card played this turn. <c=downside>Goes away at start of next turn.</c>",
                 true, System.Drawing.Color.Violet, null, registry, true);
@@ -353,9 +360,6 @@ namespace TwosCompany {
                 , registry);
             addGlossary("AllIncreaseCombat", "Lasting Intensify",
                 "All of this card's values increase by <c=keyword>{0}</c> when played. Resets <c=downside>when combat ends</c>."
-                , registry);
-            addGlossary("TempStrafe", "Temporary Strafe",
-                "Your strafe decreases by <c=downside>{0}</c> at the start of your next turn."
                 , registry);
             addGlossary("PointDefense", "Point Defense",
                 "Align your cannon {0} to the {1} hostile <c=drone>midrow object</c> over your ship. " +

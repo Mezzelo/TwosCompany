@@ -1,12 +1,17 @@
 ﻿using System.Collections.Generic;
 
 namespace TwosCompany.Actions {
-    public class StatCostAction : CardAction {
+    public class StatCostAction : CardAction, StatCost {
         public Status statusReq;
         public int statusCost = 1;
         public int cumulative = 0;
         public CardAction? action;
         public bool first = false;
+        Status StatCost.statusReq { get => statusReq; }
+        int StatCost.statusCost { get => statusCost; }
+        int StatCost.cumulative { get => cumulative; }
+        CardAction? StatCost.action { get => action; }
+        bool StatCost.first { get => first; }
         public override void Begin(G g, State s, Combat c) {
             if (action == null)
                 return;

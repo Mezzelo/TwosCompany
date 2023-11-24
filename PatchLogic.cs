@@ -2,6 +2,7 @@
 using CobaltCoreModding.Definitions.ExternalItems;
 using CobaltCoreModding.Definitions.ModContactPoints;
 using TwosCompany.Actions;
+using TwosCompany.Cards;
 
 namespace TwosCompany {
     public class PatchLogic {
@@ -14,7 +15,7 @@ namespace TwosCompany {
                 return true;
             ExternalStatus strafeStatus = Manifest.Statuses?["TempStrafe"] ?? throw new Exception("status missing: temp strafe");
             if (strafeStatus.Id == null) return true;
-            if (s.ship.Get((Status) strafeStatus.Id) > 0)
+            if (ship.Get((Status) strafeStatus.Id) > 0)
                 c.QueueImmediate(new AAttack() {
                     damage = Card.GetActualDamage(s, ship.Get((Status) strafeStatus.Id)),
                     targetPlayer = !__instance.targetPlayer,
@@ -51,32 +52,11 @@ namespace TwosCompany {
             if (dontDraw)
                 return true;
 
-            // ong this is so ugly lol ion got time to research this though
-            if (action is StatCostAction) {
-                StatCostAction cast = (StatCostAction) action;
+            if (action is StatCost) {
+                StatCost cast = (StatCost) action;
                 statusReq = cast.statusReq;
                 statusCost = cast.statusCost;
                 cumulative =  cast.cumulative;
-                if (cast.statusReq == Status.evade) {
-                    id = (Spr)(Manifest.Sprites["IconEvadeCost"].Id ?? throw new Exception("missing icon"));
-                    idNotMet = (Spr)(Manifest.Sprites["IconEvadeCostOff"].Id ?? throw new Exception("missing icon"));
-                }
-                else if (cast.statusReq == Status.shield) {
-                    id = (Spr)(Manifest.Sprites["IconShieldCost"].Id ?? throw new Exception("missing icon"));
-                    idNotMet = (Spr)(Manifest.Sprites["IconShieldCostOff"].Id ?? throw new Exception("missing icon"));
-                }
-                else if (cast.statusReq == Status.heat) {
-                    id = (Spr)(Manifest.Sprites["IconHeatCost"].Id ?? throw new Exception("missing icon"));
-                    idNotMet = (Spr)(Manifest.Sprites["IconHeatCostOff"].Id ?? throw new Exception("missing icon"));
-                }
-                else
-                    return true;
-            }
-            else if (action is StatCostAttack) {
-                StatCostAttack cast = (StatCostAttack) action;
-                statusReq = cast.statusReq;
-                statusCost = cast.statusCost;
-                cumulative = cast.cumulative;
                 if (cast.statusReq == Status.evade) {
                     id = (Spr)(Manifest.Sprites["IconEvadeCost"].Id ?? throw new Exception("missing icon"));
                     idNotMet = (Spr)(Manifest.Sprites["IconEvadeCostOff"].Id ?? throw new Exception("missing icon"));
@@ -124,6 +104,31 @@ namespace TwosCompany {
                 w += iconWidth - 1;
             }
 
+            return true;
+        }
+
+        public static bool DisguisedCardName(Card __instance, ref string __result) {
+            if (__instance is DisguisedCard) {
+                if (((DisguisedCard)__instance).disguised) {
+                    String b;
+                    switch (__instance.upgrade) {
+                        case Upgrade.None:
+                            b = "";
+                            break;
+                        case Upgrade.A:
+                            b = " A";
+                            break;
+                        case Upgrade.B:
+                            b = " B";
+                            break;
+                        default:
+                            b = " ?";
+                            break;
+                    }
+                    __result = __instance.Name() + b;
+                    return false;
+                }
+            }
             return true;
         }
     }

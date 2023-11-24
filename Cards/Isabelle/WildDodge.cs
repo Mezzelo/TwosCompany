@@ -1,5 +1,5 @@
 ﻿namespace TwosCompany.Cards.Isabelle {
-    [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B }, dontOffer = true)]
+    [CardMeta(rarity = Rarity.common, dontOffer = true)]
     public class WildDodge : Card {
         public override CardData GetData(State state) {
             return new CardData() {
