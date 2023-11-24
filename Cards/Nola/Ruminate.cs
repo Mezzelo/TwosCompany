@@ -13,7 +13,7 @@ namespace TwosCompany.Cards.Nola {
                 cardText = Loc.GetLocString(Manifest.Cards?["Ruminate"].DescBLocKey ?? throw new Exception("Missing card description"));
 
             return new CardData() {
-                cost = upgrade == Upgrade.B ? 1 : 0,
+                cost = upgrade == Upgrade.B ? 2 : 1,
                 description = cardText,
             };
         }
@@ -34,11 +34,13 @@ namespace TwosCompany.Cards.Nola {
                     browseSource = CardBrowse.Source.Hand
                 });
 
+            if (upgrade == Upgrade.A)
             actions.Add(new AStatus() {
                 status = Status.drawNextTurn,
-                statusAmount = 2,
+                statusAmount = 1,
                 targetPlayer = true
             });
+            actions.Add(new AEndTurn());
             return actions;
         }
 

@@ -16,19 +16,25 @@
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            if (upgrade != Upgrade.None)
+            if (upgrade == Upgrade.B)
                 actions.Add(new AStatus() {
                     status = Status.heat,
-                    statusAmount = upgrade == Upgrade.A ? -1 : 3,
+                    statusAmount = 3,
                     targetPlayer = true,
                 });
-            actions.Add((CardAction)new AVariableHint() {
+            actions.Add(new AVariableHint() {
                 status = new Status?(Status.heat)
             });
             actions.Add(new AAttack() {
                 damage = GetDmg(s, this.GetHeatAmt(s)),
                 xHint = 1
             });
+            if (upgrade == Upgrade.A)
+                actions.Add(new AStatus() {
+                    status = Status.heat,
+                    statusAmount = -1,
+                    targetPlayer = true,
+                });
             return actions;
         }
 

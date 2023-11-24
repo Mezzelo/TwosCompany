@@ -23,11 +23,14 @@ namespace TwosCompany.Cards.Ilya {
                 hand = true,
                 handAmount = this.GetHandSize(s)
             });
-            actions.Add(new AExhaustEntireHand());
+            actions.Add(new AExhaustEntireHandImmediate());
             actions.Add(new AAddCard() {
                 amount = this.GetHandSize(s),
                 card = new Ember(),
                 xHint = 1,
+                destination = CardDestination.Hand,
+                timer = -0.5,
+                waitBeforeMoving = 0
             });
             if (upgrade == Upgrade.A)
                 actions.Add(new AStatus() {

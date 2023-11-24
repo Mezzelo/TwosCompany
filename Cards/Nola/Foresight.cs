@@ -27,7 +27,7 @@ namespace TwosCompany.Cards.Nola {
             });*/
 
             int drawSize = 0;
-            int iMax = 4;
+            int iMax = 3;
             if (s.route is Combat)
                 drawSize = s.deck.Count;
 
@@ -68,7 +68,7 @@ namespace TwosCompany.Cards.Nola {
             }
 
             actions.Add(new ADrawCard() {
-                count = upgrade == Upgrade.A ? 3 : 1
+                count = upgrade == Upgrade.A ? 2 : 1
             });
             return actions;
         }

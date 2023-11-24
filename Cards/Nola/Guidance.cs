@@ -34,7 +34,8 @@ namespace TwosCompany.Cards.Nola {
         }
         public override void AfterWasPlayed(State state, Combat c) {
             foreach (Card selectedCard in c.hand) {
-                if (selectedCard.GetMeta().upgradesTo.Contains(upgrade == Upgrade.B ? Upgrade.B : Upgrade.A)) {
+                if (selectedCard.GetMeta().upgradesTo.Contains(upgrade == Upgrade.B ? Upgrade.B : Upgrade.A) &&
+                    selectedCard.upgrade == Upgrade.None) {
                     upgradedCards.Add(selectedCard);
                     selectedCard.upgrade = upgrade == Upgrade.B ? Upgrade.B : Upgrade.A;
                 }
@@ -42,9 +43,12 @@ namespace TwosCompany.Cards.Nola {
             Audio.Play(FSPRO.Event.Status_PowerUp);
         }
         public override void OnExitCombat(State s, Combat c) {
-            foreach (Card selectedCard in upgradedCards) {
-                if (selectedCard.upgrade == (upgrade == Upgrade.B ? Upgrade.B : Upgrade.A))
-                    selectedCard.upgrade = Upgrade.None;
+            foreach (Card searchCard in upgradedCards) {
+                foreach (Card selectedCard in s.deck) {
+                    if (searchCard.uuid.Equals(selectedCard.uuid) && selectedCard.upgrade == (upgrade == Upgrade.B ? Upgrade.B : Upgrade.A)) {
+                        selectedCard.upgrade = Upgrade.None;
+                    }
+                }
             }
             upgradedCards.Clear();
         }

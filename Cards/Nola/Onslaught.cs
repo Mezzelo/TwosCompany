@@ -1,7 +1,7 @@
 ﻿using CobaltCoreModding.Definitions.ExternalItems;
 
 namespace TwosCompany.Cards.Nola {
-    [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
+    [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class Onslaught : Card {
         public override CardData GetData(State state) {
             return new CardData() {

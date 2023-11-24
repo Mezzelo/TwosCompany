@@ -1,4 +1,6 @@
-﻿namespace TwosCompany.Cards.Nola {
+﻿using TwosCompany.Actions;
+
+namespace TwosCompany.Cards.Nola {
     [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class Contingency : Card {
         public override CardData GetData(State state) {
@@ -22,7 +24,7 @@
                 hand = true,
                 handAmount = this.GetHandSize(s)
             });
-            actions.Add(new AExhaustEntireHand());
+            actions.Add(new AExhaustEntireHandImmediate());
             actions.Add(new ADrawCard() {
                 count = GetHandSize(s),
                 xHint = 1,

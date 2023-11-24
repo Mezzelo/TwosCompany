@@ -314,7 +314,7 @@ namespace TwosCompany {
                 NolaDeck ?? throw new Exception("Missing Deck"),
                 Sprites["NolaFrame"] ?? throw new Exception("Missing Portrait"),
                 // new Type[] { typeof(ReelIn), typeof(ClusterRocket) },
-                new Type[] { typeof(LetLoose), typeof(Relentless) },
+                new Type[] { typeof(Foresight), typeof(Relentless) },
                 new Type[0],
                 Animations["NolaNeutralAnim"] ?? throw new Exception("missing default animation"),
                 Animations["NolaMiniAnim"] ?? throw new Exception("missing mini animation"));

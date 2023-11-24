@@ -16,10 +16,11 @@ namespace TwosCompany.Actions {
                 Audio.Play(FSPRO.Event.Status_PowerUp);
                 callCard.storedCard = this.selectedCard;
             } else {
-                if (discount != 0)
+                if (discount != 0) {
                     selectedCard.discount -= discount;
+                    Audio.Play(FSPRO.Event.Status_PowerUp);
+                }
                 Audio.Play(FSPRO.Event.CardHandling);
-                Audio.Play(FSPRO.Event.Status_PowerUp);
                 s.RemoveCardFromWhereverItIs(selectedCard.uuid);
                 c.SendCardToHand(s, selectedCard);
             }
