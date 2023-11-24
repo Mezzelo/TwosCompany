@@ -10,7 +10,7 @@ namespace TwosCompany.Cards.Ilya {
             };
         }
         private bool InsufficientStatus (State s, Status status, int cost) {
-            if (s.route is Combat route) {
+            if (s.route is Combat) {
                 if (!s.ship.statusEffects.ContainsKey(status))
                     return true;
                 return s.ship.statusEffects[status] < cost;

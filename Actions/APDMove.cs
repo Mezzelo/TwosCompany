@@ -1,4 +1,4 @@
-﻿// based largely on johanna's hook code, which i owe to EWanderer (along with the modloader obviously)
+﻿// based a good amount on johanna's hook code, which i owe to EWanderer (along with the modloader obviously)
 
 namespace TwosCompany.Actions {
     public class APDMove : CardAction {

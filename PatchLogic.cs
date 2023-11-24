@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Diagnostics.Metrics;
 using CobaltCoreModding.Definitions.ExternalItems;
 using CobaltCoreModding.Definitions.ModContactPoints;
 using TwosCompany.Actions;
@@ -7,7 +8,8 @@ using TwosCompany.Cards;
 namespace TwosCompany {
     public class PatchLogic {
 
-        public static bool MoveBegin(AMove __instance, G g, State s, Combat c) {
+        public static bool MoveBegin(AMove __instance, State s, Combat c, out int __state) {
+            __state = __instance.targetPlayer ? s.ship.x : c.otherShip.x;
             bool flag = FeatureFlags.Debug && Input.shift;
             Ship ship = __instance.targetPlayer ? s.ship : c.otherShip;
             if (!flag && ship == s.ship && (Enumerable.Any<TrashAnchor>(Enumerable.OfType<TrashAnchor>(c.hand)) ||
@@ -15,9 +17,9 @@ namespace TwosCompany {
                 return true;
             ExternalStatus strafeStatus = Manifest.Statuses?["TempStrafe"] ?? throw new Exception("status missing: temp strafe");
             if (strafeStatus.Id == null) return true;
-            if (ship.Get((Status) strafeStatus.Id) > 0)
+            if (ship.Get((Status)strafeStatus.Id) > 0)
                 c.QueueImmediate(new AAttack() {
-                    damage = Card.GetActualDamage(s, ship.Get((Status) strafeStatus.Id)),
+                    damage = Card.GetActualDamage(s, ship.Get((Status)strafeStatus.Id)),
                     targetPlayer = !__instance.targetPlayer,
                     fast = true,
                     storyFromStrafe = true
@@ -25,19 +27,152 @@ namespace TwosCompany {
 
             return true;
         }
-        public static void MoveEnd(AMove __instance, G g, State s, Combat c) {
+        public static void MoveEnd(AMove __instance, State s, Combat c, int __state) {
+            int dist = (__instance.targetPlayer ? s.ship.x : c.otherShip.x) - __state;
+            if (dist != 0) {
+                Ship ship = __instance.targetPlayer ? s.ship : c.otherShip;
+                ExternalStatus mobileStatus = Manifest.Statuses?["MobileDefense"] ?? throw new Exception("status missing: mobile defense");
+                if (mobileStatus.Id != null)
+                    if (ship.Get((Status)mobileStatus.Id) > 0)
+                        ship.statusEffects[Status.tempShield] += Math.Abs(ship.Get((Status)mobileStatus.Id));
+                
+            }
+            return;
+        }
+
+        public struct healthStats {
+            public healthStats(int hull, int shield, int tempShield) {
+                this.hull = hull;
+                this.shield = shield;
+                this.tempShield = tempShield;
+            }
+            public int hull { get; }
+            public int shield { get; }
+            public int tempShield { get; }
+        }
+        public static bool AttackBegin(AAttack __instance, State s, Combat c, out healthStats __state) {
+            Ship ship = __instance.targetPlayer ? s.ship : c.otherShip;
+            __state = new healthStats(ship.hull, ship.Get(Status.shield), ship.Get(Status.maxShield));
+
+            return true;
+        }
+        public static void AttackEnd(AAttack __instance, State s, Combat c, healthStats __state) {
+            Ship ship = __instance.targetPlayer ? s.ship : c.otherShip;
+            if (ship.hull < __state.hull || ship.Get(Status.shield) < __state.shield || ship.Get(Status.tempShield) < __state.tempShield) {
+                ExternalStatus falseStatus = Manifest.Statuses?["FalseOpening"] ?? throw new Exception("status missing: temp strafe");
+                if (falseStatus.Id != null) {
+                    if (ship.Get((Status)falseStatus.Id) > 0)
+                        c.QueueImmediate(new AStatus() {
+                            status = Status.overdrive,
+                            statusAmount = ship.Get((Status)falseStatus.Id),
+                            targetPlayer = __instance.targetPlayer,
+                            timer = -1,
+                        });
+                    ExternalStatus falseBStatus = Manifest.Statuses?["FalseOpeningB"] ?? throw new Exception("status missing: temp strafe");
+                    if (falseBStatus.Id != null) {
+                        if (ship.Get((Status)falseBStatus.Id) > 0)
+                            c.QueueImmediate(new AStatus() {
+                                status = Status.powerdrive,
+                                statusAmount = ship.Get((Status)falseBStatus.Id),
+                                targetPlayer = __instance.targetPlayer,
+                                timer = -1,
+                            });
+                    }
+                }
+            }
             return;
         }
 
         public static bool TurnBegin(Ship __instance, State s, Combat c) {
             ExternalStatus strafeStatus = Manifest.Statuses?["TempStrafe"] ?? throw new Exception("status missing: temp strafe");
             if (strafeStatus.Id == null) return true;
-            if (__instance.Get(Status.timeStop) <= 0) {
-                if (__instance.Get((Status)strafeStatus.Id) > 0)
+                if (__instance.Get((Status)strafeStatus.Id) > 0 && __instance.Get(Status.timeStop) <= 0)
                     __instance.Set((Status)strafeStatus.Id, 0);
+
+            ExternalStatus mobileStatus = Manifest.Statuses?["MobileDefense"] ?? throw new Exception("status missing: mobile defense");
+            if (mobileStatus.Id == null) return true;
+            if (__instance.Get((Status)mobileStatus.Id) > 0 && __instance.Get(Status.timeStop) <= 0)
+                __instance.Set((Status)mobileStatus.Id, 0);
+            /*
+            ExternalStatus outmaneuverStatus = Manifest.Statuses?["Outmaneuver"] ?? throw new Exception("status missing: mobile defense");
+            if (outmaneuverStatus.Id == null) return true;
+            if (__instance.Get((Status)outmaneuverStatus.Id) > 0 && __instance.Get(Status.timeStop) <= 0)
+                __instance.Set((Status)outmaneuverStatus.Id, 0);
+            */
+
+            ExternalStatus enflamedStatus = Manifest.Statuses?["Enflamed"] ?? throw new Exception("status missing: enflamed");
+            if (enflamedStatus.Id == null) return true;
+            if (__instance.Get((Status)enflamedStatus.Id) > 0) {
+                c.QueueImmediate(new AStatus() {
+                    status = Status.heat,
+                    statusAmount = __instance.Get((Status)enflamedStatus.Id),
+                    targetPlayer = __instance.isPlayerShip
+                });
             }
 
             return true;
+        }
+
+        public static bool TurnEnd(Ship __instance, State s, Combat c) {
+            ExternalStatus dodgeStatus = Manifest.Statuses?["UncannyEvasion"] ?? throw new Exception("status missing: uncanny evasion");
+            if (dodgeStatus.Id == null) return true;
+            if (__instance.Get((Status)dodgeStatus.Id) > 0 && __instance.Get(Status.shield) <= 0 && __instance.Get(Status.tempShield) <= 0)
+                c.QueueImmediate(new AStatus() {
+                    status = Status.autododgeRight,
+                    statusAmount = __instance.Get((Status) dodgeStatus.Id),
+                    targetPlayer = __instance.isPlayerShip
+                });
+
+            ExternalStatus onslaughtStatus = Manifest.Statuses?["Onslaught"] ?? throw new Exception("status missing: repeat");
+            if (onslaughtStatus.Id == null) return true;
+            if (s.ship.Get((Status)onslaughtStatus.Id) > 0 && __instance.Get(Status.timeStop) <= 0)
+                s.ship.Set((Status)onslaughtStatus.Id, 0);
+
+            return true;
+        }
+        public static bool PlayCardPrefix(Combat __instance, State s, Card card, bool playNoMatterWhatForFree, bool exhaustNoMatterWhat) {
+            /*
+            ExternalStatus repeatStatus = Manifest.Statuses?["Repeat"] ?? throw new Exception("status missing: repeat");
+            if (repeatStatus.Id == null) return true;
+
+            if (s.ship.Get((Status)repeatStatus.Id) > 0) {
+                s.ship.statusEffects[(Status)repeatStatus.Id]--;
+                Card newCard = card.CopyWithNewId();
+                newCard.exhaustOverride = true;
+                newCard.temporaryOverride = true;
+
+                __instance.SendCardToHand(s, newCard);
+                __instance.TryPlayCard(s, newCard, true, exhaustNoMatterWhat);
+            }*/
+            return true;
+        }
+
+        public static void PlayCardPostfix(Combat __instance, ref bool __result, State s, Card card, bool playNoMatterWhatForFree, bool exhaustNoMatterWhat) {
+            if (!__result)
+                return;
+            ExternalStatus onslaughtStatus = Manifest.Statuses?["Onslaught"] ?? throw new Exception("status missing: repeat");
+            if (onslaughtStatus.Id == null) return;
+            if (s.ship.Get((Status)onslaughtStatus.Id) > 0) {
+                List<Card> cardList = s.deck;
+                int count = 0;
+                for (int drawIdx = cardList.Count - 1; drawIdx >= 0 && count < s.ship.statusEffects[(Status)onslaughtStatus.Id]; --drawIdx) {
+                    Card selectCard = cardList[drawIdx];
+                    if (selectCard.GetMeta().deck == card.GetMeta().deck) {
+                        if (card.uuid != selectCard.uuid) {
+                            if (((Combat) s.route).hand.Count >= 10) {
+                                ((Combat)s.route).PulseFullHandWarning();
+                                break;
+                            }
+                            ((Combat)s.route).DrawCardIdx(s, drawIdx, CardDestination.Deck);
+                            count++;
+                            continue;
+                        }
+                    }
+                    if (drawIdx == 0) {
+                        s.ship.Set((Status)onslaughtStatus.Id, 0);
+                    }
+                }
+            }
         }
 
         public static bool Card_StatCostAction_Prefix(G g, State state, ref CardAction action, bool dontDraw) {
@@ -52,8 +187,7 @@ namespace TwosCompany {
             if (dontDraw)
                 return true;
 
-            if (action is StatCost) {
-                StatCost cast = (StatCost) action;
+            if (action is StatCost cast) {
                 statusReq = cast.statusReq;
                 statusCost = cast.statusCost;
                 cumulative =  cast.cumulative;
@@ -79,7 +213,7 @@ namespace TwosCompany {
             for (int i = 0; i < statusCost; i++) {
                 bool metCost = false;
                 if (state.route is Combat && state.ship.statusEffects.ContainsKey(statusReq))
-                    metCost = state.ship.statusEffects[statusReq] >= i + cumulative + 1;
+                    metCost = state.ship.Get(statusReq) >= i + cumulative + 1;
                 --w;
                 var nullable1 = new Rect(w);
                 var key = new UIKey?();

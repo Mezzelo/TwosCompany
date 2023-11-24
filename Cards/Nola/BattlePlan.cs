@@ -24,7 +24,7 @@
             actions.Add(new ADelay() {
                 time = -0.5
             });
-            if (s.route is Combat route)
+            if (s.route is Combat)
                 foreach (Card current in c.hand) {
                     if (current.uuid == this.uuid)
                         continue;

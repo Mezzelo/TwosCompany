@@ -28,7 +28,7 @@ namespace TwosCompany.Cards.Nola {
 
             int drawSize = 0;
             int iMax = 4;
-            if (s.route is Combat route)
+            if (s.route is Combat)
                 drawSize = s.deck.Count;
 
             if (upgrade == Upgrade.B) {

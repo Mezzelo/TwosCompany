@@ -117,22 +117,44 @@ namespace TwosCompany {
                 prefix: new HarmonyMethod(typeof (PatchLogic), nameof(PatchLogic.Card_StatCostAction_Prefix))
             );
 
-            // 
+            // card name patch
+            harmony.Patch(
+                original: AccessTools.DeclaredMethod(typeof(Card), nameof(Card.GetFullDisplayName)),
+                prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.DisguisedCardName))
+            );
+
+            // move patch
             harmony.Patch(
                 original: AccessTools.DeclaredMethod(typeof(AMove), nameof(AMove.Begin)),
                 prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.MoveBegin)),
                 postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.MoveEnd))
             );
 
+            // attack patch
+            harmony.Patch(
+                original: AccessTools.DeclaredMethod(typeof(AAttack), nameof(AAttack.Begin)),
+                prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.AttackBegin)),
+                postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.AttackEnd))
+            );
+
+            // turn start/end patch
             harmony.Patch(
                 original: AccessTools.DeclaredMethod(typeof(Ship), nameof(Ship.OnBeginTurn)),
                 prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.TurnBegin))
             );
 
             harmony.Patch(
-                original: AccessTools.DeclaredMethod(typeof(Card), nameof(Card.GetFullDisplayName)),
-                prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.DisguisedCardName))
+                original: AccessTools.DeclaredMethod(typeof(Ship), nameof(Ship.OnAfterTurn)),
+                prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.TurnEnd))
             );
+
+            // play card patch
+            harmony.Patch(
+                original: AccessTools.DeclaredMethod(typeof(Combat), nameof(Combat.TryPlayCard)),
+                // prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.PlayCardPrefix))
+                postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.PlayCardPostfix))
+            );
+            
 
             /*
             //create action draw code for agrow cluster
@@ -161,7 +183,7 @@ namespace TwosCompany {
             // addSprite("Adaptation_TopCardSprite", "Adaptation_Top", "cards", artReg);
             // addSprite("Adaptation_BottomCardSprite", "Adaptation_Bottom", "cards", artReg);
 
-            // icons
+            // hint/cardaction icons
             addSprite("IconEnergyPerCard", "energyPerCard", "icons", artReg);
             addSprite("IconEnergyPerPlay", "energyPerPlay", "icons", artReg);
             addSprite("IconRaiseCostHint", "energyPerPlay", "icons", artReg);
@@ -170,7 +192,6 @@ namespace TwosCompany {
             addSprite("IconTurnIncreaseCost", "turnIncreaseCost", "icons", artReg);
             addSprite("IconAllIncrease", "allIncrease", "icons", artReg);
             addSprite("IconAllIncreaseCombat", "allIncreaseCombat", "icons", artReg);
-            addSprite("IconTempStrafe", "tempStrafe", "icons", artReg);
             addSprite("IconShieldCost", "shieldCost", "icons", artReg);
             addSprite("IconShieldCostOff", "shieldCostOff", "icons", artReg);
             addSprite("IconEvadeCost", "evadeCost", "icons", artReg);
@@ -181,6 +202,18 @@ namespace TwosCompany {
             addSprite("IconPointDefense", "pdRight", "icons", artReg);
             addSprite("IconCallAndResponseHint", "callAndResponseHint", "icons", artReg);
 
+            // status icons
+            addSprite("IconTempStrafe", "tempStrafe", "icons", artReg);
+            addSprite("IconMobileDefense", "mobileDefense", "icons", artReg);
+            addSprite("IconUncannyEvasion", "uncannyEvasion", "icons", artReg);
+            addSprite("IconOnslaught", "onslaught", "icons", artReg);
+            // addSprite("IconRepeat", "repeat", "icons", artReg);
+            // addSprite("IconThreepeat", "threepeat", "icons", artReg);
+            addSprite("IconDominance", "dominance", "icons", artReg);
+            addSprite("IconFalseOpening", "falseOpening", "icons", artReg);
+            addSprite("IconFalseOpeningB", "falseOpeningB", "icons", artReg);
+            addSprite("IconEnflamed", "enflamed", "icons", artReg);
+            // chars
             addSprite("NolaFrame", "char_nola", "panels", artReg);
             addSprite("IsabelleFrame", "char_isabelle", "panels", artReg);
             addSprite("IlyaFrame", "char_ilya", "panels", artReg);
@@ -319,21 +352,30 @@ namespace TwosCompany {
         public void LoadManifest(IStatusRegistry registry) {
             addStatus("TempStrafe", "Temp Strafe", "Fire for {0} damage immediately after every move you make. <c=downside>Goes away at start of next turn.</c>",
                 true, System.Drawing.Color.Violet, System.Drawing.Color.FromArgb(unchecked((int)0xff5e5ce3)), registry, true);
-            /* addStatus("Relentless", "Relentless", "Gain {0} <c=status>TEMPORARY SHIELD</c> for every card played this turn. <c=downside>Goes away at start of next turn.</c>",
-                true, System.Drawing.Color.Violet, null, registry, true);
-            addStatus("Control", "Control", "Gain {0} <c=status>EVADE</c> each turn. If you don't hit your enemy before your turn ends, <c=downside>lose this status.</c>",
+            addStatus("MobileDefense", "Mobile Defense", "Gain {0} <c=status>TEMPORARY SHIELD</c> for every card played this turn. <c=downside>Goes away at start of next turn.</c>",
                 true, System.Drawing.Color.Cyan, null, registry, true);
-            addStatus("Encore", "Encore", "Play your next card <c=keyword>an additional time</c>. Reduce this status by <c=keyword>1</c> for every card played.",
+            // addStatus("Outmaneuver", "Outmaneuver", "Gain {0} <c=status>EVADE</c> for every attack targeting your ship at the start of your turn.</c>",
+            //     true, System.Drawing.Color.Cyan, null, registry, true);
+            addStatus("Onslaught", "Onslaught", "Whenever you play a card this turn, draw a card of the <c=keyword>same color<c/> from your draw pile." +
+                " <c=downside>Goes away at end of turn, or if no cards of the same color are found.</c>",
                 true, System.Drawing.Color.Cyan, null, registry, true);
-            addStatus("EncoreB", "Encore B", "Play your next card <c=keyword>two more times</c>. Reduce this status by <c=keyword>1</c> for every card played.",
-                true, System.Drawing.Color.Cyan, null, registry, true);
-            addStatus("UncannyEvasion", "Uncanny Evasion", "Once per turn when shields are broken, gain {0} <c=status>AUTODODGE</c>.",
-                true, System.Drawing.Color.Cyan, null, registry, true);
-            addStatus("FalseOpening", "False Opening", "Gain {0} <c=status>OVERDRIVE</c> for every hit received this turn. <c=downside>Goes away at start of next turn.</c>",
-                true, System.Drawing.Color.Tomato, null, registry, true);
-            addStatus("FalseOpeningB", "False Opening B", "Gain {0} <c=status>POWERDRIVE</c> for every hit received this turn. <c=downside>Goes away at start of next turn.</c>",
-                true, System.Drawing.Color.Wheat, null, registry, true);
-            */
+            // addStatus("Dominance", "Dominance", "Gain {0} <c=status>EVADE</c> each turn. If you don't hit your enemy before your turn ends, <c=downside>lose this status.</c>",
+            //     true, System.Drawing.Color.FromArgb(unchecked((int)0x2F48B7)), null, registry, true);
+            // addStatus("Repeat", "Encore", "Play your next card <c=keyword>an additional time</c>. Reduce this status by <c=keyword>1</c> for every card played.",
+            //     true, System.Drawing.Color.Cyan, null, registry, true);
+            // addStatus("Threepeat", "Encore B", "Play your next card <c=keyword>two more times</c>. Reduce this status by <c=keyword>1</c> for every card played.",
+            //     true, System.Drawing.Color.Cyan, null, registry, true);
+            addStatus("UncannyEvasion", "Uncanny Evasion", "Gain {0} <c=status>AUTODODGE</c> if you end your turn without any shields.",
+                true, System.Drawing.Color.FromArgb(unchecked((int)0xff44b6)), null, registry, true);
+            addStatus("FalseOpening", "False Opening", "Gain {0} <c=status>OVERDRIVE</c> whenever you receieve damage from an attack or missile this turn. " +
+                "<c=downside>Goes away at start of next turn.</c>",
+                true, System.Drawing.Color.FromArgb(unchecked((int)0xff3838)), null, registry, true);
+            addStatus("FalseOpeningB", "False Opening B", "Gain {0} <c=status>POWERDRIVE</c> whenever you receieve damage from an attack or missile this turn. " +
+                "<c=downside>Goes away at start of next turn.</c>",
+                true, System.Drawing.Color.FromArgb(unchecked((int)0xffd33e)), System.Drawing.Color.FromArgb(unchecked((int)0xff9e48)), registry, false);
+            addStatus("Enflamed", "Enflamed", "Gain {0} <c=downside>EVADE</c> every turn.",
+                true, System.Drawing.Color.Violet, System.Drawing.Color.FromArgb(unchecked((int)0xff6666)), registry, true);
+
         }
 
         public void LoadManifest(IGlossaryRegisty registry) {
