@@ -10,7 +10,7 @@ namespace TwosCompany.Helper {
 
     public static class ManifHelper {
         public static String[] cardNames = new string[] {
-            // 0-20 Nola
+            // 0-21 Nola
             "Adaptation",
             "Anticipation",
             "AllHands",
@@ -20,8 +20,9 @@ namespace TwosCompany.Helper {
             "Contingency",
             "DamageControl",
             "DoubleDown",
+            // "Encore",
             "Foresight",
-            "Encore", // unimplemented oops lol
+            "Guidance",
             // "FlexibleDodge",
             "HoldOn",
             "LetLoose",
@@ -32,11 +33,12 @@ namespace TwosCompany.Helper {
             // "Protocol",
             "Recalibrate",
             "Relentless",
+            "Ruminate",
             "SteadyOn",
             "SuddenShift",
             // "UncannyEvasion",
             "WeakPoint",
-            // 21-45: Isabelle
+            // 22-46: Isabelle
             "Bind",
             "CompoundAttack",
             "Couch",
@@ -64,13 +66,14 @@ namespace TwosCompany.Helper {
             "WildStrikes",
             "WildStrike",
             "WildDodge",
-            // 46 - 66: Ilya
+            // 47 - 69: Ilya
             "Apex",
             "Backdraft",
             "BlastShield",
             "Burnout",
             "Cauterize",
             "DragonsBreath",
+            "Ember",
             "Fireball",
             "FlashDraw",
             "Galvanize",
@@ -78,18 +81,19 @@ namespace TwosCompany.Helper {
             "HeatTreatment",
             "Ignition",
             "Imbue",
+            "Immolate",
             "Maul",
             "MoltenShot",
             "Pressure",
             "ReactorBurn",
             "Scars",
             "ThermalBlast",
-            "Thermal Runaway",
+            "ThermalRunaway",
             "Wildfire",
         };
 
         public static String[] cardLocs = new string[] {
-            // 0-20: Nola
+            // 0-21: Nola
             "Adaptation",
             "Anticipation",
             "All Hands",
@@ -99,8 +103,9 @@ namespace TwosCompany.Helper {
             "Contingency",
             "Damage Control",
             "Double Down",
+            // "Encore",
             "Foresight",
-            "Encore",
+            "Guidance",
             // "Flexible Dodge",
             "Hold On!",
             "Let Loose",
@@ -111,11 +116,12 @@ namespace TwosCompany.Helper {
             // "Protocol",
             "Recalibrate",
             "Relentless",
+            "Ruminate",
             "Steady On",
             "Sudden Shift",
             // "Uncanny Evasion",
             "Weak Point",
-            // 21-45: Isabelle
+            // 22-46: Isabelle
             "Bind",
             "Compound Attack",
             "Couch",
@@ -143,13 +149,14 @@ namespace TwosCompany.Helper {
             "Wild Strikes",
             "Wild Strike",
             "Wild Dodge",
-            // 46 - 66: Ilya
+            // 47 - 69: Ilya
             "Apex",
             "Backdraft",
             "Blast Shield",
             "Burnout",
             "Cauterize",
             "Dragon's Breath",
+            "Ember",
             "Fireball",
             "Flash Draw",
             "Galvanize",
@@ -157,6 +164,7 @@ namespace TwosCompany.Helper {
             "Heat Treatment",
             "Ignition",
             "Imbue",
+            "Immolate",
             "Maul",
             "Molten Shot",
             "Pressure",
@@ -184,8 +192,8 @@ namespace TwosCompany.Helper {
             {"Anticipation", "Temporarily reduce the cost of a card in your <c=keyword>draw pile</c> by <c=energy>3</c>."},
             {"AnticipationA", "Temporarily reduce the cost of a card in your <c=keyword>draw pile</c> by <c=energy>4</c>."},
             {"AnticipationB", "Temporarily reduce the cost of a card in your <c=keyword>draw pile</c> by <c=energy>3</c>."},
-            {"AllHands", "Play your entire hand from <c=card>{0}</c> to <c=card>{1}</c> for free."},
-            {"AllHandsA", "Play your entire hand from <c=card>{0}</c> to <c=card>{1}</c> for free."},
+            {"AllHands", "Play your current hand from <c=card>{0}</c> to <c=card>{1}</c> for free."},
+            {"AllHandsA", "Play your current hand from <c=card>{0}</c> to <c=card>{1}</c> for free."},
             {"AllHandsB", "Play your <c=card>{0}</c> card. Reduce this card's cost by <c=energy>3</c> once a turn."},
             {"BattlePlan", "Copy your hand on top of the <c=keyword>draw pile</c> with <c=cardtrait>temp</c> and <c=cardtrait>exhaust</c>."},
             {"BattlePlanA", "Copy your hand on top of the <c=keyword>draw pile</c> with <c=cardtrait>temp</c> and <c=cardtrait>exhaust</c>."},
@@ -205,8 +213,11 @@ namespace TwosCompany.Helper {
             {"Foresight", "Choose <c=keyword>4</c> cards in your <c=keyword>draw pile</c> to <c=keyword>discard</c>. Draw <c=keyword>1</c> card."},
             {"ForesightA", "Choose <c=keyword>4</c> cards in your <c=keyword>draw pile</c> to <c=keyword>discard</c>. Draw <c=keyword>3</c>."},
             {"ForesightB", "<c=keyword>Exhaust 1</c> and <c=keyword>discard 3</c> cards in your <c=keyword>draw pile</c>. Draw <c=keyword>1</c> card."},
+            {"Guidance", "<c=keyword>Upgrade</c> all unupgraded cards in your hand to <c=keyword>A</c> this combat."},
+            {"GuidanceA", "<c=keyword>Upgrade</c> all unupgraded cards in your hand to <c=keyword>A</c> this combat."},
+            {"GuidanceB", "<c=keyword>Upgrade</c> all unupgraded cards in your hand to <c=keyword>B</c> this combat."},
             {"LetLoose", "Temporarily reduce the cost of your entire hand by <c=energy>1</c>."},
-            {"LetLooseA", "Draw <c=keyword>2</c> cards. Reduce the cost of your entire hand by <c=energy>1</c>."},
+            {"LetLooseA", "Draw <c=keyword>1</c> card. Reduce the cost of your entire hand by <c=energy>1</c>."},
             {"LetLooseB", "Temporarily reduce the cost of your entire hand by <c=energy>2</c>."},
             {"Outmaneuver", "Gain <c=keyword>{0}</c> <c=status>evade</c> for each attack targeting your ship{1}."},
             {"OutmaneuverA", "Gain <c=keyword>{0}</c> <c=status>evade</c> for each attack targeting your ship{1}."},
@@ -217,6 +228,9 @@ namespace TwosCompany.Helper {
             {"Remise", "<c=cardtrait>X</c> = <c=cardtrait># of enemy attacks</c>. Gain {0} <c=status>evade</c>, fire for <c=hurt>{1}</c> dmg."},
             {"RemiseA", "<c=cardtrait>X</c> = <c=cardtrait># of enemy attacks</c>. Gain {0} <c=status>evade</c>, fire for <c=hurt>{1}</c> dmg."},
             {"RemiseB", "<c=cardtrait>X</c> = <c=cardtrait># of enemy attacks</c>. Gain {0} <c=status>evade</c>, deal <c=hurt>1</c> dmg <c=keyword>{1}</c> times."},
+            {"Ruminate", "Move <c=keyword>2</c> cards to top of draw. <c=downside>End turn.</c>"},
+            {"RuminateA", "Move <c=keyword>2</c> cards to top of draw. Draw <c=keyword> 2 more cards next turn. <c=downside>End turn.</c>"},
+            {"RuminateB", "Move <c=keyword>2</c> cards to top of draw and reduce their cost by <c=energy>1</c>. <c=downside>End turn.</c>"},
             {"FlexibleDodge", "<c=keyword>Flip</c> to change <c=keyword>autododge</c> direction. <c=keyword>Play</c> to avoid gaining <c=keyword>autododge</c>."},
             {"FlexibleDodgeA", "<c=keyword>Flip</c> to change <c=keyword>autododge</c> direction. <c=keyword>Play</c> to avoid gaining <c=keyword>autododge</c>."},
             {"FlexibleDodgeB", "<c=keyword>Flip</c> to change <c=keyword>autododge</c> direction. <c=keyword>Play</c> to avoid gaining <c=keyword>autododge</c>."},

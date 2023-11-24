@@ -1,5 +1,5 @@
 ﻿namespace TwosCompany.Actions {
-    public class ADiscardSpecific : CardAction {
+    public class AUpgradeHand : CardAction {
         public bool drawNotDiscard = false;
         public int discount = 0;
         public override void Begin(G g, State s, Combat c) {

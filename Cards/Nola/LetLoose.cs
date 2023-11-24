@@ -1,7 +1,7 @@
 ﻿using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Nola {
-    [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
+    [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class LetLoose : Card {
         public override CardData GetData(State state) {
             string cardText;
@@ -23,7 +23,7 @@ namespace TwosCompany.Cards.Nola {
             
             if (upgrade == Upgrade.A)
                 actions.Add(new ADrawCard() {
-                    count = 2,
+                    count = 1,
                 });
 
             actions.Add(new ALowerCardCost() {

@@ -1,7 +1,7 @@
 ﻿using CobaltCoreModding.Definitions.ExternalItems;
 
 namespace TwosCompany.Cards.Ilya {
-    [CardMeta(rarity = Rarity.rare, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
+    [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class Ignition : Card {
         public override CardData GetData(State state) {
             return new CardData() {

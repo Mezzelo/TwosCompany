@@ -28,7 +28,7 @@ namespace TwosCompany.Cards.Nola {
 
             actions.Add(new ACardSelect() {
                 browseAction = new ACaptainsOrders() {
-                    dontExhaust = upgrade == Upgrade.B
+                    dontExhaust = upgrade == Upgrade.B,
                 },
                 browseSource = CardBrowse.Source.Hand
             });

@@ -41,7 +41,7 @@ namespace TwosCompany {
         private static System.Drawing.Color IsabelleColor = System.Drawing.Color.FromArgb(47, 72, 183); // 2F48B7
         private static String IsaColH = string.Format("<c={0:X2}{1:X2}{2:X2}>", IsabelleColor.R, IsabelleColor.G, IsabelleColor.B);
         public static string[] isabelleEmotes = new String[] {
-            "mini", "neutral", "gameover", "angry", "forlorn", "getreal", "glare", "shocked", "snide"
+            "mini", "neutral", "gameover", "angry", "forlorn", "getreal", "glare", "shocked", "snide", "squint"
         };
 
         public static ExternalCharacter? IlyaCharacter { get; private set; }
@@ -279,9 +279,9 @@ namespace TwosCompany {
         }
 
         void ICardManifest.LoadManifest(ICardRegistry registry) {
-            ManifHelper.DefineCards(0, 21, "Nola", NolaDeck ?? throw new Exception("missing deck"), Cards ?? throw new Exception("missing dictionary: cards"), Sprites, registry);
+            ManifHelper.DefineCards(0, 22, "Nola", NolaDeck ?? throw new Exception("missing deck"), Cards ?? throw new Exception("missing dictionary: cards"), Sprites, registry);
             ManifHelper.DefineCards(21, 25, "Isabelle", IsabelleDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
-            ManifHelper.DefineCards(46, 21, "Ilya", IlyaDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
+            ManifHelper.DefineCards(46, 23, "Ilya", IlyaDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
 
             /*
             Cards.Add("Adaptation",

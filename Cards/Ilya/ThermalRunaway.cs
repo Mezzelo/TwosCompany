@@ -1,11 +1,12 @@
-﻿namespace TwosCompany.Cards.Nola {
+﻿using TwosCompany.Actions;
+
+namespace TwosCompany.Cards.Ilya {
     [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
-    public class Contingency : Card {
+    public class ThermalRunaway : Card {
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 1,
-                retain = upgrade == Upgrade.A,
-                exhaust = true,
+                recycle = upgrade == Upgrade.B
             };
         }
         private int GetHandSize(State s) {
@@ -23,17 +24,20 @@
                 handAmount = this.GetHandSize(s)
             });
             actions.Add(new AExhaustEntireHand());
-            actions.Add(new ADrawCard() {
-                count = GetHandSize(s),
+            actions.Add(new AAddCard() {
+                amount = this.GetHandSize(s),
+                card = new Ember(),
                 xHint = 1,
             });
-            if (upgrade == Upgrade.B)
-                actions.Add(new AEnergy() {
-                    changeAmount = 3,
+            if (upgrade == Upgrade.A)
+                actions.Add(new AStatus() {
+                    status = Status.heat,
+                    statusAmount = -2,
+                    targetPlayer = true,
                 });
             return actions;
         }
 
-        public override string Name() => "Contingency";
+        public override string Name() => "Thermal Runaway";
     }
 }

@@ -12,7 +12,7 @@
             List<CardAction> actions = new List<CardAction>();
 
             actions.Add(new AHurt() {
-                hurtAmount = upgrade == Upgrade.A ? 2 : 3,
+                hurtAmount = upgrade == Upgrade.A ? 1 : 2,
                 targetPlayer = true,
                 hurtShieldsFirst = false
             });
@@ -21,7 +21,7 @@
                 targetPlayer = true
             });
             actions.Add(new AEnergy() {
-                changeAmount = 1
+                changeAmount = 2
             });
             actions.Add(new ADrawCard() {
                 count = 2

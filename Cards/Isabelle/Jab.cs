@@ -17,7 +17,6 @@ namespace TwosCompany.Cards.Isabelle {
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
-
             if (disguised)
                 actions.Add(new ADisguisedHint() {
                     perma = upgrade == Upgrade.B,

@@ -8,7 +8,9 @@ namespace TwosCompany.Actions {
             var move = CalculateMove(s, c, out _);
             if (move == null)
                 c.Queue(new ADiscardSpecific() {
-                    selectedCard = this.selectedCard
+                    selectedCard = this.selectedCard,
+                    drawNotDiscard = false,
+                    discount = 0
                 });
             else
                 c.QueueImmediate(move);

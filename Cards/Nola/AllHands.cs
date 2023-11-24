@@ -50,7 +50,9 @@ namespace TwosCompany.Cards.Nola {
                 }
                 if (preventPlay)
                     actions.Add(new ADiscardSpecific() {
-                        selectedCard = this
+                        selectedCard = this,
+                        drawNotDiscard = false,
+                        discount = 0
                     });
                 else
                     actions.Add(new APlayOtherCard() {
@@ -60,7 +62,9 @@ namespace TwosCompany.Cards.Nola {
                     });
                 if (doubleInf)
                     actions.Add(new ADiscardSpecific() {
-                        selectedCard = this
+                        selectedCard = this,
+                        drawNotDiscard = false,
+                        discount = 0
                     });
             }
             else

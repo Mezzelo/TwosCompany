@@ -23,7 +23,7 @@
                             targetPlayer = true
                         });
                     c.Queue(new ADelay() {
-                        time = 0.3
+                        time = 0.1
                     });
                     break;
                 }
