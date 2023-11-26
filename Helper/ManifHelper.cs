@@ -175,7 +175,7 @@ namespace TwosCompany.Helper {
             "Wildfire",
         };
 
-        public static List<String> hasFlipSprite = new List<string> {
+        public static string[] hasFlipSprite = new string[] {
             "Adaptation",
             "Backdraft",
             "Flourish",
@@ -186,6 +186,26 @@ namespace TwosCompany.Helper {
             "Sideswipe",
             "Shove",
             "SuddenShift",
+        };
+
+        public static string[] defaultArtCards = new string[] {
+            "AllHands",
+            "BattlePlan",
+            "CaptainsOrders",
+            "Couch",
+            "DoubleDown",
+            // "Expose",
+            "Foresight",
+            "Grapple",
+            "Guidance",
+            "LetLoose",
+            "Outmaneuver",
+            // "Practiced",
+            // "Reap",
+            "Recalibrate",
+            "Remise",
+            "Ruminate",
+            "Wildfire"
         };
 
         public static Dictionary<string, string> cardTexts = new Dictionary<string, string> {
@@ -248,17 +268,18 @@ namespace TwosCompany.Helper {
                 throw new Exception("Root Folder not set");
 
             foreach (String cardName in cardNames) {
-                sprites.Add((cardName + "CardSprite"),
-                    new ExternalSprite("Mezz.TwosCompany.Sprites." + cardName + "CardSprite", new FileInfo(
-                        Path.Combine(ModRootFolder.FullName, "Sprites", "cards", Path.GetFileName("mezz_" + cardName + ".png")))
-                    )
-                );
-                if (hasFlipSprite.Contains(cardName)) {
-                    sprites.Add((cardName + "CardSpriteFlip"),
-                        new ExternalSprite("Mezz.TwosCompany.Sprites." + cardName + "CardSpriteFlip", new FileInfo(
-                            Path.Combine(ModRootFolder.FullName, "Sprites", "cards", Path.GetFileName("mezz_" + cardName + "_flip.png")))
+                if (!ManifHelper.defaultArtCards.Contains(cardName)) {
+                    sprites.Add((cardName + "CardSprite"),
+                        new ExternalSprite("Mezz.TwosCompany.Sprites." + cardName + "CardSprite", new FileInfo(
+                            Path.Combine(ModRootFolder.FullName, "Sprites", "cards", Path.GetFileName("mezz_" + cardName + ".png")))
                         )
                     );
+                    if (hasFlipSprite.Contains(cardName))
+                        sprites.Add((cardName + "CardSpriteFlip"),
+                            new ExternalSprite("Mezz.TwosCompany.Sprites." + cardName + "CardSpriteFlip", new FileInfo(
+                                Path.Combine(ModRootFolder.FullName, "Sprites", "cards", Path.GetFileName("mezz_" + cardName + "_flip.png")))
+                            )
+                        );
                 }
             }
         }
@@ -272,7 +293,7 @@ namespace TwosCompany.Helper {
                 Cards.Add(cardNames[i],
                     new ExternalCard("Mezz.TwosCompany.Cards." + charName + cardNames[i], 
                     Type.GetType("TwosCompany.Cards." + charName + "." + cardNames[i]) ?? throw new Exception("card type not found?: cardNames[i]"),
-                    Sprites[(cardNames[i] + "CardSprite")], deck)
+                    defaultArtCards.Contains(cardNames[i]) ? deck.CardArtDefault : Sprites[(cardNames[i] + "CardSprite")], deck)
                 );
                 // note: might have to refactor this
                 if (cardTexts.ContainsKey(cardNames[i])) {

@@ -11,7 +11,9 @@ using HarmonyLib;
 using System.Reflection;
 
 namespace TwosCompany {
-    public class Manifest : ISpriteManifest, ICardManifest, IDeckManifest, ICharacterManifest, IAnimationManifest, IGlossaryManifest, IStatusManifest, IModManifest {
+    public partial class Manifest : ISpriteManifest, ICardManifest, IDeckManifest, ICharacterManifest, IAnimationManifest,
+        IGlossaryManifest, IStatusManifest, 
+        ICustomEventManifest, IArtifactManifest, IModManifest {
         public DirectoryInfo? ModRootFolder { get; set; }
         public DirectoryInfo? GameRootFolder { get; set; }
 
@@ -23,10 +25,6 @@ namespace TwosCompany {
         public static Dictionary<string, ExternalAnimation> Animations = new Dictionary<string, ExternalAnimation>();
 
         public static Dictionary<string, ExternalCard>? Cards = new Dictionary<string, ExternalCard>();
-
-        public static Dictionary<string, ExternalGlossary> Glossary = new Dictionary<string, ExternalGlossary>();
-
-        public static Dictionary<string, ExternalStatus> Statuses = new Dictionary<string, ExternalStatus>();
 
         public static ExternalCharacter? NolaCharacter { get; private set; }
         public static ExternalDeck? NolaDeck { get; private set; }
@@ -94,86 +92,6 @@ namespace TwosCompany {
             animReg.RegisterAnimation(Animations[spriteName + "Anim"]);
 
         }
-        private void addStatus(string name, string displayName, string desc, bool isGood, 
-            System.Drawing.Color mainColor, System.Drawing.Color? borderColor, IStatusRegistry statReg, bool timeStop) {
-            Statuses.Add(name, new ExternalStatus("Mezz.TwosCompany." + name, isGood, 
-                mainColor, borderColor.HasValue ? borderColor : null, Manifest.Sprites["Icon" + name], timeStop));
-            Statuses[name].AddLocalisation(displayName, desc);
-            statReg.RegisterStatus(Statuses[name]);
-        }
-
-        private void addGlossary(string name, string displayName, string desc, IGlossaryRegisty glossReg) {
-            Glossary.Add(name, new ExternalGlossary("Mezz.TwosCompany." + name, name, false, ExternalGlossary.GlossayType.action, Manifest.Sprites["Icon" + name]));
-            Glossary[name].AddLocalisation("en", displayName, desc);
-            glossReg.RegisterGlossary(Glossary[name]);
-        }
-
-        public void BootMod(IModLoaderContact contact) {
-            Harmony harmony = new Harmony("Mezz.TwosCompany.Harmony");
-
-            // cost icon card rendering patch
-            harmony.Patch(
-                original: AccessTools.DeclaredMethod(typeof(Card), nameof(Card.RenderAction)),
-                prefix: new HarmonyMethod(typeof (PatchLogic), nameof(PatchLogic.Card_StatCostAction_Prefix))
-            );
-
-            // card name patch
-            harmony.Patch(
-                original: AccessTools.DeclaredMethod(typeof(Card), nameof(Card.GetFullDisplayName)),
-                prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.DisguisedCardName))
-            );
-
-            // move patch
-            harmony.Patch(
-                original: AccessTools.DeclaredMethod(typeof(AMove), nameof(AMove.Begin)),
-                prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.MoveBegin)),
-                postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.MoveEnd))
-            );
-
-            // attack patch
-            harmony.Patch(
-                original: AccessTools.DeclaredMethod(typeof(AAttack), nameof(AAttack.Begin)),
-                prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.AttackBegin)),
-                postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.AttackEnd))
-            );
-
-            // missilehit patch
-            harmony.Patch(
-                original: AccessTools.DeclaredMethod(typeof(AMissileHit), nameof(AMissileHit.Update)),
-                prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.MissileHitBegin)),
-                postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.MissileHitEnd))
-            );
-
-            // turn start/end patch
-            harmony.Patch(
-                original: AccessTools.DeclaredMethod(typeof(Ship), nameof(Ship.OnBeginTurn)),
-                prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.TurnBegin))
-            );
-
-            harmony.Patch(
-                original: AccessTools.DeclaredMethod(typeof(Ship), nameof(Ship.OnAfterTurn)),
-                prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.TurnEnd))
-            );
-
-            // play card patch
-            harmony.Patch(
-                original: AccessTools.DeclaredMethod(typeof(Combat), nameof(Combat.TryPlayCard)),
-                // prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.PlayCardPrefix))
-                postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.PlayCardPostfix))
-            );
-            
-
-            /*
-            //create action draw code for agrow cluster
-            var harmony = new Harmony("EWanderer.JohannaTheTrucker.AGrowClusterRendering");
-
-            var card_render_action_method = typeof(Card).GetMethod("RenderAction", BindingFlags.Public | BindingFlags.Static) ?? throw new Exception();
-
-            var card_render_action_prefix = this.GetType().GetMethod("AGrowClusterRenderActionPrefix", BindingFlags.NonPublic | BindingFlags.Static);
-
-            harmony.Patch(card_render_action_method, prefix: new HarmonyMethod(card_render_action_prefix));
-            */
-        }
 
         void ISpriteManifest.LoadManifest(ISpriteRegistry artReg) {
             if (ModRootFolder == null)
@@ -181,8 +99,10 @@ namespace TwosCompany {
 
             // cardSprites
             ManifHelper.DefineCardSprites(ModRootFolder, Sprites);
-            foreach (String cardName in ManifHelper.cardNames)
-                artReg.RegisterArt(Sprites[(cardName + "CardSprite")]);
+            foreach (String cardName in ManifHelper.cardNames) {
+                if (!ManifHelper.defaultArtCards.Contains(cardName))
+                    artReg.RegisterArt(Sprites[(cardName + "CardSprite")]);
+            }
             foreach (String cardName in ManifHelper.hasFlipSprite)
                 artReg.RegisterArt(Sprites[(cardName + "CardSpriteFlip")]);
 
@@ -231,6 +151,10 @@ namespace TwosCompany {
             addSprite("IsabelleDeckFrame", "border_isabelle", "cardshared", artReg);
             addSprite("IlyaDeckFrame", "border_ilya", "cardshared", artReg);
 
+            addSprite("NolaDefaultCardSprite", "default_nola", "cards", artReg);
+            addSprite("IsabelleDefaultCardSprite", "default_isabelle", "cards", artReg);
+            addSprite("IlyaDefaultCardSprite", "default_ilya", "cards", artReg);
+
             foreach (String emote in nolaEmotes)
                 addCharSprite("nola", emote, "characters", artReg);
 
@@ -244,12 +168,13 @@ namespace TwosCompany {
         }
 
         public void LoadManifest(IDeckRegistry registry) {
+            // ExternalSprite.GetRaw((int)Spr.cards_colorless),
             ExternalSprite borderSprite = Sprites["NolaDeckFrame"] ?? throw new Exception();
             NolaDeck = new ExternalDeck(
                 "Mezz.TwosCompany.NolaDeck",
                 NolaColor,
                 System.Drawing.Color.Black,
-                ExternalSprite.GetRaw((int)Spr.cards_colorless),
+                Sprites["NolaDefaultCardSprite"] ?? ExternalSprite.GetRaw((int)Spr.cards_colorless),
                 borderSprite,
                 null
             );
@@ -260,7 +185,7 @@ namespace TwosCompany {
                 "Mezz.TwosCompany.IsabelleDeck",
                 IsabelleColor,
                 System.Drawing.Color.Black,
-                ExternalSprite.GetRaw((int)Spr.cards_colorless),
+                Sprites["IsabelleDefaultCardSprite"] ?? ExternalSprite.GetRaw((int)Spr.cards_colorless),
                 borderSprite,
                 null
             );
@@ -271,7 +196,7 @@ namespace TwosCompany {
                 "Mezz.TwosCompany.IlyaDeck",
                 IlyaColor,
                 System.Drawing.Color.Black,
-                ExternalSprite.GetRaw((int)Spr.cards_colorless),
+                Sprites["IlyaDefaultCardSprite"] ?? ExternalSprite.GetRaw((int)Spr.cards_colorless),
                 borderSprite,
                 null
             );
@@ -280,19 +205,8 @@ namespace TwosCompany {
 
         void ICardManifest.LoadManifest(ICardRegistry registry) {
             ManifHelper.DefineCards(0, 22, "Nola", NolaDeck ?? throw new Exception("missing deck"), Cards ?? throw new Exception("missing dictionary: cards"), Sprites, registry);
-            ManifHelper.DefineCards(21, 25, "Isabelle", IsabelleDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
-            ManifHelper.DefineCards(46, 23, "Ilya", IlyaDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
-
-            /*
-            Cards.Add("Adaptation",
-                new ExternalCard("Mezz.TwosCompany.Cards.Adaptation", 
-                Type.GetType("TwosCompany.Cards.Nola.Adaptation") ?? throw new Exception("missing card type: adaptation"), Sprites["Adaptation_TopCardSprite"], NolaDeck)
-            );
-            Cards["Adaptation"].AddLocalisation("Adaptation");
-            registry.RegisterCard(Cards["Adaptation"]);
-            */
-
-
+            ManifHelper.DefineCards(22, 25, "Isabelle", IsabelleDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
+            ManifHelper.DefineCards(47, 23, "Ilya", IlyaDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
         }
 
         void IAnimationManifest.LoadManifest(IAnimationRegistry animReg) {
@@ -357,85 +271,6 @@ namespace TwosCompany {
             );
 
             registry.RegisterCharacter(IlyaCharacter);
-        }
-        public void LoadManifest(IStatusRegistry registry) {
-            addStatus("TempStrafe", "Temp Strafe", "Fire for {0} damage immediately after every move you make. <c=downside>Goes away at start of next turn.</c>",
-                true, System.Drawing.Color.Violet, System.Drawing.Color.FromArgb(unchecked((int)0xff5e5ce3)), registry, true);
-            addStatus("MobileDefense", "Mobile Defense", "Whenever this ship moves, it gains {0} <c=status>TEMP SHIELD</c>. <c=downside>Decreases by 1 at end of turn.</c>",
-                true, System.Drawing.Color.Cyan, null, registry, true);
-            // addStatus("Outmaneuver", "Outmaneuver", "Gain {0} <c=status>EVADE</c> for every attack targeting your ship at the start of your turn.</c>",
-            //     true, System.Drawing.Color.Cyan, null, registry, true);
-            addStatus("Onslaught", "Onslaught", "Whenever you play a card this turn, draw a card of the <c=keyword>same color</c> from your draw pile." +
-                " <c=downside>Goes away at end of turn</c>, or if no cards of the same color are found.",
-                true, System.Drawing.Color.Cyan, null, registry, true);
-            // addStatus("Dominance", "Dominance", "Gain {0} <c=status>EVADE</c> each turn. If you don't hit your enemy before your turn ends, <c=downside>lose this status.</c>",
-            //     true, System.Drawing.Color.FromArgb(unchecked((int)0x2F48B7)), null, registry, true);
-            // addStatus("Repeat", "Encore", "Play your next card <c=keyword>an additional time</c>. Reduce this status by <c=keyword>1</c> for every card played.",
-            //     true, System.Drawing.Color.Cyan, null, registry, true);
-            // addStatus("Threepeat", "Encore B", "Play your next card <c=keyword>two more times</c>. Reduce this status by <c=keyword>1</c> for every card played.",
-            //     true, System.Drawing.Color.Cyan, null, registry, true);
-            addStatus("UncannyEvasion", "Damage Control", "Gain {0} <c=status>AUTODODGE</c> if you end your turn without any <c=status>SHIELD</c>, temporary or otherwise.",
-                true, System.Drawing.Color.FromArgb(unchecked((int)0xffff44b6)), null, registry, true);
-            addStatus("FalseOpening", "False Opening", "Gain {0} <c=status>OVERDRIVE</c> whenever you receieve damage from an attack or missile this turn. " +
-                "<c=downside>Goes away at start of next turn.</c>",
-                true, System.Drawing.Color.FromArgb(unchecked((int)0xffff3838)), null, registry, true);
-            addStatus("FalseOpeningB", "False Opening B", "Gain {0} <c=status>POWERDRIVE</c> whenever you receieve damage from an attack or missile this turn. " +
-                "<c=downside>Goes away at start of next turn.</c>",
-                true, System.Drawing.Color.FromArgb(unchecked((int)0xffffd33e)), System.Drawing.Color.FromArgb(unchecked((int)0xffff9e48)), registry, false);
-            addStatus("Enflamed", "Enflamed", "Gain {0} <c=downside>HEAT</c> every turn.",
-                true, System.Drawing.Color.FromArgb(unchecked((int)0xffff6666)), null, registry, true);
-
-        }
-
-        public void LoadManifest(IGlossaryRegisty registry) {
-            addGlossary("EnergyPerCard", "Urgent",
-                "This card's cost increases by <c=downside>{0}</c> this turn for every other card played while in your hand. Resets when played or discarded."
-                , registry);
-            addGlossary("EnergyPerPlay", "Rising Cost",
-                "This card's cost increases by <c=downside>{0}</c> when played. Resets when discarded, or when combat ends."
-                , registry);
-            addGlossary("LowerCostHint", "Discount Other",
-                "Lower a card's cost by <c=keyword>{0}</c> until played, or until combat ends."
-                , registry);
-            addGlossary("RaiseCostHint", "Expensive Other",
-                "Raise a card's cost by <c=keyword>{0}</c> until played, or until combat ends."
-                , registry);
-            addGlossary("TurnIncreaseCost", "Timed Cost",
-                "This card's cost increases by <c=keyword>{0}</c> every turn while held. Resets when played, discarded, or when combat ends."
-                , registry);
-            addGlossary("LowerPerPlay", "Lowering Cost",
-                "This card's cost decreases by <c=keyword>{0}</c> when played. Resets when discarded, or when combat ends."
-                , registry);
-            addGlossary("AllIncrease", "Intensify",
-                "All of this card's values increase by <c=keyword>{0}</c> when played. Resets when drawn, or when combat ends."
-                , registry);
-            addGlossary("AllIncreaseCombat", "Lasting Intensify",
-                "All of this card's values increase by <c=keyword>{0}</c> when played. Resets <c=downside>when combat ends</c>."
-                , registry);
-            addGlossary("PointDefense", "Point Defense",
-                "Align your cannon {0} to the {1} hostile <c=drone>midrow object</c> over your ship. " +
-                "If there are none, <c=downside>discard instead</c>." +
-                "Removes retain for this turn when played."
-                , registry);
-            addGlossary("CallAndResponseHint", "Call and Response",
-                "Whenever you play this card, draw the selected card from the <c=keyword>draw or discard pile</c>{0}.\n" +
-                "If the stored card was <c=cardtrait>exhausted</c> or <c=downside>single use</c>, choose another."
-                , registry);
-            addGlossary("ShieldCost", "Shield Cost",
-                "Lose {0} <c=status>SHIELD</c>. If you don't have enough, this action does not happen."
-                , registry);
-            addGlossary("EvadeCost", "Evade Cost",
-                "Lose {0} <c=status>EVADE</c>. If you don't have enough, this action does not happen."
-                , registry);
-            addGlossary("HeatCost", "Heat Cost",
-                "Lose {0} <c=status>HEAT</c>. If you don't have enough, this action does not happen."
-                , registry);
-            addGlossary("DisguisedHint", "Disguised Card",
-                "This card may actually be one or more <c=keyword>different</c> kinds of cards, and will not reveal itself until played."
-                , registry);
-            addGlossary("DisguisedPermaHint", "Permanent Disguise",
-                "This card may actually be one or more <c=keyword>different</c> kinds of cards, and <c=downside>will not reveal itself even if played</c>."
-                , registry);
         }
     }
 }

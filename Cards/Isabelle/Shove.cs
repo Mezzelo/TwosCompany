@@ -13,12 +13,13 @@
 
             actions.Add(new AAttack() {
                 damage = GetDmg(s, upgrade == Upgrade.A ? 2 : 1),
-                moveEnemy = upgrade == Upgrade.B ? -4 : -2
+                moveEnemy = upgrade == Upgrade.B ? 4 : 2
             });
             actions.Add(new AMove() {
-                dir = upgrade == Upgrade.B ? -2 : -1,
+                dir = upgrade == Upgrade.B ? 2 : 1,
                 targetPlayer = true,
             });
+            actions.Add(new AFlipHand());
             return actions;
         }
 

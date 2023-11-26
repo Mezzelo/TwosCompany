@@ -25,6 +25,7 @@
                 damage = GetDmg(s, 2),
                 fast = true,
             });
+            actions.Add(new AFlipHand());
             return actions;
         }
 

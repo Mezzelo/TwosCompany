@@ -3,7 +3,7 @@
     public class CoupDeGrace : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 4,
+                cost = 3,
                 exhaust = upgrade != Upgrade.B,
                 recycle = upgrade == Upgrade.B
             };
