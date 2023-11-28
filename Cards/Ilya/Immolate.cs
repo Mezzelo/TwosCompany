@@ -5,7 +5,7 @@ namespace TwosCompany.Cards.Ilya {
     public class Immolate : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 3,
+                cost = 2,
             };
         }
 
@@ -20,7 +20,7 @@ namespace TwosCompany.Cards.Ilya {
                         statusAmount = 2,
                     },
                     statusReq = Status.heat,
-                    statusCost = 1,
+                    statusCost = 2,
                     cumulative = 0,
                     first = true,
                 });
@@ -30,8 +30,8 @@ namespace TwosCompany.Cards.Ilya {
                     fast = upgrade == Upgrade.A,
                 },
                 statusReq = Status.heat,
-                statusCost = upgrade == Upgrade.A ? 1 : 3,
-                cumulative = upgrade == Upgrade.B ? 1 : 0,
+                statusCost = upgrade == Upgrade.A ? 1 : (upgrade == Upgrade.B ? 2 : 3),
+                cumulative = upgrade == Upgrade.B ? 2 : 0,
                 first = upgrade != Upgrade.B
             });
             if (upgrade == Upgrade.A)

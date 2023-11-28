@@ -1,5 +1,5 @@
 ﻿namespace TwosCompany.Cards.Ilya {
-    [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
+    [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class ReactorBurn : Card {
         public override CardData GetData(State state) {
             return new CardData() {
@@ -33,7 +33,7 @@
             if (upgrade == Upgrade.A)
                 actions.Add(new AStatus() {
                     status = Status.heat,
-                    statusAmount = -2,
+                    statusAmount = -1,
                     targetPlayer = true,
                 });
             else if (upgrade == Upgrade.B)

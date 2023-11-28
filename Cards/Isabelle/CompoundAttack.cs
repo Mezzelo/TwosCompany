@@ -13,7 +13,7 @@ namespace TwosCompany.Cards.Isabelle {
                 cardText = Loc.GetLocString(Manifest.Cards?["CompoundAttack"].DescBLocKey ?? throw new Exception("Missing card description"));
 
             return new CardData() {
-                cost = 2,
+                cost = 1,
                 description = cardText,
                 exhaust = upgrade == Upgrade.B
             };
@@ -34,7 +34,7 @@ namespace TwosCompany.Cards.Isabelle {
                 card2 = new Fleche() {
                     upgrade = upgrade == Upgrade.B ? Upgrade.B : Upgrade.None,
                 },
-                amount1 = upgrade == Upgrade.A ? 2 : 3,
+                amount1 = count,
                 amount2 = 1,
                 disguise = true
             });

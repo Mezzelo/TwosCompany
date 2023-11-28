@@ -27,18 +27,19 @@ namespace TwosCompany.Cards.Isabelle {
                     actualCard = new List<Card> { new Fleche() { upgrade = Upgrade.B } },
                 });
             actions.Add(new ADisguisedAttack() {
-                damage = GetDmg(s, this.disguised ? 1 : (upgrade == Upgrade.B ? 4 : 5)),
+                damage = GetDmg(s, this.disguised ? 1 : 4),
                 stunEnemy = this.disguised ? false : true,
-                realDamage = GetDmg(s, (upgrade == Upgrade.B ? 4 : 5)),
+                realDamage = GetDmg(s, 4),
                 realStun = true,
                 disguised = this.disguised
             });
-            actions.Add(new ADisguisedStatus() {
-                targetPlayer = true,
-                status = Status.evade,
-                statusAmount = this.disguised ? 1 : -3,
-                realAmount = -3,
-            });
+            // if (!(upgrade == Upgrade.B && !disguised))
+                actions.Add(new ADisguisedStatus() {
+                    targetPlayer = true,
+                    status = Status.evade,
+                    statusAmount = this.disguised ? 1 : (upgrade == Upgrade.B ? -1 : -2),
+                    realAmount = upgrade == Upgrade.B ? -1 : -2,
+                });
             return actions;
         }
 

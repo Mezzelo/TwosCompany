@@ -32,7 +32,7 @@ namespace TwosCompany.Actions {
                     if (!(c.stuff[s.ship.x + i] is Asteroid) && !(c.stuff[s.ship.x + i] is Asteroid) &&
                         c.stuff[s.ship.x + i].IsHostile()) 
                         for (int g = i; isRight ? g >= 0 : g < s.ship.parts.Count; g += isRight ? -1 : 1)
-                            if (s.ship.parts[g].type == PType.cannon) {
+                            if (s.ship.parts[g].type == PType.cannon && s.ship.parts[g].active) {
                                 move = i - g;
                                 offset = i;
                                 found = true;

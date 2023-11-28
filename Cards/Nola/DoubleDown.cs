@@ -33,7 +33,7 @@
                     // && thisStatus.Key != Status.evade
                     // && thisStatus.Key != Status.maxShard
                     )
-                    actions.Add((CardAction)new AStatus() {
+                    actions.Add(new AStatus() {
                         targetPlayer = true,
                         status = thisStatus.Key,
                         statusAmount = upgrade == Upgrade.B ? thisStatus.Value : 1

@@ -3,7 +3,7 @@
     public class Apex : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = upgrade != Upgrade.A ? 1 : 3,
+                cost = upgrade != Upgrade.A ? 2 : 3,
                 exhaust = true
             };
         }
@@ -14,9 +14,10 @@
             int freezeAmount = upgrade == Upgrade.None ? 2 : 1;
             if (upgrade == Upgrade.B)
                 freezeAmount = 3;
-            actions.Add(new AStatus() {
+            actions.Add(new AAttack() {
+                damage = GetDmg(s, 1),
                 status = Status.lockdown,
-                statusAmount = freezeAmount,
+                statusAmount = freezeAmount - (upgrade == Upgrade.A ? 0 : 1),
                 targetPlayer = false
             });
             actions.Add(new AStatus() {
@@ -24,15 +25,14 @@
                 statusAmount = freezeAmount,
                 targetPlayer = true
             });
-            if (upgrade != Upgrade.B)
-                actions.Add(new AStatus() {
-                    status = Status.overdrive,
-                    statusAmount = 1,
-                    targetPlayer = true,
-                });
+            actions.Add(new AStatus() {
+                status = Status.overdrive,
+                statusAmount = upgrade != Upgrade.B ? 1 : 2,
+                targetPlayer = true,
+            });
             actions.Add(new AStatus() {
                 status = Status.powerdrive,
-                statusAmount = upgrade != Upgrade.B ? 1 : 2,
+                statusAmount = 1,
                 targetPlayer = true,
             });
             return actions;

@@ -4,6 +4,9 @@ using CobaltCoreModding.Definitions.ExternalItems;
 using CobaltCoreModding.Definitions.ModContactPoints;
 using TwosCompany.Actions;
 using TwosCompany.Cards;
+using TwosCompany.Cards.Ilya;
+using TwosCompany.Cards.Isabelle;
+using TwosCompany.Cards.Nola;
 
 namespace TwosCompany {
     public class PatchLogic {
@@ -30,6 +33,10 @@ namespace TwosCompany {
         public static void MoveEnd(AMove __instance, State s, Combat c, int __state) {
             int dist = (__instance.targetPlayer ? s.ship.x : c.otherShip.x) - __state;
             if (dist != 0) {
+                if (__instance.targetPlayer)
+                    Manifest.EventHub.SignalEvent<Tuple<int, bool, bool, Combat, State>>(
+                        "Mezz.TwosCompany.Movement", new(dist, __instance.targetPlayer, __instance.fromEvade, c, s));
+
                 Ship ship = __instance.targetPlayer ? s.ship : c.otherShip;
                 ExternalStatus mobileStatus = Manifest.Statuses?["MobileDefense"] ?? throw new Exception("status missing: mobile defense");
                 if (mobileStatus.Id != null)
@@ -223,6 +230,18 @@ namespace TwosCompany {
                             targetPlayer = true,
                         });
                     }
+                }
+            }
+        }
+
+        public static void CardDataPostfix(Card __instance, ref CardData __result, State state) {
+            if (state.route is not Combat)
+                return;
+            if (!__result.flippable && state.ship.Get(Status.tableFlip) > 0) {
+                if (__instance is Wildfire ||
+                __instance is PointDefense ||
+                __instance is AllHands) {
+                    __result.flippable = true;
                 }
             }
         }

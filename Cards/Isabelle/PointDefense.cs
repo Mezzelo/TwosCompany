@@ -9,7 +9,7 @@ namespace TwosCompany.Cards.Isabelle {
 
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 2,
+                cost = 1,
                 infinite = true,
                 retain = costIncrease == 0,
                 flippable = upgrade == Upgrade.A

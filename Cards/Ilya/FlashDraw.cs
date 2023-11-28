@@ -30,7 +30,7 @@ namespace TwosCompany.Cards.Ilya {
 
             actions.Add(new AStatus() {
                 status = Status.heat,
-                statusAmount = upgrade == Upgrade.A ? 1 : 2,
+                statusAmount = upgrade == Upgrade.None ? 2 : 1,
                 targetPlayer = true,
             });
             return actions;

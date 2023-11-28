@@ -3,7 +3,7 @@
     public class Haymaker : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = upgrade == Upgrade.B ? 4 : 3,
+                cost = upgrade == Upgrade.B ? 3 : 2,
                 exhaust = true,
                 flippable = upgrade == Upgrade.A
             };
@@ -17,7 +17,7 @@
                 targetPlayer = true,
             });
             actions.Add(new AAttack() {
-                damage = GetDmg(s, 4),
+                damage = GetDmg(s, 5),
                 weaken = upgrade != Upgrade.B,
                 brittle = upgrade == Upgrade.B,
                 stunEnemy = true

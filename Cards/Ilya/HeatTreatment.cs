@@ -4,7 +4,7 @@
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 1,
-                exhaust = upgrade != Upgrade.None
+                exhaust = upgrade == Upgrade.B
             };
         }
         private int GetHeatAmt(State s) {

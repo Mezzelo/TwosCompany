@@ -24,10 +24,20 @@ namespace TwosCompany.Cards.Ilya {
                 first = true
             });
             actions.Add(new StatCostAction() {
+                action = new AStatus() {
+                    status = Status.overdrive,
+                    targetPlayer = true,
+                    statusAmount = 1,
+                },
+                statusReq = Status.heat,
+                statusCost = 1,
+                cumulative = 1,
+            });
+            actions.Add(new StatCostAction() {
                 action = upgrade == Upgrade.B ? new AStatus() {
                     status = Status.heat,
                     targetPlayer = true,
-                    statusAmount = 4,
+                    statusAmount = 5,
                 } : new AHurt() {
                     hurtAmount = 1,
                     targetPlayer = true,
@@ -35,7 +45,7 @@ namespace TwosCompany.Cards.Ilya {
                 },
                 statusReq = Status.heat,
                 statusCost = 1,
-                cumulative = 1,
+                cumulative = 2,
             });
             actions.Add(new StatCostAction() {
                 action = new AStatus() {
@@ -45,7 +55,7 @@ namespace TwosCompany.Cards.Ilya {
                 },
                 statusReq = Status.heat,
                 statusCost = 1,
-                cumulative = 2,
+                cumulative = upgrade == Upgrade.B ? 2 : 3,
             });
             return actions;
         }

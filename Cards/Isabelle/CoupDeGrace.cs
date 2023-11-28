@@ -32,7 +32,7 @@
             });
             actions.Add(new AStatus() {
                 status = Status.lockdown,
-                statusAmount = upgrade != Upgrade.B ? 3 : 2,
+                statusAmount = upgrade != Upgrade.B ? 2 : 1,
                 targetPlayer = true
             });
             return actions;

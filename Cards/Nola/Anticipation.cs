@@ -32,13 +32,14 @@ namespace TwosCompany.Cards.Nola {
             if (drawSize > 1) {
                 actions.Add(new ACardSelect() {
                     browseAction = new ALowerCardCost() {
-                        amount = upgrade == Upgrade.A ? 4 : 3,
+                        amount = upgrade == Upgrade.A ? -4 : -3,
+                        minimum = -1
                     },
                     browseSource = CardBrowse.Source.DrawPile
                 });
             } else if (drawSize == 1) {
                 actions.Add(new ALowerCardCost() {
-                    amount = upgrade == Upgrade.A ? 4 : 3,
+                    amount = upgrade == Upgrade.A ? -4 : -3,
                     selectedIndex = 0
                 });
             }

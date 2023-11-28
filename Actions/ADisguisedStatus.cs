@@ -7,6 +7,8 @@
         public bool disguised = true;
 
         public override void Begin(G g, State s, Combat c) {
+            if (realAmount == 0)
+                return;
             c.QueueImmediate(new AStatus() {
                 status = realStatus ?? status,
                 targetPlayer = realTargetPlayer ?? this.targetPlayer,

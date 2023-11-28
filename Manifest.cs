@@ -26,6 +26,8 @@ namespace TwosCompany {
 
         public static Dictionary<string, ExternalCard>? Cards = new Dictionary<string, ExternalCard>();
 
+        public static Dictionary<string, ExternalArtifact> Artifacts = new Dictionary<string, ExternalArtifact>();
+
         public static ExternalCharacter? NolaCharacter { get; private set; }
         public static ExternalDeck? NolaDeck { get; private set; }
         private static System.Drawing.Color NolaColor = System.Drawing.Color.FromArgb(23, 175, 198); // 17AFC6
@@ -163,6 +165,11 @@ namespace TwosCompany {
 
             foreach (String emote in ilyaEmotes)
                 addCharSprite("ilya", emote, "characters", artReg);
+
+            // artifact icons
+            foreach (String artifact in ManifArtifactHelper.artifactNames) {
+                addSprite("Icon" + artifact, string.Concat(artifact[0].ToString().ToLower(), artifact.AsSpan(1)), "artifacts", artReg);
+            }
             
 
         }
@@ -205,8 +212,8 @@ namespace TwosCompany {
 
         void ICardManifest.LoadManifest(ICardRegistry registry) {
             ManifHelper.DefineCards(0, 22, "Nola", NolaDeck ?? throw new Exception("missing deck"), Cards ?? throw new Exception("missing dictionary: cards"), Sprites, registry);
-            ManifHelper.DefineCards(22, 25, "Isabelle", IsabelleDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
-            ManifHelper.DefineCards(47, 23, "Ilya", IlyaDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
+            ManifHelper.DefineCards(22, 26, "Isabelle", IsabelleDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
+            ManifHelper.DefineCards(48, 23, "Ilya", IlyaDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
         }
 
         void IAnimationManifest.LoadManifest(IAnimationRegistry animReg) {
@@ -260,7 +267,7 @@ namespace TwosCompany {
             IlyaCharacter = new ExternalCharacter("Mezz.TwosCompany.Character.Ilya",
                 IlyaDeck ?? throw new Exception("Missing Deck"),
                 Sprites["IlyaFrame"] ?? throw new Exception("Missing Portrait"),
-                new Type[] { typeof(ThermalBlast), typeof(Pressure) },
+                new Type[] { typeof(MoltenShot), typeof(Galvanize) },
                 new Type[0],
                 Animations["IlyaNeutralAnim"] ?? throw new Exception("missing default animation"),
                 Animations["IlyaMiniAnim"] ?? throw new Exception("missing mini animation"));

@@ -5,7 +5,7 @@ namespace TwosCompany.Cards.Nola {
     public class SteadyOn : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 2,
+                cost = 1,
             };
         }
 
@@ -39,7 +39,7 @@ namespace TwosCompany.Cards.Nola {
             });
             actions.Add(new StatCostAction() {
                 action = new AStatus() {
-                    status = Status.overdrive,
+                    status = upgrade == Upgrade.B ? Status.powerdrive : Status.overdrive,
                     targetPlayer = true,
                     statusAmount = 1,
                 },
@@ -47,14 +47,14 @@ namespace TwosCompany.Cards.Nola {
                 statusCost = 1,
                 cumulative = upgrade == Upgrade.A ? 3 : 4
             });
-
+            /*
             if (upgrade == Upgrade.B)
                 actions.Add(new AStatus() {
                     status = Status.hermes,
                     targetPlayer = true,
                     statusAmount = 1,
                 });
-
+            */
             return actions;
         }
 

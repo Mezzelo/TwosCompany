@@ -20,7 +20,7 @@
         }
 
         public override Icon? GetIcon(State s) {
-            return new Icon(Spr.icons_exhaust, null, Colors.textMain);
+            return new Icon(Enum.Parse<Spr>("icons_exhaust"), null, Colors.textMain);
         }
     }
 }

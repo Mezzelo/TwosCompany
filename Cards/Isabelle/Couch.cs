@@ -19,9 +19,8 @@ namespace TwosCompany.Cards.Isabelle {
                     GetDistanceString(state));
 
             return new CardData() {
-                cost = upgrade == Upgrade.B ? 3 : 2,
-            description = cardText,
-                retain = upgrade == Upgrade.A
+                cost = upgrade == Upgrade.A ? 1 : 2,
+                description = cardText,
             };
         }
         private int GetRound(State s) {

@@ -1,5 +1,4 @@
-﻿using TwosCompany;
-using TwosCompany.Cards.Nola;
+﻿using TwosCompany.Cards.Nola;
 
 namespace TwosCompany.Artifacts {
 
@@ -7,18 +6,17 @@ namespace TwosCompany.Artifacts {
     public class FlowBooster : Artifact {
         public int counter = 0;
         public bool shuffledThisTurn = false;
-        public override int? GetDisplayNumber(State s) => counter == 0 ? null : counter;
+        public override int? GetDisplayNumber(State s) => counter;
 
         public override void OnPlayerDeckShuffle(State state, Combat combat) {
             counter = 0;
             shuffledThisTurn = true;
         }
-        public override void OnCombatEnd(State state) => counter = 0;
         public override void OnTurnStart(State state, Combat combat) {
             if (counter == 3) {
                 counter = 0;
                 this.Pulse();
-                combat.QueueImmediate(new AAddCard() {
+                combat.Queue(new AAddCard() {
                     card = new Foresight() {
                         exhaustOverride = true,
                         temporaryOverride = true,

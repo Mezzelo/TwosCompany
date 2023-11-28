@@ -5,7 +5,7 @@ namespace TwosCompany.Cards.Isabelle {
     public class Rake : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = upgrade != Upgrade.B ? 4 : 3,
+                cost = upgrade != Upgrade.B ? 4 : 1,
                 exhaust = upgrade != Upgrade.B
             };
         }
@@ -22,7 +22,7 @@ namespace TwosCompany.Cards.Isabelle {
             });
             actions.Add(new AStatus() {
                 status = Status.evade,
-                statusAmount = upgrade == Upgrade.B ? 4 : 3,
+                statusAmount = upgrade == Upgrade.B ? 2 : 3,
                 targetPlayer = true
             });
             if (upgrade != Upgrade.A)

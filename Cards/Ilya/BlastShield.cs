@@ -4,7 +4,6 @@
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 1,
-                exhaust = upgrade != Upgrade.B,
                 retain = true
             };
         }
@@ -18,7 +17,7 @@
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            if (upgrade != Upgrade.B)
+            if (upgrade != Upgrade.A)
                 actions.Add(new AStatus() {
                     status = Status.heat,
                     statusAmount = 2,
@@ -33,7 +32,7 @@
                 xHint = 1,
                 targetPlayer = true
             });
-            if (upgrade == Upgrade.A)
+            if (upgrade != Upgrade.None)
                 actions.Add(new AStatus() {
                     status = Status.heat,
                     statusAmount = -2,

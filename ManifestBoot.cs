@@ -12,6 +12,18 @@ using System.Reflection;
 
 namespace TwosCompany {
     public partial class Manifest {
+        private static ICustomEventHub? _eventHub;
+        internal static ICustomEventHub EventHub { get => _eventHub ?? throw new Exception(); set => _eventHub = value; }
+
+        public void LoadManifest(ICustomEventHub eventHub) {
+            _eventHub = eventHub;
+            //distance, target_player, from_evade, combat, state
+            eventHub.MakeEvent<Tuple<int, bool, bool, Combat, State>>("Mezz.TwosCompany.Movement");
+            Harmony harmony = new Harmony("Mezz.TwosCompany.Harmony");
+
+        }
+
+
 
         public void BootMod(IModLoaderContact contact) {
             Harmony harmony = new Harmony("Mezz.TwosCompany.Harmony");
@@ -66,23 +78,26 @@ namespace TwosCompany {
                 // prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.PlayCardPrefix))
                 postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.PlayCardPostfix))
             );
+
+            // table flip patch
+            harmony.Patch(
+                original: AccessTools.DeclaredMethod(typeof(Card), nameof(Card.GetDataWithOverrides)),
+                // prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.PlayCardPrefix))
+                postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.CardDataPostfix))
+            );
         }
-        private static ICustomEventHub? _eventHub;
-
-        internal static ICustomEventHub EventHub { get => _eventHub ?? throw new Exception(); set => _eventHub = value; }
-
-        public static List<ExternalArtifact> Artifacts = new List<ExternalArtifact>();
-
-        public void LoadManifest(ICustomEventHub eventHub) {
-            _eventHub = eventHub;
-
-        }
-
-
 
         public void LoadManifest(IArtifactRegistry registry) {
-            foreach (ExternalArtifact artifact in Artifacts) {
-                registry.RegisterArtifact(artifact);
+            for (int i = 0; i < ManifArtifactHelper.artifactNames.Length; i++) {
+                string artifact = ManifArtifactHelper.artifactNames[i];
+                if (Type.GetType("TwosCompany.Artifacts." + artifact) == null)
+                    continue;
+                Artifacts.Add(artifact, new ExternalArtifact("TwosCompany.Artifacts." + artifact,
+                    Type.GetType("TwosCompany.Artifacts." + artifact) ?? throw new Exception("artifact type not found: " + artifact),
+                    Sprites["Icon" + artifact] ?? throw new Exception("missing MidrowProtectorProtocol sprite"),
+                    ownerDeck: (i < 5 ? NolaDeck : (i < 10 ? IsabelleDeck : IlyaDeck))));
+                Artifacts[artifact].AddLocalisation(ManifArtifactHelper.artifactLocs[i].ToUpper(), ManifArtifactHelper.artifactTexts[i]);
+                registry.RegisterArtifact(Artifacts[artifact]);
             }
         }
 

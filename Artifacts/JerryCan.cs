@@ -1,6 +1,4 @@
-﻿using TwosCompany;
-
-namespace TwosCompany.Artifacts {
+﻿namespace TwosCompany.Artifacts {
 
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Common })]
     public class JerryCan : Artifact {
@@ -12,14 +10,16 @@ namespace TwosCompany.Artifacts {
                 statusAmount = 2
             });
 
-            int baseAmount = 1;
-            int num = baseAmount;
-            foreach (Artifact enumerateAllArtifact in state.EnumerateAllArtifacts())
-                num += enumerateAllArtifact.ModifyHealAmount(baseAmount, state);
-            state.ship.hull += num;
-            if (state.ship.hull <= state.ship.hullMax)
+            if (state.ship.hull >= state.ship.hullMax)
                 return;
-            state.ship.hull = state.ship.hullMax;
+            int num = 1;
+            foreach (Artifact enumerateAllArtifact in state.EnumerateAllArtifacts())
+                num += enumerateAllArtifact.ModifyHealAmount(1, state);
+            combat.Queue(new AHeal() {
+                healAmount = num,
+                targetPlayer = true,
+                timer = 0.5
+            });
         }
 
     }

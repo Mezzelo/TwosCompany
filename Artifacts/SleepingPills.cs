@@ -1,6 +1,4 @@
-﻿using TwosCompany;
-
-namespace TwosCompany.Artifacts {
+﻿namespace TwosCompany.Artifacts {
 
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Common })]
     public class SleepingPills : Artifact {
@@ -13,20 +11,23 @@ namespace TwosCompany.Artifacts {
                 counter = 4;
                 this.Pulse();
 
-                combat.QueueImmediate(new AStatus() {
+                combat.Queue(new AStatus() {
                     targetPlayer = true,
                     status = Status.serenity,
-                    statusAmount = 1
+                    statusAmount = 1,
+                    timer = 0.5
                 });
 
-                int baseAmount = 1;
-                int num = baseAmount;
-                foreach (Artifact enumerateAllArtifact in state.EnumerateAllArtifacts())
-                    num += enumerateAllArtifact.ModifyHealAmount(baseAmount, state);
-                state.ship.hull += num;
-                if (state.ship.hull <= state.ship.hullMax)
+                if (state.ship.hull >= state.ship.hullMax)
                     return;
-                state.ship.hull = state.ship.hullMax;
+                int num = 1;
+                foreach (Artifact enumerateAllArtifact in state.EnumerateAllArtifacts())
+                    num += enumerateAllArtifact.ModifyHealAmount(1, state);
+                combat.Queue(new AHeal() {
+                    healAmount = num,
+                    targetPlayer = true,
+                    timer = 0.5
+                });
             }
         }
         public override void OnTurnEnd(State state, Combat combat) {

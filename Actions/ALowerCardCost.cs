@@ -3,6 +3,7 @@
         public int amount;
         public bool hand = false;
         public int selectedIndex = -1;
+        public int minimum = -1;
         public override void Begin(G g, State s, Combat c) {
             if (!hand) {
                 if (selectedIndex > -1) {
@@ -13,12 +14,15 @@
                 Card selectedCard = this.selectedCard ?? throw new Exception("no card selected?");
                 if (selectedCard == null)
                     return;
-                selectedCard.discount -= amount;
+                if (minimum >= 0)
+                    selectedCard.discount = Math.Max(selectedCard.discount + amount, -selectedCard.GetData(s).cost + minimum);
             } else {
                 if (c.hand.Count == 0)
                     return;
-                foreach (Card current in c.hand)
-                    current.discount -= amount;
+                foreach (Card current in c.hand) {
+                    if (minimum >= 0)
+                        current.discount = Math.Max(current.discount + amount, -current.GetData(s).cost + minimum);
+                }
             }
             Audio.Play(FSPRO.Event.Status_PowerUp);
 
