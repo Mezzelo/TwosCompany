@@ -3,7 +3,7 @@
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Common })]
     public class SecondGear : Artifact {
         public int counter = 0;
-        // public override void OnCombatEnd(State state) => counter = 0;
+        public override string Description() => "On turn 6, <c=keyword>double</c> all of your current status effects.";
         public override int? GetDisplayNumber(State s) => counter > 5 || counter < 1 ? null : counter;
 
         public override void OnTurnStart(State state, Combat combat) {

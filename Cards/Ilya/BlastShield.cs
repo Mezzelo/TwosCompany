@@ -10,7 +10,7 @@
         private int GetHeatAmt(State s) {
             int heatAmt = 0;
             if (s.route is Combat)
-                heatAmt = Math.Max(0, s.ship.Get(Status.heat) + 2);
+                heatAmt = Math.Max(0, s.ship.Get(Status.heat) + (upgrade == Upgrade.A ? 0 : 2 + s.ship.Get(Status.boost)));
             return heatAmt;
         }
 
@@ -23,7 +23,7 @@
                     statusAmount = 2,
                     targetPlayer = true
                 });
-            actions.Add((CardAction)new AVariableHint() {
+            actions.Add(new AVariableHint() {
                 status = new Status?(Status.heat)
             });
             actions.Add(new AStatus() {

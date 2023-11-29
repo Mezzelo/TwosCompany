@@ -7,7 +7,7 @@ namespace TwosCompany.Cards.Ilya {
     public class MoltenShot : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 2,
+                cost = 1,
             };
         }
         private int GetHeatAmt(State s) {
@@ -18,6 +18,10 @@ namespace TwosCompany.Cards.Ilya {
         }
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
+
+            int boostMod = 0;
+            if (s.route is Combat)
+                boostMod = s.ship.Get(Status.boost);
 
             actions.Add(new StatCostAction() {
                 action = new AStatus() {
@@ -30,12 +34,12 @@ namespace TwosCompany.Cards.Ilya {
                 first = true
             });
             actions.Add(new AAttack() {
-                damage = GetDmg(s, GetHeatAmt(s) > 0 ? 1 : 0),
+                damage = GetDmg(s, GetHeatAmt(s) > 0 ? 1 + boostMod : 0),
                 fast = true,
             });
             actions.Add(new StatCostAttack() {
                 action = new AAttack() {
-                    damage = GetDmg(s, GetHeatAmt(s) > 0 ? 2 : 1),
+                    damage = GetDmg(s, GetHeatAmt(s) > 0 ? 2 + boostMod : 1),
                     fast = true,
                 },
                 statusReq = Status.heat,
@@ -46,7 +50,7 @@ namespace TwosCompany.Cards.Ilya {
             if (upgrade == Upgrade.B)
                 actions.Add(new StatCostAttack() {
                     action = new AAttack() {
-                        damage = GetDmg(s, GetHeatAmt(s) > 0 ? 2 : 1),
+                        damage = GetDmg(s, GetHeatAmt(s) > 0 ? 2 + boostMod : 1),
                         fast = true,
                     },
                     statusReq = Status.heat,

@@ -1,7 +1,7 @@
 ﻿using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Isabelle {
-    [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.B }, dontOffer = true)]
+    [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B }, dontOffer = true)]
     public class Fleche : Card, DisguisedCard {
         public bool disguised = false;
         public bool forTooltip = false;
@@ -30,9 +30,9 @@ namespace TwosCompany.Cards.Isabelle {
                         showCardTraitTooltips = false, } },
                 });
             actions.Add(new ADisguisedAttack() {
-                damage = GetDmg(s, this.disguised ? 1 : 4),
+                damage = GetDmg(s, this.disguised ? (upgrade == Upgrade.A ? 2 : 1) : (upgrade == Upgrade.A ? 5 : 4)),
                 stunEnemy = this.disguised ? false : true,
-                realDamage = GetDmg(s, 4),
+                realDamage = GetDmg(s, (upgrade == Upgrade.A ? 5 : 4)),
                 realStun = true,
                 disguised = this.disguised
             });

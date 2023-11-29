@@ -25,7 +25,7 @@ namespace TwosCompany.Cards.Ilya {
 
             actions.Add(new ADiscard());
             actions.Add(new ADrawCard() {
-                count = 5
+                count = upgrade == Upgrade.B ? 5 : 4
             });
 
             actions.Add(new AStatus() {

@@ -8,8 +8,13 @@
         }
         private int GetHeatAmt(State s) {
             int heatAmt = 0;
-            if (s.route is Combat)
+            if (s.route is Combat) {
                 heatAmt = s.ship.Get(Status.heat);
+                if (upgrade == Upgrade.A)
+                    heatAmt += 1 + s.ship.Get(Status.boost);
+                else if (upgrade == Upgrade.B)
+                    heatAmt += 2 + s.ship.Get(Status.boost);
+            }
             return heatAmt;
         }
 

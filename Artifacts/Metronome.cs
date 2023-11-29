@@ -19,7 +19,7 @@ namespace TwosCompany.Artifacts {
         }
         // public override void OnCombatEnd(State state) => counter = 0;
 
-        private void Proc(Combat c) {
+        private void Proc(State s, Combat c) {
             counter = 0;
             this.Pulse();
             c.QueueImmediate(new AStatus() {
@@ -32,6 +32,10 @@ namespace TwosCompany.Artifacts {
                 status = Status.evade,
                 statusAmount = 1
             });
+            foreach (CardAction cardAction in c.cardActions) {
+                if (cardAction is AAttack aattack && !aattack.targetPlayer && !aattack.fromDroneX.HasValue)
+                    aattack.damage += 1 + s.ship.Get(Status.boost);
+            }
         }
 
         public override void OnPlayerAttack(State state, Combat combat) {
@@ -39,7 +43,7 @@ namespace TwosCompany.Artifacts {
                 counter++;
                 lastWasMove = false;
                 if (counter > 4)
-                    Proc(combat);
+                    Proc(state, combat);
             } else
                 counter = 0;
         }
@@ -59,7 +63,7 @@ namespace TwosCompany.Artifacts {
                 counter++;
                 lastWasMove = true;
                 if (counter > 4)
-                    Proc(c);
+                    Proc(s, c);
             } else
                 counter = 0;
         }

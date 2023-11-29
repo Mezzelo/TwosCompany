@@ -25,17 +25,10 @@
             });
             actions.Add(new AStatus() {
                 status = Status.heat,
-                statusAmount = 0,
-               mode = AStatusMode.Set,
+                statusAmount = upgrade == Upgrade.B ? 2 : 0,
+                mode = AStatusMode.Set,
                 targetPlayer = true
             });
-
-            if (upgrade == Upgrade.B)
-                actions.Add(new AStatus() {
-                    status = Status.heat,
-                    statusAmount = 2,
-                    targetPlayer = true
-                });
 
             if (upgrade != Upgrade.None)
                 actions.Add(new ADrawCard() {

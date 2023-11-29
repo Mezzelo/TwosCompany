@@ -1,7 +1,7 @@
 ﻿using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Isabelle {
-    [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.B }, dontOffer = true)]
+    [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B }, dontOffer = true)]
     public class Jab : Card, DisguisedCard {
         public bool disguised = false;
         public bool forTooltip = false;
@@ -26,7 +26,7 @@ namespace TwosCompany.Cards.Isabelle {
                         showCardTraitTooltips = false, } },
                 });
             actions.Add(new AAttack() {
-                damage = GetDmg(s, 1),
+                damage = GetDmg(s, upgrade == Upgrade.A ? 2 : 1),
                 omitFromTooltips = forTooltip
             });
             actions.Add(new AStatus() {

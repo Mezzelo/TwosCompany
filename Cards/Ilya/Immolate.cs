@@ -26,7 +26,7 @@ namespace TwosCompany.Cards.Ilya {
                 });
             actions.Add(new StatCostAttack() {
                 action = new AAttack() {
-                    damage = GetDmg(s, upgrade == Upgrade.A ? 1 : 4),
+                    damage = GetDmg(s, upgrade == Upgrade.A ? 1 : 5),
                     fast = upgrade == Upgrade.A,
                 },
                 statusReq = Status.heat,
@@ -38,7 +38,7 @@ namespace TwosCompany.Cards.Ilya {
                 for (int i = 0; i < 2; i++)
                     actions.Add(new StatCostAttack() {
                         action = new AAttack() {
-                            damage = GetDmg(s, i + 1),
+                            damage = GetDmg(s, 2),
                             fast = true,
                         },
                         statusReq = Status.heat,

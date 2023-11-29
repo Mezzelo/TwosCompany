@@ -9,14 +9,16 @@
         private int GetShieldAmt(State s) {
             int shieldAmt = 0;
             if (s.route is Combat)
-                shieldAmt = s.ship.Get(Status.shield) + (upgrade == Upgrade.B ? 1 : 0);
+                shieldAmt = s.ship.Get(Status.shield)
+                    + (upgrade == Upgrade.A ? 1 + s.ship.Get(Status.boost) : (upgrade == Upgrade.B ? s.ship.Get(Status.tempShield) : 0));
+            
             return shieldAmt;
         }
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            if (upgrade == Upgrade.B) {
+            if (upgrade == Upgrade.A) {
                 actions.Add(new AStatus() {
                     status = Status.shield,
                     statusAmount = 1,
@@ -24,7 +26,8 @@
                 });
             }
             actions.Add(new AVariableHint() {
-                status = new Status?(Status.shield)
+                status = Status.shield,
+                secondStatus = upgrade == Upgrade.B ? Status.tempShield : null
             });
 
             actions.Add(new AStatus() {

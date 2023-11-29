@@ -59,7 +59,7 @@ namespace TwosCompany {
         }
         public void LoadManifest(IGlossaryRegisty registry) {
             addGlossary("EnergyPerCard", "Urgent",
-                "This card's cost increases by <c=downside>{0}</c> this turn for every other card played while in your hand. Resets when played or discarded."
+                "This card's cost increases by <c=downside>{0}</c> this turn for every other card played while in your hand. Resets when played, discarded, or when combat ends."
                 , registry);
             addGlossary("EnergyPerPlay", "Rising Cost",
                 "This card's cost increases by <c=downside>{0}</c> when played. Resets when discarded, or when combat ends."
@@ -84,8 +84,8 @@ namespace TwosCompany {
                 , registry);
             addGlossary("PointDefense", "Point Defense",
                 "Align your cannon {0} to the {1} hostile <c=drone>midrow object</c> over your ship. " +
-                "If there are none, <c=downside>discard instead</c>." +
-                "Removes retain for this turn when played."
+                "If there are none, <c=downside>discard instead</c>. " +
+                "Removes <c=cardtrait>retain for this turn when played."
                 , registry);
             addGlossary("CallAndResponseHint", "Call and Response",
                 "Whenever you play this card, draw the selected card from the <c=keyword>draw or discard pile</c>{0}.\n" +

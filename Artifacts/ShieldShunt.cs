@@ -2,6 +2,8 @@
 
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Boss })]
     public class ShieldShunt : Artifact {
+        public override string Description() => "<c=downside>Reduce your max shield to 1</c>, but permanently gain <c=keyword>double</c> your prior max shield as " +
+            "<c=hull>max hull</c> and <c=healing>heal</c> the same amount on pickup.";
 
         public override void OnReceiveArtifact(State state) {
 
