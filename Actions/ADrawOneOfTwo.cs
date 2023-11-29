@@ -9,6 +9,7 @@ namespace TwosCompany.Actions {
         public int amount1 = 1;
         public int amount2 = 1;
         public bool disguise = true;
+        public bool perma = false;
 
         public double waitBeforeMoving = 0.4;
         public override void Begin(G g, State s, Combat c) {
@@ -27,8 +28,10 @@ namespace TwosCompany.Actions {
                 amount2--;
             else
                 amount1--;
-            if (disguise && newCard is DisguisedCard)
-                ((DisguisedCard) newCard).disguised = true;
+            if (disguise && newCard is DisguisedCard) {
+                ((DisguisedCard)newCard).disguised = true;
+                ((DisguisedCard)newCard).forTooltip = false;
+            }
             newCard.pos = new Vec(G.screenSize.x * 0.5 - 30.0, 30.0);
             newCard.waitBeforeMoving = waitBeforeMoving;
             newCard.drawAnim = 1.0;
@@ -57,6 +60,8 @@ namespace TwosCompany.Actions {
                 card = card1?? new Jab(),
                 showCardTraitTooltips = false,
             });
+            list.Add(new TTGlossary(Manifest.Glossary[perma ? "DisguisedPermaHint" : "DisguisedHint"]?.Head ??
+            throw new Exception("missing glossary entry: disguisedHint")));
             list.Add(new TTCard {
                 card = card2?? new Jab(),
                 showCardTraitTooltips = false,

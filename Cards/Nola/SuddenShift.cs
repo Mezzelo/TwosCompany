@@ -45,7 +45,7 @@ namespace TwosCompany.Cards.Nola {
             costIncrease = 0;
             wasPlayed = false;
         }
-
+        
         public override void OnOtherCardPlayedWhileThisWasInHand(State s, Combat c, int handPosition) {
             this.discount += 1;
             costIncrease++;

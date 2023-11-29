@@ -192,6 +192,7 @@ namespace TwosCompany.Helper {
         };
 
         public static string[] defaultArtCards = new string[] {
+            "Anticipation",
             "AllHands",
             "BattlePlan",
             "CaptainsOrders",

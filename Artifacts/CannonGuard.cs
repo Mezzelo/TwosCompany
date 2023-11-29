@@ -5,6 +5,7 @@
 
         public int pos = 0;
         public bool markForGain = false;
+        public override string Description() => "Whenever you end your turn in the same position you started, gain 1 <c=status>OVERDRIVE</c>.";
         public override void OnTurnStart(State state, Combat combat) {
             if (markForGain) {
                 this.Pulse();
@@ -22,5 +23,6 @@
         public override void OnCombatStart(State state, Combat combat) {
             pos = state.ship.x;
         }
+        public override List<Tooltip>? GetExtraTooltips() => new List<Tooltip>() { new TTGlossary("status.overdrive", 1) };
     }
 }

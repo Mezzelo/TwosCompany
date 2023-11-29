@@ -14,7 +14,8 @@ namespace TwosCompany.Actions {
                 if (enumerateAllArtifact is AuxiliaryThrusters cast) {
                     cast.assignedUUID = this.selectedCard.uuid;
                     cast.cardImpression = new TTCard() {
-                        card = this.selectedCard.CopyWithNewId()
+                        card = this.selectedCard.CopyWithNewId(),
+                        showCardTraitTooltips = false
                     };
                     return;
                 }
@@ -26,7 +27,7 @@ namespace TwosCompany.Actions {
                 throw new Exception("missing glossary entry: CallAndResponseHint"), discount == 0 ? "" : " <c=textMain>and lower its cost by</c> <c=energy>" + discount + "</c>") };
             if (recall && this.selectedCard != null) {
                 Card card2 = selectedCard.CopyWithNewId();
-                list.Add((Tooltip)new TTCard() {
+                list.Add(new TTCard() {
                     card = card2,
                     showCardTraitTooltips = false
                 });

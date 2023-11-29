@@ -8,6 +8,7 @@ namespace TwosCompany.Artifacts {
     public class AuxiliaryThrusters : Artifact {
         public int assignedUUID = -1;
         public TTCard? cardImpression;
+        public override string Description() => "Choose a card in your deck.  Whenever you play that card, gain a <c=card>Recover</c>.";
 
         public override void OnReceiveArtifact(State state) {
             state.GetCurrentQueue().Add(new ACardSelect() {
@@ -23,7 +24,6 @@ namespace TwosCompany.Artifacts {
                     card = new Recover() {
                         exhaustOverride = true,
                         temporaryOverride = true,
-                        discount = -1,
                         forTooltip = false
                     },
                     destination = CardDestination.Hand
@@ -31,25 +31,29 @@ namespace TwosCompany.Artifacts {
             }
         }
 
-        /*
+        
         public override void OnCombatStart(State state, Combat c) {
             Card? assignedCard = state.FindCard(assignedUUID);
-            if (assignedCard == null) {
-                assignedUUID = -1;
-                cardImpression = null;
-            } else
-                cardImpression = new TTCard() {
-                    card = assignedCard.CopyWithNewId(),
-                    showCardTraitTooltips = false
-                };
-            
-        }*/
+            if (assignedCard != null && cardImpression != null) {
+                if (assignedCard.buoyantOverrideIsPermanent)
+                    cardImpression.card.buoyantOverride = assignedCard.buoyantOverride;
+                if (assignedCard.exhaustOverrideIsPermanent)
+                    cardImpression.card.exhaustOverride = assignedCard.exhaustOverride;
+                if (assignedCard.recycleOverrideIsPermanent)
+                    cardImpression.card.recycleOverride = assignedCard.recycleOverride;
+                if (assignedCard.retainOverrideIsPermanent)
+                    cardImpression.card.retainOverride = assignedCard.retainOverride;
+                cardImpression.card.upgrade = assignedCard.upgrade;
+            }
+
+        }
 
         public override void OnRemoveArtifact(State state) {
             assignedUUID = -1;
         }
         public override List<Tooltip>? GetExtraTooltips() {
             List<Tooltip> list = new List<Tooltip>();
+            list.Add(new TTGlossary("action.addCard", "<c=deck>hand</c>"));
             list.Add(new TTCard() {
                 card = new Recover() { forTooltip = true },
             });

@@ -29,14 +29,17 @@ namespace TwosCompany.Cards.Isabelle {
 
             actions.Add(new ADrawOneOfTwo() {
                 card1 = new Jab() {
-                    upgrade = upgrade == Upgrade.B ? Upgrade.B : Upgrade.None,
+                    upgrade = upgrade == Upgrade.B ? Upgrade.B : Upgrade.None, 
+                    forTooltip = true
                 },
                 card2 = new Fleche() {
                     upgrade = upgrade == Upgrade.B ? Upgrade.B : Upgrade.None,
+                    forTooltip = true
                 },
                 amount1 = count,
                 amount2 = 1,
-                disguise = true
+                disguise = true,
+                perma = upgrade == Upgrade.B
             });
             return actions;
         }

@@ -19,7 +19,7 @@
                 fast = true,
             });
             actions.Add(new AAttack() {
-                damage = GetDmg(s, 4),
+                damage = GetDmg(s, 3),
                 fast = true,
             });
             actions.Add(new AStatus() {

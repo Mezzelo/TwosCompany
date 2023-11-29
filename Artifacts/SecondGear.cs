@@ -4,7 +4,7 @@
     public class SecondGear : Artifact {
         public int counter = 0;
         // public override void OnCombatEnd(State state) => counter = 0;
-        public override int? GetDisplayNumber(State s) => counter > 5 ? null : counter;
+        public override int? GetDisplayNumber(State s) => counter > 5 || counter < 1 ? null : counter;
 
         public override void OnTurnStart(State state, Combat combat) {
             counter++;
@@ -31,11 +31,6 @@
             }
         }
 
-        public override void OnCombatEnd(State state) {
-            counter = 0;
-        }
-
-        public override void OnRemoveArtifact(State state) {
-        }
+        public override void OnCombatEnd(State state) => counter = 0;
     }
 }

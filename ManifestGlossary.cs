@@ -37,7 +37,7 @@ namespace TwosCompany {
             // addStatus("Outmaneuver", "Outmaneuver", "Gain {0} <c=status>EVADE</c> for every attack targeting your ship at the start of your turn.</c>",
             //     true, System.Drawing.Color.Cyan, null, registry, true);
             addStatus("Onslaught", "Onslaught", "Whenever you play a card this turn, draw a card of the <c=keyword>same color</c> from your draw pile." +
-                " <c=downside>Goes away at end of turn</c>, or if no cards of the same color are found.",
+                " <c=downside>Goes away at end of turn.</c>",
                 true, System.Drawing.Color.Cyan, null, registry, true);
             // addStatus("Dominance", "Dominance", "Gain {0} <c=status>EVADE</c> each turn. If you don't hit your enemy before your turn ends, <c=downside>lose this status.</c>",
             //     true, System.Drawing.Color.FromArgb(unchecked((int)0x2F48B7)), null, registry, true);
@@ -80,7 +80,7 @@ namespace TwosCompany {
                 "All of this card's values increase by <c=keyword>{0}</c> when played. Resets when drawn, or when combat ends."
                 , registry);
             addGlossary("AllIncreaseCombat", "Lasting Intensify",
-                "All of this card's values increase by <c=keyword>{0}</c> when played. Resets <c=downside>when combat ends</c>."
+                "All of this card's values increase by <c=keyword>{0}</c> when played. Resets <c=downside>when combat ends.</c>"
                 , registry);
             addGlossary("PointDefense", "Point Defense",
                 "Align your cannon {0} to the {1} hostile <c=drone>midrow object</c> over your ship. " +

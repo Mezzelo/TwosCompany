@@ -4,8 +4,10 @@ namespace TwosCompany.Cards.Isabelle {
     [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.B }, dontOffer = true)]
     public class Fleche : Card, DisguisedCard {
         public bool disguised = false;
+        public bool forTooltip = false;
         // public bool wasPlayed = false;
         bool DisguisedCard.disguised { get => disguised;  set => disguised = value; }
+        bool DisguisedCard.forTooltip { get => forTooltip; set => forTooltip = value; }
 
         public override CardData GetData(State state) {
             return new CardData() {
@@ -24,7 +26,8 @@ namespace TwosCompany.Cards.Isabelle {
             if (disguised)
                 actions.Add(new ADisguisedHint() {
                     perma = upgrade == Upgrade.B,
-                    actualCard = new List<Card> { new Fleche() { upgrade = Upgrade.B } },
+                    actualCard = new List<TTCard> { new TTCard() { card = new Fleche() { upgrade = this.upgrade },
+                        showCardTraitTooltips = false, } },
                 });
             actions.Add(new ADisguisedAttack() {
                 damage = GetDmg(s, this.disguised ? 1 : 4),

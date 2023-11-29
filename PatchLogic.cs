@@ -222,6 +222,7 @@ namespace TwosCompany {
                             continue;
                         }
                     }
+                    /*
                     if (drawIdx == 0) {
                         ((Combat)s.route).QueueImmediate(new AStatus() {
                             status = (Status)onslaughtStatus.Id,
@@ -229,7 +230,7 @@ namespace TwosCompany {
                             mode = AStatusMode.Set,
                             targetPlayer = true,
                         });
-                    }
+                    } */
                 }
             }
         }

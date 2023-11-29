@@ -22,9 +22,10 @@
                             statusAmount = 1,
                             targetPlayer = true
                         });
+                    /*
                     c.Queue(new ADelay() {
                         time = 0.1
-                    });
+                    });*/
                     break;
                 }
             }

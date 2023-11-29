@@ -58,7 +58,7 @@ namespace TwosCompany.Cards.Ilya {
                 actions.Add(new AStatus() {
                     status = Status.heat,
                     targetPlayer = true,
-                    statusAmount = upgrade == Upgrade.B ? 3 : 1,
+                    statusAmount = upgrade == Upgrade.B ? 2 : 1,
                 });
             return actions;
         }

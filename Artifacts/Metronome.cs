@@ -5,6 +5,8 @@ namespace TwosCompany.Artifacts {
     public class Metronome : Artifact {
         public int counter = 0;
         public bool lastWasMove = false;
+        public override string Description() => "Whenever you alternate between moving and attacking <c=keyword>5</c> times in a row, " +
+            "gain 1 <c=status>OVERDRIVE</c> and 1 <c=status>EVADE</c>.";
 
         public Metronome() => Manifest.EventHub.ConnectToEvent<Tuple<int, bool, bool, Combat, State>>("Mezz.TwosCompany.Movement", Movement);
 
@@ -23,6 +25,11 @@ namespace TwosCompany.Artifacts {
             c.QueueImmediate(new AStatus() {
                 targetPlayer = true,
                 status = Status.overdrive,
+                statusAmount = 1
+            });
+            c.QueueImmediate(new AStatus() {
+                targetPlayer = true,
+                status = Status.evade,
                 statusAmount = 1
             });
         }
@@ -56,5 +63,6 @@ namespace TwosCompany.Artifacts {
             } else
                 counter = 0;
         }
+        public override List<Tooltip>? GetExtraTooltips() => new List<Tooltip>() { new TTGlossary("status.overdrive", 1), new TTGlossary("status.evade", 1) };
     }
 }

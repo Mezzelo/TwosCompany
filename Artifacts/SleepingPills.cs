@@ -4,6 +4,8 @@
     public class SleepingPills : Artifact {
         public int counter = 0;
         // public override void OnCombatEnd(State state) => counter = 0;
+        public override string Description() => "<c=healing>Heal 1</c> and gain 1 <c=status>SERENITY</c> whenever you <c=downside>overheat</c>" +
+            ", up to once every <c=keyword>4</c> turns.";
         public override int? GetDisplayNumber(State s) => counter == 0 ? null : counter;
 
         public override void AfterPlayerOverheat(State state, Combat combat) {
@@ -34,8 +36,6 @@
             if (counter > 0)
                 counter--;
         }
-
-        public override void OnRemoveArtifact(State state) {
-        }
+        public override List<Tooltip>? GetExtraTooltips() => new List<Tooltip>() { new TTGlossary("status.serenity", 1) };
     }
 }

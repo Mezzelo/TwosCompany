@@ -3,7 +3,7 @@
 namespace TwosCompany.Actions {
     public class ADisguisedHint : CardAction {
         public bool perma = false;
-        public List<Card>? actualCard;
+        public List<TTCard>? actualCard;
 
         public override void Begin(G g, State s, Combat c) => this.timer = 0.0;
 
@@ -15,12 +15,8 @@ namespace TwosCompany.Actions {
             new TTGlossary(Manifest.Glossary[perma ? "DisguisedPermaHint" : "DisguisedHint"]?.Head ??
             throw new Exception("missing glossary entry: disguisedHint")) };
             if (actualCard != null) {
-                foreach (Card selectedCard in actualCard) {
-                    list.Add(new TTCard {
-                        card = selectedCard,
-                        showCardTraitTooltips = false,
-                    });
-                }
+                foreach (TTCard selectedCard in actualCard)
+                    list.Add(selectedCard);
             }
             return list;
         }

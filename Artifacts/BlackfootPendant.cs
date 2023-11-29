@@ -1,11 +1,12 @@
 ﻿using System.Runtime.CompilerServices;
 
 namespace TwosCompany.Artifacts {
-    [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Boss })]
+    [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Common })]
     public class BlackfootPendant : Artifact {
         public BlackfootPendant() => Manifest.EventHub.ConnectToEvent<Tuple<int, bool, bool, Combat, State>>("Mezz.TwosCompany.Movement", Movement);
 
         public int counter = 0;
+        public override string Description() => "Whenever you move <c=keyword>4+</c> spaces from playing a single card, gain 2 <c=status>TEMP SHIELD</c>.";
 
         public override void OnRemoveArtifact(State state) => Manifest.EventHub.DisconnectFromEvent<Tuple<int, bool, bool, Combat, State>>("Mezz.TwosCompany.Movement", Movement);
 
@@ -37,5 +38,6 @@ namespace TwosCompany.Artifacts {
             }
             counter += Math.Abs(distance);
         }
+        public override List<Tooltip>? GetExtraTooltips() => new List<Tooltip>() { new TTGlossary("status.tempShield", 2) };
     }
 }

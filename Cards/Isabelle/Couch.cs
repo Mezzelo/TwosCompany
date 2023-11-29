@@ -39,7 +39,7 @@ namespace TwosCompany.Cards.Isabelle {
         }
         private int GetDistance(State s) {
             if (s.route is Combat)
-                return Math.Abs(initialX - s.ship.x);
+                return Math.Abs(initialX - s.ship.x) * (upgrade == Upgrade.B ? 2 : 1);
             return 0;
         }
 

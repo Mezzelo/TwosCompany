@@ -63,11 +63,25 @@ namespace TwosCompany.Cards.Ilya {
                 timer = -0.5,
                 moveEnemy = -1
             });
-            actions.Add(new AStatus() {
-                status = Status.heat,
-                statusAmount = 2,
-                targetPlayer = true,
-            });
+            if (upgrade != Upgrade.B)
+                actions.Add(new AStatus() {
+                    status = Status.heat,
+                    statusAmount = upgrade == Upgrade.A ? 1 : 2,
+                    targetPlayer = true,
+                });
+            else
+                actions.Add(new StatCostAttack() {
+                    action = new AAttack() {
+                        damage = GetDmg(s, 2),
+                        moveEnemy = -1,
+                        fast = true,
+                    },
+                    statusReq = Status.heat,
+                    statusCost = 1,
+                    cumulative = 3,
+                    timer = -0.5,
+                    moveEnemy = -1
+                });
             return actions;
         }
 
