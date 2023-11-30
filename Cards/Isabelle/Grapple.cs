@@ -4,6 +4,8 @@
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 2,
+                art = new Spr?((Spr)((flipped ? Manifest.Sprites["GrappleCardSpriteFlip"] : Manifest.Sprites["GrappleCardSprite"]).Id
+                    ?? throw new Exception("missing flip art")))
             };
         }
 
@@ -14,7 +16,8 @@
                 damage = GetDmg(s, upgrade == Upgrade.B ? 1 : 0),
                 stunEnemy = upgrade == Upgrade.B,
                 status = Status.lockdown,
-                statusAmount = 1
+                statusAmount = 1,
+                piercing = upgrade == Upgrade.B
             });
             actions.Add(new AStatus() {
                 status = Status.overdrive,
