@@ -5,6 +5,8 @@
             return new CardData() {
                 cost = 2,
                 flippable = upgrade == Upgrade.A,
+                art = new Spr?((Spr)((flipped ? Manifest.Sprites["BackdraftCardSpriteFlip"] : Manifest.Sprites["BackdraftCardSprite"]).Id
+                    ?? throw new Exception("missing flip art")))
             };
         }
 

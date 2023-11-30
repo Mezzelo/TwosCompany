@@ -5,7 +5,7 @@ namespace TwosCompany.Cards.Ilya {
     public class Ignition : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 1,
+                cost = upgrade == Upgrade.B ? 2 : 1,
                 exhaust = true
             };
         }

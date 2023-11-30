@@ -6,7 +6,9 @@ namespace TwosCompany.Cards.Nola {
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 0,
-                flippable = true
+                flippable = true,
+                art = new Spr?((Spr)((flipped ? Manifest.Sprites["SuddenShiftCardSpriteFlip"] : Manifest.Sprites["SuddenShiftCardSprite"]).Id
+                    ?? throw new Exception("missing flip art")))
             };
         }
 

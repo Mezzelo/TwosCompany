@@ -4,7 +4,9 @@
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 1,
-                flippable = upgrade == Upgrade.A
+                flippable = upgrade == Upgrade.A,
+                art = new Spr?((Spr)((flipped ? Manifest.Sprites["ShoveCardSpriteFlip"] : Manifest.Sprites["ShoveCardSprite"]).Id
+                    ?? throw new Exception("missing flip art")))
             };
         }
 

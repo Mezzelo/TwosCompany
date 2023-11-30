@@ -5,6 +5,16 @@
         public override void Begin(G g, State s, Combat c) {
             if (selectedCard == null)
                 return;
+            // don't do this if exhausted
+            if (s.route is Combat) {
+                bool found = false;
+                foreach (Card card in c.exhausted) {
+                    if (selectedCard.uuid == card.uuid)
+                        found = true;
+                }
+                if (found)
+                    return;
+            }
             if (drawNotDiscard)
                 Audio.Play(FSPRO.Event.CardHandling);
             else
