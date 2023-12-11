@@ -207,14 +207,15 @@ namespace TwosCompany {
             if (onslaughtStatus.Id == null) return;
             if (s.ship.Get((Status)onslaughtStatus.Id) > 0) {
                 List<Card> cardList = s.deck;
-                if (cardList.Count == 0) {
+                if (cardList.Count == 0 && __instance.hand.Count < 10) {
                     foreach (Card thisCard in __instance.discard)
                         s.SendCardToDeck(thisCard, true, true);
                     __instance.discard.Clear();
                     s.ShuffleDeck(true);
                 }
                 int count = 0;
-                for (int drawIdx = cardList.Count - 1; drawIdx >= 0 && count < s.ship.statusEffects[(Status)onslaughtStatus.Id]; --drawIdx) {
+                //  && count < s.ship.statusEffects[(Status)onslaughtStatus.Id]
+                for (int drawIdx = cardList.Count - 1; drawIdx >= 0; --drawIdx) {
                     Card selectCard = cardList[drawIdx];
                     if (selectCard.GetMeta().deck == card.GetMeta().deck) {
                         if (card.uuid != selectCard.uuid) {
@@ -225,7 +226,9 @@ namespace TwosCompany {
                             __instance.DrawCardIdx(s, drawIdx, CardDestination.Deck);
                             Audio.Play(FSPRO.Event.CardHandling);
                             count++;
-                            continue;
+                            s.ship.Set((Status) onslaughtStatus.Id, s.ship.Get((Status) onslaughtStatus.Id) - 1);
+                            // continue;
+                            break;
                         }
                     }
                     /*

@@ -21,7 +21,7 @@
                 targetPlayer = true
             });
             actions.Add(new AEnergy() {
-                changeAmount = 2
+                changeAmount = 1
             });
             actions.Add(new ADrawCard() {
                 count = 2

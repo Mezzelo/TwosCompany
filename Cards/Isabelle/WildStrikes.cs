@@ -10,10 +10,11 @@
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            actions.Add(new AAttack() {
-                damage = GetDmg(s, 1),
-                fast = true,
-            });
+            if (upgrade == Upgrade.B)
+                actions.Add(new AAttack() {
+                    damage = GetDmg(s, 1),
+                    fast = true,
+                });
             actions.Add(new AMove() {
                 dir = 2,
                 targetPlayer = true,
@@ -25,12 +26,12 @@
             });
             if (upgrade != Upgrade.A) {
                 actions.Add(new AMove() {
-                    dir = upgrade == Upgrade.B ? 1 : 2,
+                    dir = 1,
                     targetPlayer = true,
                     isRandom = true
                 });
                 actions.Add(new AAttack() {
-                    damage = GetDmg(s, upgrade == Upgrade.B ? 2 : 1),
+                    damage = GetDmg(s, 1),
                     fast = true,
                 });
             } else {

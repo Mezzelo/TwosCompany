@@ -64,9 +64,9 @@ namespace TwosCompany.Helper {
             "Whenever you move <c=keyword>4+</c> spaces from playing a single card, gain 2 <c=status>TEMP SHIELD</c>.",
             "Choose a card in your deck.  Whenever you play that card, gain a <c=card>Recover</c>.",
             "Whenever you end your turn in the same position you started, gain 1 <c=status>OVERDRIVE</c>.",
-            "Whenever you alternate between moving and attacking <c=keyword>5</c> times in a row, gain 1 <c=status>OVERDRIVE</c> and 1 <c=status>EVADE</c>.",
+            "Whenever you alternate between moving and attacking <c=keyword>6</c> times in a row, gain 1 <c=status>OVERDRIVE</c> and 1 <c=status>EVADE</c>.",
             // 10-14: ilya
-            "Whenever you <c=downside>overheat</c>, gain 2 <c=status>OVERDRIVE</c>.",
+            "Whenever you <c=downside>overheat</c>, gain 1 <c=status>OVERDRIVE</c>.",
             "At the start of combat, <c=healing>heal 1</c> and <c=downside>gain 2 HEAT</c>.",
             "The first time your enemy is hit each turn, they gain your current <c=keyword>HEAT</c>.",
             "<c=downside>Reduce your max shield to 1</c>, but permanently gain <c=keyword>double</c> your prior max shield as " +

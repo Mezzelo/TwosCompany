@@ -22,7 +22,7 @@ namespace TwosCompany.Cards.Nola {
                 amount = 1
             });
             actions.Add(new AMove() {
-                dir = upgrade != Upgrade.B ? 3 : 2,
+                dir = 2,
                 targetPlayer = true,
                 // isRandom = true
             });
@@ -33,7 +33,7 @@ namespace TwosCompany.Cards.Nola {
             else if (upgrade == Upgrade.B)
                 actions.Add(new AStatus() {
                     status = Status.evade,
-                    statusAmount = 2,
+                    statusAmount = 1,
                     targetPlayer = true
                 });
             return actions;

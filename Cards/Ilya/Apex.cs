@@ -11,13 +11,13 @@
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            int freezeAmount = upgrade == Upgrade.None ? 2 : 1;
+            int freezeAmount = upgrade == Upgrade.None ? 3 : 2;
             if (upgrade == Upgrade.B)
-                freezeAmount = 3;
+                freezeAmount = 4;
             actions.Add(new AAttack() {
                 damage = GetDmg(s, 1),
                 status = Status.lockdown,
-                statusAmount = freezeAmount - (upgrade == Upgrade.A ? 0 : 1),
+                statusAmount = freezeAmount - (upgrade == Upgrade.A ? 1 : 2),
                 targetPlayer = false
             });
             actions.Add(new AStatus() {

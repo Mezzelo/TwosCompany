@@ -217,7 +217,7 @@ namespace TwosCompany.Helper {
             {"AnticipationB", "Temporarily reduce the cost of a card in your <c=keyword>draw pile</c> by <c=energy>3</c>."},
             {"AllHands", "Play your current hand from <c=card>{0}</c> to <c=card>{1}</c> for free."},
             {"AllHandsA", "Play your current hand from <c=card>{0}</c> to <c=card>{1}</c> for free."},
-            {"AllHandsB", "Play your <c=card>{0}</c> card. Reduce this card's cost by <c=energy>3</c> once a turn."},
+            {"AllHandsB", "Play your current hand from <c=card>{0}</c> to <c=card>{1}</c> for free."},
             {"BattlePlan", "Copy your hand on top of the <c=keyword>draw pile</c> with <c=cardtrait>temp</c> and <c=cardtrait>exhaust</c>."},
             {"BattlePlanA", "Copy your hand on top of the <c=keyword>draw pile</c> with <c=cardtrait>temp</c> and <c=cardtrait>exhaust</c>."},
             {"BattlePlanB", "Copy your hand on top of the <c=keyword>draw pile</c> with <c=cardtrait>temp</c> and <c=cardtrait>exhaust</c>."},
@@ -260,6 +260,14 @@ namespace TwosCompany.Helper {
             {"Wildfire", "Play your hand from <c=card>{0}</c> to <c=card>{1}</c>. Gain <c=downside>heat</c> for each card."},
             {"WildfireA", "Play your hand from <c=card>{0}</c> to <c=card>{1}</c>. Gain <c=downside>heat</c> for each, then lose 2."},
             {"WildfireB", "Play your  hand from <c=card>{0}</c> to <c=card>{1}</c>. Gain <c=downside>heat</c> for each card."},
+        };
+
+        public static Dictionary<string, string> charStoryNames = new Dictionary<string, string> {
+            { "nola", "Mezz.TwosCompany.NolaDeck" },
+            { "isabelle", "Mezz.TwosCompany.IsabelleDeck" },
+            { "ilya", "Mezz.TwosCompany.IlyaDeck" },
+            { "johanna", "JohannaTheTrucker.JohannaDeck" },
+            { "jo", "JohannaTheTrucker.JohannaDeck" }
         };
 
         public static int numCards() {

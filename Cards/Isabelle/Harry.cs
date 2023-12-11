@@ -26,7 +26,7 @@ namespace TwosCompany.Cards.Isabelle {
                 fast = true,
             });
             actions.Add(new AMove() {
-                dir = (upgrade == Upgrade.A ? 1 : 0) + costIncrease,
+                dir = (upgrade == Upgrade.None ? 1 : 0) + costIncrease,
                 targetPlayer = true,
                 isRandom = true,
             });
@@ -35,7 +35,7 @@ namespace TwosCompany.Cards.Isabelle {
                 fast = true,
             });
             actions.Add(new AMove() {
-                dir = (upgrade == Upgrade.A ? 1 : 0) + costIncrease,
+                dir = (upgrade == Upgrade.None ? 1 : 0) + costIncrease,
                 targetPlayer = true,
                 isRandom = true,
             });

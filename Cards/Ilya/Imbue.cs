@@ -6,8 +6,7 @@ namespace TwosCompany.Cards.Ilya {
     public class Imbue : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 1,
-                retain = upgrade == Upgrade.A
+                cost = upgrade == Upgrade.A ? 2 : 1,
             };
         }
         public override List<CardAction> GetActions(State s, Combat c) {
@@ -25,7 +24,7 @@ namespace TwosCompany.Cards.Ilya {
             });
             actions.Add(new StatCostAction() {
                 action = new AStatus() {
-                    status = Status.overdrive,
+                    status = upgrade == Upgrade.A ? Status.overdrive : Status.shield,
                     targetPlayer = true,
                     statusAmount = 1,
                 },

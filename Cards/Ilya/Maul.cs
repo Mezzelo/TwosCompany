@@ -11,7 +11,7 @@
             List<CardAction> actions = new List<CardAction>();
 
             actions.Add(new AAttack() {
-                damage = GetDmg(s, 2),
+                damage = GetDmg(s, 1),
                 fast = true,
             });
             actions.Add(new AAttack() {
@@ -19,7 +19,7 @@
                 fast = true,
             });
             actions.Add(new AAttack() {
-                damage = GetDmg(s, 3),
+                damage = GetDmg(s, 2),
                 fast = true,
             });
             actions.Add(new AStatus() {

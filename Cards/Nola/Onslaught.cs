@@ -5,7 +5,7 @@ namespace TwosCompany.Cards.Nola {
     public class Onslaught : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = upgrade == Upgrade.B ? 1 : 0,
+                cost = 0,
                 buoyant = upgrade == Upgrade.A
             };
         }
@@ -17,7 +17,7 @@ namespace TwosCompany.Cards.Nola {
             actions.Add(new AStatus() {
                 targetPlayer = true,
                 status = onslaughtStatus.Id != null ? (Status)onslaughtStatus.Id : Status.drawNextTurn,
-                statusAmount = upgrade == Upgrade.B ? 2 : 1
+                statusAmount = upgrade == Upgrade.B ? 6 : 3
             });
             return actions;
         }

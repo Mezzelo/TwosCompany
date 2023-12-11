@@ -33,17 +33,17 @@ namespace TwosCompany.Cards.Isabelle {
             });
             if (upgrade != Upgrade.B)
                 actions.Add(new AMove() {
-                    dir = upgrade == Upgrade.B ? 1 : 2,
+                    dir = 2,
                     targetPlayer = true,
                 });
-            if (upgrade == Upgrade.B)
+            else
                 actions.Add(new AAttack() {
                     damage = GetDmg(s, 1),
                     fast = true,
                     moveEnemy = -2
                 });
             actions.Add(new AAttack() {
-                damage = GetDmg(s, 2),
+                damage = GetDmg(s, 1),
                 fast = true,
             });
             return actions;

@@ -5,13 +5,24 @@ namespace TwosCompany.Artifacts {
     public class Metronome : Artifact {
         public int counter = 0;
         public bool lastWasMove = false;
-        public override string Description() => "Whenever you alternate between moving and attacking <c=keyword>5</c> times in a row, " +
+        public override string Description() => "Whenever you alternate between moving and attacking <c=keyword>6</c> times in a row, " +
             "gain 1 <c=status>OVERDRIVE</c> and 1 <c=status>EVADE</c>.";
 
         public Metronome() => Manifest.EventHub.ConnectToEvent<Tuple<int, bool, bool, Combat, State>>("Mezz.TwosCompany.Movement", Movement);
+        public override Spr GetSprite() {
+            if (counter == 0)
+                return (Spr)(Manifest.Sprites["IconMetronome"].Id
+                    ?? throw new Exception("missing c&r art"));
+            if (lastWasMove)
+                return (Spr)(Manifest.Sprites["IconMetronomeMoved"].Id
+                    ?? throw new Exception("missing c&r art"));
+            else
+                return (Spr)(Manifest.Sprites["IconMetronomeAttacked"].Id
+                    ?? throw new Exception("missing c&r art"));
+
+        }
 
         public override int? GetDisplayNumber(State s) => counter;
-
 
         public override void OnRemoveArtifact(State state) {
             Manifest.EventHub.DisconnectFromEvent<Tuple<int, bool, bool, Combat, State>>("Mezz.TwosCompany.Movement", Movement);
@@ -41,11 +52,11 @@ namespace TwosCompany.Artifacts {
         public override void OnPlayerAttack(State state, Combat combat) {
             if (lastWasMove || counter == 0) {
                 counter++;
-                lastWasMove = false;
-                if (counter > 4)
+                if (counter > 5)
                     Proc(state, combat);
             } else
                 counter = 0;
+            lastWasMove = false;
         }
 
         private void Movement(Tuple<int, bool, bool, Combat, State> evt) {
@@ -61,11 +72,11 @@ namespace TwosCompany.Artifacts {
 
             if (!lastWasMove || counter == 0) {
                 counter++;
-                lastWasMove = true;
-                if (counter > 4)
+                if (counter > 5)
                     Proc(s, c);
             } else
                 counter = 0;
+            lastWasMove = true;
         }
         public override List<Tooltip>? GetExtraTooltips() => new List<Tooltip>() { new TTGlossary("status.overdrive", 1), new TTGlossary("status.evade", 1) };
     }

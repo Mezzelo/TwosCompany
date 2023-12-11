@@ -14,14 +14,20 @@
 
             if (upgrade == Upgrade.B)
                 actions.Add(new AMove() {
-                    dir = 2,
+                    dir = 1,
                     targetPlayer = true,
                     isRandom = true
                 });
-            actions.Add(new AStatus() {
+            if (upgrade != Upgrade.None)
+                actions.Add(new AStatus() {
+                    targetPlayer = true,
+                    status = Status.evade,
+                    statusAmount = 1
+                });
+            actions.Add(new AMove() {
+                dir = 1,
                 targetPlayer = true,
-                status = Status.evade,
-                statusAmount = upgrade != Upgrade.None ? 2 : 1
+                isRandom = true
             });
             return actions;
         }

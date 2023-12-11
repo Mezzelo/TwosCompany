@@ -41,7 +41,7 @@ namespace TwosCompany {
         private static System.Drawing.Color IsabelleColor = System.Drawing.Color.FromArgb(47, 72, 183); // 2F48B7
         private static String IsaColH = string.Format("<c={0:X2}{1:X2}{2:X2}>", IsabelleColor.R, IsabelleColor.G, IsabelleColor.B);
         public static string[] isabelleEmotes = new String[] {
-            "mini", "neutral", "gameover", "angry", "forlorn", "getreal", "glare", "shocked", "snide", "squint"
+            "mini", "neutral", "gameover", "angry", "forlorn", "getreal", "glare", "happy", "shocked", "snide", "squint"
         };
 
         public static ExternalCharacter? IlyaCharacter { get; private set; }
@@ -167,10 +167,13 @@ namespace TwosCompany {
                 addCharSprite("ilya", emote, "characters", artReg);
 
             // artifact icons
-            foreach (String artifact in ManifArtifactHelper.artifactNames) {
+            foreach (String artifact in ManifArtifactHelper.artifactNames)
                 addSprite("Icon" + artifact, string.Concat(artifact[0].ToString().ToLower(), artifact.AsSpan(1)), "artifacts", artReg);
-            }
-            
+
+            // variable artifact icons
+            addSprite("IconMetronomeAttacked", "metronome_attack", "artifacts", artReg);
+            addSprite("IconMetronomeMoved", "metronome_move", "artifacts", artReg);
+
 
         }
 

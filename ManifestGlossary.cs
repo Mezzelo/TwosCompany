@@ -37,6 +37,7 @@ namespace TwosCompany {
             // addStatus("Outmaneuver", "Outmaneuver", "Gain {0} <c=status>EVADE</c> for every attack targeting your ship at the start of your turn.</c>",
             //     true, System.Drawing.Color.Cyan, null, registry, true);
             addStatus("Onslaught", "Onslaught", "Whenever you play a card this turn, draw a card of the <c=keyword>same color</c> from your draw pile." +
+                " Decreases by 1 for each card drawn." +
                 " <c=downside>Goes away at end of turn.</c>",
                 true, System.Drawing.Color.Cyan, null, registry, true);
             // addStatus("Dominance", "Dominance", "Gain {0} <c=status>EVADE</c> each turn. If you don't hit your enemy before your turn ends, <c=downside>lose this status.</c>",

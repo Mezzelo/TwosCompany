@@ -57,14 +57,14 @@ namespace TwosCompany.Cards.Nola {
                 });
                 actions.Add(new ACallAndResponse() {
                     recall = false,
-                    discount = upgrade == Upgrade.A ? 1 : 0
+                    discount = upgrade == Upgrade.A ? 2 : 1
                 });
             }
             else {
                 actions.Add(new ACallAndResponse() {
                     selectedCard = this.storedCard,
                     recall = true,
-                    discount = upgrade == Upgrade.A ? 1 : 0
+                    discount = upgrade == Upgrade.A ? 2 : 1
                 });
             }
             if (!storedCardState(s))

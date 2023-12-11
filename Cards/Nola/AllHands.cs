@@ -16,13 +16,12 @@ namespace TwosCompany.Cards.Nola {
                     flipped ? "right" : "left", flipped ? "left" : "right");
             else
                 cardText = String.Format(Loc.GetLocString(Manifest.Cards?["AllHands"].DescBLocKey ?? throw new Exception("Missing card description")),
-                    flipped ? "rightmost" : "leftmost");
+                    flipped ? "right" : "left", flipped ? "left" : "right");
 
             return new CardData() {
-                cost = wasPlayed && upgrade == Upgrade.B ? 0 : 3,
+                cost = upgrade == Upgrade.B ? 3 : 4,
                 description = cardText,
                 flippable = upgrade == Upgrade.A,
-                infinite = upgrade == Upgrade.B,
             };
         }
 
@@ -32,6 +31,7 @@ namespace TwosCompany.Cards.Nola {
             actions.Add(new ADelay() {
                 time = -0.5
             });
+            /*
             if (upgrade == Upgrade.B && s.route is Combat route) {
                 bool preventPlay = false;
                 bool doubleInf = false;
@@ -66,9 +66,9 @@ namespace TwosCompany.Cards.Nola {
                         drawNotDiscard = false,
                         discount = 0
                     });
-            }
-            else
-                actions.Add(new APlayAllCards() {
+            } 
+            else */
+            actions.Add(new APlayAllCards() {
                     leftToRight = !flipped,
                     gainHeat = 0,
                     index = 0,
@@ -78,16 +78,17 @@ namespace TwosCompany.Cards.Nola {
             return actions;
         }
         public override void HilightOtherCards(State s, Combat c1) {
+            /*
             if (upgrade == Upgrade.B) {
                 var card = Enumerable.FirstOrDefault(Enumerable.Where(c1.hand, c2 => c2 != this));
                 if (card == null)
                     return;
                 c1.hilightedCards.Add(card.uuid);
-            } else {
+            } else {*/
                 foreach (Card card in c1.hand)
                     if (card.uuid != this.uuid)
                         c1.hilightedCards.Add(card.uuid);
-            }
+            // }
         }
         public override void OnExitCombat(State s, Combat c) {
             wasPlayed = false;

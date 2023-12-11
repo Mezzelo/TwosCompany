@@ -15,7 +15,7 @@
                 if (selectedCard == null)
                     return;
                 if (minimum >= 0)
-                    selectedCard.discount = Math.Max(selectedCard.discount + amount, -selectedCard.GetData(s).cost + minimum);
+                    selectedCard.discount = Math.Min(selectedCard.discount, Math.Max(selectedCard.discount + amount, -selectedCard.GetData(s).cost + minimum));
                 else
                     selectedCard.discount += amount;
             } else {
@@ -23,10 +23,9 @@
                     return;
                 foreach (Card current in c.hand) {
                     if (minimum >= 0)
-                        current.discount = Math.Max(current.discount + amount, -current.GetData(s).cost + minimum);
+                        current.discount = Math.Min(current.discount, Math.Max(current.discount + amount, -current.GetData(s).cost + minimum));
                     else
                         current.discount += amount;
-                    Color a;
                 }
             }
             Audio.Play(FSPRO.Event.Status_PowerUp);
