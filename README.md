@@ -6,6 +6,8 @@ Requires EWanderer's modloader to run - https://github.com/Ewanderer/CobaltCoreM
 
 source available here - https://github.com/Mezzelo/TwosCompany
 
+consider checking out the Rocket Rat Discord (blech) server for more mods & discussion - https://discord.com/invite/cncV5znGwA
+
 # Credits
 
 All of the art, code, design, and writing in this mod is made by **Mezzelo** or is derived from Cobalt Core & its modloader.
