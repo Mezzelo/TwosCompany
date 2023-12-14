@@ -1,0 +1,502 @@
+{
+  "all": {
+    "ChoiceCardRewardOfYourColorChoice_Mezz.TwosCompany.IlyaDeck": {
+      "type": "event",
+      "oncePerRun": true,
+      "bg": "BGBootSequence",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "forlorn",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+  
+    "mezz_Ilya_ArtifactAresCannon": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "hasArtifacts": [
+        "AresCannon"
+      ],
+      "oncePerRunTags": [
+        "AresCannon"
+      ],
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "happy",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "happy",
+            }
+          ]
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_ArtifactAresCannonV2": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "hasArtifacts": [
+        "AresCannonV2"
+      ],
+      "oncePerRunTags": [
+        "AresCannonV2"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_ArtifactArmoredBay": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "minDamageBlockedByPlayerArmorThisTurn": 1,
+      "oncePerCombatTags": [
+        "ArmoredBae"
+      ],
+      "hasArtifacts": [
+        "ArmoredBay"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "happy",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_ArtifactBrokenGlasses": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "oncePerRun": true,
+      "hasArtifacts": [
+        "BrokenGlasses"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "forlorn",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_ArtifactCockpitTargetIsNotRelevant": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "oncePerRun": true,
+      "enemyDoesNotHavePart": "cockpit",
+      "hasArtifacts": [
+        "CockpitTarget"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "intense",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_ArtifactCockpitTargetIsRelevant": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "oncePerRun": true,
+      "enemyHasPart": "cockpit",
+      "hasArtifacts": [
+        "CockpitTarget"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "intense",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },	
+    "mezz_Ilya_ArtifactCrosslink": {
+      "type": "combat",
+      "hasArtifacts": [
+        "Crosslink"
+      ],
+      "lookup": [
+        "CrosslinkTrigger"
+      ],
+      "oncePerRun": true,
+      "oncePerCombatTags": [
+        "CrosslinkTriggerTag"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_ArtifactDirtyEngines": {
+      "type": "combat",
+      "oncePerRun": true,
+      "hasArtifacts": [
+        "DirtyEngines"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_ArtifactDizzyBoost": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "whoDidThat": "dizzy",
+      "hasArtifacts": [
+        "DizzyBoost"
+      ],
+      "oncePerCombat": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_ArtifactFractureDetection": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "hasArtifacts": [
+        "FractureDetection"
+      ],
+      "oncePerCombatTags": [
+        "FractureDetectionBarks"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "intense",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_ArtifactGeminiCore": {
+      "type": "combat",
+      "hasArtifacts": [
+        "GeminiCore"
+      ],
+      "oncePerRunTags": [
+        "GeminiCore"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_ArtifactGeminiCoreBooster": {
+      "type": "combat",
+      "hasArtifacts": [
+        "GeminiCoreBooster"
+      ],
+      "oncePerRunTags": [
+        "GeminiCoreBooster"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_ArtifactPiercer": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "hasArtifacts": [
+        "Piercer"
+      ],
+      "oncePerCombatTags": [
+        "PiercerShouts"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "intense",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_ArtifactPowerDiversionMadeAttackFail": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "maxDamageDealtToEnemyThisAction": 0,
+      "hasArtifacts": [
+        "PowerDiversion"
+      ],
+      "lines": [
+		{
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            }
+          ]
+        },
+		{
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "peri",
+              "loopTag": "shy",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "peri",
+              "loopTag": "squint",
+            }
+          ]
+        },
+      ],
+      "allPresent": [
+        "peri",
+		"ilya"
+      ]
+    },
+    "mezz_Ilya_ArtifactRecalibrator": {
+      "type": "combat",
+      "playerShotJustMissed": true,
+      "hasArtifacts": [
+        "Recalibrator"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_ArtifactShieldPrepIsGone": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "oncePerRunTags": [
+        "ShieldPrepIsGoneYouFool"
+      ],
+      "doesNotHaveArtifacts": [
+        "ShieldPrep",
+        "WarpMastery"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+		  "loopTag": "forlorn"
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_ArtifactSimplicity": {
+      "type": "combat",
+      "oncePerRunTags": [
+        "SimplicityShouts"
+      ],
+      "hasArtifacts": [
+        "Simplicity"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_ArtifactTiderunner": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "hasArtifacts": [
+        "TideRunner"
+      ],
+      "oncePerCombatTags": [
+        "TideRunner"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "forlorn"
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_ArtifactTridimensionalCockpit": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "oncePerCombatTags": [
+        "TridimensionalCockpit"
+      ],
+      "hasArtifacts": [
+        "TridimensionalCockpit"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side"
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	"mezz_Ilya_ManyTurns": {
+      "type": "combat",
+      "minTurnsThisCombat": 9,
+      "oncePerCombatTags": [
+        "manyTurns"
+      ],
+      "oncePerRun": true,
+      "turnStart": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "forlorn",
+            }
+          ]
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+	"mezz_Ilya_StardogGetsChatty": {
+      "type": "combat",
+      "turnStart": true,
+      "allPresent": [
+        "wolf",
+        "ilya"
+      ],
+      "oncePerCombatTags": [
+        "StardogLeaveUsAlone"
+      ],
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "intense",
+        }, { "$type": "Say, CobaltCore",
+          "who": "wolf",
+        }, { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        },
+      ]
+    },
+  }
+}

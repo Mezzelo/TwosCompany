@@ -1,4 +1,5 @@
-﻿using CobaltCoreModding.Definitions.ExternalItems;
+﻿using CobaltCoreModding.Components.Services;
+using CobaltCoreModding.Definitions.ExternalItems;
 using CobaltCoreModding.Definitions.ModContactPoints;
 using CobaltCoreModding.Definitions.ModManifests;
 using Microsoft.Extensions.Logging;
@@ -18,17 +19,20 @@ namespace TwosCompany {
             return builder.ToString().Substring(0, 8);
         }
 
-        private void LoadStory(string storyFileName, IStoryRegistry storyRegistry) {
+        private void LoadStory(string storyFileName, Dictionary<string, string> loc, Dictionary<string, string> whos, IStoryRegistry storyRegistry) {
             if (ModRootFolder == null)
                 throw new Exception("Root Folder not set");
 
-            Dictionary<string, string> loc = Mutil.LoadJsonFile<Dictionary<string, string>>(Path.Combine(ModRootFolder.FullName, "locales", Path.GetFileName("en.json")));
             Story parseStory = Mutil.LoadJsonFile<Story>(Path.Combine(ModRootFolder.FullName, "story", Path.GetFileName(storyFileName + ".json")));
             List<String> hashes = new List<String>();
             List<String> whats = new List<String>();
             SHA256 hash = SHA256.Create();
 
             foreach (string key in parseStory.all.Keys) {
+                if (whos.ContainsKey(key))
+                    parseStory.all[key].whoDidThat = (Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId(whos[key])), 
+                        typeof(Deck));
+
                 if (parseStory.all[key].allPresent != null) {
                     foreach (String crew in parseStory.all[key].allPresent!.ToList()) {
                         if (ManifHelper.charStoryNames.ContainsKey(crew)) {
@@ -37,7 +41,14 @@ namespace TwosCompany {
                         }
                     }
                 }
-
+                if (parseStory.all[key].nonePresent != null) {
+                    foreach (String crew in parseStory.all[key].nonePresent!.ToList()) {
+                        if (ManifHelper.charStoryNames.ContainsKey(crew)) {
+                            parseStory.all[key].nonePresent!.Remove(crew);
+                            parseStory.all[key].nonePresent!.Add(ManifHelper.charStoryNames[crew]);
+                        }
+                    }
+                }
                 int current = 0;
                 foreach (Instruction line in parseStory.all[key].lines) {
                     if (line is Say sayLine) {
@@ -47,6 +58,7 @@ namespace TwosCompany {
                         whats.Add(key + ":" + current);
                         sayLine.hash = newHash;
                         hashes.Add(newHash);
+                        current++;
                     }
                     else if (line is SaySwitch switchLines) {
                         foreach (Say switchLine in switchLines.lines) {
@@ -56,13 +68,16 @@ namespace TwosCompany {
                             whats.Add(key + ":" + current);
                             switchLine.hash = newHash;
                             hashes.Add(newHash);
+                            current++;
                         }
                     }
-                    current++;
                 }
-                ExternalStory newStory = new ExternalStory("Mezz.TwosCompany.Story." + key, parseStory.all[key], parseStory.all[key].lines);
-                for (int i = 0; i < hashes.Count; i++)
+                ExternalStory newStory = new ExternalStory(key, parseStory.all[key], parseStory.all[key].lines);
+                for (int i = 0; i < hashes.Count; i++) {
+                    if (!loc.ContainsKey(whats[i]))
+                        throw new Exception("key not found in loc: " + whats[i]);
                     newStory.AddLocalisation(hashes[i], loc[whats[i]]);
+                }
 
                 storyRegistry.RegisterStory(newStory);
 
@@ -71,9 +86,14 @@ namespace TwosCompany {
             }
         }
         public void LoadManifest(IStoryRegistry storyRegistry) {
-            LoadStory("story_nola", storyRegistry);
-            LoadStory("story_isabelle", storyRegistry);
-            LoadStory("story_ilya", storyRegistry);
+            if (ModRootFolder == null)
+                throw new Exception("Root Folder not set");
+
+            Dictionary<string, string> loc = Mutil.LoadJsonFile<Dictionary<string, string>>(Path.Combine(ModRootFolder.FullName, "locales", Path.GetFileName("en.json")));
+            Dictionary<string, string> whos = Mutil.LoadJsonFile<Dictionary<string, string>>(Path.Combine(ModRootFolder.FullName, "story", Path.GetFileName("whos.json")));
+            LoadStory("story_nola", loc, whos, storyRegistry);
+            LoadStory("story_isabelle", loc, whos, storyRegistry);
+            LoadStory("story_ilya", loc, whos, storyRegistry);
         }
     }
 }

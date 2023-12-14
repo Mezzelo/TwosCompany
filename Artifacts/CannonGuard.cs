@@ -13,7 +13,8 @@
                 combat.Queue(new AStatus() {
                     targetPlayer = true,
                     status = Status.overdrive,
-                    statusAmount = 1
+                    statusAmount = 1,
+                    dialogueSelector = ".mezz_cannonGuard"
                 });
             }
             pos = state.ship.x;

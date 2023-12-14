@@ -11,7 +11,7 @@ namespace TwosCompany.Artifacts {
         public override string Description() => "Choose a card in your deck.  Whenever you play that card, gain a <c=card>Recover</c>.";
 
         public override void OnReceiveArtifact(State state) {
-            state.GetCurrentQueue().Add(new ACardSelect() {
+            state.GetCurrentQueue().Insert(0, new ACardSelect() {
                 browseAction = new AAssignCardThrusters(),
                 browseSource = CardBrowse.Source.Deck,
             });

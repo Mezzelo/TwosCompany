@@ -1,48 +1,53 @@
-﻿namespace TwosCompany.Cards.Ilya {
+﻿using TwosCompany.Actions;
+
+namespace TwosCompany.Cards.Ilya {
     [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class Haze : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = upgrade == Upgrade.B ? 0 : 1
+                cost = 1
             };
         }
         private int GetHeatAmt(State s) {
             int heatAmt = 0;
             if (s.route is Combat)
-                heatAmt = s.ship.Get(Status.heat) + (upgrade == Upgrade.B ? 2 + s.ship.Get(Status.boost) : 0);
+                heatAmt = s.ship.Get(Status.heat) + (upgrade == Upgrade.B ? 1 + s.ship.Get(Status.boost) : 0);
             return heatAmt;
         }
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-
-            if (upgrade == Upgrade.A)
-                actions.Add(new AStatus() {
-                    status = Status.evade,
-                    statusAmount = 1,
-                    targetPlayer = true,
-                });
-            else
-                actions.Add(new AMove() {
-                    dir = 1,
-                    isRandom = true,
-                    targetPlayer = true
-                });
             if (upgrade == Upgrade.B)
                 actions.Add(new AStatus() {
                     status = Status.heat,
-                    statusAmount = 2,
+                    statusAmount = 1,
                     targetPlayer = true,
                 });
-            actions.Add((CardAction)new AVariableHint() {
+            actions.Add(new AVariableHint() {
                 status = Status.heat
             });
+            actions.Add(new AMove() {
+                dir = this.GetHeatAmt(s),
+                xHint = 1,
+                isRandom = true,
+                targetPlayer = true
+            });
+            if (upgrade == Upgrade.None)
+                actions.Add(new StatCostAction() {
+                    action = new AStatus() {
+                        status = Status.evade,
+                        targetPlayer = true,
+                        statusAmount = 1,
+                    },
+                    statusReq = Status.heat,
+                    statusCost = 1,
+                    first = true
+                });
             actions.Add(new AStatus() {
-                status = Status.evade,
-                statusAmount = this.GetHeatAmt(s),
+                status = upgrade != Upgrade.None ? Status.evade : Status.heat,
+                statusAmount = 1,
                 targetPlayer = true,
-                xHint = 1
             });
 
             return actions;

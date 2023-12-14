@@ -1,0 +1,706 @@
+{
+  "all": {
+    "ChoiceCardRewardOfYourColorChoice_Mezz.TwosCompany.NolaDeck": {
+      "type": "event",
+      "oncePerRun": true,
+      "bg": "BGBootSequence",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "squint",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "annoyed",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+        }
+      ],
+      "allPresent": [
+        "nola"
+      ]
+    },
+  
+    "mezz_Nola_ArtifactAresCannon": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "hasArtifacts": [
+        "AresCannon"
+      ],
+      "oncePerRunTags": [
+        "AresCannon"
+      ],
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "happy",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "smug",
+            }
+          ]
+        }
+      ],
+      "allPresent": [
+        "nola"
+      ]
+    },
+    "mezz_Nola_ArtifactArmoredBay": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "minDamageBlockedByPlayerArmorThisTurn": 1,
+      "oncePerCombatTags": [
+        "ArmoredBae"
+      ],
+      "hasArtifacts": [
+        "ArmoredBay"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "smug",
+        }
+      ],
+      "allPresent": [
+        "nola"
+      ]
+    },
+    "mezz_Nola_ArtifactBrokenGlasses": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "oncePerRun": true,
+      "hasArtifacts": [
+        "BrokenGlasses"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "nola"
+      ]
+    },
+    "mezz_Nola_ArtifactCockpitTargetIsNotRelevant": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "oncePerRun": true,
+      "enemyDoesNotHavePart": "cockpit",
+      "hasArtifacts": [
+        "CockpitTarget"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "annoyed",
+        }
+      ],
+      "allPresent": [
+        "nola"
+      ]
+    },
+    "mezz_Nola_ArtifactCockpitTargetIsRelevant_0": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "oncePerRun": true,
+      "enemyHasPart": "cockpit",
+      "hasArtifacts": [
+        "CockpitTarget"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "vengeful",
+        }
+      ],
+      "allPresent": [
+        "nola"
+      ]
+    },	
+    "mezz_Nola_ArtifactCockpitTargetIsRelevant_1": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "oncePerRun": true,
+      "enemyHasPart": "cockpit",
+      "hasArtifacts": [
+        "CockpitTarget"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "vengeful",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "comp",
+              "loopTag": "intense",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "dizzy",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "riggs",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "peri",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "goat",
+			  "loopTag": "sly",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "eunice",
+			  "loopTag": "sly",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "hacker",
+			  "loopTag": "smile",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "shard",
+			  "loopTag": "smile",
+            },
+          ]
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "isa",
+			  "loopTag": "snide",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "ilya",
+			  "loopTag": "side",
+			},
+          ]
+        },
+
+      ],
+      "allPresent": [
+        "nola",
+      ]
+    },	
+    "mezz_Nola_ArtifactCrosslink": {
+      "type": "combat",
+      "hasArtifacts": [
+        "Crosslink"
+      ],
+      "lookup": [
+        "CrosslinkTrigger"
+      ],
+      "oncePerRun": true,
+      "oncePerCombatTags": [
+        "CrosslinkTriggerTag"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "vengeful",
+        }
+      ],
+      "allPresent": [
+        "nola"
+      ]
+    },
+    "mezz_Nola_ArtifactDirtyEngines": {
+      "type": "combat",
+      "oncePerRun": true,
+      "hasArtifacts": [
+        "DirtyEngines"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "nola"
+      ]
+    },
+    "mezz_Nola_ArtifactEnergyPrep": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "hasArtifacts": [
+        "EnergyPrep"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+        }
+      ],
+      "allPresent": [
+        "nola"
+      ]
+    },
+    "mezz_Nola_ArtifactEnergyRefund": {
+      "type": "combat",
+      "minCostOfCardJustPlayed": 3,
+      "oncePerCombatTags": [
+        "EnergyRefund"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "smug",
+        }
+      ],
+      "allPresent": [
+        "nola"
+      ]
+    },
+    "mezz_Nola_ArtifactFractureDetection": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "hasArtifacts": [
+        "FractureDetection"
+      ],
+      "oncePerCombatTags": [
+        "FractureDetectionBarks"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+        }
+      ],
+      "allPresent": [
+        "nola"
+      ]
+    },
+    "mezz_Nola_ArtifactGeminiCore": {
+      "type": "combat",
+      "hasArtifacts": [
+        "GeminiCore"
+      ],
+      "oncePerRunTags": [
+        "GeminiCore"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "smug",
+        }
+      ],
+      "allPresent": [
+        "smug"
+      ]
+    },
+    "mezz_Nola_ArtifactIonConverter": {
+      "type": "combat",
+      "hasArtifacts": [
+        "IonConverter"
+      ],
+      "lookup": [
+        "IonConverterTrigger"
+      ],
+      "oncePerRun": true,
+      "priority": true,
+      "oncePerCombatTags": [
+        "IonConverterTag"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+        }
+      ],
+      "allPresent": [
+        "nola"
+      ]
+    },
+    "mezz_Nola_ArtifactNanofiberHull_0": {
+      "type": "combat",
+      "minDamageDealtToPlayerThisTurn": 1,
+      "maxDamageDealtToPlayerThisTurn": 1,
+      "hasArtifacts": [
+        "NanofiberHull"
+      ],
+      "oncePerRunTags": [
+        "NanofiberHull"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "nola"
+      ]
+    },
+    "mezz_Nola_ArtifactNanofiberHull_1": {
+      "type": "combat",
+      "minDamageDealtToPlayerThisTurn": 2,
+      "hasArtifacts": [
+        "NanofiberHull"
+      ],
+      "oncePerRunTags": [
+        "NanofiberHull"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "annoyed",
+        }
+      ],
+      "allPresent": [
+        "nola"
+      ]
+    },
+    "mezz_Nola_ArtifactOverclockedGenerator": {
+      "type": "combat",
+      "hasArtifacts": [
+        "OverclockedGenerator"
+      ],
+      "oncePerRunTags": [
+        "OverclockedGeneratorTag"
+      ],
+      "lookup": [
+        "OverclockedGeneratorTrigger"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "vengeful",
+        }
+      ],
+      "allPresent": [
+        "nola"
+      ]
+    },
+    "mezz_Nola_ArtifactQuickDraw": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "hasArtifacts": [
+        "Quickdraw"
+      ],
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "happy",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "smug",
+            }
+          ]
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "riggs",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "riggs",
+            }
+          ]
+        },
+      ],
+      "allPresent": [
+        "nola",
+        "riggs"
+      ]
+    },
+    "mezz_Nola_ArtifactRecalibrator": {
+      "type": "combat",
+      "playerShotJustMissed": true,
+      "hasArtifacts": [
+        "Recalibrator"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+        }
+      ],
+      "allPresent": [
+        "nola"
+      ]
+    },
+    "mezz_Nola_ArtifactSharpEdges_0": {
+      "type": "combat",
+      "oncePerCombat": true,
+      "playerJustShuffledDiscardIntoDrawPile": true,
+      "hasArtifacts": [
+        "SharpEdges"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "smug",
+        }
+      ],
+      "allPresent": [
+        "nola"
+      ]
+    },
+    "mezz_Nola_ArtifactSharpEdges_1": {
+      "type": "combat",
+      "oncePerCombat": true,
+      "playerJustShuffledDiscardIntoDrawPile": true,
+      "hasArtifacts": [
+        "SharpEdges"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "annoyed",
+        }
+      ],
+      "allPresent": [
+        "nola"
+      ]
+    },
+    "mezz_Nola_ArtifactShieldPrepIsGone": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "oncePerRunTags": [
+        "ShieldPrepIsGoneYouFool"
+      ],
+      "doesNotHaveArtifacts": [
+        "ShieldPrep",
+        "WarpMastery"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+		  "loopTag": "angry"
+        }
+      ],
+      "allPresent": [
+        "nola"
+      ]
+    },
+    "mezz_Nola_ArtifactSimplicity": {
+      "type": "combat",
+      "oncePerRunTags": [
+        "SimplicityShouts"
+      ],
+      "hasArtifacts": [
+        "Simplicity"
+      ],
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "nola",
+			}
+          ]
+        },
+      ],
+      "allPresent": [
+        "nola"
+      ]
+    },
+    "mezz_Nola_ArtifactTiderunner": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "hasArtifacts": [
+        "TideRunner"
+      ],
+      "oncePerCombatTags": [
+        "TideRunner"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "squint"
+        }
+      ],
+      "allPresent": [
+        "nola"
+      ]
+    },
+    "mezz_Nola_ArtifactTridimensionalCockpit": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "oncePerCombatTags": [
+        "TridimensionalCockpit"
+      ],
+      "hasArtifacts": [
+        "TridimensionalCockpit"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "squint"
+        }
+      ],
+      "allPresent": [
+        "nola"
+      ]
+    },
+	
+
+	
+	
+	
+	
+	
+	
+	"mezz_Nola_CharStart0": {
+      "type": "event",
+      "lookup": [
+        "zone_first"
+      ],
+      "bg": "BGRunStart",
+      "allPresent": [
+        "nola"
+      ],
+      "once": true,
+      "priority": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "squint",
+        }, { "$type": "Say, CobaltCore",
+          "who": "comp",
+        }, { "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "annoyed",
+        }, { "$type": "Say, CobaltCore",
+          "loopTag": "squint",
+          "who": "nola",
+        }, { "$type": "Say, CobaltCore",
+          "loopTag": "worried",
+          "who": "comp",
+        }, { "$type": "Say, CobaltCore",
+          "loopTag": "happy",
+          "who": "nola",
+        }, { "$type": "Say, CobaltCore",
+          "who": "comp",
+        }, { "$type": "Say, CobaltCore",
+          "loopTag": "neutral",
+          "who": "nola",
+        }, { "$type": "Say, CobaltCore",
+          "loopTag": "vengeful",
+          "who": "nola",
+        }, 
+      ]
+    },
+    "mezz_Nola_ManyFlips": {
+      "type": "combat",
+      "minTimesYouFlippedACardThisTurn": 4,
+      "oncePerCombat": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "smug",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "smug",
+            }
+          ]
+        }
+      ],
+      "allPresent": [
+        "nola"
+      ]
+    },
+    "mezz_Nola_ManyTurns": {
+      "type": "combat",
+      "minTurnsThisCombat": 9,
+      "oncePerCombatTags": [
+        "manyTurns"
+      ],
+      "oncePerRun": true,
+      "turnStart": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "annoyed",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "smug",
+            }
+          ]
+        }
+      ],
+      "allPresent": [
+        "nola"
+      ]
+    },
+  }
+}

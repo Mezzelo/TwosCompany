@@ -265,10 +265,20 @@ namespace TwosCompany.Helper {
         public static Dictionary<string, string> charStoryNames = new Dictionary<string, string> {
             { "nola", "Mezz.TwosCompany.NolaDeck" },
             { "isabelle", "Mezz.TwosCompany.IsabelleDeck" },
+            { "isa", "Mezz.TwosCompany.IsabelleDeck" },
             { "ilya", "Mezz.TwosCompany.IlyaDeck" },
             { "johanna", "JohannaTheTrucker.JohannaDeck" },
             { "jo", "JohannaTheTrucker.JohannaDeck" }
         };
+        public static int GetDeckId(string deck) {
+            if (deck == "nola")
+                return (int)Manifest.NolaDeck!.Id!;
+            else if (deck == "isa" || deck == "isabelle")
+                return (int)Manifest.IsabelleDeck!.Id!;
+            else if (deck == "ilya")
+                return (int) Manifest.IlyaDeck!.Id!;
+            return 0;
+        }
 
         public static int numCards() {
             return cardNames.Length;

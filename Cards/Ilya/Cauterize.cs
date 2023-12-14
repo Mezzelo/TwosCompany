@@ -3,7 +3,7 @@
     public class Cauterize : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = upgrade == Upgrade.None ? 2 : 1,
+                cost = 2,
                 exhaust = upgrade != Upgrade.B
             };
         }
@@ -26,6 +26,8 @@
                 statusAmount = 3,
                 targetPlayer = true
             });
+            if (upgrade == Upgrade.B)
+                actions.Add(new AEndTurn());
             return actions;
         }
 

@@ -73,7 +73,8 @@ namespace TwosCompany.Cards.Nola {
                     gainHeat = 0,
                     index = 0,
                     timer = 0.5,
-                    firstPlay = true
+                    firstPlay = true,
+                    dialogueSelector = ".mezz_allHands"
                 });
             return actions;
         }

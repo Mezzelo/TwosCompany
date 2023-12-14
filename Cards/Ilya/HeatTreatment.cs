@@ -3,7 +3,7 @@
     public class HeatTreatment : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 1,
+                cost = 2,
                 exhaust = upgrade == Upgrade.B
             };
         }

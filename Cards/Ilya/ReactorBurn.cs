@@ -1,9 +1,12 @@
-﻿namespace TwosCompany.Cards.Ilya {
+﻿using TwosCompany.Actions;
+
+namespace TwosCompany.Cards.Ilya {
     [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class ReactorBurn : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = upgrade != Upgrade.A ? 0 : 1
+                cost = 0,
+                exhaust = upgrade != Upgrade.None
             };
         }
         private int GetHeatAmt(State s) {
@@ -24,6 +27,22 @@
                 changeAmount = this.GetHeatAmt(s),
                 xHint = 1
             });
+            if (upgrade == Upgrade.B)
+                actions.Add(new ADrawCard() {
+                    count = this.GetHeatAmt(s),
+                    xHint = 1
+                });
+            else if (upgrade == Upgrade.None)
+                actions.Add(new StatCostAction() {
+                    action = new AHurt() {
+                        hurtAmount = 1,
+                        targetPlayer = true,
+                        hurtShieldsFirst = false,
+                    },
+                    statusReq = Status.heat,
+                    statusCost = 3,
+                    first = true
+                });
             actions.Add(new AStatus() {
                 status = Status.heat,
                 statusAmount = this.GetHeatAmt(s),
@@ -33,13 +52,8 @@
             if (upgrade == Upgrade.A)
                 actions.Add(new AStatus() {
                     status = Status.heat,
-                    statusAmount = -1,
+                    statusAmount = -2,
                     targetPlayer = true,
-                });
-            else if (upgrade == Upgrade.B)
-                actions.Add(new ADrawCard() {
-                    count = this.GetHeatAmt(s),
-                    xHint = 1
                 });
 
             return actions;

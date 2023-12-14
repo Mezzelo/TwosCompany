@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Xna.Framework.Input;
+using System;
 using System.Diagnostics.Metrics;
 using System.Reflection;
 using TwosCompany;
@@ -13,7 +15,7 @@ namespace TwosCompany.Artifacts {
         public List<Deck> decks = new List<Deck>();
         public List<TTCard> cards = new List<TTCard>();
         public int count = 0;
-        public override int? GetDisplayNumber(State s) => s.route is Combat ? count : null;
+        public override int? GetDisplayNumber(State s) => s.route is Combat && count < 3 ? count : null;
         public override void OnTurnEnd(State state, Combat combat) {
             decks.Clear();
             cards.Clear();
@@ -28,6 +30,7 @@ namespace TwosCompany.Artifacts {
             if (count < 3) {
                 if (!decks.Contains(playedCard.GetMeta().deck)) {
                     if (count < 2) {
+
                         decks.Add(playedCard.GetMeta().deck);
                         cards.Add(new TTCard() {
                             card = playedCard,
@@ -48,7 +51,7 @@ namespace TwosCompany.Artifacts {
                 return null;
             List<Tooltip> list = new List<Tooltip>();
             foreach (TTCard card in cards)
-                list.Append(card);
+                list.Add(card);
             return list;
         }
     }

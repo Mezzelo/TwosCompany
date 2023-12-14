@@ -18,6 +18,16 @@ namespace TwosCompany.Cards.Ilya {
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
+            actions.Add(new StatCostAction() {
+                action = new AHurt() {
+                    hurtAmount = 1,
+                    targetPlayer = true,
+                    hurtShieldsFirst = false,
+                },
+                statusReq = Status.heat,
+                statusCost = 3,
+                first = true
+            });
             actions.Add(new AStatus() {
                 status = Status.heat,
                 statusAmount = 1,
