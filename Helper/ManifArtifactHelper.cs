@@ -57,7 +57,7 @@ namespace TwosCompany.Helper {
             "Whenever you play <c=keyword>3</c> different colored cards in the same turn, gain 1 <c=energy>ENERGY</c>.",
             "Every <c=keyword>3</c> turns you go without shuffling your deck, gain a free <c=cardtrait>temp exhaustable</c> <c=card>Foresight</c>.",
             "Whenever you play 5 cards in a single turn, gain 1 <c=status>EVADE</c>.",
-            "On turn 6, <c=keyword>double</c> all of your current status effects.",
+            "At the start of turn 6, <c=keyword>double</c> all of your current status effects.",
             // 5-9: Isabelle
             "Cards that cost <c=keyword>3+</c> <c=energy>ENERGY</c> are discounted by <c=keyword>1</c> when drawn.\r\n" +
                 "Cards that cost <c=keyword>0</c> <c=energy>ENERGY</c> <c=downside>cost 1 more when drawn</c>.",

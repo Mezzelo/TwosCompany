@@ -16,7 +16,7 @@ namespace TwosCompany.Cards.Ilya {
                     flipped ? "left" : "right", flipped ? "right" : "left");
 
             return new CardData() {
-                cost = 1,
+                cost = 2,
                 description = cardText,
                 exhaust = true,
                 retain = upgrade == Upgrade.B
@@ -34,12 +34,13 @@ namespace TwosCompany.Cards.Ilya {
                 gainHeat = 1,
                 index = 0,
                 timer = 0.5,
-                firstPlay = true
+                firstPlay = true,
+                dialogueSelector = ".mezz_wildfire"
             });
             if (upgrade == Upgrade.A)
                 actions.Add(new AStatus() {
                     status = Status.heat,
-                    statusAmount = -2,
+                    statusAmount = -1,
                     targetPlayer = true
                 });
             return actions;

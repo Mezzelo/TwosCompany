@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Ilya {
@@ -51,6 +52,7 @@ namespace TwosCompany.Cards.Ilya {
                     status = Status.powerdrive,
                     targetPlayer = true,
                     statusAmount = 1,
+                    dialogueSelector = ".mezz_imbue",
                 },
                 statusReq = Status.heat,
                 statusCost = 1,

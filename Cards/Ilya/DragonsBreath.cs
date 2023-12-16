@@ -56,6 +56,7 @@ namespace TwosCompany.Cards.Ilya {
                     damage = GetDmg(s, 1),
                     moveEnemy = -1,
                     fast = true,
+                    dialogueSelector = ".mezz_dragonsBreath",
                 },
                 statusReq = Status.heat,
                 statusCost = 1,

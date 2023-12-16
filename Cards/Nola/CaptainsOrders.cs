@@ -29,6 +29,7 @@ namespace TwosCompany.Cards.Nola {
             actions.Add(new ACardSelect() {
                 browseAction = new ACaptainsOrders() {
                     dontExhaust = upgrade == Upgrade.B,
+                    dialogueSelector = ".mezz_captainsOrders"
                 },
                 browseSource = CardBrowse.Source.Hand
             });

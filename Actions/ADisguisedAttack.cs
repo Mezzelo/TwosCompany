@@ -10,6 +10,7 @@
                 damage = realDamage ?? this.damage,
                 stunEnemy = realStun ?? this.stunEnemy,
                 piercing = realPiercing ?? this.piercing,
+                dialogueSelector = this.dialogueSelector,
             });
         }
 

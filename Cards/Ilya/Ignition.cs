@@ -29,7 +29,8 @@ namespace TwosCompany.Cards.Ilya {
             actions.Add(new AStatus() {
                 status = enflamedStatus.Id != null ? (Status)enflamedStatus.Id : Status.heat,
                 statusAmount = 1,
-                targetPlayer = true
+                targetPlayer = true,
+                dialogueSelector = ".mezz_ignition",
             });
             actions.Add(new AHeal() {
                 targetPlayer = true,

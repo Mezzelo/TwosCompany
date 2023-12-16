@@ -14,7 +14,8 @@
             actions.Add(new AStatus() {
                 status = upgrade == Upgrade.B ? Status.shield : Status.tempShield,
                 statusAmount = upgrade == Upgrade.B ? 3 : 2,
-                targetPlayer = true
+                targetPlayer = true,
+                dialogueSelector = ".mezz_bind"
             });
             actions.Add(new AStatus() {
                 status = Status.engineStall,

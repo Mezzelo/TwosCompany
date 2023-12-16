@@ -25,13 +25,14 @@ namespace TwosCompany.Cards.Nola {
                 },
                 statusReq = Status.evade,
                 statusCost = 1,
-                cumulative = upgrade == Upgrade.A ? 1 : 2
+                cumulative = upgrade == Upgrade.A ? 1 : 2,
             });
             actions.Add(new StatCostAction() {
                 action = new AStatus() {
                     status = Status.overdrive,
                     targetPlayer = true,
                     statusAmount = 1,
+                    dialogueSelector = ".mezz_steadyOn"
                 },
                 statusReq = Status.evade,
                 statusCost = 1,

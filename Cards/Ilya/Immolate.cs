@@ -28,6 +28,7 @@ namespace TwosCompany.Cards.Ilya {
                 action = new AAttack() {
                     damage = GetDmg(s, upgrade == Upgrade.A ? 1 : 5),
                     fast = upgrade == Upgrade.A,
+                    dialogueSelector = upgrade == Upgrade.A ? null : ".mezz_immolate"
                 },
                 statusReq = Status.heat,
                 statusCost = upgrade == Upgrade.A ? 1 : (upgrade == Upgrade.B ? 2 : 3),
@@ -40,6 +41,7 @@ namespace TwosCompany.Cards.Ilya {
                         action = new AAttack() {
                             damage = GetDmg(s, 2),
                             fast = true,
+                            dialogueSelector = i == 1 ? ".mezz_immolate" : null
                         },
                         statusReq = Status.heat,
                         statusCost = 1,

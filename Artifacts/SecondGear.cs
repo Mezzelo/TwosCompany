@@ -11,6 +11,7 @@
             if (counter == 6) {
                 this.Pulse();
                 Ship ship = state.ship;
+                bool first = false;
                 foreach (KeyValuePair<Status, int> thisStatus in ship.statusEffects) {
                     if (thisStatus.Value == 0)
                         continue;
@@ -21,12 +22,16 @@
                         && thisStatus.Key != Status.shard
                     // && thisStatus.Key != Status.evade
                     // && thisStatus.Key != Status.maxShard
-                        )
+                        ) {
+
                         combat.Queue(new AStatus() {
                             targetPlayer = true,
                             status = thisStatus.Key,
-                            statusAmount = thisStatus.Value
+                            statusAmount = thisStatus.Value,
+                            dialogueSelector = first ? ".mezz_secondGear" : null,
                         });
+                        first = true;
+                    }
                 }
             }
         }

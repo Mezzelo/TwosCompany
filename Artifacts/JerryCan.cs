@@ -15,7 +15,7 @@
                 return;
             int num = 1;
             foreach (Artifact enumerateAllArtifact in state.EnumerateAllArtifacts())
-                num += enumerateAllArtifact.ModifyHealAmount(1, state);
+                num += enumerateAllArtifact.ModifyHealAmount(1, state, true);
             combat.Queue(new AHeal() {
                 healAmount = num,
                 targetPlayer = true,

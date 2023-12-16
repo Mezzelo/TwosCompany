@@ -40,7 +40,8 @@ namespace TwosCompany.Cards.Isabelle {
                 status = Status.shield,
                 statusAmount = 0,
                 mode = AStatusMode.Set,
-                targetPlayer = true
+                targetPlayer = true,
+                dialogueSelector = ".mezz_falseOpening",
             });
             ExternalStatus falseStatus = Manifest.Statuses?["FalseOpening" + (upgrade == Upgrade.B ? "B" : "")] ?? throw new Exception("status missing: falseopening");
             actions.Add(new AStatus() {

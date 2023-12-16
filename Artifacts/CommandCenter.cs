@@ -40,6 +40,8 @@ namespace TwosCompany.Artifacts {
                         this.Pulse();
                         combat.Queue(new AEnergy() {
                             changeAmount = 1,
+
+                            dialogueSelector = ".mezz_commandCenter"
                         });
                     }
                     count++;

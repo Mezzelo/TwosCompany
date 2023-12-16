@@ -34,7 +34,8 @@ namespace TwosCompany.Cards.Isabelle {
                 stunEnemy = this.disguised ? false : true,
                 realDamage = GetDmg(s, (upgrade == Upgrade.A ? 5 : 4)),
                 realStun = true,
-                disguised = this.disguised
+                disguised = this.disguised,
+                dialogueSelector = ".mezz_fleche"
             });
             // if (!(upgrade == Upgrade.B && !disguised))
                 actions.Add(new ADisguisedStatus() {

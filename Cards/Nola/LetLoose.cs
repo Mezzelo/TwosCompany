@@ -30,7 +30,8 @@ namespace TwosCompany.Cards.Nola {
             actions.Add(new ALowerCardCost() {
                 amount = upgrade == Upgrade.B ? -2 : -1,
                 hand = true,
-                minimum = upgrade == Upgrade.B ? -1 : 1
+                minimum = upgrade == Upgrade.B ? -1 : 1,
+                // dialogueSelector = ".mezz_letLoose"
             });
 
             return actions;

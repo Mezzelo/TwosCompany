@@ -23,7 +23,9 @@ namespace TwosCompany.Cards.Ilya {
                 hand = true,
                 handAmount = this.GetHandSize(s)
             });
-            actions.Add(new AExhaustEntireHandImmediate());
+            actions.Add(new AExhaustEntireHandImmediate() {
+                dialogueSelector = ".mezz_thermalRunaway"
+            });
             actions.Add(new AAddCard() {
                 amount = this.GetHandSize(s),
                 card = new Ember(),

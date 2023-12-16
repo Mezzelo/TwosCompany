@@ -33,7 +33,8 @@ namespace TwosCompany.Artifacts {
                 c.QueueImmediate(new AStatus() {
                     targetPlayer = true,
                     status = Status.tempShield,
-                    statusAmount = 2
+                    statusAmount = 2,
+                    dialogueSelector = ".mezz_blackfootPendant",
                 });
             }
             counter += Math.Abs(distance);

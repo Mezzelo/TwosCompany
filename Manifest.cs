@@ -33,7 +33,7 @@ namespace TwosCompany {
         private static System.Drawing.Color NolaColor = System.Drawing.Color.FromArgb(23, 175, 198); // 17AFC6
         private static String NolaColH = string.Format("<c={0:X2}{1:X2}{2:X2}>", NolaColor.R, NolaColor.G, NolaColor.B.ToString("X2"));
         public static string[] nolaEmotes = new String[] {
-            "mini", "neutral", "gameover", "angry", "annoyed", "getreal", "happy", "smug", "squint", "vengeful"
+            "mini", "neutral", "gameover", "crystallized", "nap", "angry", "annoyed", "getreal", "happy", "smug", "squint", "vengeful"
         };
 
         public static ExternalCharacter? IsabelleCharacter { get; private set; }
@@ -41,7 +41,7 @@ namespace TwosCompany {
         private static System.Drawing.Color IsabelleColor = System.Drawing.Color.FromArgb(47, 72, 183); // 2F48B7
         private static String IsaColH = string.Format("<c={0:X2}{1:X2}{2:X2}>", IsabelleColor.R, IsabelleColor.G, IsabelleColor.B);
         public static string[] isabelleEmotes = new String[] {
-            "mini", "neutral", "gameover", "angry", "forlorn", "getreal", "glare", "happy", "shocked", "snide", "squint"
+            "mini", "neutral", "gameover", "crystallized", "nap", "angry", "forlorn", "getreal", "glare", "happy", "shocked", "snide", "squint"
         };
 
         public static ExternalCharacter? IlyaCharacter { get; private set; }
@@ -49,7 +49,7 @@ namespace TwosCompany {
         private static System.Drawing.Color IlyaColor = System.Drawing.Color.FromArgb(188, 84, 116); // BC5474
         private static String IlyaColH = string.Format("<c={0:X2}{1:X2}{2:X2}>", IlyaColor.R, IlyaColor.G, IlyaColor.B.ToString("X2"));
         public static string[] ilyaEmotes = new String[] {
-            "mini", "neutral", "gameover", "bashful", "blush", "happy", "intense", "shocked", "side", "squint"
+            "mini", "neutral", "gameover", "crystallized", "nap", "bashful", "blush", "forlorn", "happy", "intense", "shocked", "side", "squint"
         };
 
         private void addCharSprite(string charName, string emote, string subfolder, ISpriteRegistry artReg) {

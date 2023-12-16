@@ -18,12 +18,13 @@
                 damage = GetDmg(s, 1),
                 status = Status.lockdown,
                 statusAmount = freezeAmount - (upgrade == Upgrade.A ? 1 : 2),
-                targetPlayer = false
+                targetPlayer = false,
+                dialogueSelector = ".mezz_apex"
             });
             actions.Add(new AStatus() {
                 status = Status.lockdown,
                 statusAmount = freezeAmount,
-                targetPlayer = true
+                targetPlayer = true,
             });
             actions.Add(new AStatus() {
                 status = Status.overdrive,

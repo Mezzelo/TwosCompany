@@ -32,7 +32,8 @@
             });
             actions.Add(new AAttack() {
                 damage = GetDmg(s, this.GetHeatAmt(s)),
-                xHint = 1
+                xHint = 1,
+                dialogueSelector = this.GetHeatAmt(s) > 3 ? ".mezz_thermalBlast" : null
             });
             actions.Add(new AStatus() {
                 status = Status.heat,

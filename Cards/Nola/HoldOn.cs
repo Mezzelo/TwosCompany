@@ -15,7 +15,8 @@ namespace TwosCompany.Cards.Nola {
             actions.Add(new AStatus() {
                 targetPlayer = true,
                 status = Status.hermes,
-                statusAmount = upgrade == Upgrade.A ? 2 : 3
+                statusAmount = upgrade == Upgrade.A ? 2 : 3,
+                dialogueSelector = ".mezz_holdOn"
             });
             if (upgrade == Upgrade.A)
                 actions.Add(new AStatus()

@@ -33,6 +33,7 @@ namespace TwosCompany.Cards.Isabelle {
             actions.Add(new AAttack() {
                 damage = GetDmg(s, costIncrease),
                 fast = true,
+                dialogueSelector = costIncrease > 1 ? ".mezz_harry" : null,
             });
             actions.Add(new AMove() {
                 dir = (upgrade == Upgrade.None ? 1 : 0) + costIncrease,

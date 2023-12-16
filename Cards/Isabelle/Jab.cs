@@ -27,7 +27,8 @@ namespace TwosCompany.Cards.Isabelle {
                 });
             actions.Add(new AAttack() {
                 damage = GetDmg(s, upgrade == Upgrade.A ? 2 : 1),
-                omitFromTooltips = forTooltip
+                omitFromTooltips = forTooltip,
+                dialogueSelector = ".mezz_jab"
             });
             actions.Add(new AStatus() {
                 targetPlayer = true,

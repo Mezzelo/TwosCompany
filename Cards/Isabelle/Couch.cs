@@ -48,6 +48,7 @@ namespace TwosCompany.Cards.Isabelle {
             List<CardAction> actions = new List<CardAction>();
             actions.Add(new AAttack() {
                 damage = GetDmg(s, GetDistance(s)),
+                // dialogueSelector = GetDmg(s, GetDistance(s)) > 1 ? ".mezz_couch" : null,
             });
             return actions;
         }

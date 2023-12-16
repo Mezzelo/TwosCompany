@@ -24,7 +24,9 @@ namespace TwosCompany.Cards.Nola {
                 hand = true,
                 handAmount = this.GetHandSize(s)
             });
-            actions.Add(new AExhaustEntireHandImmediate());
+            actions.Add(new AExhaustEntireHandImmediate() {
+                dialogueSelector = ".mezz_contingency"
+            });
             actions.Add(new ADrawCard() {
                 count = GetHandSize(s),
                 xHint = 1,

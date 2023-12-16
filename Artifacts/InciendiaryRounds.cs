@@ -4,7 +4,7 @@
     public class InciendiaryRounds : Artifact {
         public bool firstHit = true;
         public override string Description() => "The first time your enemy is hit each turn, they gain your current <c=keyword>HEAT</c>.";
-        public override void OnEnemyGetHit(State state, Combat combat) {
+        public override void OnEnemyGetHit(State state, Combat combat, Part? part) {
             if (firstHit) {
                 firstHit = false;
                 if (state.ship.Get(Status.heat) > 0) {
@@ -12,7 +12,8 @@
                     combat.QueueImmediate(new AStatus() {
                         targetPlayer = false,
                         status = Status.heat,
-                        statusAmount = state.ship.Get(Status.heat)
+                        statusAmount = state.ship.Get(Status.heat),
+                        dialogueSelector = state.ship.Get(Status.heat) > 2 ? ".mezz_inciendiaryRounds" : null,
                     });
                 }
             }

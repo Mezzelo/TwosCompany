@@ -40,7 +40,9 @@ namespace TwosCompany.Cards.Nola {
                 statusAmount = 2,
                 targetPlayer = true
             });
-            actions.Add(new AEndTurn());
+            actions.Add(new AEndTurn() {
+                dialogueSelector = ".mezz_ruminate"
+            });
             return actions;
         }
 

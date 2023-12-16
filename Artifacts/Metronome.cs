@@ -36,7 +36,8 @@ namespace TwosCompany.Artifacts {
             c.QueueImmediate(new AStatus() {
                 targetPlayer = true,
                 status = Status.overdrive,
-                statusAmount = 1
+                statusAmount = 1,
+                dialogueSelector = ".mezz_metronome",
             });
             c.QueueImmediate(new AStatus() {
                 targetPlayer = true,

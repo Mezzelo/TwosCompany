@@ -16,7 +16,8 @@ namespace TwosCompany.Cards.Nola {
             actions.Add(new AStatus() {
                 targetPlayer = true,
                 status = Status.libra,
-                statusAmount = upgrade == Upgrade.B ? 2 : 1
+                statusAmount = upgrade == Upgrade.B ? 2 : 1,
+                dialogueSelector = ".mezz_relentless"
             });
             ExternalStatus mobileStatus = Manifest.Statuses?["MobileDefense"] ?? throw new Exception("status missing: mobile defense");
             actions.Add(new AStatus() {

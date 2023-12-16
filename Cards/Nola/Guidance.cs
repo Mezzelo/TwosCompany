@@ -25,10 +25,10 @@ namespace TwosCompany.Cards.Nola {
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
-            /*
-            actions.Add(new ADelay() {
-                time = 0.1
-            }); */
+            
+            actions.Add(new ADummyAction() {
+                dialogueSelector = ".mezz_guidance"
+            });
 
             return actions;
         }

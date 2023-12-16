@@ -49,6 +49,7 @@
                 status = Status.evade,
                 statusAmount = GetIncomingTotal(s),
                 targetPlayer = true,
+                dialogueSelector = GetIncomingTotal(s) > 2 ? ".mezz_outmaneuver" : null
             });
             return actions;
         }

@@ -10,7 +10,7 @@
             int increase = state.ship.shieldMaxBase *= 2;
             int num = increase;
             foreach (Artifact enumerateAllArtifact in state.EnumerateAllArtifacts())
-                num += enumerateAllArtifact.ModifyHealAmount(increase, state);
+                num += enumerateAllArtifact.ModifyHealAmount(increase, state, true);
 
             state.rewardsQueue.Add(new AHullMax() {
                 amount = increase,

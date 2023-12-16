@@ -12,7 +12,8 @@
                 combat.QueueImmediate(new AStatus() {
                     targetPlayer = true,
                     status = Status.evade,
-                    statusAmount = 1
+                    statusAmount = 1,
+                    dialogueSelector = ".mezz_fingerlessGloves",
                 });
             }
         }

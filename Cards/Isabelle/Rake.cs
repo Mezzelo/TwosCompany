@@ -18,7 +18,8 @@ namespace TwosCompany.Cards.Isabelle {
             actions.Add(new AStatus() {
                 status = upgrade == Upgrade.B ? (strafeStatus.Id != null ? (Status) strafeStatus.Id : Status.strafe) : Status.strafe,
                 statusAmount = 1,
-                targetPlayer = true
+                targetPlayer = true,
+                // dialogueSelector = ".mezz_rake",
             });
             actions.Add(new AStatus() {
                 status = Status.evade,

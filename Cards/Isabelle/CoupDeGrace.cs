@@ -3,7 +3,7 @@
     public class CoupDeGrace : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 3,
+                cost = 2,
                 exhaust = upgrade != Upgrade.B,
                 recycle = upgrade == Upgrade.B
             };
@@ -13,7 +13,8 @@
             List<CardAction> actions = new List<CardAction>();
 
             actions.Add(new AAttack() {
-                damage = GetDmg(s, upgrade != Upgrade.A ? 6 : 8),
+                damage = GetDmg(s, upgrade != Upgrade.A ? 5 : 7),
+                dialogueSelector = ".mezz_coupDeGrace",
             });
 
             actions.Add(new AStatus() {
@@ -32,7 +33,7 @@
             });
             actions.Add(new AStatus() {
                 status = Status.lockdown,
-                statusAmount = upgrade != Upgrade.B ? 2 : 1,
+                statusAmount = upgrade != Upgrade.B ? (upgrade == Upgrade.A ? 3 : 2) : 1,
                 targetPlayer = true
             });
             return actions;

@@ -89,7 +89,7 @@ namespace TwosCompany {
                 "Removes <c=cardtrait>retain for this turn when played."
                 , registry);
             addGlossary("CallAndResponseHint", "Call and Response",
-                "Whenever you play this card, draw the selected card from the <c=keyword>draw or discard pile</c>{0}.\n" +
+                "Store the selected card. Whenever you play this card, draw the stored card from the <c=keyword>draw or discard pile</c>{0}.\n" +
                 "If the stored card was <c=cardtrait>exhausted</c> or <c=downside>single use</c>, choose another."
                 , registry);
             addGlossary("ShieldCost", "Shield Cost",

@@ -58,6 +58,7 @@
                 status = Status.evade,
                 statusAmount = incoming / 2,
                 targetPlayer = true,
+                dialogueSelector = incoming > 2 ? ".mezz_remise" : null,
             });
             if (upgrade == Upgrade.B)
                 for (int i = 0; i < incoming; i++) {
