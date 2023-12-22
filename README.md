@@ -5,6 +5,7 @@ A mod for Cobalt Core, featuring My bingus blorbos.
 Requires EWanderer's modloader to run - https://github.com/Ewanderer/CobaltCoreModLoader
 
 source available here - https://github.com/Mezzelo/TwosCompany
+
 changelog available on releases page - https://github.com/Mezzelo/TwosCompany/releases
 
 consider checking out the Rocket Rat Discord (blech) server for more mods & discussion - https://discord.com/invite/cncV5znGwA
