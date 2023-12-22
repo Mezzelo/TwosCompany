@@ -25,7 +25,7 @@ namespace TwosCompany.Helper {
             // 10-14: ilya
             "AncientMatchbox",
             "JerryCan",
-            "InciendiaryRounds",
+            "IncendiaryRounds",
             "ShieldShunt",
             "SleepingPills"
         };
@@ -46,7 +46,7 @@ namespace TwosCompany.Helper {
             // 10-14: ilya
             "Worn Lighter",
             "Reactive Coating",
-            "Inciendiary Rounds",
+            "Incendiary Rounds",
             "Shield Shunt",
             "Sleeping Pills"
         };
@@ -68,7 +68,7 @@ namespace TwosCompany.Helper {
             // 10-14: ilya
             "Whenever you <c=downside>overheat</c>, gain 1 <c=status>OVERDRIVE</c>.",
             "At the start of combat, <c=healing>heal 1</c> and <c=downside>gain 2 HEAT</c>.",
-            "The first time your enemy is hit each turn, they gain your current <c=keyword>HEAT</c>.",
+            "The first time your enemy is hit each turn, they gain your current <c=keyword>HEAT</c> + 1. If they would <c=downside>overheat</c>, they do so immediately.",
             "<c=downside>Reduce your max shield to 1</c>, but permanently gain <c=keyword>double</c> your prior max shield as " +
                 "<c=hull>max hull</c> and <c=healing>heal</c> the same amount on pickup.",
             "<c=healing>Heal 1</c> and gain 1 <c=status>SERENITY</c> whenever you <c=downside>overheat</c>, up to once every <c=keyword>4</c> turns."

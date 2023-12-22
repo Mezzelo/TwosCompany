@@ -19,10 +19,11 @@ namespace TwosCompany.Cards.Isabelle {
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            actions.Add((CardAction)new AVariableHint() {
-                status = Status.shield
-            });
+
             if (upgrade != Upgrade.B) {
+                actions.Add((CardAction)new AVariableHint() {
+                    status = Status.shield
+                });
                 actions.Add(new AStatus() {
                     status = Status.tempShield,
                     statusAmount = GetShieldAmt(s),
@@ -43,6 +44,13 @@ namespace TwosCompany.Cards.Isabelle {
                 targetPlayer = true,
                 dialogueSelector = ".mezz_falseOpening",
             });
+            if (upgrade == Upgrade.B)
+                actions.Add(new AStatus() {
+                    status = Status.tempShield,
+                    statusAmount = 0,
+                    mode = AStatusMode.Set,
+                    targetPlayer = true,
+                });
             ExternalStatus falseStatus = Manifest.Statuses?["FalseOpening" + (upgrade == Upgrade.B ? "B" : "")] ?? throw new Exception("status missing: falseopening");
             actions.Add(new AStatus() {
                 status = falseStatus.Id != null ? (Status)falseStatus.Id : Status.overdrive,

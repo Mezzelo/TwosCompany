@@ -12,8 +12,16 @@ namespace TwosCompany.Actions {
                     drawNotDiscard = false,
                     discount = 0
                 });
-            else
+            else {
                 c.QueueImmediate(move);
+                if (move.dir != 0 && (s.ship.Get(Status.engineStall) > 0 || s.ship.Get(Status.lockdown) > 0)) {
+                    c.Queue(new ADiscardSpecific() {
+                        selectedCard = this.selectedCard,
+                        drawNotDiscard = false,
+                        discount = 0
+                    });
+                }
+            }
         }
         public AMove? CalculateMove(State? s, Combat? c, out int offset) {
             offset = 0;
@@ -29,8 +37,8 @@ namespace TwosCompany.Actions {
             bool found = false;
             for (int i = start; (isRight ? i < s.ship.parts.Count : i >= 0) && !found; i += isRight ? 1 : -1)
                 if (c.stuff.ContainsKey(s.ship.x + i))
-                    if (!(c.stuff[s.ship.x + i] is Asteroid) && !(c.stuff[s.ship.x + i] is Asteroid) &&
-                        c.stuff[s.ship.x + i].IsHostile()) 
+                    if (!(c.stuff[s.ship.x + i] is Asteroid) && !(c.stuff[s.ship.x + i] is Geode) &&
+                        (c.stuff[s.ship.x + i].IsHostile() || (c.stuff[s.ship.x + i] is ShieldDrone && !c.stuff[s.ship.x + i].IsFriendly())))
                         for (int g = i; isRight ? g >= 0 : g < s.ship.parts.Count; g += isRight ? -1 : 1)
                             if (s.ship.parts[g].type == PType.cannon && s.ship.parts[g].active) {
                                 move = i - g;

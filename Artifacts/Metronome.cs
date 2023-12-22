@@ -1,10 +1,13 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Diagnostics.Metrics;
+using System.Runtime.CompilerServices;
+using TwosCompany.Cards.Ilya;
 
 namespace TwosCompany.Artifacts {
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Boss })]
     public class Metronome : Artifact {
         public int counter = 0;
         public bool lastWasMove = false;
+        public bool consecutive = false;
         public override string Description() => "Whenever you alternate between moving and attacking <c=keyword>6</c> times in a row, " +
             "gain 1 <c=status>OVERDRIVE</c> and 1 <c=status>EVADE</c>.";
 
@@ -29,6 +32,10 @@ namespace TwosCompany.Artifacts {
             counter = 0;
         }
         // public override void OnCombatEnd(State state) => counter = 0;
+
+        public override void OnPlayerPlayCard(int energyCost, Deck deck, Card playedCard, State state, Combat combat, int handPosition, int handCount) {
+            consecutive = false;
+        }
 
         private void Proc(State s, Combat c) {
             counter = 0;
@@ -55,9 +62,10 @@ namespace TwosCompany.Artifacts {
                 counter++;
                 if (counter > 5)
                     Proc(state, combat);
-            } else
+            } else if (!consecutive)
                 counter = 0;
             lastWasMove = false;
+            consecutive = true;
         }
 
         private void Movement(Tuple<int, bool, bool, Combat, State> evt) {

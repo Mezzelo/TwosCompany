@@ -29,6 +29,7 @@
                 damage = GetDmg(s, this.GetHandSize(s) * (upgrade == Upgrade.A ? 2 : 1)),
                 xHint = upgrade == Upgrade.A ? 2 : 1,
                 fast = upgrade != Upgrade.A,
+                dialogueSelector = this.GetHandSize(s) > 1 ? ".mezz_thermalBlast" : null
             });
             if (upgrade != Upgrade.A)
                 actions.Add(new AAttack() {

@@ -28,7 +28,7 @@ namespace TwosCompany.Cards.Ilya {
             ExternalStatus enflamedStatus = Manifest.Statuses?["Enflamed"] ?? throw new Exception("status missing: enflamed");
             actions.Add(new AStatus() {
                 status = enflamedStatus.Id != null ? (Status)enflamedStatus.Id : Status.heat,
-                statusAmount = 1,
+                statusAmount = 2,
                 targetPlayer = true,
                 dialogueSelector = ".mezz_ignition",
             });

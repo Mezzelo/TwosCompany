@@ -3,7 +3,7 @@
     public class Burnout : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = upgrade == Upgrade.B ? 0 : 1,
+                cost = 1,
             };
         }
         private int GetHeatAmt(State s) {
@@ -32,7 +32,7 @@
 
             if (upgrade != Upgrade.None)
                 actions.Add(new ADrawCard() {
-                    count = upgrade == Upgrade.A ? 2 : 3,
+                    count = 2,
                 });
 
             return actions;

@@ -53,7 +53,8 @@ namespace TwosCompany.Cards.Nola {
                         callCard = this,
                         recall = false,
                     },
-                    browseSource = CardBrowse.Source.Hand
+                    browseSource = CardBrowse.Source.Hand,
+                    ignoreCardType = this.Key()
                 });
                 actions.Add(new ACallAndResponse() {
                     recall = false,

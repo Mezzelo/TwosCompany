@@ -2,11 +2,13 @@
 using System.Diagnostics.Metrics;
 using CobaltCoreModding.Definitions.ExternalItems;
 using CobaltCoreModding.Definitions.ModContactPoints;
+using Microsoft.Xna.Framework.Input;
 using TwosCompany.Actions;
 using TwosCompany.Cards;
 using TwosCompany.Cards.Ilya;
 using TwosCompany.Cards.Isabelle;
 using TwosCompany.Cards.Nola;
+using TwosCompany.Helper;
 
 namespace TwosCompany {
     public class PatchLogic {
@@ -162,6 +164,13 @@ namespace TwosCompany {
         }
 
         public static bool TurnEnd(Ship __instance, State s, Combat c) {
+            if (__instance.isPlayerShip)
+                foreach (Card card in c.hand)
+                    if (card is ITurnIncreaseCard increaseCard) {
+                        card.discount += increaseCard.increasePerTurn;
+                        increaseCard.costIncrease += increaseCard.increasePerTurn;
+                    }
+
             ExternalStatus dodgeStatus = Manifest.Statuses?["UncannyEvasion"] ?? throw new Exception("status missing: uncanny evasion");
             if (dodgeStatus.Id == null) return true;
             if (__instance.Get((Status)dodgeStatus.Id) > 0 && __instance.Get(Status.shield) <= 0 && __instance.Get(Status.tempShield) <= 0)
@@ -203,11 +212,22 @@ namespace TwosCompany {
         public static void PlayCardPostfix(Combat __instance, ref bool __result, State s, Card card, bool playNoMatterWhatForFree, bool exhaustNoMatterWhat) {
             if (!__result)
                 return;
-            ExternalStatus onslaughtStatus = Manifest.Statuses?["Onslaught"] ?? throw new Exception("status missing: repeat");
+            ExternalStatus onslaughtStatus = Manifest.Statuses?["Onslaught"] ?? throw new Exception("status missing: onslaught");
             if (onslaughtStatus.Id == null) return;
             if (s.ship.Get((Status)onslaughtStatus.Id) > 0) {
                 List<Card> cardList = s.deck;
-                if (cardList.Count == 0 && __instance.hand.Count < 10) {
+                if (cardList.Count == 0 && __instance.hand.Count < 10 && __instance.discard.Count > 0) {
+                    bool foundDraw = false;
+                    for (int i = __instance.discard.Count - 1; i >= 0; --i)
+                        if (__instance.discard[i].GetMeta().deck == card.GetMeta().deck)
+                            if (card.uuid != __instance.discard[i].uuid) {
+                                foundDraw = true;
+                                break;
+                            }
+
+                    if (!foundDraw)
+                        return;
+
                     foreach (Card thisCard in __instance.discard)
                         s.SendCardToDeck(thisCard, true, true);
                     __instance.discard.Clear();
@@ -231,15 +251,6 @@ namespace TwosCompany {
                             break;
                         }
                     }
-                    /*
-                    if (drawIdx == 0) {
-                        (__instance).QueueImmediate(new AStatus() {
-                            status = (Status)onslaughtStatus.Id,
-                            statusAmount = 0,
-                            mode = AStatusMode.Set,
-                            targetPlayer = true,
-                        });
-                    } */
                 }
             }
         }
@@ -346,5 +357,62 @@ namespace TwosCompany {
             }
             return true;
         }
+
+        public static bool AICombatStartPrefix(AI __instance, State s, Combat c) {
+            if (Enumerable.Any(s.characters, ch => {
+                Deck? deckType = ch.deckType;
+                return (int) deckType.GetValueOrDefault() == Manifest.IlyaDeck!.Id & deckType.HasValue;
+            })) {
+                if (__instance is OxygenLeakGuy && s.storyVars.HasEverSeen("mezz_Ilya_Cobalt_0") && !s.storyVars.HasEverSeen("mezz_Ilya_Oxygenguy_Midcombat")) {
+                    c.Queue(new ADelay() {
+                        time = 0.0,
+                        timer = 0.3,
+                    });
+                    c.Queue(new AMidCombatDialogue() {
+                        script = "mezz_Ilya_Oxygenguy_Midcombat"
+                    });
+                    c.Queue(new ADelay() {
+                        time = 0.0,
+                        timer = 0.5,
+                    });
+                } else if (__instance is AsteroidDriller && s.storyVars.HasEverSeen("mezz_Ilya_Cobalt_0") && !s.storyVars.HasEverSeen("mezz_Ilya_Skunk_Midcombat")) {
+                    c.Queue(new ADelay() {
+                        time = 0.0,
+                        timer = 0.3,
+                    });
+                    c.Queue(new AMidCombatDialogue() {
+                        script = "mezz_Ilya_Skunk_Midcombat"
+                    });
+                    c.Queue(new ADelay() {
+                        time = 0.0,
+                        timer = 0.5,
+                    });
+                }
+            }
+            return true;
+        }
+
+        public static bool OxygenLeakGuyCombatStartPrefix(AI __instance, State s, Combat c) {
+            if (Enumerable.Any(s.characters, ch => {
+                Deck? deckType = ch.deckType;
+                return (int)deckType.GetValueOrDefault() == Manifest.IlyaDeck!.Id & deckType.HasValue;
+            })) {
+                if (s.storyVars.HasEverSeen("mezz_Ilya_Cobalt_0") && !s.storyVars.HasEverSeen("mezz_Ilya_Oxygenguy_Midcombat")) {
+                    c.Queue(new ADelay() {
+                        time = 0.0,
+                        timer = 0.3,
+                    });
+                    c.Queue(new AMidCombatDialogue() {
+                        script = "mezz_Ilya_Oxygenguy_Midcombat"
+                    });
+                    c.Queue(new ADelay() {
+                        time = 0.0,
+                        timer = 0.5,
+                    });
+                }
+            }
+            return true;
+        }
+
     }
 }

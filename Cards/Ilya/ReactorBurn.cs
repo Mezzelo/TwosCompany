@@ -6,7 +6,7 @@ namespace TwosCompany.Cards.Ilya {
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 0,
-                exhaust = upgrade != Upgrade.None
+                exhaust = upgrade != Upgrade.B
             };
         }
         private int GetHeatAmt(State s) {
@@ -28,11 +28,6 @@ namespace TwosCompany.Cards.Ilya {
                 xHint = 1
             });
             if (upgrade == Upgrade.B)
-                actions.Add(new ADrawCard() {
-                    count = this.GetHeatAmt(s),
-                    xHint = 1
-                });
-            else if (upgrade == Upgrade.None)
                 actions.Add(new StatCostAction() {
                     action = new AHurt() {
                         hurtAmount = 1,
@@ -56,6 +51,11 @@ namespace TwosCompany.Cards.Ilya {
                     targetPlayer = true,
                 });
 
+            if (upgrade != Upgrade.B)
+                actions.Add(new ADrawCard() {
+                    count = Math.Max(0, this.GetHeatAmt(s) - (upgrade == Upgrade.A ? 2 : 0)),
+                    xHint = 1,
+                });
             return actions;
         }
 

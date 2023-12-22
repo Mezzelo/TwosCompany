@@ -18,6 +18,7 @@
   <ItemGroup>
     <Reference Include="0Harmony">
       <HintPath>lib\0Harmony.dll</HintPath>
+		<Private>False</Private>
     </Reference>
     <Reference Include="CobaltCore">
       <HintPath>References\CobaltCore.dll</HintPath>
@@ -29,6 +30,7 @@
     </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>lib\MonoGame.Framework.dll</HintPath>
+		<Private>False</Private>
     </Reference>
   </ItemGroup>
 

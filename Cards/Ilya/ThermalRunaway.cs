@@ -24,7 +24,7 @@ namespace TwosCompany.Cards.Ilya {
                 handAmount = this.GetHandSize(s)
             });
             actions.Add(new AExhaustEntireHandImmediate() {
-                dialogueSelector = ".mezz_thermalRunaway"
+                dialogueSelector = GetHandSize(s) > 1 ? ".mezz_thermalRunaway" : null
             });
             actions.Add(new AAddCard() {
                 amount = this.GetHandSize(s),
@@ -33,6 +33,11 @@ namespace TwosCompany.Cards.Ilya {
                 destination = CardDestination.Hand,
                 timer = -0.5,
                 waitBeforeMoving = 0
+            });
+            actions.Add(new AStatus() {
+                status = Status.overdrive,
+                statusAmount = 1,
+                targetPlayer = true,
             });
             if (upgrade == Upgrade.A)
                 actions.Add(new AStatus() {

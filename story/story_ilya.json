@@ -19,6 +19,828 @@
         "ilya"
       ]
     },
+    "LoseCharacterCard_Mezz.TwosCompany.IlyaDeck": {
+      "type": "event",
+      "oncePerRun": true,
+      "bg": "BGBootSequence",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "forlorn",
+        },
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "CrystallizedFriendEvent_Mezz.TwosCompany.IlyaDeck": {
+      "type": "event",
+      "oncePerRun": true,
+      "bg": "BGCrystalizedFriend",
+      "lines": [
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1.5
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+		  "loopTag": "forlorn"
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+  
+
+    "mezz_Duo_AboutToDieAndLoop_IlyaRiggs": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "squint",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "riggs",
+          "loopTag": "serious",
+        }
+      ],
+      "allPresent": [
+        "ilya",
+        "riggs"
+      ]
+    },
+    "mezz_Duo_AboutToDieAndLoop_IlyaPeri": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "forlorn",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "peri",
+          "loopTag": "mad",
+        }
+      ],
+      "allPresent": [
+        "ilya",
+        "peri"
+      ]
+    },
+    "mezz_Duo_AboutToDieAndLoop_IlyaDizzy": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "dizzy",
+          "loopTag": "frown",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "forlorn",
+        }
+      ],
+      "allPresent": [
+        "ilya",
+        "dizzy"
+      ]
+    },
+    "mezz_Duo_AboutToDieAndLoop_IlyaIsaac": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "goat",
+          "loopTag": "panic",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "forlorn",
+        }
+      ],
+      "allPresent": [
+        "ilya",
+        "goat"
+      ]
+    },
+    "mezz_Duo_AboutToDieAndLoop_IlyaDrake": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "mad",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        }
+      ],
+      "allPresent": [
+        "ilya",
+        "eunice"
+      ]
+    },
+    "mezz_Duo_AboutToDieAndLoop_IlyaMax": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "hacker",
+          "loopTag": "mad",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "forlorn",
+        }
+      ],
+      "allPresent": [
+        "ilya",
+        "hacker"
+      ]
+    },
+    "mezz_Duo_AboutToDieAndLoop_IlyaBooks": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "shard",
+          "loopTag": "intense",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "ilya",
+        "shard"
+      ]
+    },
+    "mezz_Duo_AboutToDieAndLoop_IlyaComp": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "squint",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        }
+      ],
+      "allPresent": [
+        "ilya",
+        "comp"
+      ]
+    },
+
+	"mezz_Ilya_DrakeJustHit_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "whoDidThat": "eunice",
+      "allPresent": [
+        "ilya",
+		"eunice"
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "ilya",
+		},
+      ]
+    },
+    "mezz_Ilya_DrakeJustHit_1": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "whoDidThat": "eunice",
+      "allPresent": [
+        "ilya",
+		"eunice"
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "ilya",
+		},
+		{ "$type": "Say, CobaltCore",
+		  "who": "eunice",
+		  "loopTag": "sly",
+		},
+      ]
+    },
+    "mezz_Ilya_DrakeMiss_0": {
+      "type": "combat",
+      "playerShotJustMissed": true,
+      "oncePerCombat": true,
+      "doesNotHaveArtifacts": [
+        "Recalibrator",
+        "GrazerBeam"
+      ],
+      "allPresent": [
+        "ilya",
+		"eunice"
+      ],
+      "whoDidThat": "eunice",
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "ilya",
+		},
+		{ "$type": "Say, CobaltCore",
+		  "who": "eunice",
+		  "loopTag": "mad",
+		},
+      ],
+    },
+    "mezz_Ilya_DrakeMiss_1": {
+      "type": "combat",
+      "playerShotJustMissed": true,
+      "oncePerCombat": true,
+      "doesNotHaveArtifacts": [
+        "Recalibrator",
+        "GrazerBeam"
+      ],
+      "allPresent": [
+        "ilya",
+		"eunice"
+      ],
+      "whoDidThat": "eunice",
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "ilya",
+		},
+		{ "$type": "Say, CobaltCore",
+		  "who": "eunice",
+		  "loopTag": "mad",
+		},
+      ],
+    },
+	"mezz_Ilya_IsaacJustHit_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "whoDidThat": "goat",
+      "allPresent": [
+        "ilya",
+		"goat"
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "ilya",
+		},
+      ]
+    },
+    "mezz_Ilya_IsaacJustHit_1": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "whoDidThat": "goat",
+      "allPresent": [
+        "ilya",
+		"goat"
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "ilya",
+		},
+		{ "$type": "Say, CobaltCore",
+		  "who": "goat",
+		},
+      ]
+    },
+    "mezz_Ilya_PeriJustHit_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "whoDidThat": "peri",
+      "allPresent": [
+        "ilya",
+		"peri"
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "ilya",
+		},
+      ]
+    },
+    "mezz_Ilya_PeriJustHitAndDidBigDamage_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 3,
+      "whoDidThat": "peri",
+      "allPresent": [
+        "ilya",
+		"peri"
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "ilya",
+		  "loopTag": "happy",
+		},
+		{ "$type": "Say, CobaltCore",
+		  "who": "peri",
+		},
+      ]
+    },
+  
+    "mezz_Ilya_JustHit_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "ilya",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "ilya",
+		  "loopTag": "intense"
+		},
+      ]
+    },
+    "mezz_Ilya_JustHit_1": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "ilya",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "ilya",
+		},
+      ]
+    },
+    "mezz_Ilya_JustHit_2": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "ilya",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "ilya",
+		},
+      ]
+    },
+    "mezz_Ilya_JustHit_Nola_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "ilya",
+        "nola",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "nola",
+		},
+		{ "$type": "Say, CobaltCore",
+		  "who": "ilya",
+		  "loopTag": "bashful"
+		},
+      ]
+    },
+    "mezz_Ilya_JustHit_Isa_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "ilya",
+        "isa",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "isa",
+		},
+		{ "$type": "Say, CobaltCore",
+		  "who": "ilya",
+		  "loopTag": "happy"
+		},
+      ]
+    },
+    "mezz_Ilya_JustHit_Drake_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "ilya",
+        "eunice",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "eunice",
+		},
+      ]
+    },
+    "mezz_Ilya_JustHit_Isaac_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "ilya",
+        "goat",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "goat",
+		},
+		{ "$type": "Say, CobaltCore",
+		  "who": "ilya",
+		  "loopTag": "happy"
+		},
+      ]
+    },
+    "mezz_Ilya_JustHit_Peri_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "ilya",
+        "peri",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "peri",
+		},
+      ]
+    },
+    "mezz_Ilya_JustHit_Riggs_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "ilya",
+        "riggs",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "riggs",
+		},
+		{ "$type": "Say, CobaltCore",
+		  "who": "ilya",
+		  "loopTag": "happy"
+		},
+      ]
+    },
+
+  
+  
+	"mezz_Ilya_CharStart_0": {
+      "type": "event",
+      "lookup": [
+        "zone_first"
+      ],
+      "bg": "BGRunStart",
+      "allPresent": [
+        "ilya"
+      ],
+      "once": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "neutral",
+        }, { "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "squint",
+        }, { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "squint",
+          "flipped": true,
+        }, { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "forlorn",
+          "flipped": true,
+        }, { "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "worried",
+        }, { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "forlorn",
+          "flipped": true,
+        }, { "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "worried",
+        }, { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "forlorn",
+          "flipped": true,
+        }, { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+          "flipped": true,
+        }, { "$type": "Say, CobaltCore",
+          "who": "comp",
+        }, 
+      ]
+    },
+	"mezz_Ilya_CharStart_1": {
+      "type": "event",
+      "lookup": [
+        "zone_first"
+      ],
+      "bg": "BGRunStart",
+      "allPresent": [
+        "ilya"
+      ],
+      "requiredScenes": [
+        "mezz_Ilya_CharStart_0",
+      ],
+      "once": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "worried",
+        }, { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "flipped": true,
+        }, { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "flipped": true,
+          "loopTag": "forlorn",
+        }, { "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "worried",
+        }, { "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "squint",
+        }, { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+          "flipped": true,
+        }, { "$type": "Say, CobaltCore",
+          "who": "comp",
+        }, { "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "intense",
+        }, { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "happy",
+          "flipped": true,
+        }, 
+      ]
+    },
+  
+	"mezz_Ilya_CharStart_Riggs_0": {
+      "type": "event",
+      "lookup": [
+        "zone_first"
+      ],
+      "bg": "BGRunStart",
+      "allPresent": [
+        "ilya",
+		"riggs",
+      ],
+      "requiredScenes": [
+        "mezz_Ilya_CharStart_0",
+      ],
+      "once": true,
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+          "who": "ilya",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "riggs",
+          "flipped": true,
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "forlorn",
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "riggs",
+          "loopTag": "banana",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        }, 
+      ]
+    },
+	"mezz_Ilya_CharStart_Drake_0": {
+      "type": "event",
+      "lookup": [
+        "zone_first"
+      ],
+      "bg": "BGRunStart",
+      "allPresent": [
+        "ilya",
+		"eunice",
+      ],
+      "requiredScenes": [
+        "mezz_Ilya_CharStart_0",
+      ],
+      "once": true,
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "squint",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "squint",
+          "flipped": true,
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "mad",
+          "flipped": true,
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "happy",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "sly",
+          "flipped": true,
+        }, 
+      ]
+    },
+	"mezz_Ilya_CharStart_Books_0": {
+      "type": "event",
+      "lookup": [
+        "zone_first"
+      ],
+      "bg": "BGRunStart",
+      "allPresent": [
+        "ilya",
+		"shard",
+      ],
+      "requiredScenes": [
+        "mezz_Ilya_CharStart_0",
+      ],
+      "once": true,
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+          "who": "books",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "books",
+          "loopTag": "blush",
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "books",
+          "loopTag": "paws",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "flipped": true,
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "books",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "forlorn",
+          "flipped": true,
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "books",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "happy",
+          "flipped": true,
+        }, 
+      ]
+    },
+  
+  
+    "mezz_Ilya_LawlessZoneWarning_0": {
+      "type": "event",
+      "lookup": [
+        "zone_lawless"
+      ],
+      "once": true,
+      "priority": true,
+      "allPresent": [
+        "ilya",
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "squint",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "forlorn",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+		  "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        },
+      ]
+    },
+  
+	"mezz_Ilya_Cobalt_0": {
+      "type": "event",
+      "lookup": [
+        "before_theCobalt"
+      ],
+      "bg": "BGRunStart",
+      "allPresent": [
+        "ilya",
+      ],
+      "once": true,
+      "priority": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "squint",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "comp",
+          "flipped": true,
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "squint",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "forlorn",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "comp",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "bashful",
+        },
+      ]
+    },
   
     "mezz_Ilya_ArtifactAresCannon": {
       "type": "combat",
@@ -203,6 +1025,11 @@
         {
           "$type": "Say, CobaltCore",
           "who": "ilya",
+        },
+		{
+          "$type": "Say, CobaltCore",
+          "who": "dizzy",
+		  "loopTag": "shrug",
         }
       ],
       "allPresent": [
@@ -430,6 +1257,2034 @@
           "$type": "Say, CobaltCore",
           "who": "ilya",
           "loopTag": "side"
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "hacker",
+          "loopTag": "smile"
+        },
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+	
+    "mezz_Ilya_ArtifactShieldShunt": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "oncePerRun": true,
+      "hasArtifacts": [
+        "TwosCompany.Artifacts.ShieldShunt"
+      ],
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "comp",
+		      "loopTag": "worried",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "peri",
+              "loopTag": "panic",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "dizzy",
+              "loopTag": "frown",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "eunice",
+              "loopTag": "sly",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "nola",
+              "loopTag": "smug",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "isa",
+              "loopTag": "happy",
+			},
+          ]
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "forlorn",
+        }
+      ],
+      "allPresent": [
+        "ilya",
+      ]
+    },
+    "mezz_Ilya_ArtifactJerryCan": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "oncePerRun": true,
+      "hasArtifacts": [
+        "TwosCompany.Artifacts.JerryCan"
+      ],
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "ilya",
+		      "loopTag": "happy",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "ilya",
+		      "loopTag": "happy",
+			},
+          ]
+        },
+      ],
+      "allPresent": [
+        "ilya",
+      ]
+    },
+    "mezz_Ilya_ArtifactInciendiaryRounds": {
+      "type": "combat",
+      "lookup": [
+        "mezz_inciendiaryRounds"
+      ],
+      "oncePerCombatTags": [
+        "mezz_InciendiaryRounds"
+      ],
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "happy"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "shocked"
+			  
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_ArtifactSleepingPills": {
+      "type": "combat",
+      "lookup": [
+        "mezz_sleepingPills"
+      ],
+      "oncePerCombatTags": [
+        "mezz_SleepingPills"
+      ],
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "forlorn"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "forlorn"
+			  
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+	
+    "mezz_Ilya_Card_Apex": {
+      "type": "combat",
+      "lookup": [
+        "mezz_apex"
+      ],
+      "oncePerCombatTags": [
+        "mezz_Apex"
+      ],
+      "priority": true,
+      "playerShotJustHit": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "intense"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "intense"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "intense"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "intense"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },	
+    "mezz_Ilya_Card_DragonsBreath": {
+      "type": "combat",
+      "lookup": [
+        "mezz_dragonsBreath"
+      ],
+      "oncePerCombatTags": [
+        "mezz_DragonsBreath"
+      ],
+      "priority": true,
+      "playerShotJustHit": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "shocked"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "intense"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },	
+    "mezz_Ilya_Card_Ignition": {
+      "type": "combat",
+      "lookup": [
+        "mezz_ignition"
+      ],
+      "oncePerCombatTags": [
+        "mezz_Ignition"
+      ],
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "shocked"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "side"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "side"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "intense"
+            },
+          ]
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "riggs",
+              "loopTag": "nervous",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "peri",
+              "loopTag": "panic",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "dizzy",
+              "loopTag": "squint",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "goat",
+              "loopTag": "panic",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "eunice",
+              "loopTag": "blush",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "hacker",
+              "loopTag": "intense",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "shard",
+              "loopTag": "intense",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "comp",
+              "loopTag": "worried",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "nola",
+              "loopTag": "annoyed",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "isa",
+              "loopTag": "shocked",
+			},
+          ]
+        },
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },	
+    "mezz_Ilya_Card_Imbue": {
+      "type": "combat",
+      "lookup": [
+        "mezz_imbue"
+      ],
+      "oncePerCombatTags": [
+        "mezz_Imbue"
+      ],
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "shocked"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "squint"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "intense"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },	
+    "mezz_Ilya_Card_Immolate": {
+      "type": "combat",
+      "lookup": [
+        "mezz_immolate"
+      ],
+      "oncePerCombatTags": [
+        "mezz_Immolate"
+      ],
+      "priority": true,
+      "playerShotJustHit": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "shocked"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "intense"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "happy"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_Card_ThermalBlast": {
+      "type": "combat",
+      "lookup": [
+        "mezz_thermalBlast"
+      ],
+      "oncePerCombatTags": [
+        "mezz_ThermalBlast"
+      ],
+      "playerShotJustHit": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "shocked"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "shocked"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "happy"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_Card_ThermalRunaway": {
+      "type": "combat",
+      "lookup": [
+        "mezz_thermalRunaway"
+      ],
+      "oncePerCombatTags": [
+        "mezz_ThermalRunaway"
+      ],
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "side"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "side"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "side"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "intense"
+            },
+          ]
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "riggs",
+              "loopTag": "nervous",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "peri",
+              "loopTag": "panic",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "dizzy",
+              "loopTag": "shrug",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "goat",
+              "loopTag": "writing",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "eunice",
+              "loopTag": "blush",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "hacker",
+              "loopTag": "squint",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "shard",
+              "loopTag": "stoked",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "comp",
+              "loopTag": "intense",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "nola",
+              "loopTag": "smug",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "isa",
+              "loopTag": "happy",
+			},
+          ]
+        },
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },	
+    "mezz_Ilya_Card_Wildfire": {
+      "type": "combat",
+      "lookup": [
+        "mezz_wildfire"
+      ],
+      "oncePerCombatTags": [
+        "mezz_Wildfire"
+      ],
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "intense"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "shocked"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "intense"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },	
+	
+	"mezz_Ilya_BlockedAnEnemyAttackWithArmor": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "minDamageBlockedByPlayerArmorThisTurn": 1,
+      "oncePerCombatTags": [
+        "WowArmorISPrettyCoolHuh"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "intense"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "happy"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_BlockedALotOfAttacksWithArmor": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "minDamageBlockedByPlayerArmorThisTurn": 3,
+      "oncePerCombatTags": [
+        "YowzaThatWasALOTofArmorBlock"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "happy"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "intense"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+			  "loopTag": "happy"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_BooksWentMissing": {
+      "type": "combat",
+      "lastTurnPlayerStatuses": [
+        "missingBooks"
+      ],
+      "priority": true,
+      "oncePerCombatTags": [
+        "booksWentMissing"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "intense",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_CatWentMissing": {
+      "type": "combat",
+      "lastTurnPlayerStatuses": [
+        "missingCat"
+      ],
+      "priority": true,
+      "oncePerCombatTags": [
+        "CatWentMissing"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "shocked",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+	"mezz_Ilya_DizzyWentMissing": {
+      "type": "combat",
+      "lastTurnPlayerStatuses": [
+        "missingDizzy"
+      ],
+      "priority": true,
+      "oncePerCombatTags": [
+        "dizzyWentMissing"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+	"mezz_Ilya_DrakeWentMissing": {
+      "type": "combat",
+      "lastTurnPlayerStatuses": [
+        "missingDrake"
+      ],
+      "priority": true,
+      "oncePerCombatTags": [
+        "drakeWentMissing"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },    
+	"mezz_Ilya_IsaacWentMissing": {
+      "type": "combat",
+      "lastTurnPlayerStatuses": [
+        "missingIsaac"
+      ],
+      "priority": true,
+      "oncePerCombatTags": [
+        "isaacWentMissing"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "shocked",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+	"mezz_Ilya_MaxWentMissing": {
+      "type": "combat",
+      "lastTurnPlayerStatuses": [
+        "missingMax"
+      ],
+      "priority": true,
+      "oncePerCombatTags": [
+        "maxWentMissing"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "shocked",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+	"mezz_Ilya_PeriWentMissing": {
+      "type": "combat",
+      "lastTurnPlayerStatuses": [
+        "missingPeri"
+      ],
+      "priority": true,
+      "oncePerCombatTags": [
+        "periWentMissing"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "shocked",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+	"mezz_Ilya_RiggsWentMissing": {
+      "type": "combat",
+      "lastTurnPlayerStatuses": [
+        "missingRiggs"
+      ],
+      "priority": true,
+      "oncePerCombatTags": [
+        "riggsWentMissing"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "shocked",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+	
+	"mezz_Ilya_EmptyHandWithEnergy_0": {
+      "type": "combat",
+      "handEmpty": true,
+      "minEnergy": 1,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "forlorn",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+          ]
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+	"mezz_Ilya_EmptyHandWithEnergy_1": {
+      "type": "combat",
+      "handEmpty": true,
+      "minEnergy": 1,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+		  "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_EnemyArmorHit": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageBlockedByEnemyArmorThisTurn": 1,
+      "oncePerCombat": true,
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "ilya",
+			  "loopTag": "side",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "ilya",
+			  "loopTag": "intense",
+			},
+          ]
+        },
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_EnemyArmorHitLots": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageBlockedByEnemyArmorThisTurn": 3,
+      "oncePerCombat": true,
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "ilya",
+			  "loopTag": "side",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "ilya",
+			  "loopTag": "side",
+			},
+          ]
+        },
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_EnemyArmorPierced_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "playerJustPiercedEnemyArmor": true,
+      "oncePerCombatTags": [
+        "EnemyArmorPierced"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "snide",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_EnemyArmorPierced_1": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "playerJustPiercedEnemyArmor": true,
+      "oncePerCombatTags": [
+        "EnemyArmorPierced"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "happy",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_EnemyHasBrittle": {
+      "type": "combat",
+      "enemyHasBrittlePart": true,
+      "oncePerRunTags": [
+        "yelledAboutBrittle"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_EnemyHasWeakness": {
+      "type": "combat",
+      "enemyHasWeakPart": true,
+      "oncePerRunTags": [
+        "yelledAboutWeakness"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+	"mezz_Ilya_HandOnlyHasTrashCards": {
+      "type": "combat",
+      "handFullOfTrash": true,
+      "oncePerCombatTags": [
+        "handOnlyHasTrashCards"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+	"mezz_Ilya_HandOnlyHasUnplayableCards": {
+      "type": "combat",
+      "handFullOfUnplayableCards": true,
+      "oncePerCombatTags": [
+        "handFullOfUnplayableCards"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_JustHitGeneric_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_JustHitGeneric_1": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_JustHitGeneric_2": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_JustHitGeneric_3": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_JustHitGeneric_4": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+        }
+      ],
+      "allPresent": [
+        "ilya",
+      ]
+    },
+    "mezz_Ilya_JustPlayedASashaCard": {
+      "type": "combat",
+      "whoDidThat": "sasha",
+      "oncePerRunTags": [
+        "usedAToothCard"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "happy",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_JustPlayedAnEphemeralCard": {
+      "type": "combat",
+      "whoDidThat": "ephemeral",
+      "oncePerRunTags": [
+        "usedAnEphemeralCard"
+      ],
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "ilya",
+		      "loopTag": "side",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "ilya",
+              "loopTag": "squint",
+			}
+          ]
+        },
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_OneHitPointThisIsFine_0": {
+      "type": "combat",
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "enemyShotJustHit": true,
+      "maxHull": 1,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_OneHitPointThisIsFine_1": {
+      "type": "combat",
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "enemyShotJustHit": true,
+      "maxHull": 1,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "forlorn",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+	
+    "mezz_Ilya_WeJustGainedHeat_0": {
+      "type": "combat",
+      "lastTurnPlayerStatuses": [
+        "heat"
+      ],
+      "allPresent": [
+        "ilya"
+      ],
+      "oncePerCombatTags": [
+        "IlyaCanYouDoSomethingAboutTheHeatPlease"
+      ],
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "peri",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "peri",
+              "loopTag": "panic",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "dizzy",
+              "loopTag": "serious",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "shard",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "goat",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "comp",
+              "loopTag": "grumpy",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "hacker",
+              "loopTag": "mad",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "angry",
+            }
+          ]
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "forlorn",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "forlorn",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "forlorn",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+          ]
+        }
+      ]
+    },
+    "mezz_Ilya_WeJustGainedHeat_Drake_0": {
+      "type": "combat",
+      "lastTurnPlayerStatuses": [
+        "heat"
+      ],
+      "allPresent": [
+        "ilya",
+		"eunice",
+      ],
+      "oncePerCombatTags": [
+        "DrakeIlyaCanYouDoSomethingAboutTheHeatPlease"
+      ],
+      "lines": [
+	    { "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "slyBlush",
+        },
+	    { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "happy",
+        },
+      ]
+    },
+    "mezz_Ilya_WeJustGainedHeat_Drake_1": {
+      "type": "combat",
+      "lastTurnPlayerStatuses": [
+        "heat"
+      ],
+      "allPresent": [
+        "ilya",
+		"eunice",
+      ],
+      "oncePerCombatTags": [
+        "DrakeIlyaCanYouDoSomethingAboutTheHeatPlease"
+      ],
+      "lines": [
+	    { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "happy",
+        },
+	    { "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "slyBlush",
+        },
+      ]
+    },
+    "mezz_Ilya_OverheatCatFix_0": {
+      "type": "combat",
+      "wasGoingToOverheatButStopped": true,
+      "whoDidThat": "colorless",
+      "allPresent": [
+        "comp",
+        "ilya"
+      ],
+      "oncePerCombatTags": [
+        "OverheatCatFix"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "smug",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "bashful",
+        }
+      ]
+    },
+    "mezz_Ilya_OverheatCatFix_1": {
+      "type": "combat",
+      "wasGoingToOverheatButStopped": true,
+      "whoDidThat": "colorless",
+      "allPresent": [
+        "comp",
+        "ilya"
+      ],
+      "oncePerCombatTags": [
+        "OverheatCatFix"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "forlorn",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+        },
+      ]
+    },
+    "mezz_Ilya_OverheatIlyaFix_0": {
+      "type": "combat",
+      "wasGoingToOverheatButStopped": true,
+      "allPresent": [
+        "ilya"
+      ],
+      "oncePerCombatTags": [
+        "OverheatIlyaFix"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        }
+      ]
+    },
+    "mezz_Ilya_OverheatIlyaFix_1": {
+      "type": "combat",
+      "wasGoingToOverheatButStopped": true,
+      "allPresent": [
+        "ilya"
+      ],
+      "oncePerCombatTags": [
+        "OverheatIlyaFix"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "happy",
+        }
+      ]
+    },
+    "mezz_Ilya_OverheatIlyaFix_2": {
+      "type": "combat",
+      "wasGoingToOverheatButStopped": true,
+      "allPresent": [
+        "ilya"
+      ],
+      "oncePerCombatTags": [
+        "OverheatIlyaFix"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        }
+      ]
+    },
+    "mezz_Ilya_OverheatIlyaFix_3": {
+      "type": "combat",
+      "wasGoingToOverheatButStopped": true,
+      "allPresent": [
+        "ilya"
+      ],
+      "oncePerCombatTags": [
+        "OverheatIlyaFix"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        }
+      ]
+    },
+    "mezz_Ilya_OverheatIlyaFix_4": {
+      "type": "combat",
+      "wasGoingToOverheatButStopped": true,
+      "allPresent": [
+        "ilya"
+      ],
+      "oncePerCombatTags": [
+        "OverheatIlyaFix"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "nap",
+        }
+      ]
+    },
+    "mezz_Ilya_OverheatIlyaFix_5": {
+      "type": "combat",
+      "wasGoingToOverheatButStopped": true,
+      "allPresent": [
+        "ilya"
+      ],
+      "oncePerCombatTags": [
+        "OverheatIlyaFix"
+      ],
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "comp",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "riggs",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "peri",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "dizzy",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "goat",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "eunice",
+              "loopTag": "slyBlush",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "hacker",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "shard",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "nola",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "happy",
+            },
+          ]
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "intense",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "bashful",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+          ]
+        },
+      ]
+    },
+    "mezz_Ilya_OverheatIlyaFix_Drake_0": {
+      "type": "combat",
+      "wasGoingToOverheatButStopped": true,
+      "allPresent": [
+        "ilya",
+		"eunice",
+      ],
+      "oncePerCombatTags": [
+        "OverheatIlyaFix"
+      ],
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "mad",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        },
+      ]
+    },
+    "mezz_Ilya_OverheatIlyaFix_Drake_1": {
+      "type": "combat",
+      "wasGoingToOverheatButStopped": true,
+      "allPresent": [
+        "ilya",
+		"eunice",
+      ],
+      "oncePerCombatTags": [
+        "OverheatIlyaFix"
+      ],
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "squint",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        },
+      ]
+    },
+    "mezz_Ilya_OverheatIlyaFix_Drake_2": {
+      "type": "combat",
+      "wasGoingToOverheatButStopped": true,
+      "allPresent": [
+        "ilya",
+		"eunice",
+      ],
+      "oncePerCombatTags": [
+        "OverheatIlyaFix"
+      ],
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "sly",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "forlorn",
+        },
+      ]
+    },
+    "mezz_Ilya_OverheatIlyaFix_Drake_3": {
+      "type": "combat",
+      "wasGoingToOverheatButStopped": true,
+      "allPresent": [
+        "ilya",
+		"eunice",
+      ],
+      "oncePerCombatTags": [
+        "OverheatIlyaFix"
+      ],
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "mad",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "happy",
+        },
+      ]
+    },
+    "mezz_Ilya_OverheatDrakeFix_0": {
+      "type": "combat",
+      "wasGoingToOverheatButStopped": true,
+      "whoDidThat": "eunice",
+      "allPresent": [
+        "ilya",
+		"eunice",
+      ],
+      "oncePerCombatTags": [
+        "OverheatDrakeFix"
+      ],
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "sly",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "happy",
+        },
+      ]
+    },
+    "mezz_Ilya_OverheatDrakeFix_1": {
+      "type": "combat",
+      "wasGoingToOverheatButStopped": true,
+      "whoDidThat": "eunice",
+      "allPresent": [
+        "ilya",
+		"eunice",
+      ],
+      "oncePerCombatTags": [
+        "OverheatDrakeFix"
+      ],
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "eunice",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        },
+      ]
+    },
+    "mezz_Ilya_OverheatDrakeFix_2": {
+      "type": "combat",
+      "wasGoingToOverheatButStopped": true,
+      "whoDidThat": "eunice",
+      "allPresent": [
+        "ilya",
+		"eunice",
+      ],
+      "oncePerCombatTags": [
+        "OverheatDrakeFix"
+      ],
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "forlorn",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "sly",
+        },
+      ]
+    },
+    "mezz_Ilya_OverheatIlyasFault_0": {
+      "type": "combat",
+      "goingToOverheat": true,
+      "allPresent": [
+        "ilya"
+      ],
+      "oncePerCombatTags": [
+        "OverheatIlyasFault"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        }
+      ]
+    },
+    "mezz_Ilya_OverheatIlyasFault_1": {
+      "type": "combat",
+      "goingToOverheat": true,
+      "allPresent": [
+        "ilya"
+      ],
+      "oncePerCombatTags": [
+        "OverheatIlyasFault"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "forlorn",
+        }
+      ]
+    },
+    "mezz_Ilya_OverheatIlyasFault_2": {
+      "type": "combat",
+      "goingToOverheat": true,
+      "allPresent": [
+        "ilya"
+      ],
+      "oncePerCombatTags": [
+        "OverheatIlyasFault"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        }
+      ]
+    },
+    "mezz_Ilya_OverheatIlyasFault_3": {
+      "type": "combat",
+      "goingToOverheat": true,
+      "allPresent": [
+        "ilya"
+      ],
+      "oncePerCombatTags": [
+        "OverheatIlyasFault"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        }
+      ]
+    },
+    "mezz_Ilya_OverheatIlyasFault_4": {
+      "type": "combat",
+      "goingToOverheat": true,
+      "allPresent": [
+        "ilya"
+      ],
+      "oncePerCombatTags": [
+        "OverheatIlyasFault"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "squint",
+        }
+      ]
+    },
+    "mezz_Ilya_OverheatIlyasFault_5": {
+      "type": "combat",
+      "goingToOverheat": true,
+      "allPresent": [
+        "ilya"
+      ],
+      "oncePerCombatTags": [
+        "OverheatIlyasFault"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "squint",
+        }
+      ]
+    },
+    "mezz_Ilya_OverheatIlyasFault_6": {
+      "type": "combat",
+      "goingToOverheat": true,
+      "allPresent": [
+        "ilya"
+      ],
+      "oncePerCombatTags": [
+        "OverheatIlyasFault"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        }
+      ]
+    },
+    "mezz_Ilya_OverheatIlyasFault_7": {
+      "type": "combat",
+      "goingToOverheat": true,
+      "allPresent": [
+        "ilya"
+      ],
+      "oncePerCombatTags": [
+        "OverheatIlyasFault"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "intense",
+        }
+      ]
+    },
+    "mezz_Ilya_OverheatIlyasFault_8": {
+      "type": "combat",
+      "goingToOverheat": true,
+      "allPresent": [
+        "ilya",
+		"peri",
+      ],
+      "oncePerCombatTags": [
+        "OverheatIlyasFault"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "peri",
+          "loopTag": "squint",
+        }
+      ]
+    },
+    "mezz_Ilya_OverheatIlyasFault_9": {
+      "type": "combat",
+      "goingToOverheat": true,
+      "allPresent": [
+        "ilya"
+      ],
+      "oncePerCombatTags": [
+        "OverheatIlyasFault"
+      ],
+      "lines": [
+       {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "peri",
+              "loopTag": "squint",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "peri",
+              "loopTag": "squint",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "goat",
+              "loopTag": "panic",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "shard",
+              "loopTag": "intense",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "comp",
+              "loopTag": "grumpy",
+            }
+          ]
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "forlorn",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "shocked",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "squint",
+            },
+          ]
+        }
+      ]
+    },
+    "mezz_Ilya_OverheatDrakesFault_0": {
+      "type": "combat",
+      "goingToOverheat": true,
+      "whoDidThat": "eunice",
+      "allPresent": [
+        "eunice",
+		"ilya"
+      ],
+      "oncePerCombatTags": [
+        "OverheatDrakesFault"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "panic",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "squint",
+        }
+      ]
+    },
+    "mezz_Ilya_OverheatDrakesFault_1": {
+      "type": "combat",
+      "goingToOverheat": true,
+      "whoDidThat": "eunice",
+      "allPresent": [
+        "eunice",
+		"ilya"
+      ],
+      "oncePerCombatTags": [
+        "OverheatDrakesFault"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "slyBlush",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "intense",
+        }
+      ]
+    },
+    "mezz_Ilya_OverheatDrakesFault_2": {
+      "type": "combat",
+      "goingToOverheat": true,
+      "whoDidThat": "eunice",
+      "allPresent": [
+        "eunice",
+		"ilya"
+      ],
+      "oncePerCombatTags": [
+        "OverheatDrakesFault"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "happy",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "panic",
+        },
+      ]
+    },
+    "mezz_Ilya_WeJustOverheated_0": {
+      "type": "combat",
+      "justOverheated": true,
+      "oncePerCombatTags": [
+        "WeJustOverheated"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "forlorn",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_WeJustOverheated_1": {
+      "type": "combat",
+      "justOverheated": true,
+      "oncePerCombatTags": [
+        "WeJustOverheated"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "shocked",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_WeJustOverheated_2": {
+      "type": "combat",
+      "justOverheated": true,
+      "oncePerCombatTags": [
+        "WeJustOverheated"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_WeJustOverheated_3": {
+      "type": "combat",
+      "justOverheated": true,
+      "oncePerCombatTags": [
+        "WeJustOverheated"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "intense",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_WeJustOverheated_4": {
+      "type": "combat",
+      "justOverheated": true,
+      "oncePerCombatTags": [
+        "WeJustOverheated"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
         }
       ],
       "allPresent": [
@@ -438,16 +3293,7 @@
     },
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	"mezz_Ilya_ManyTurns": {
+	"mezz_Ilya_ManyTurns_0": {
       "type": "combat",
       "minTurnsThisCombat": 9,
       "oncePerCombatTags": [
@@ -457,17 +3303,52 @@
       "turnStart": true,
       "lines": [
         {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        },
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+	"mezz_Ilya_ManyTurns_1": {
+      "type": "combat",
+      "minTurnsThisCombat": 9,
+      "oncePerCombatTags": [
+        "manyTurns"
+      ],
+      "oncePerRun": true,
+      "turnStart": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "forlorn",
+        },
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+
+    "mezz_Ilya_StrafeHit_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "playerShotWasFromStrafe": true,
+      "oncePerCombat": true,
+      "lines": [
+        {
           "$type": "SaySwitch, CobaltCore",
           "lines": [
-            {
-              "$type": "Say, CobaltCore",
+            { "$type": "Say, CobaltCore",
               "who": "ilya",
-              "loopTag": "side",
+              "loopTag": "intense",
             },
-            {
-              "$type": "Say, CobaltCore",
+            { "$type": "Say, CobaltCore",
               "who": "ilya",
-              "loopTag": "forlorn",
+              "loopTag": "happy",
             }
           ]
         }
@@ -476,6 +3357,766 @@
         "ilya"
       ]
     },
+    
+    "mezz_Ilya_WeDidOverFiveDamage_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 6,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "intense",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "happy",
+            }
+          ]
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_WeDidOverThreeDamage_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 4,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "happy",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "intense",
+            }
+          ]
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+	"mezz_Ilya_ThatsALotOfDamageToThem_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisTurn": 10,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            }
+          ]
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_ThatsALotOfDamageToUs_0": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "minDamageDealtToPlayerThisTurn": 3,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "intense",
+            }
+          ]
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_TheyGotCorroded_0": {
+      "type": "combat",
+      "lastTurnEnemyStatuses": [
+        "corrode"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "happy",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "shocked",
+            }
+          ]
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_TheyHaveAutoDodgeLeft_0": {
+      "type": "combat",
+      "lastTurnEnemyStatuses": [
+        "autododgeLeft"
+      ],
+      "oncePerCombatTags": [
+        "aboutAutododge"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+		  "loopTag": "intense",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_TheyHaveAutoDodgeRight_0": {
+      "type": "combat",
+      "lastTurnEnemyStatuses": [
+        "autododgeRight"
+      ],
+      "oncePerCombatTags": [
+        "aboutAutododge"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+		  "loopTag": "intense",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_TookZeroDamageAtLowHealth_0": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxDamageDealtToPlayerThisTurn": 0,
+      "maxHull": 2,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+		  "loopTag": "squint",
+        },
+      ],
+      "allPresent": [
+        "ilya",
+      ]
+    },
+    "mezz_Ilya_WeAreCorroded_0": {
+      "type": "combat",
+      "lastTurnPlayerStatuses": [
+        "corrode"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_WeAreMovingAroundALot_0": {
+      "type": "combat",
+      "minMovesThisTurn": 3,
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            }
+          ]
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_WeDontOverlapWithEnemyAtAll_0": {
+      "type": "combat",
+      "priority": true,
+      "shipsDontOverlapAtAll": true,
+      "oncePerCombatTags": [
+        "NoOverlapBetweenShips"
+      ],
+      "oncePerRun": true,
+      "nonePresent": [
+        "crab",
+        "scrap"
+      ],
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+		  "loopTag": "intense",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_WeDontOverlapWithEnemyAtAll_1": {
+      "type": "combat",
+      "priority": true,
+      "shipsDontOverlapAtAll": true,
+      "oncePerCombatTags": [
+        "NoOverlapBetweenShips"
+      ],
+      "oncePerRun": true,
+      "nonePresent": [
+        "crab",
+        "scrap"
+      ],
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+		  "loopTag": "side",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_WeGotHurtButNotTooBad_0": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "minDamageDealtToPlayerThisTurn": 1,
+      "maxDamageDealtToPlayerThisTurn": 1,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "intense",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_WeGotShotButTookNoDamage_0": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxDamageDealtToPlayerThisTurn": 0,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "ilya",
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_WeMissedOopsie_0": {
+      "type": "combat",
+      "playerShotJustMissed": true,
+      "oncePerCombat": true,
+      "doesNotHaveArtifacts": [
+        "Recalibrator",
+        "GrazerBeam"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_WeMissedOopsie_1": {
+      "type": "combat",
+      "playerShotJustMissed": true,
+      "oncePerCombat": true,
+      "doesNotHaveArtifacts": [
+        "Recalibrator",
+        "GrazerBeam"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "glare",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_WeMissedOopsie_2": {
+      "type": "combat",
+      "playerShotJustMissed": true,
+      "oncePerCombat": true,
+      "doesNotHaveArtifacts": [
+        "Recalibrator",
+        "GrazerBeam"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+	
+	
+    "mezz_Ilya_VeryManyTurns_0": {
+      "type": "combat",
+      "minTurnsThisCombat": 20,
+      "oncePerCombatTags": [
+        "veryManyTurns"
+      ],
+      "oncePerRun": true,
+      "turnStart": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "nap",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+    "mezz_Ilya_VeryManyTurns_1": {
+      "type": "combat",
+      "minTurnsThisCombat": 20,
+      "oncePerCombatTags": [
+        "veryManyTurns"
+      ],
+      "oncePerRun": true,
+      "turnStart": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "nap",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "mad",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
+	
+    "mezz_Ilya_Bramblepelt_0": {
+      "type": "event",
+      "lookup": [
+        "bramblepelt_midcombat"
+      ],
+      "allPresent": [
+        "ilya"
+      ],
+      "once": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "spike",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+        },
+        { "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "spike",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        },
+        { "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "spike",
+          "loopTag": "shy",
+        },
+	  ]
+    },
+	
+    "mezz_Ilya_Skunk_Midcombat": {
+      "type": "event",
+      "once": true,
+      "allPresent": [
+        "skunk",
+        "ilya"
+      ],
+      "requiredScenes": [
+        "mezz_Ilya_Cobalt_0",
+      ],
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "happy",
+        },
+        { "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "skunk",
+        },
+        { "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "skunk",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        },
+      ]
+    },
+	
+    "mezz_Ilya_Miner": {
+      "type": "event",
+      "lookup": [
+        "miner_midcombat"
+      ],
+      "once": true,
+      "priority": true,
+      "requiredScenes": [
+        "Miner_1"
+      ],
+      "allPresent": [
+        "ilya"
+      ],
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "miner",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "shocked",
+        },
+        { "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "miner",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        },
+      ]
+    },
+    "mezz_Ilya_Miner_Infinite": {
+      "type": "event",
+      "lookup": [
+        "miner_midcombat"
+      ],
+      "once": false,
+      "priority": false,
+      "requiredScenes": [
+        "Miner_1"
+      ],
+      "allPresent": [
+        "ilya"
+      ],
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "intense",
+        },
+        { "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "miner",
+        },
+      ]
+    },
+	
+    "mezz_Ilya_Oxygenguy_Midcombat": {
+      "type": "event",
+      "once": true,
+      "allPresent": [
+        "oxygenguy",
+        "ilya"
+      ],
+      "requiredScenes": [
+        "mezz_Ilya_Cobalt_0",
+      ],
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+        },
+        { "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "oxygenguy",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "forlorn",
+        },
+        { "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "oxygenguy",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        },
+      ]
+    },
+	
+    "mezz_Ilya_Pirate_0": {
+      "type": "event",
+      "lookup": [
+        "before_pirate"
+      ],
+      "once": true,
+      "priority": true,
+      "requireCharsUnlocked": [
+        "eunice"
+      ],
+      "requiredScenes": [
+        "Pirate_1"
+      ],
+      "allPresent": [
+        "ilya",
+      ],
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "pirate",
+          "flipped": true,
+          "loopTag": "squint",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "squint",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "pirate",
+          "flipped": true,
+          "loopTag": "sly",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "pirate",
+          "flipped": true,
+          "loopTag": "sly",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "happy",
+        },
+      ]
+    },
+    "mezz_Ilya_Pirate_1_1": {
+      "type": "combat",
+      "turnStart": true,
+      "priority": true,
+      "oncePerRun": true,
+      "allPresent": [
+        "pirate",
+		"ilya",
+      ],
+      "requiredScenes": [
+        "Pirate_1"
+      ],
+      "excludedScenes": [
+        "Pirate_2"
+      ],
+      "oncePerCombatTags": [
+        "mezz_IsaIlyaPirateBanter"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "pirate",
+		  "loopTag": "sly",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+		  "loopTag": "side",
+        },
+      ]
+    },
+    "mezz_Ilya_Pirate_1_2": {
+      "type": "combat",
+      "turnStart": true,
+      "priority": true,
+      "oncePerRun": true,
+      "allPresent": [
+        "pirate",
+		"ilya",
+      ],
+      "requiredScenes": [
+        "Pirate_1"
+      ],
+      "excludedScenes": [
+        "Pirate_2"
+      ],
+      "oncePerCombatTags": [
+        "mezz_IsaIlyaPirateBanter"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "pirate",
+		  "loopTag": "sly",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+		  "loopTag": "happy",
+        },
+      ]
+    },
+    "mezz_Ilya_Pirate_1_3": {
+      "type": "combat",
+      "turnStart": true,
+      "priority": true,
+      "oncePerRun": true,
+      "allPresent": [
+        "pirate",
+		"ilya",
+      ],
+      "requiredScenes": [
+        "Pirate_1"
+      ],
+      "excludedScenes": [
+        "Pirate_2"
+      ],
+      "oncePerCombatTags": [
+        "mezz_IsaIlyaPirateBanter"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+		  "loopTag": "intense",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "pirate",
+		  "loopTag": "sly",
+        },
+      ]
+    },
+	
+    "mezz_Ilya_ShopkeeperInfinite_0": {
+      "type": "event",
+      "lookup": [
+        "shopBefore"
+      ],
+      "bg": "BGShop",
+      "allPresent": [
+        "ilya"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "nerd",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+		  "loopTag": "forlorn",
+        },
+        {
+          "$type": "Jump, CobaltCore",
+          "key": "NewShop"
+        }
+      ]
+    },
+    "mezz_Ilya_ShopkeeperInfinite_1": {
+      "type": "event",
+      "lookup": [
+        "shopBefore"
+      ],
+      "bg": "BGShop",
+      "allPresent": [
+        "ilya"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "nerd",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+		  "loopTag": "bashful",
+        },
+        {
+          "$type": "Jump, CobaltCore",
+          "key": "NewShop"
+        }
+      ]
+    },
+	
+	
 	"mezz_Ilya_StardogGetsChatty": {
       "type": "combat",
       "turnStart": true,
@@ -488,15 +4129,54 @@
       ],
       "lines": [
         { "$type": "Say, CobaltCore",
-          "who": "ilya",
-          "loopTag": "intense",
-        }, { "$type": "Say, CobaltCore",
           "who": "wolf",
-        }, { "$type": "Say, CobaltCore",
+        }, 
+		{ "$type": "Say, CobaltCore",
           "who": "ilya",
           "loopTag": "side",
         },
       ]
     },
+    "mezz_Ilya_WizardGeneralShouts_0": {
+      "type": "combat",
+      "turnStart": true,
+      "allPresent": [
+        "wizard",
+        "ilya"
+      ],
+      "enemyIntent": "wizardMagic",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "wizard",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+		  "loopTag": "squint",
+        }
+      ]
+    },
+    "mezz_Ilya_WizardGeneralShouts_1": {
+      "type": "combat",
+      "turnStart": true,
+      "allPresent": [
+        "wizard",
+        "ilya"
+      ],
+      "enemyIntent": "wizardMagic",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "wizard",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+		  "loopTag": "side",
+        }
+      ]
+    },
+  
   }
 }

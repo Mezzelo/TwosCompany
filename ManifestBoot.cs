@@ -85,6 +85,20 @@ namespace TwosCompany {
                 // prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.PlayCardPrefix))
                 postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.CardDataPostfix))
             );
+
+            // dialogue patches
+            harmony.Patch(
+                original: AccessTools.DeclaredMethod(typeof(AI), nameof(AI.OnCombatStart)),
+                prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.AICombatStartPrefix))
+            );
+
+            // i gotta do this manually for all overridden start methods oh the misery.
+            harmony.Patch(
+                original: AccessTools.DeclaredMethod(typeof(OxygenLeakGuy), nameof(OxygenLeakGuy.OnCombatStart)),
+                prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.OxygenLeakGuyCombatStartPrefix))
+            );
+
+
         }
 
         public void LoadManifest(IArtifactRegistry registry) {

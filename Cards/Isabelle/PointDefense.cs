@@ -9,7 +9,7 @@ namespace TwosCompany.Cards.Isabelle {
 
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 1,
+                cost = 0,
                 infinite = true,
                 retain = costIncrease == 0,
                 flippable = upgrade == Upgrade.A
@@ -18,9 +18,10 @@ namespace TwosCompany.Cards.Isabelle {
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
+            /*
             actions.Add(new ACostDecreasePlayedHint() {
                 amount = 1
-            });
+            }); */
             APDMove moveAction = new APDMove() {
                 selectedCard = this,
                 isRight = !flipped
@@ -43,6 +44,7 @@ namespace TwosCompany.Cards.Isabelle {
             }
             return actions;
         }
+        
 
         public override void OnExitCombat(State s, Combat c) {
             wasPlayed = false;
@@ -56,12 +58,12 @@ namespace TwosCompany.Cards.Isabelle {
         public override void AfterWasPlayed(State state, Combat c) {
             wasPlayed = true;
             costIncrease++;
-            this.discount -= costIncrease;
+            // this.discount -= costIncrease;
         }
 
         public override void OnDiscard(State s, Combat c) {
             if (!wasPlayed && costIncrease != 0) {
-                this.discount += costIncrease;
+                // this.discount += costIncrease;
                 costIncrease = 0;
             }
             else if (wasPlayed)

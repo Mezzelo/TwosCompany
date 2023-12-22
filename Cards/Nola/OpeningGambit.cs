@@ -2,32 +2,30 @@
 
 namespace TwosCompany.Cards.Nola {
     [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
-    public class OpeningGambit : Card {
+    public class OpeningGambit : Card, ITurnIncreaseCard {
+
+        public int increasePerTurn = 1;
+        public int costIncrease = 0;
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = Math.Max(0, GetRound(state) - roundDrawn),
+                cost = 0,
                 retain = true,
                 buoyant = true,
                 exhaust = true
             };
         }
-
-        public int roundDrawn = 0;
-
-        private int GetRound(State s) {
-            int currentRound = 0;
-            if (s.route is Combat)
-                currentRound = ((Combat)s.route).turn;
-            return currentRound;
-        }
+        int ITurnIncreaseCard.increasePerTurn { get => increasePerTurn; set => increasePerTurn = value; }
+        int ITurnIncreaseCard.costIncrease { get => costIncrease; set => costIncrease = value; }
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
             actions.Add(new ATurnIncreaseHint() {
                 amount = 1
             });
+            int net = this.discount - (upgrade == Upgrade.A ? 4 : 2);
             actions.Add(new AEnergy() {
-                changeAmount = upgrade == Upgrade.A ? 4 : 2
+                changeAmount = upgrade == Upgrade.A ? 4 : 2,
+                dialogueSelector = upgrade != Upgrade.B && net > -1 ? ".mezz_openingGambit" : null
             });
             if (upgrade == Upgrade.B)
                 actions.Add(new AStatus() {
@@ -37,17 +35,16 @@ namespace TwosCompany.Cards.Nola {
                 });
             return actions;
         }
-        public override void OnExitCombat(State s, Combat c) {
-            roundDrawn = 0;
-        }
-        public override void OnDraw(State s, Combat c) {
-            roundDrawn = c.turn;
-        }
+
         public override void AfterWasPlayed(State state, Combat c) {
-            roundDrawn = 0;
+            costIncrease = 0;
+        }
+        public override void OnExitCombat(State s, Combat c) {
+            costIncrease = 0;
         }
         public override void OnDiscard(State s, Combat c) {
-            roundDrawn = 0;
+            this.discount -= costIncrease;
+            costIncrease = 0;
         }
 
 

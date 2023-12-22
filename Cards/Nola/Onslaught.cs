@@ -17,7 +17,7 @@ namespace TwosCompany.Cards.Nola {
             actions.Add(new AStatus() {
                 targetPlayer = true,
                 status = onslaughtStatus.Id != null ? (Status)onslaughtStatus.Id : Status.drawNextTurn,
-                statusAmount = upgrade == Upgrade.B ? 6 : 3
+                statusAmount = upgrade == Upgrade.B ? 5 : 3
             });
             return actions;
         }

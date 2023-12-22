@@ -3,7 +3,7 @@
     public class Apex : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = upgrade != Upgrade.A ? 2 : 3,
+                cost = 2,
                 exhaust = true
             };
         }
@@ -17,7 +17,7 @@
             actions.Add(new AAttack() {
                 damage = GetDmg(s, 1),
                 status = Status.lockdown,
-                statusAmount = freezeAmount - (upgrade == Upgrade.A ? 1 : 2),
+                statusAmount = 1,
                 targetPlayer = false,
                 dialogueSelector = ".mezz_apex"
             });

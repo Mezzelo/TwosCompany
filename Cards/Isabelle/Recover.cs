@@ -16,6 +16,8 @@ namespace TwosCompany.Cards.Isabelle {
             };
         }
 
+        public int costIncrease = 0;
+
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
@@ -32,9 +34,22 @@ namespace TwosCompany.Cards.Isabelle {
             }) ;
             return actions;
         }
+        public override void AfterWasPlayed(State state, Combat c) {
+            costIncrease = 0;
+        }
+
         public override void OnOtherCardPlayedWhileThisWasInHand(State s, Combat c, int handPosition) {
-            if (upgrade != Upgrade.A)
+
+            if (upgrade != Upgrade.A) {
                 this.discount += 1;
+                costIncrease++;
+            }
+        }
+        public override void OnDiscard(State s, Combat c) {
+            if (upgrade != Upgrade.A) {
+                this.discount -= costIncrease;
+                costIncrease = 0;
+            }
         }
         public override string Name() => "Recover";
     }

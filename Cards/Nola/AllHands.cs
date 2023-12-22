@@ -25,6 +25,13 @@ namespace TwosCompany.Cards.Nola {
             };
         }
 
+        private int GetHandSize(State s) {
+            int handSize = 0;
+            if (s.route is Combat route)
+                handSize = Math.Max(0, route.hand.Count - 1);
+            return handSize;
+        }
+
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
@@ -74,7 +81,7 @@ namespace TwosCompany.Cards.Nola {
                     index = 0,
                     timer = 0.5,
                     firstPlay = true,
-                    dialogueSelector = ".mezz_allHands"
+                    dialogueSelector = GetHandSize(s) > 1 ? ".mezz_allHands" : null 
                 });
             return actions;
         }

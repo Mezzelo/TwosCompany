@@ -18,7 +18,7 @@
             });
             actions.Add(new AHeal() {
                 targetPlayer = true,
-                healAmount = upgrade == Upgrade.B ? 1 : 2,
+                healAmount = 1,
                 canRunAfterKill = true
             });
             actions.Add(new AStatus() {

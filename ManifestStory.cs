@@ -60,14 +60,21 @@ namespace TwosCompany {
                         current++;
                     }
                     else if (line is SaySwitch switchLines) {
+                        int switchCounter = 0;
                         foreach (Say switchLine in switchLines.lines) {
                             if (ManifHelper.charStoryNames.ContainsKey(switchLine.who))
                                 switchLine.who = ManifHelper.charStoryNames[switchLine.who];
-                            string newHash = GetHash(switchLine.who + loc[key + ":" + current], hash);
-                            whats.Add(key + ":" + current);
+                            string newHash = GetHash(switchLine.who + loc[key + ":" + current + (char)(switchCounter + 97)], hash);
+                            whats.Add(key + ":" + current + (char) (switchCounter + 97));
                             switchLine.hash = newHash;
                             hashes.Add(newHash);
-                            current++;
+                            switchCounter++;
+                        }
+                        current++;
+                    } else if (line is TitleCard card) {
+                        if (!(card.empty??false)) {
+                            whats.Add(card.hash);
+                            hashes.Add(card.hash);
                         }
                     }
                 }

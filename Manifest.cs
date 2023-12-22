@@ -41,7 +41,7 @@ namespace TwosCompany {
         private static System.Drawing.Color IsabelleColor = System.Drawing.Color.FromArgb(47, 72, 183); // 2F48B7
         private static String IsaColH = string.Format("<c={0:X2}{1:X2}{2:X2}>", IsabelleColor.R, IsabelleColor.G, IsabelleColor.B);
         public static string[] isabelleEmotes = new String[] {
-            "mini", "neutral", "gameover", "crystallized", "nap", "angry", "forlorn", "getreal", "glare", "happy", "shocked", "snide", "squint"
+            "mini", "neutral", "gameover", "crystallized", "nap", "angry", "forlorn", "getreal", "glare", "happy", "swordhappy", "shocked", "snide", "squint", "swordsquint"
         };
 
         public static ExternalCharacter? IlyaCharacter { get; private set; }
@@ -157,6 +157,9 @@ namespace TwosCompany {
             addSprite("IsabelleDefaultCardSprite", "default_isabelle", "cards", artReg);
             addSprite("IlyaDefaultCardSprite", "default_ilya", "cards", artReg);
 
+            addSprite("NolaFullbodySprite", "nola_end", "fullchars", artReg);
+            addSprite("IsabelleFullbodySprite", "isabelle_end", "fullchars", artReg);
+
             foreach (String emote in nolaEmotes)
                 addCharSprite("nola", emote, "characters", artReg);
 
@@ -211,6 +214,18 @@ namespace TwosCompany {
                 null
             );
             registry.RegisterDeck(IlyaDeck);
+
+
+            Vault.charsWithLore.Add((Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId("nola")), typeof(Deck)));
+            Vault.charsWithLore.Add((Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId("isabelle")), typeof(Deck)));
+
+            BGRunWin.charFullBodySprites.Add((Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId("nola")), typeof(Deck)),
+                (Spr)(Manifest.Sprites["NolaFullbodySprite"].Id ?? throw new Exception("missing fullbody"))
+
+            );
+            BGRunWin.charFullBodySprites.Add((Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId("isabelle")), typeof(Deck)),
+                (Spr)(Manifest.Sprites["IsabelleFullbodySprite"].Id ?? throw new Exception("missing fullbody"))
+            );
         }
 
         void ICardManifest.LoadManifest(ICardRegistry registry) {

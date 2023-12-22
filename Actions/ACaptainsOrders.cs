@@ -6,7 +6,7 @@
             if (selectedCard == null)
                 return;
             c.TryPlayCard(s, selectedCard, true);
-            CardData data = selectedCard.GetDataWithOverrides(s);
+            CardData data = selectedCard.GetData(s);
             c.energy += data.cost;
             if (data.cost > 0) {
                 c.pulseEnergyGood = 0.5;

@@ -13,7 +13,8 @@
             List<CardAction> actions = new List<CardAction>();
 
             actions.Add(new AAttack() {
-                damage = GetDmg(s, upgrade != Upgrade.A ? 5 : 7),
+                damage = GetDmg(s, 6),
+                stunEnemy = upgrade == Upgrade.A,
                 dialogueSelector = ".mezz_coupDeGrace",
             });
 
@@ -33,7 +34,7 @@
             });
             actions.Add(new AStatus() {
                 status = Status.lockdown,
-                statusAmount = upgrade != Upgrade.B ? (upgrade == Upgrade.A ? 3 : 2) : 1,
+                statusAmount = upgrade != Upgrade.B ? 2 : 1,
                 targetPlayer = true
             });
             return actions;

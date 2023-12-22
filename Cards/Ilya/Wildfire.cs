@@ -22,6 +22,12 @@ namespace TwosCompany.Cards.Ilya {
                 retain = upgrade == Upgrade.B
             };
         }
+        private int GetHandSize(State s) {
+            int handSize = 0;
+            if (s.route is Combat route)
+                handSize = Math.Max(0, route.hand.Count - 1);
+            return handSize;
+        }
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
@@ -35,12 +41,12 @@ namespace TwosCompany.Cards.Ilya {
                 index = 0,
                 timer = 0.5,
                 firstPlay = true,
-                dialogueSelector = ".mezz_wildfire"
+                dialogueSelector = GetHandSize(s) > 1 ? ".mezz_wildfire" : null
             });
             if (upgrade == Upgrade.A)
                 actions.Add(new AStatus() {
                     status = Status.heat,
-                    statusAmount = -1,
+                    statusAmount = -2,
                     targetPlayer = true
                 });
             return actions;
