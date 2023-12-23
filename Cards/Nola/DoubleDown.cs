@@ -1,5 +1,5 @@
 ﻿namespace TwosCompany.Cards.Nola {
-    [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
+    [CardMeta(rarity = Rarity.rare, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class DoubleDown : Card {
         public override CardData GetData(State state) {
             string cardText;

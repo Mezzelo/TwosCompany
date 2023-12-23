@@ -1,7 +1,7 @@
 ﻿using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Ilya {
-    [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
+    [CardMeta(rarity = Rarity.rare, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class ThermalRunaway : Card {
         public override CardData GetData(State state) {
             return new CardData() {
