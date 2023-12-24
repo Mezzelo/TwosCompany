@@ -1,4 +1,6 @@
-﻿namespace TwosCompany.Cards.Isabelle {
+﻿using TwosCompany.Actions;
+
+namespace TwosCompany.Cards.Isabelle {
     [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class Flourish : Card {
         public override CardData GetData(State state) {
@@ -25,7 +27,7 @@
                 damage = GetDmg(s, 2),
                 fast = true,
             });
-            actions.Add(new AFlipHand());
+            actions.Add(new AFlipHandFixed());
             return actions;
         }
 

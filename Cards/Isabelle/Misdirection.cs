@@ -1,4 +1,6 @@
-﻿namespace TwosCompany.Cards.Isabelle {
+﻿using TwosCompany.Actions;
+
+namespace TwosCompany.Cards.Isabelle {
     [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class Misdirection : Card {
         public override CardData GetData(State state) {
@@ -15,7 +17,7 @@
                     damage = GetDmg(s, 0),
                     stunEnemy = true
                 });
-            actions.Add(new AFlipHand());
+            actions.Add(new AFlipHandFixed());
             actions.Add(new ADrawCard() {
                 count = upgrade == Upgrade.None ? 1 : 2
             });

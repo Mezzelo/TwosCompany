@@ -2,6 +2,8 @@
 using System.Diagnostics.Metrics;
 using CobaltCoreModding.Definitions.ExternalItems;
 using CobaltCoreModding.Definitions.ModContactPoints;
+using HarmonyLib;
+using Microsoft.Extensions.Logging;
 using Microsoft.Xna.Framework.Input;
 using TwosCompany.Actions;
 using TwosCompany.Cards;
@@ -392,6 +394,40 @@ namespace TwosCompany {
             return true;
         }
 
+        public static void LocalePostfix(ref Dictionary<string, string> __result, string locale) {
+            if (locale != "en")
+                return;
+            __result.Add("char." + ManifHelper.GetDeckId("nola") + ".desc.locked", 
+                Manifest.NolaColH + "NOLA</c>\nWin a run with <c=hacker>Max</c> on <c=downside>HARD</c> or harder to unlock " + Manifest.NolaColH + "Nola</c>" + "!");
+            __result.Add("char." + ManifHelper.GetDeckId("isa") + ".desc.locked",
+                Manifest.IsaColH + "ISABELLE</c>\nWin a run without <c=riggs>Riggs</c> in your crew " +
+                "on <c=downside>HARDER</c> or harder to unlock " + Manifest.IsaColH + "Isabelle</c>" + "!");
+            __result.Add("char." + ManifHelper.GetDeckId("ilya") + ".desc.locked",
+                Manifest.IlyaColH + "ILYA</c>\nReach 7 <c=downside>HEAT</c> or more to unlock " + Manifest.IlyaColH + "Ilya</c>" + "!");
+        }
+
+        [HarmonyPriority(Priority.Last)]
+        public static void RelockChars(ref HashSet<Deck> __result) {
+            if (__result.Contains((Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId("nola")),
+                        typeof(Deck)))) {
+                __result.Remove((Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId("nola")),
+                        typeof(Deck)));
+            }
+
+            if (__result.Contains((Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId("isa")),
+                        typeof(Deck)))) {
+                __result.Remove((Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId("isa")),
+                        typeof(Deck)));
+            }
+
+            if (__result.Contains((Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId("ilya")),
+                        typeof(Deck)))) {
+                __result.Remove((Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId("ilya")),
+                        typeof(Deck)));
+            }
+        }
+
+
         public static bool OxygenLeakGuyCombatStartPrefix(AI __instance, State s, Combat c) {
             if (Enumerable.Any(s.characters, ch => {
                 Deck? deckType = ch.deckType;
@@ -413,6 +449,7 @@ namespace TwosCompany {
             }
             return true;
         }
+
 
     }
 }

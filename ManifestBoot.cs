@@ -86,6 +86,12 @@ namespace TwosCompany {
                 postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.CardDataPostfix))
             );
 
+            // patch strings manually
+            harmony.Patch(
+                original: AccessTools.DeclaredMethod(typeof(DB), nameof(DB.LoadStringsForLocale)),
+                postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.LocalePostfix))
+            );
+
             // dialogue patches
             harmony.Patch(
                 original: AccessTools.DeclaredMethod(typeof(AI), nameof(AI.OnCombatStart)),
@@ -97,6 +103,8 @@ namespace TwosCompany {
                 original: AccessTools.DeclaredMethod(typeof(OxygenLeakGuy), nameof(OxygenLeakGuy.OnCombatStart)),
                 prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.OxygenLeakGuyCombatStartPrefix))
             );
+
+
 
 
         }
