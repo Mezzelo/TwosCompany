@@ -36,7 +36,7 @@ namespace TwosCompany.Cards.Ilya {
                 time = -0.5
             });
             actions.Add(new APlayAllCards() {
-                leftToRight = false,
+                leftToRight = flipped,
                 gainHeat = 1,
                 index = 0,
                 timer = 0.5,
