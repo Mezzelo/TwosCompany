@@ -1,0 +1,21 @@
+{
+    "UniqueName": "Mezz.TwosCompany",
+    "Version": "2.0.0",
+	"DisplayName": "Two's Company",
+	"Description": "A pack of 5 modded characters, with dialogue, memories, and story events.",
+	"Author": "Mezzelo",
+    "RequiredApiVersion": "0.1.0",
+    "ModType": "Nickel.Legacy",
+    "EntryPointAssembly": "TwosCompany.dll",
+    "Dependencies": [
+        {
+            "UniqueName": "Nickel.Legacy",
+            "Version": "0.1.0"
+        },
+		{
+		  "UniqueName": "TheJazMaster.MoreDifficulties",
+		  "Version": "1.3.2",
+		  "IsRequired": false
+		}
+    ]
+}

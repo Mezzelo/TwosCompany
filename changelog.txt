@@ -1,0 +1,156 @@
+2.0.0
+NEW STUFF (and removed stuff)
++ Two new characters - Jost and Gauss, with 45 cards and 11 artifacts (1 starter) between them.  Both utilize new, novel mechanics that deviate further from vanilla than the original trio.
++ 963 new lines of dialogue (2,194 total), including previously missing dialogue from vanilla events.
++ 6 new memories.  Still missing a character, but the last one isn't directly related to the story.
++ Added support for alternate starting decks from TheJazMaster's more difficulties mod.
+
++ Added a new card to Isabelle's deck, Goad, and removed Backdraft and Outmaneuver to bring existing characters in line with vanilla distribution.
+	~ (removed cards still exist, to preserve save compatibility - just aren't offered or shown in codex)
+~ Re-added Incendiary Rounds, which was accidentally removed.  Whoops!  Also reworked it completely, see below.
+
+BALANCE CHANGES
+(rarity changes)
+~ Anticipation is now uncommon, from common.
+~ Remise is now rare, from uncommon.
+~ Riposte is now uncommon, from common.
+~ Cauterize is now common, from uncommon.
+~ Heat Treatment is now common, from uncommon.
+~ Scars is now uncommon, from common.
+
+- All Hands' cost increased by 1, to 5 for base and A and 4 for B.
++ Anticipation buffed to reduce cost by 4 for base and B, from 3.  A now allows you to select two cards to reduce cost by 2 (can be stacked)
++ Captain's Orders B's cost lowered to 3, from 4.
++ (fix) Call and Response now procs card draw artifacts.
++ Damage Control now applies if you have temporary shield
++ Guidance B's cost lowered to 1, from 2.
+
+~ Couch now uses TOTAL distance, rather than net distance since draw.  Couch exhausts by default, A costs 2 and both upgrades do not exhaust.
+	~ (fix) Couch now displays damage properly.
+~ False Opening B's cost increased to 2, from 1.
+	- Payback Overdrive/Powerdrive reworked again: status now depletes by 1 and gives 1 over/powerdrive on hit, limiting the amount you can gain from use.
+	- False Opening can give you up to 3 stacks of overdrive, or 2 of powerdrive for B.
+~ Grapple reworked: A gives 1 evade instead of 2 and moves 1 instead, B no longer stuns but does 2 damage.
+- Opening Gambit's energy gain reduced by 1 for A, and next turn energy reduced by 1 for B
+~ Coup De Grace reworked: 5 cost, 8 damage stun.  Cost lowers whenever you play another attack card while in hand, resets on play/combat end.
+~ Misdirection reworked: A retains instead of drawing 2, B is infinite/non-retain instead of stunning and draws 3.
+- Rake B's cost increased to 2, from 1. Evade gained from base and A variants decreased to 2, from 3.
+
++ Dragon's Breath now costs 1, from 2.  The third hit's damage increased to 2, from 1, for all variants.
+	+ (fix) status-cost attacks that move the enemy now flip properly - thanks to Becks for finding this.
++ Immolate's damage increased to 6, from 5.  The first attack of Immolate A does 2 damage, from 1.
++ Maul's damage increased to 2-2-3, from 1-2-2, and next turn draw penalty reduced by 1 for all variants.  B's cost decreased to 2, from 3.
+~ Flash Draw's base and A variants now exhaust.  A draws 7 and B draws 6.  A gives 2 heat, from 1.
+- All variants of Heat Treatment now exhaust, rather than just B.
+~ Swapped Imbue's A and B variants.
+- Thermal Runaway's cost increased to 2, from 1.
+	- Embers now deal 2 hull damage to the player when they bring you to 3 heat.
+	
++ Crowsfoot Pendant now gives 1 temp shield when moving 3 with a single card, in addition to its previous effect.
+~ Handful of Floren reworked: now discounts cards that cost 2 or 4 exactly, instead of 3+.
+- Metronome no longer counts Strafe as attacking.
++ Incendiary Rounds now applies for ALL hits, rather than just the first, but only adds current heat as opposed to heat + 1.
+	- Rarity changed to boss artifact, from common.
+~ Worn Lighter now gives 2 heat on overheat.
+
+MISC
+
++ (fix) Onslaught now procs artifacts on draw, like Flywheel and Handful of Floren.
+~ (fix) Onslaught now no longer sometimes draws cards from the wrong deck when reshuffling an empty draw pile.
+- (fix) Artifacts no longer double the effects of heal booster.
+~ (fix) Intensify now uses discount to modify card energy - only previous card affected was Harry.
+~ (fix) More artifacts pulse at the appropriate time now.
+~ (fix) Modded statuses now pulse.
+
+~ (fix) Fixed Isabelle & Ratzo's initial banter reoccurring.  Whoops.
+~ (fix) Made a lot of artifact and card related shouts only once per run.  This should decrease repeat yapping significantly.
+~ (fix) Dialogue from freeing crew in crystallized crew event should appear properly now.
+~ (fix) Background in black hole event set properly.
+
+~ minor sprite updates to some cards, and to nola & ilya's portraits.
+
+
+
+1.2.0a
+- shifted some card rarities around, to reflect balance & come a little closer to vanilla distributions
+- a few balance tweaks
+- fixed a missing talk sprite when missing w/ ilya.
+- fixed a visual bug with one of isabelle's talking sprites
+- Cost of Weak Point A & B increased by 1. Default variant no longer stuns.
+	- Weak Point is now uncommon, from common
+- Double Down is now rare, from uncommon'
+
+
+1.2.0c
+- (fix) Wildfire's effects now flip properly - thanks to TheJazMaster for finding this.
+- Coup de Grace's damage buffed from 6 to 7.  Engine lock lowered to 1, from 2.
+
+
+1.2.0
+- **Added dialogue! 1,231 lines total so far** - including combat barks, pre-fight banter, memories, and intro sequences between vanilla characters and the ones from this mod.
+	- no memories for ilya yet; can't fit them all into that screen yet lol.  haven't had time to draw custom bgs yet either.
+	- no dialogue w/ other modded characters yet, either.  i'll get around to that eventually, I hope.
+- **A lot of balance changes** (mostly nerfs), QOL changes, and fixes.
+- Dialogue sprites adjusted, not that you were seeing those often beforehand!
+
+notices for players:
+- this build requires the beta branch to function (1.0.6 at time of writing) due to vanilla code changes: this is what most mods are developed on.
+- for those of you who use the dev menu: using "unlock all" also marks all dialogues as seen.  if you don't want to miss the one-off scenes from this mod and from others, take caution when using it (don't, or use it prior to loading your game with mods to unlock vanilla content only.)
+
+for other character modders: while I don't recommend most of this mod's boilerplate (structured to load in a metric ton of content, past the scope of most character mods), i would recommend taking a peek at the json externalization, derived from the base game's code ofc.  might be an option you find more attractive than baking it into the code, even if you don't plan on localization
+
+CARDS
+- All Hands' cost increased to 4.  All Hands B is now a cost reduction to 3, instead of changing its functionality.
++ Call and Response now discounts the drawn card's cost by 1 across all variants.  A decreases cost by 2.
+	~ Reworded description to hopefully make this more concise.
+	- (fix) You can no longer C&R a C&R, as this would lead to a crash (and also make for a silly infinite) - thanks to Arin for finding this.
+~ Captain's Orders now gives you the played card's base cost, rather than its current cost.
++ (fix) Let Loose no longer increases the cost of 0-cost cards - thanks to Arin for finding this.
+- Onslaught is now limited based on stacks: Base and A give 3 stacks, and drawing a card uses a stack.  B gives 6 stacks.
+	- (fix) Onslaught will no longer reshuffle your discard into your draw if there are no cards it can draw from your discard
+~ (fix) Opening Gambit now uses vanilla discount/expensive system for calculating cost, which may affect modded interactions.
+	- Opening Gambit's cost no longer resets on discard.
++ Ruminate's cost decreased to 0 from 1, for the default and A variants.
+- Sudden Shift nerfed to 2 move, from 3.  B gives 1 evade instead of 2, B retains.
+
+
++ Bind reworked: Costs 0 by default, but cost increases by 1 per turn for every other card played.  A gives shield, B gives temp strafe.
++ Coup De Grace's cost has lowered by 1 for all variants, to 2. Coup De Grace A now stuns, instead of dealing 2 more damage.
+~ False Opening's base and A variants give 2 overdrive when taking damage, rather than 1. False Opening B now sets temp shield to 0.
+	~ Status names changed to Payback Overdrive and Payback Powerdrive, from False Opening and False Opening B.
+~ Harry now has 2 random move both times for the base variant, instead of A.
+- Lightning strikes' damage decreased from 1-2 to 1-1.
++ Point Defense now costs 0, instead of its cost reducing by 1 when played.
+	+ (fix) Point Defense now targets enemy shield drones.
+	~ (fix) Point Defense can no longer target geodes.
+	- (fix) Point Defense will still attempt to move and fire if engine locked or frozen, but will discard instead of allowing you to play it infinitely.
++ Recover's cost now resets if discarded.
+- Removed the first attack from Wild Strikes (1-1-1 to 1-1) and the dodges were changed to move 2-1, across all variants.
+- Wild Dodge is now a random move, instead of giving evade. Its upgraded variants have been tweaked as well.
+
+- Apex's self-inflicted engine lock increased by 1 for all variants. (3 base, 2 for A, 4 for B.)
+- Cauterize B ends turn on use.  Cauterize A costs 2, as did all other variants. All variants heal 1 health, from 2 for default and A.
+- Fireball A's cost increased to 2, from 1.
+- Haze reworked almost entirely: swapped random move w/ evade, alongside other changes.
+- Heat Treatment's cost increased to 2, from 1.
+~ Ignition's cost increased to 2 for all variants, and gives 2 heat per turn instead of 1.
+- Imbue now gives 1 overdrive and 1 shield rather than 2 overdrive, for all variants except A.  A's cost increased to 2 instead of retaining.
+- Maul's damage decreased from 2-2-3 to 1-2-2, for all variants.
+- All variants of Pressure now hurt the player when used with 3 heat.
+- Reactor Burn reworked. Also too long for this changelog lol, but it should it should break the game a lot less easily now.
+- Scars gives 1 energy instead of 2, for the default and B variants. Scars A still gives 2, but no longer only damages 1.
++ Thermal Runaway now gives 1 overdrive, for all variants.
+	~ (fix) Thermal Runaway now displays the proper icon for exhausting entire hand.
+	- Cost of all variants increased to 2.
+
+
+ARTIFACTS
++ (fix) Auxiliary Thrusters should not skip card select on boot now - thanks to TheJazMaster for finding this.
+~ Command Center now shows the last two cards from different decks you've used, to better help you keep track.
+~ Metronome now displays whether you've last attacked or moved - thanks to Shockah for the suggestion.
+	- It now requires 6 consecutive alternating moves/attacks, increased from 5.
+	+ Multiple consecutive attacks from the same card will no longer reset the counter, to make it usable on i.e. ships with multiple cannons.
++ Incendiary Rounds now adds an additional heat on shot, and causes enemies to overheat immediately from heat added by this artifact.
+	~ (fixed typo.  how'd nobody point this out dammit)
+~ (fix) Shield Shunt should no longer crash your game - thanks to LazyFangs for diagnosing this.
+- Worn Lighter now gives 1 overdrive, instead of 2.
