@@ -3,7 +3,7 @@
     public class Maul : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = upgrade != Upgrade.B ? 2 : 3,
+                cost = 2,
             };
         }
 
@@ -11,20 +11,20 @@
             List<CardAction> actions = new List<CardAction>();
 
             actions.Add(new AAttack() {
-                damage = GetDmg(s, 1),
-                fast = true,
-            });
-            actions.Add(new AAttack() {
                 damage = GetDmg(s, 2),
                 fast = true,
             });
             actions.Add(new AAttack() {
                 damage = GetDmg(s, 2),
+                fast = true,
+            });
+            actions.Add(new AAttack() {
+                damage = GetDmg(s, 3),
                 fast = true,
             });
             actions.Add(new AStatus() {
                 status = Status.drawLessNextTurn,
-                statusAmount = upgrade != Upgrade.A ? 4 : 2,
+                statusAmount = upgrade != Upgrade.A ? 3 : 1,
                 targetPlayer = true
             });
             if (upgrade != Upgrade.B)

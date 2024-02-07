@@ -5,222 +5,234 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TwosCompany.Cards.Isabelle;
 
 namespace TwosCompany.Helper {
 
     public static class ManifHelper {
-        public static String[] cardNames = new string[] {
+        public static Dictionary<string, string> cardNames = new Dictionary<string, string> {
             // 0-21 Nola
-            "Adaptation",
-            "Anticipation",
-            "AllHands",
-            "BattlePlan",
-            "CallAndResponse",
-            "CaptainsOrders",
-            "Contingency",
-            "DamageControl",
-            "DoubleDown",
-            // "Encore",
-            "Foresight",
-            "Guidance",
-            // "FlexibleDodge",
-            "HoldOn",
-            "LetLoose",
-            "Onslaught",
-            "OpeningGambit",
-            "Outmaneuver",
-            // "Practiced",
-            // "Protocol",
-            "Recalibrate",
-            "Relentless",
-            "Ruminate",
-            "SteadyOn",
-            "SuddenShift",
-            // "UncannyEvasion",
-            "WeakPoint",
-            // 22-47: Isabelle
-            "Bind",
-            "CompoundAttack",
-            "Couch",
-            "CoupDeGrace",
-            // "Dominance",
-            "Expose",
-            "FalseOpening",
-            "Fleche",
-            "Flourish",
-            "Grapple",
-            "Harry",
-            "Haymaker",
-            "HookAndDrag",
-            "Jab",
-            "LightningStrikes",
-            "MeasureBreak",
-            "Misdirection",
-            "PointDefense",
-            "Rake",
-            "Recover",
-            // "Reap",
-            "Remise",
-            "Riposte",
-            "Shove",
-            "Sideswipe",
-            "WildStrikes",
-            "WildStrike",
-            "WildDodge",
-            // 48 - 70: Ilya
-            "Apex",
-            "Backdraft",
-            "BlastShield",
-            "Burnout",
-            "Cauterize",
-            "DragonsBreath",
-            "Ember",
-            "Fireball",
-            "FlashDraw",
-            "Galvanize",
-            "Haze",
-            "HeatTreatment",
-            "Ignition",
-            "Imbue",
-            "Immolate",
-            "Maul",
-            "MoltenShot",
-            "Pressure",
-            "ReactorBurn",
-            "Scars",
-            "ThermalBlast",
-            "ThermalRunaway",
-            "Wildfire",
-        };
+            { "Adaptation", "Adaptation"},
+            { "Anticipation", "Anticipation"},
+            { "AllHands", "All Hands"},
+            { "BattlePlan", "Battle Plan"},
+            { "CallAndResponse", "Call and Response"},
+            { "CaptainsOrders", "Captain's Orders"},
+            { "Contingency", "Contingency"},
+            { "DamageControl", "Damage Control"},
+            { "DoubleDown", "Double Down"},
+            { "Foresight", "Foresight"},
+            { "Guidance", "Guidance"},
+            { "HoldOn", "Hold On!"},
+            { "LetLoose", "Let Loose"},
+            { "Onslaught", "Onslaught"},
+            { "OpeningGambit", "Opening Gambit"},
+            { "Outmaneuver", "Outmaneuver"},
+            { "Recalibrate", "Recalibrate"},
+            { "Relentless", "Relentless"},
+            { "Ruminate", "Ruminate"},
+            { "SteadyOn", "Steady On"},
+            { "SuddenShift", "Sudden Shift"},
+            { "WeakPoint", "Weak Point"},
+            // 22-48: Isabelle
+            { "Bind", "Bind"},
+            { "CompoundAttack", "Compound Attack"},
+            { "Couch", "Couch"},
+            { "CoupDeGrace", "Coup de Grace"},
+            { "Expose", "Expose"},
+            { "FalseOpening", "False Opening"},
+            { "Fleche", "Fleche"},
+            { "Flourish", "Flourish"},
+            { "Grapple", "Grapple"},
+            { "Harry", "Harry"},
+            { "Haymaker", "Haymaker"},
+            { "HookAndDrag", "Hook and Drag"},
+            { "Jab", "Jab"},
+            { "LightningStrikes", "Lightning Strikes"},
+            { "MeasureBreak", "Measure Break"},
+            { "Misdirection", "Misdirection"},
+            { "PointDefense", "Point Defense"},
+            { "Rake", "Rake"},
+            { "Recover", "Recover"},
+            { "Remise", "Remise"},
+            { "Riposte", "Riposte"},
+            { "Shove", "Shove"},
+            { "Sideswipe", "Sideswipe"},
+            { "Taunt", "Goad"},
+            { "WildStrikes", "Wild Strikes"},
+            { "WildStrike", "Wild Strike"},
+            { "WildDodge", "Wild Dodge"},
+            // 49 - 71: Ilya
+            { "Apex", "Apex"},
+            { "Backdraft", "Backdraft"},
+            { "BlastShield", "Blast Shield"},
+            { "Burnout", "Burnout"},
+            { "Cauterize", "Cauterize"},
+            { "DragonsBreath", "Dragon's Breath"},
+            { "Ember", "Ember"},
+            { "Fireball", "Fireball"},
+            { "FlashDraw", "Flash Draw"},
+            { "Galvanize", "Galvanize"},
+            { "Haze", "Haze"},
+            { "HeatTreatment", "Heat Treatment"},
+            { "Ignition", "Ignition"},
+            { "Imbue", "Imbue"},
+            { "Immolate", "Immolate"},
+            { "Maul", "Maul"},
+            { "MoltenShot", "Molten Shot"},
+            { "Pressure", "Pressure"},
+            { "ReactorBurn", "Reactor Burn"},
+            { "Scars", "Scars"},
+            { "ThermalBlast", "Thermal Blast"},
+            { "ThermalRunaway", "Thermal Runaway"},
+            { "Wildfire", "Wildfire"},
+            // 72 - 95: Jost
+            { "Backstep", "Backstep"},
+            { "BattleTempo", "Battle Tempo"},
+            { "Challenge", "Challenge"},
+            { "Commit", "Commit"},
+            { "FollowMyLead", "Follow My Lead"},
+            { "Footwork", "Footwork"},
+            { "Fortress", "Fortress"},
+            { "FrontGuard", "Front Guard"},
+            { "HackAndSlash", "Hack and Slash"},
+            { "Heartbeat", "Heartbeat"},
+            { "HighGuard", "High Guard"},
+            { "KeepFighting", "Keep Fighting"},
+            { "MoveAsOne", "Move as One"},
+            { "OffBalance", "Off Balance"},
+            { "OverheadBlow", "Overhead Blow"},
+            { "PommelBlow", "Pommel Blow"},
+            { "Practiced", "Practiced"},
+            { "ReactiveDefense", "Reactive Defense"},
+            { "RecklessAbandon", "Reckless Abandon"},
+            { "RegainPoise", "Regain Poise"},
+            { "Retribution", "Retribution"},
+            { "RisingFlame", "Rising Storm"},
+            { "StandFirm", "Stand Firm"},
+            { "SweepingStrikes", "Sweeping Strikes"}, 
+            // 96 - 117: Gauss
+            { "AsteroidBelt", "Asteroid Belt" },
+            { "Autocurrent", "Autocurrent" },
+            { "BlindGrab", "Whatever Works" },
+            { "ConductorArray", "Conduit Array" },
+            { "ConductorField", "Conductor Field" },
+            { "ConduitCard", "Conduit" },
+            { "DistantStrike", "Distant Strike" },
+            { "Electrocute", "Electrocute" },
+            { "Feedback", "Feedback Conduit" },
+            { "Gravitate", "Gravitate" },
+            { "KineticConduit", "Kinetic Conduit" },
+            { "HyperspaceStorm", "Hyperspace Storm" },
+            { "HyperspaceWind", "Hyperspace Wind" },
+            { "LatentEnergy", "Latent Energy" },
+            { "ReversePolarity", "Reverse Polarity" },
+            { "ShieldConduit", "Shield Conduit" },
+            { "SolderShuffle", "Solder Shuffle" },
+            { "SparkCard", "Spark" },
+            { "StaticCharge", "Static Charge" },
+            { "StrikeTwice", "Strike Twice" },
+            { "Tempest", "Tempest" },
+            { "TremblingAirs", "Trembling Airs" },
 
-        public static String[] cardLocs = new string[] {
-            // 0-21: Nola
-            "Adaptation",
-            "Anticipation",
-            "All Hands",
-            "Battle Plan",
-            "Call and Response",
-            "Captain's Orders",
-            "Contingency",
-            "Damage Control",
-            "Double Down",
-            // "Encore",
-            "Foresight",
-            "Guidance",
-            // "Flexible Dodge",
-            "Hold On!",
-            "Let Loose",
-            "Onslaught",
-            "Opening Gambit",
-            "Out Maneuver",
-            // "Practiced",
-            // "Protocol",
-            "Recalibrate",
-            "Relentless",
-            "Ruminate",
-            "Steady On",
-            "Sudden Shift",
-            // "Uncanny Evasion",
-            "Weak Point",
-            // 22-47: Isabelle
-            "Bind",
-            "Compound Attack",
-            "Couch",
-            "Coup de Grace",
-            // "Dominance",
-            "Expose",
-            "False Opening",
-            "Fleche",
-            "Flourish",
-            "Grapple",
-            "Harry",
-            "Haymaker",
-            "Hook and Drag",
-            "Jab",
-            "Lightning Strikes",
-            "Measure Break",
-            "Misdirection",
-            "Point Defense",
-            "Rake",
-            "Recover",
-            // "Reap",
-            "Remise",
-            "Riposte",
-            "Shove",
-            "Sideswipe",
-            "Wild Strikes",
-            "Wild Strike",
-            "Wild Dodge",
-            // 48 - 70: Ilya
-            "Apex",
-            "Backdraft",
-            "Blast Shield",
-            "Burnout",
-            "Cauterize",
-            "Dragon's Breath",
-            "Ember",
-            "Fireball",
-            "Flash Draw",
-            "Galvanize",
-            "Haze",
-            "Heat Treatment",
-            "Ignition",
-            "Imbue",
-            "Immolate",
-            "Maul",
-            "Molten Shot",
-            "Pressure",
-            "Reactor Burn",
-            "Scars",
-            "Thermal Blast",
-            "Thermal Runaway",
-            "Wildfire",
         };
 
         public static string[] hasFlipSprite = new string[] {
             "Adaptation",
             "Backdraft",
+            "ConductorArray",
+            "DragonsBreath",
+            "Feedback",
             "Flourish",
             "Grapple",
+            "Gravitate",
             "Haymaker",
             "HookAndDrag",
+            "HyperspaceWind",
             "LightningStrikes",
+            "PointDefense",
             "Recover",
-            "Sideswipe",
+            "ShieldConduit",
             "Shove",
+            "Sideswipe",
+            "SolderShuffle",
+            "StandFirm",
             "SuddenShift",
+        };
+
+        public static Dictionary<string, string> jostQuads = new Dictionary<string, string> {
+            { "FollowMyLead", "Down1" },
+            { "Heartbeat", "Down1" },
+            { "HighGuard", "Down1" },
+            { "ReactiveDefense", "Up1" },
+            { "RisingFlame", "Up1" },
+            { "HackAndSlash", "Up1" },
+            { "Retribution", "Down1" },
         };
 
         public static string[] defaultArtCards = new string[] {
             "Anticipation",
             "AllHands",
+            "AsteroidBelt",
             "BattlePlan",
+            "BlindGrab",
             "CaptainsOrders",
             "Couch",
             "DoubleDown",
-            // "Expose",
             "Foresight",
             "Guidance",
+            "LatentEnergy",
             "LetLoose",
             "Outmaneuver",
-            // "Practiced",
-            // "Reap",
             "Recalibrate",
             "Remise",
             "Ruminate",
-            "Wildfire"
+            "Tempest",
+            "TremblingAirs",
+            "Wildfire",
+
+            "Backstep",
+            "Challenge",
+            "Commit",
+            "FollowMyLead",
+            "Fortress",
+            "FrontGuard",
+            "HackAndSlash",
+            "Heartbeat",
+            "HighGuard",
+            "KeepFighting",
+            "MoveAsOne",
+            "OnFumes",
+            "OverheadBlow",
+            "PommelBlow",
+            "ReactiveStrike",
+            "RecklessAbandon",
+            "Retribution",
+            "StrengtheningStrikes",
+            "SweepingStrikes",
+            "Windup",
+        };
+
+        public static string[] defaultJost = new string[] {
+            "StandFirm",
         };
 
         public static Dictionary<string, string> cardTexts = new Dictionary<string, string> {
-            {"Anticipation", "Temporarily reduce the cost of a card in your <c=keyword>draw pile</c> by <c=energy>3</c>."},
-            {"AnticipationA", "Temporarily reduce the cost of a card in your <c=keyword>draw pile</c> by <c=energy>4</c>."},
-            {"AnticipationB", "Temporarily reduce the cost of a card in your <c=keyword>draw pile</c> by <c=energy>3</c>."},
+            {"Anticipation", "Temporarily reduce the cost of a card in your <c=keyword>draw pile</c> by <c=energy>4</c>."},
+            {"AnticipationA", "Temporarily reduce the cost of a card in your <c=keyword>draw pile</c> by <c=energy>2</c>, twice."},
+            {"AnticipationB", "Temporarily reduce the cost of a card in your <c=keyword>draw pile</c> by <c=energy>4</c>."},
             {"AllHands", "Play your current hand from <c=card>{0}</c> to <c=card>{1}</c> for free."},
             {"AllHandsA", "Play your current hand from <c=card>{0}</c> to <c=card>{1}</c> for free."},
             {"AllHandsB", "Play your current hand from <c=card>{0}</c> to <c=card>{1}</c> for free."},
+            {"AsteroidBelt", "Surround all <c=midrow>midrow objects</c> over your ship with <c=midrow>asteroids.</c>"},
+            {"AsteroidBeltA", "Surround all <c=midrow>midrow objects</c> over your ship with <c=midrow>asteroids.</c>"},
+            {"AsteroidBeltB", "Surround all <c=midrow>midrow objects</c> over your ship with <c=keyword>bubbled</c> <c=midrow>asteroids.</c>"},
             {"BattlePlan", "Copy your hand on top of the <c=keyword>draw pile</c> with <c=cardtrait>temp</c> and <c=cardtrait>exhaust</c>."},
             {"BattlePlanA", "Copy your hand on top of the <c=keyword>draw pile</c> with <c=cardtrait>temp</c> and <c=cardtrait>exhaust</c>."},
             {"BattlePlanB", "Copy your hand on top of the <c=keyword>draw pile</c> with <c=cardtrait>temp</c> and <c=cardtrait>exhaust</c>."},
+            {"BlindGrab", "Draw a random <c=midrow>midrow launch</c> card from draw or discard."},
+            {"BlindGrabA", "Draw a random <c=midrow>midrow launch</c> card from draw or discard."},
+            {"BlindGrabB", "Draw two random <c=midrow>midrow launch</c> cards from draw or discard."},
             {"CaptainsOrders", "Choose a card in your hand. Play it and <c=keyword>gain</c> its <c=keyword>base cost</c>."},
             {"CaptainsOrdersA", "Choose a card in your hand. Play it and <c=keyword>gain</c> its <c=keyword>base cost</c>. Draw <c=keyword>2</c>."},
             {"CaptainsOrdersB", "Choose a card in hand. Play it, <c=keyword>gain</c> its <c=keyword>base cost</c>. Ignore <c=cardtrait>exhaust</c>."},
@@ -239,6 +251,9 @@ namespace TwosCompany.Helper {
             {"Guidance", "<c=keyword>Upgrade</c> all unupgraded cards in your hand to <c=card>A</c> this combat."},
             {"GuidanceA", "<c=keyword>Upgrade</c> all unupgraded cards in your hand to <c=card>A</c> this combat."},
             {"GuidanceB", "<c=keyword>Upgrade</c> all unupgraded cards in your hand to <c=card>B</c> this combat."},
+            {"LatentEnergy", "Put a <c=cardtrait>temp discounted</c> <c=card>Spark</c> in your hand."},
+            {"LatentEnergyA", "Put a <c=cardtrait>temp discounted</c> <c=card>Spark A</c> in your hand."},
+            {"LatentEnergyB", "Put a <c=cardtrait>temp discounted</c> <c=card>Spark B</c> in your hand."},
             {"LetLoose", "Discount all cards in your hand by <c=energy>1</c> energy, to a minimum of <c=keyword>1</c>."},
             {"LetLooseA", "Draw <c=keyword>2</c>. Discount your hand by <c=energy>1</c> energy, to a minimum of <c=keyword>1</c>."},
             {"LetLooseB", "Discount all cards in your hand by <c=energy>2</c> energy."},
@@ -250,13 +265,19 @@ namespace TwosCompany.Helper {
             {"RecalibrateB", "Shuffle your <c=keyword>discard pile</c> back into your <c=keyword>draw pile</c>. Draw <c=keyword>4</c> cards."},
             {"Remise", "<c=cardtrait>X</c> = <c=cardtrait># of enemy attacks</c>. Gain {0} <c=status>evade</c>, fire for <c=hurt>{1}</c> dmg."},
             {"RemiseA", "<c=cardtrait>X</c> = <c=cardtrait># of enemy attacks</c>. Gain {0} <c=status>evade</c>, fire for <c=hurt>{1}</c> dmg."},
-            {"RemiseB", "<c=cardtrait>X</c> = <c=cardtrait># of enemy attacks</c>. Gain {0} <c=status>evade</c>, deal <c=hurt>1</c> dmg <c=keyword>{1}</c> times."},
+            {"RemiseB", "<c=cardtrait>X</c> = <c=cardtrait># of enemy attacks</c>. Gain {0} <c=status>evade</c>, deal <c=hurt>{1}</c> dmg <c=keyword>{2}</c> times."},
             {"Ruminate", "Move <c=keyword>2</c> cards to the top of your draw pile. <c=downside>End turn.</c>"},
             {"RuminateA", "Move <c=keyword>2</c> cards to top of draw pile. Draw <c=keyword>2</c> more next turn. <c=downside>End turn.</c>"},
             {"RuminateB", "Move <c=keyword>2</c> cards to top of draw and reduce their cost by <c=energy>1</c>. <c=downside>End turn.</c>"},
             {"FlexibleDodge", "<c=keyword>Flip</c> to change <c=keyword>autododge</c> direction. <c=keyword>Play</c> to avoid gaining <c=keyword>autododge</c>."},
             {"FlexibleDodgeA", "<c=keyword>Flip</c> to change <c=keyword>autododge</c> direction. <c=keyword>Play</c> to avoid gaining <c=keyword>autododge</c>."},
             {"FlexibleDodgeB", "<c=keyword>Flip</c> to change <c=keyword>autododge</c> direction. <c=keyword>Play</c> to avoid gaining <c=keyword>autododge</c>."},
+            {"Tempest", "Put 3 <c=cardtrait>temp</c> <c=card>Sparks</c> in your draw pile."},
+            {"TempestA", "Put 3 <c=cardtrait>temp</c> <c=card>Sparks</c> in your hand."},
+            {"TempestB", "Put 3 <c=cardtrait>temp, discounted</c> <c=card>Sparks</c> in your draw pile."},
+            {"TremblingAirs", "Move all " + Manifest.ChainColH +"chain lightning</c> cards to hand."},
+            {"TremblingAirsA", "Move all " + Manifest.ChainColH + "chain lightning</c> cards to hand."},
+            {"TremblingAirsB", "Move all " + Manifest.ChainColH + "lightning</c> cards to hand and discount them by 1."},
             {"Wildfire", "Play your hand from <c=card>{0}</c> to <c=card>{1}</c>. Gain <c=downside>heat</c> for each card."},
             {"WildfireA", "Play your hand from <c=card>{0}</c> to <c=card>{1}</c>. Gain <c=downside>heat</c> for each, then lose 2."},
             {"WildfireB", "Play your  hand from <c=card>{0}</c> to <c=card>{1}</c>. Gain <c=downside>heat</c> for each card."},
@@ -267,6 +288,8 @@ namespace TwosCompany.Helper {
             { "isabelle", "Mezz.TwosCompany.IsabelleDeck" },
             { "isa", "Mezz.TwosCompany.IsabelleDeck" },
             { "ilya", "Mezz.TwosCompany.IlyaDeck" },
+            { "jost", "Mezz.TwosCompany.JostDeck" },
+            { "gauss", "Mezz.TwosCompany.GaussDeck" },
             { "johanna", "JohannaTheTrucker.JohannaDeck" },
             { "jo", "JohannaTheTrucker.JohannaDeck" }
         };
@@ -276,31 +299,48 @@ namespace TwosCompany.Helper {
             else if (deck == "isa" || deck == "isabelle")
                 return (int)Manifest.IsabelleDeck!.Id!;
             else if (deck == "ilya")
-                return (int) Manifest.IlyaDeck!.Id!;
+                return (int)Manifest.IlyaDeck!.Id!;
+            else if (deck == "jost")
+                return (int)Manifest.JostDeck!.Id!;
+            else if (deck == "gauss")
+                return (int)Manifest.GaussDeck!.Id!;
             return 0;
         }
 
         public static int numCards() {
-            return cardNames.Length;
+            return cardNames.Keys.Count;
         }
 
         public static void DefineCardSprites(DirectoryInfo ModRootFolder, Dictionary<string, ExternalSprite> sprites) {
             if (ModRootFolder == null)
                 throw new Exception("Root Folder not set");
 
-            foreach (String cardName in cardNames) {
+            foreach (String cardName in cardNames.Keys) {
                 if (!ManifHelper.defaultArtCards.Contains(cardName)) {
                     sprites.Add((cardName + "CardSprite"),
                         new ExternalSprite("Mezz.TwosCompany.Sprites." + cardName + "CardSprite", new FileInfo(
                             Path.Combine(ModRootFolder.FullName, "Sprites", "cards", Path.GetFileName("mezz_" + cardName + ".png")))
                         )
                     );
-                    if (hasFlipSprite.Contains(cardName))
+                    if (hasFlipSprite.Contains(cardName) || (jostQuads.ContainsKey(cardName) && jostQuads[cardName].Equals("unique")))
                         sprites.Add((cardName + "CardSpriteFlip"),
                             new ExternalSprite("Mezz.TwosCompany.Sprites." + cardName + "CardSpriteFlip", new FileInfo(
                                 Path.Combine(ModRootFolder.FullName, "Sprites", "cards", Path.GetFileName("mezz_" + cardName + "_flip.png")))
                             )
                         );
+
+                    if (jostQuads.ContainsKey(cardName) && jostQuads[cardName].Equals("unique")) {
+                        sprites.Add((cardName + "CardSpriteBoth"),
+                            new ExternalSprite("Mezz.TwosCompany.Sprites." + cardName + "CardSpriteBoth", new FileInfo(
+                                Path.Combine(ModRootFolder.FullName, "Sprites", "cards", Path.GetFileName("mezz_" + cardName + "_both.png")))
+                            )
+                        );
+                        sprites.Add((cardName + "CardSpriteNeither"),
+                            new ExternalSprite("Mezz.TwosCompany.Sprites." + cardName + "CardSpriteNeither", new FileInfo(
+                                Path.Combine(ModRootFolder.FullName, "Sprites", "cards", Path.GetFileName("mezz_" + cardName + "_neither.png")))
+                            )
+                        );
+                    }
                 }
             }
         }
@@ -308,21 +348,32 @@ namespace TwosCompany.Helper {
         public static void DefineCards(int deckStart, int deckLength, string charName, 
             ExternalDeck deck, Dictionary<string, ExternalCard> Cards, Dictionary<string, ExternalSprite> Sprites,
             ICardRegistry registry) {
-            for (int i = deckStart; i < deckStart + deckLength; i++) {
-                if (Type.GetType("TwosCompany.Cards." + charName + "." + cardNames[i]) == null)
+            for (int i = deckStart; i < deckStart + deckLength && i < cardNames.Keys.Count; i++) {
+                if (Type.GetType("TwosCompany.Cards." + charName + "." + cardNames.ElementAt(i).Key) == null)
                     continue;
-                Cards.Add(cardNames[i],
-                    new ExternalCard("Mezz.TwosCompany.Cards." + charName + cardNames[i], 
-                    Type.GetType("TwosCompany.Cards." + charName + "." + cardNames[i]) ?? throw new Exception("card type not found?: cardNames[i]"),
-                    defaultArtCards.Contains(cardNames[i]) ? deck.CardArtDefault : Sprites[(cardNames[i] + "CardSprite")], deck)
+                string cardArtKey = "default";
+                if (!defaultArtCards.Contains(cardNames.ElementAt(i).Key)) {
+                    if (jostQuads.ContainsKey(cardNames.ElementAt(i).Key) && !jostQuads[cardNames.ElementAt(i).Key].Equals("unique")) {
+                        cardArtKey = "JostDefaultCardSprite" + jostQuads[cardNames.ElementAt(i).Key];
+                    } else
+                        cardArtKey = cardNames.ElementAt(i).Key + "CardSprite";
+                }
+
+                Cards.Add(cardNames.ElementAt(i).Key,
+                    new ExternalCard("Mezz.TwosCompany.Cards." + charName + cardNames.ElementAt(i).Key, 
+                    Type.GetType("TwosCompany.Cards." + charName + "." + cardNames.ElementAt(i).Key) ?? throw new Exception("card type not found?: cardNames[i]"),
+                    defaultArtCards.Contains(cardNames.ElementAt(i).Key) ? 
+                        (defaultJost.Contains(cardNames.ElementAt(i).Key) || !charName.Equals("Jost") ? deck.CardArtDefault : Sprites["JostDefaultCardSprite"]) : 
+                        Sprites[cardArtKey], deck)
                 );
                 // note: might have to refactor this
-                if (cardTexts.ContainsKey(cardNames[i])) {
-                    Cards[cardNames[i]].AddLocalisation(cardLocs[i], cardTexts[cardNames[i]], cardTexts[cardNames[i] + "A"], cardTexts[cardNames[i] + "B"]);
+                if (cardTexts.ContainsKey(cardNames.ElementAt(i).Key)) {
+                    Cards[cardNames.ElementAt(i).Key].AddLocalisation(cardNames.ElementAt(i).Value, cardTexts[cardNames.ElementAt(i).Key], 
+                        cardTexts[cardNames.ElementAt(i).Key + "A"], cardTexts[cardNames.ElementAt(i).Key + "B"]);
                 }
                 else
-                    Cards[cardNames[i]].AddLocalisation(cardLocs[i]);
-                registry.RegisterCard(Cards[cardNames[i]]);
+                    Cards[cardNames.ElementAt(i).Key].AddLocalisation(cardNames.ElementAt(i).Value);
+                registry.RegisterCard(Cards[cardNames.ElementAt(i).Key]);
             }
         }
     }

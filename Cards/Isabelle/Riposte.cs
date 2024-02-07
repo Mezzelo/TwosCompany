@@ -1,5 +1,5 @@
 ﻿namespace TwosCompany.Cards.Isabelle {
-    [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
+    [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class Riposte : Card {
         public override CardData GetData(State state) {
             return new CardData() {
@@ -10,6 +10,7 @@
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
+            if (upgrade != Upgrade.B)
             actions.Add(new AStatus() {
                 status = Status.evade,
                 statusAmount = 1,
@@ -17,10 +18,10 @@
             });
             actions.Add(new AStatus() {
                 status = Status.tempPayback,
-                statusAmount = upgrade == Upgrade.B ? 3 : 2,
+                statusAmount = upgrade == Upgrade.A ? 3 : 2,
                 targetPlayer = true
             });
-            if (upgrade == Upgrade.A)
+            if (upgrade == Upgrade.B)
                 actions.Add(new AStatus() {
                     status = Status.tempShield,
                     statusAmount = 2,

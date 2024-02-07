@@ -6,20 +6,17 @@ namespace TwosCompany.Cards.Isabelle {
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = upgrade == Upgrade.B ? 1 : 0,
+                retain = upgrade == Upgrade.A,
+                infinite = upgrade == Upgrade.B
             };
         }
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            if (upgrade == Upgrade.B)
-                actions.Add(new AAttack() {
-                    damage = GetDmg(s, 0),
-                    stunEnemy = true
-                });
             actions.Add(new AFlipHandFixed());
             actions.Add(new ADrawCard() {
-                count = upgrade == Upgrade.None ? 1 : 2
+                count = upgrade == Upgrade.B ? 3 : 1
             });
 
             return actions;

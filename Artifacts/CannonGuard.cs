@@ -8,13 +8,13 @@
         public override string Description() => "Whenever you end your turn in the same position you started, gain 1 <c=status>OVERDRIVE</c>.";
         public override void OnTurnStart(State state, Combat combat) {
             if (markForGain) {
-                this.Pulse();
                 markForGain = false;
                 combat.Queue(new AStatus() {
                     targetPlayer = true,
                     status = Status.overdrive,
                     statusAmount = 1,
-                    dialogueSelector = ".mezz_cannonGuard"
+                    dialogueSelector = ".mezz_cannonGuard",
+                    artifactPulse = this.Key(),
                 });
             }
             pos = state.ship.x;

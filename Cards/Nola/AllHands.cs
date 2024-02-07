@@ -19,7 +19,7 @@ namespace TwosCompany.Cards.Nola {
                     flipped ? "right" : "left", flipped ? "left" : "right");
 
             return new CardData() {
-                cost = upgrade == Upgrade.B ? 3 : 4,
+                cost = upgrade == Upgrade.B ? 4 : 5,
                 description = cardText,
                 flippable = upgrade == Upgrade.A,
             };

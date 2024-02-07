@@ -22,9 +22,9 @@ namespace TwosCompany.Cards.Nola {
             actions.Add(new ATurnIncreaseHint() {
                 amount = 1
             });
-            int net = this.discount - (upgrade == Upgrade.A ? 4 : 2);
+            int net = this.discount - (upgrade == Upgrade.A ? 3 : 2);
             actions.Add(new AEnergy() {
-                changeAmount = upgrade == Upgrade.A ? 4 : 2,
+                changeAmount = upgrade == Upgrade.A ? 3 : (upgrade == Upgrade.B ? 1 : 2),
                 dialogueSelector = upgrade != Upgrade.B && net > -1 ? ".mezz_openingGambit" : null
             });
             if (upgrade == Upgrade.B)

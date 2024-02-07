@@ -1,5 +1,5 @@
 ﻿namespace TwosCompany.Cards.Nola {
-    [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
+    [CardMeta(rarity = Rarity.uncommon, dontOffer = true, unreleased = true, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class Outmaneuver : Card {
         public override CardData GetData(State state) {
             string cardText;

@@ -10,8 +10,8 @@
             int shieldAmt = 0;
             if (s.route is Combat)
                 shieldAmt = s.ship.Get(Status.shield)
-                    + (upgrade == Upgrade.A ? 1 + s.ship.Get(Status.boost) : (upgrade == Upgrade.B ? s.ship.Get(Status.tempShield) : 0));
-            
+                    + (upgrade == Upgrade.A ? 1 : (upgrade == Upgrade.B ? s.ship.Get(Status.tempShield) : 0));
+
             return shieldAmt;
         }
 

@@ -9,7 +9,7 @@ namespace TwosCompany.Cards.Isabelle {
 
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = (upgrade == Upgrade.B ? -1 : 0) + costIncrease,
+                cost = upgrade == Upgrade.B ? 0 : 1,
                 infinite = true,
             };
         }
@@ -49,18 +49,17 @@ namespace TwosCompany.Cards.Isabelle {
         }
 
         public override void OnDraw(State s, Combat c) {
-            if (upgrade != Upgrade.B)
+            if (upgrade != Upgrade.B) {
+                this.discount -= costIncrease - 1;
                 costIncrease = 1;
+            }
             
         }
 
         public override void AfterWasPlayed(State state, Combat c) {
+            this.discount += costIncrease;
             costIncrease++;
             // wasPlayed = true;
-        }
-
-        public override void OnDiscard(State s, Combat c) {
-
         }
 
         public override string Name() => "Harry";

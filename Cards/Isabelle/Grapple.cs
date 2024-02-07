@@ -13,8 +13,7 @@
             List<CardAction> actions = new List<CardAction>();
 
             actions.Add(new AAttack() {
-                damage = GetDmg(s, upgrade == Upgrade.B ? 1 : 0),
-                stunEnemy = upgrade == Upgrade.B,
+                damage = GetDmg(s, upgrade == Upgrade.B ? 2 : 0),
                 status = Status.lockdown,
                 statusAmount = 1,
                 piercing = upgrade == Upgrade.B
@@ -27,14 +26,13 @@
             if (upgrade == Upgrade.A)
                 actions.Add(new AStatus() {
                     status = Status.evade,
-                    statusAmount = 2,
+                    statusAmount = 1,
                     targetPlayer = true
                 });
-            else
-                actions.Add(new AMove() {
-                    dir = 2,
-                    targetPlayer = true,
-                });
+            actions.Add(new AMove() {
+                dir = upgrade == Upgrade.A ? 1 : 2,
+                targetPlayer = true,
+            });
             return actions;
         }
 

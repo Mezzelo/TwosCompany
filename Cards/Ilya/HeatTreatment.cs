@@ -1,10 +1,10 @@
 ﻿namespace TwosCompany.Cards.Ilya {
-    [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
+    [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class HeatTreatment : Card {
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 2,
-                exhaust = upgrade == Upgrade.B
+                exhaust = true,
             };
         }
         private int GetHeatAmt(State s) {

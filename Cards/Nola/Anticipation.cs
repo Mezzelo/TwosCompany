@@ -1,7 +1,7 @@
 ﻿using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Nola {
-    [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
+    [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class Anticipation : Card {
         public override CardData GetData(State state) {
             string cardText;
@@ -32,16 +32,31 @@ namespace TwosCompany.Cards.Nola {
             if (drawSize > 1) {
                 actions.Add(new ACardSelect() {
                     browseAction = new ALowerCardCost() {
-                        amount = upgrade == Upgrade.A ? -4 : -3,
+                        amount = upgrade == Upgrade.A ? -2 : -4,
                         minimum = -1
                     },
                     browseSource = CardBrowse.Source.DrawPile
                 });
+                if (upgrade == Upgrade.A)
+                    actions.Add(new ACardSelect() {
+                        browseAction = new ALowerCardCost() {
+                            amount = -2,
+                            minimum = -1
+                        },
+                        browseSource = CardBrowse.Source.DrawPile
+                    });
             } else if (drawSize == 1) {
                 actions.Add(new ALowerCardCost() {
-                    amount = upgrade == Upgrade.A ? -4 : -3,
-                    selectedIndex = 0
+                    amount = upgrade == Upgrade.A ? -2 : -4,
+                    selectedIndex = 0,
+                    minimum = -1
                 });
+                if (upgrade == Upgrade.A)
+                    actions.Add(new ALowerCardCost() {
+                        amount = -2,
+                        selectedIndex = 0,
+                        minimum = -1
+                    });
             }
             return actions;
         }

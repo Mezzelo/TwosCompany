@@ -7,7 +7,7 @@ namespace TwosCompany.Actions {
                 card.flipAnim = 1.0;
                 card.flipped = !card.flipped;
             }
-            Audio.Play(new GUID?(FSPRO.Event.CardHandling));
+            Audio.Play(FSPRO.Event.CardHandling);
         }
 
         public override List<Tooltip> GetTooltips(State s) {

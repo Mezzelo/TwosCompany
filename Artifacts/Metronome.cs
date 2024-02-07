@@ -8,24 +8,31 @@ namespace TwosCompany.Artifacts {
         public int counter = 0;
         public bool lastWasMove = false;
         public bool consecutive = false;
+        public bool fromStrafe = false;
         public override string Description() => "Whenever you alternate between moving and attacking <c=keyword>6</c> times in a row, " +
             "gain 1 <c=status>OVERDRIVE</c> and 1 <c=status>EVADE</c>.";
 
-        public Metronome() => Manifest.EventHub.ConnectToEvent<Tuple<int, bool, bool, Combat, State>>("Mezz.TwosCompany.Movement", Movement);
+        public override int? GetDisplayNumber(State s) => counter;
+
+        public Metronome() =>
+            Manifest.EventHub.ConnectToEvent<Tuple<int, bool, bool, Combat, State>>("Mezz.TwosCompany.Movement", Movement);
         public override Spr GetSprite() {
             if (counter == 0)
                 return (Spr)(Manifest.Sprites["IconMetronome"].Id
-                    ?? throw new Exception("missing c&r art"));
+                    ?? throw new Exception("missing artifact art: metronome"));
             if (lastWasMove)
                 return (Spr)(Manifest.Sprites["IconMetronomeMoved"].Id
-                    ?? throw new Exception("missing c&r art"));
+                    ?? throw new Exception("missing artifact art: metronome"));
             else
                 return (Spr)(Manifest.Sprites["IconMetronomeAttacked"].Id
-                    ?? throw new Exception("missing c&r art"));
+                    ?? throw new Exception("missing artifact art: metronome"));
 
         }
 
-        public override int? GetDisplayNumber(State s) => counter;
+        public override void OnReceiveArtifact(State state) {
+            Manifest.EventHub.ConnectToEvent<Tuple<int, bool, bool, Combat, State>>("Mezz.TwosCompany.Movement", Movement);
+            counter = 0;
+        }
 
         public override void OnRemoveArtifact(State state) {
             Manifest.EventHub.DisconnectFromEvent<Tuple<int, bool, bool, Combat, State>>("Mezz.TwosCompany.Movement", Movement);
@@ -35,6 +42,8 @@ namespace TwosCompany.Artifacts {
 
         public override void OnPlayerPlayCard(int energyCost, Deck deck, Card playedCard, State state, Combat combat, int handPosition, int handCount) {
             consecutive = false;
+            fromStrafe = false;
+
         }
 
         private void Proc(State s, Combat c) {
@@ -58,14 +67,17 @@ namespace TwosCompany.Artifacts {
         }
 
         public override void OnPlayerAttack(State state, Combat combat) {
-            if (lastWasMove || counter == 0) {
-                counter++;
-                if (counter > 5)
-                    Proc(state, combat);
-            } else if (!consecutive)
-                counter = 0;
-            lastWasMove = false;
-            consecutive = true;
+            if (!fromStrafe) {
+                if (lastWasMove || counter == 0) {
+                    counter++;
+                    if (counter > 5)
+                        Proc(state, combat);
+                }
+                else if (!consecutive)
+                    counter = 0;
+                lastWasMove = false;
+                consecutive = true;
+            }
         }
 
         private void Movement(Tuple<int, bool, bool, Combat, State> evt) {
@@ -74,7 +86,6 @@ namespace TwosCompany.Artifacts {
             State s = evt.Item5;
 
             if (!s.characters.SelectMany(e => e.artifacts).Concat(s.artifacts).Contains(this)) {
-                //make sure cleanup is only performed once.
                 Manifest.EventHub.DisconnectFromEvent<Tuple<int, bool, bool, Combat, State>>("Mezz.TwosCompany.Movement", Movement);
                 return;
             }
@@ -83,9 +94,11 @@ namespace TwosCompany.Artifacts {
                 counter++;
                 if (counter > 5)
                     Proc(s, c);
-            } else
+            }
+            else
                 counter = 0;
             lastWasMove = true;
+            fromStrafe = evt.Item3;
         }
         public override List<Tooltip>? GetExtraTooltips() => new List<Tooltip>() { new TTGlossary("status.overdrive", 1), new TTGlossary("status.evade", 1) };
     }

@@ -23,11 +23,8 @@
 
                 if (state.ship.hull >= state.ship.hullMax)
                     return;
-                int num = 1;
-                foreach (Artifact enumerateAllArtifact in state.EnumerateAllArtifacts())
-                    num += enumerateAllArtifact.ModifyHealAmount(1, state, true);
                 combat.Queue(new AHeal() {
-                    healAmount = num,
+                    healAmount = 1,
                     targetPlayer = true,
                     timer = 0.5
                 });

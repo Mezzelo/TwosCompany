@@ -18,14 +18,14 @@ namespace TwosCompany.Artifacts {
         public override void OnTurnStart(State state, Combat combat) {
             if (counter == 3) {
                 counter = 0;
-                this.Pulse();
                 combat.Queue(new AAddCard() {
                     card = new Foresight() {
                         exhaustOverride = true,
                         temporaryOverride = true,
-                        discount = -1
+                        discount = -1,
                     },
-                    destination = CardDestination.Hand
+                    destination = CardDestination.Hand,
+                    artifactPulse = this.Key(),
                 });
             }
         }

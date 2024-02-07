@@ -9,7 +9,6 @@
         public override void OnTurnStart(State state, Combat combat) {
             counter++;
             if (counter == 6) {
-                this.Pulse();
                 Ship ship = state.ship;
                 bool first = false;
                 foreach (KeyValuePair<Status, int> thisStatus in ship.statusEffects) {
@@ -29,6 +28,8 @@
                             status = thisStatus.Key,
                             statusAmount = thisStatus.Value,
                             dialogueSelector = first ? ".mezz_secondGear" : null,
+                            artifactPulse = !first ? this.Key() : null,
+                            timer = !first ? 0.4 : 0.0,
                         });
                         first = true;
                     }

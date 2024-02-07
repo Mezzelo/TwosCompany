@@ -19,18 +19,18 @@ namespace TwosCompany.Cards.Nola {
             List<CardAction> actions = new List<CardAction>();
 
             actions.Add(new AOtherPlayedHint() {
-                amount = 1
+                amount = upgrade == Upgrade.B ? 2 : 1
             });
             actions.Add(new AMove() {
-                dir = 2,
+                dir = upgrade == Upgrade.A ? 1 : 2,
                 targetPlayer = true,
                 // isRandom = true
             });
-            if (upgrade == Upgrade.A)
+            if (upgrade == Upgrade.B)
                 actions.Add(new AEnergy() {
                     changeAmount = 1
                 });
-            else if (upgrade == Upgrade.B)
+            else if (upgrade == Upgrade.A)
                 actions.Add(new AStatus() {
                     status = Status.evade,
                     statusAmount = 1,
@@ -49,7 +49,7 @@ namespace TwosCompany.Cards.Nola {
         }
         
         public override void OnOtherCardPlayedWhileThisWasInHand(State s, Combat c, int handPosition) {
-            this.discount += 1;
+            this.discount += upgrade == Upgrade.B ? 2 : 1;
             costIncrease++;
         }
         public override void OnDiscard(State s, Combat c) {

@@ -26,7 +26,7 @@ namespace TwosCompany.Cards.Ilya {
                 });
             actions.Add(new StatCostAttack() {
                 action = new AAttack() {
-                    damage = GetDmg(s, upgrade == Upgrade.A ? 1 : 5),
+                    damage = GetDmg(s, upgrade == Upgrade.A ? 2 : 6),
                     fast = upgrade == Upgrade.A,
                     dialogueSelector = upgrade == Upgrade.A ? null : ".mezz_immolate"
                 },

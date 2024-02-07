@@ -22,8 +22,6 @@
         public override Icon? GetIcon(State s) => new Icon?(new Icon(Enum.Parse<Spr>("icons_bypass"), 0, Colors.textMain));
         public override List<Tooltip> GetTooltips(State s) {
             List<Tooltip> list = new List<Tooltip> { new TTGlossary("action.bypass") };
-            if (dontExhaust)
-                list.Add(new TTGlossary("cardtrait.exhaust"));
             return list;
         }
     }

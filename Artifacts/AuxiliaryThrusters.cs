@@ -1,18 +1,23 @@
 ﻿using TwosCompany.Actions;
+using TwosCompany.Cards;
 using TwosCompany.Cards.Isabelle;
 using TwosCompany.Cards.Nola;
 
 namespace TwosCompany.Artifacts {
 
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Common })]
-    public class AuxiliaryThrusters : Artifact {
+    public class AuxiliaryThrusters : Artifact, IAssignableArtifact {
         public int assignedUUID = -1;
         public TTCard? cardImpression;
+        int IAssignableArtifact.assignedUUID { set => assignedUUID = value; }
+        TTCard IAssignableArtifact.cardImpression { set => cardImpression = value; }
         public override string Description() => "Choose a card in your deck.  Whenever you play that card, gain a <c=card>Recover</c>.";
 
         public override void OnReceiveArtifact(State state) {
             state.GetCurrentQueue().Insert(0, new ACardSelect() {
-                browseAction = new AAssignCardThrusters(),
+                browseAction = new AAssignCardArtif() {
+                    assignArtifact = this,
+                },
                 browseSource = CardBrowse.Source.Deck,
             });
         }
@@ -24,9 +29,9 @@ namespace TwosCompany.Artifacts {
                     card = new Recover() {
                         exhaustOverride = true,
                         temporaryOverride = true,
-                        forTooltip = false
+                        forTooltip = false,
                     },
-                    destination = CardDestination.Hand
+                    destination = CardDestination.Hand,
                 });
             }
         }

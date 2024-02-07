@@ -1,0 +1,4016 @@
+{
+  "all": {
+  
+    "ChoiceCardRewardOfYourColorChoice_Mezz.TwosCompany.GaussDeck": {
+      "type": "event",
+      "oncePerRun": true,
+      "bg": "BGBootSequence",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "angry",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "LoseCharacterCard_Mezz.TwosCompany.GaussDeck": {
+      "type": "event",
+      "oncePerRun": true,
+      "bg": "BGSupernova",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "happy",
+        },
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "CrystallizedFriendEvent_gaussID": {
+      "type": "event",
+      "oncePerRun": true,
+      "bg": "BGCrystalizedFriend",
+      "lines": [
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1.5
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+		  "loopTag": "serious"
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+  
+    "mezz_Duo_AboutToDieAndLoop_GaussRiggs": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "riggs",
+          "loopTag": "serious",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "side",
+        },
+      ],
+      "allPresent": [
+        "gauss",
+        "riggs"
+      ]
+    },
+    "mezz_Duo_AboutToDieAndLoop_GaussPeri": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "peri",
+          "loopTag": "mad",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "gauss",
+        "peri"
+      ]
+    },
+    "mezz_Duo_AboutToDieAndLoop_GaussDizzy": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "dizzy",
+          "loopTag": "frown",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "angry",
+        }
+      ],
+      "allPresent": [
+        "gauss",
+        "dizzy"
+      ]
+    },
+    "mezz_Duo_AboutToDieAndLoop_GaussIsaac_0": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "goat",
+          "loopTag": "squint",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "angry",
+        }
+      ],
+      "allPresent": [
+        "gauss",
+        "goat"
+      ]
+    },
+    "mezz_Duo_AboutToDieAndLoop_GaussIsaac_1": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "goat",
+          "loopTag": "squint",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "side",
+        }
+      ],
+      "allPresent": [
+        "gauss",
+        "goat"
+      ]
+    },
+    "mezz_Duo_AboutToDieAndLoop_GaussDrake": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "mad",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "angry",
+        },
+      ],
+      "allPresent": [
+        "gauss",
+        "eunice"
+      ]
+    },
+    "mezz_Duo_AboutToDieAndLoop_GaussMax": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "hacker",
+          "loopTag": "mad",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "angry",
+        }
+      ],
+      "allPresent": [
+        "gauss",
+        "hacker"
+      ]
+    },
+    "mezz_Duo_AboutToDieAndLoop_GaussBooks": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "shard",
+          "loopTag": "intense",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "gauss",
+        "shard"
+      ]
+    },
+    "mezz_Duo_AboutToDieAndLoop_GaussComp": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "squint",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "angry",
+        }
+      ],
+      "allPresent": [
+        "gauss",
+        "comp"
+      ]
+    },
+  
+	"mezz_Gauss_BooksJustHit_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "whoDidThat": "shard",
+      "allPresent": [
+        "gauss",
+		"shard"
+      ],
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "happy"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "happy"
+			  
+            },
+          ]
+        },
+      ]
+    },
+	"mezz_Gauss_DizzyJustHit_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "whoDidThat": "dizzy",
+      "allPresent": [
+        "gauss",
+		"dizzy"
+      ],
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "gauss",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "gauss",
+            },
+          ]
+        },
+      ]
+    },
+	"mezz_Gauss_DrakeJustHit_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "whoDidThat": "eunice",
+      "allPresent": [
+        "gauss",
+		"eunice"
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "gauss",
+		},
+      ]
+    },
+    "mezz_Gauss_DrakeJustHit_1": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "whoDidThat": "eunice",
+      "allPresent": [
+        "gauss",
+		"eunice"
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "eunice",
+		  "loopTag": "sly",
+		},
+		{ "$type": "Say, CobaltCore",
+		  "who": "gauss",
+		},
+      ]
+    },
+    "mezz_Gauss_DrakeMiss_0": {
+      "type": "combat",
+      "playerShotJustMissed": true,
+      "oncePerCombat": true,
+      "doesNotHaveArtifacts": [
+        "Recalibrator",
+        "GrazerBeam"
+      ],
+      "allPresent": [
+        "gauss",
+		"eunice"
+      ],
+      "whoDidThat": "eunice",
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "gauss",
+		  "loopTag": "happy",
+		},
+		{ "$type": "Say, CobaltCore",
+		  "who": "eunice",
+		  "loopTag": "mad",
+		},
+      ],
+    },
+    "mezz_Gauss_DrakeMiss_1": {
+      "type": "combat",
+      "playerShotJustMissed": true,
+      "oncePerCombat": true,
+      "doesNotHaveArtifacts": [
+        "Recalibrator",
+        "GrazerBeam"
+      ],
+      "allPresent": [
+        "gauss",
+		"eunice"
+      ],
+      "whoDidThat": "eunice",
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "gauss",
+		  "loopTag": "side",
+		},
+		{ "$type": "Say, CobaltCore",
+		  "who": "eunice",
+		  "loopTag": "mad",
+		},
+      ],
+    },
+	"mezz_Gauss_IsaacJustHit_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "whoDidThat": "goat",
+      "allPresent": [
+        "gauss",
+		"goat"
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "gauss",
+		  "loopTag": "happy"
+		},
+      ]
+    },
+    "mezz_Gauss_IsaacJustHit_1": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "whoDidThat": "goat",
+      "allPresent": [
+        "gauss",
+		"goat"
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "gauss",
+		  "loopTag": "happy"
+		},
+		{ "$type": "Say, CobaltCore",
+		  "who": "goat",
+		},
+      ]
+    },
+	"mezz_Gauss_MaxJustHit_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "whoDidThat": "hacker",
+      "allPresent": [
+        "gauss",
+		"hacker"
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "gauss",
+		},
+      ]
+    },
+    "mezz_Gauss_MaxJustHit_1": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "whoDidThat": "goat",
+      "allPresent": [
+        "gauss",
+		"goat"
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "goat",
+		},
+		{ "$type": "Say, CobaltCore",
+		  "who": "gauss",
+		  "loopTag": "happy"
+		},
+      ]
+    },
+  
+    "mezz_Gauss_JustHit_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "gauss",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "gauss",
+		  "loopTag": "vengeful"
+		},
+      ]
+    },
+    "mezz_Gauss_JustHit_1": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "gauss",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "gauss",
+		  "loopTag": "vengeful"
+		},
+      ]
+    },
+    "mezz_Gauss_JustHit_2": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "gauss",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "gauss",
+		},
+      ]
+    },
+    "mezz_Gauss_JustHit_Nola_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "gauss",
+        "nola",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "nola",
+		},
+      ]
+    },
+    "mezz_Gauss_JustHit_Nola_1": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "gauss",
+        "nola",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "nola",
+		},
+		{ "$type": "Say, CobaltCore",
+		  "who": "gauss",
+		  "loopTag": "happy"
+		},
+      ]
+    },
+    "mezz_Gauss_JustHit_Isa_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "gauss",
+        "isa",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "isa",
+		  "loopTag": "happy"
+		},
+		{ "$type": "Say, CobaltCore",
+		  "who": "gauss",
+		  "loopTag": "happy"
+		},
+      ]
+    },
+    "mezz_Gauss_JustHit_Isa_1": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "gauss",
+        "isa",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "isa",
+		  "loopTag": "happy"
+		},
+      ]
+	},
+    "mezz_Gauss_JustHit_Ilya_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "gauss",
+        "ilya",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "ilya",
+		  "loopTag": "shocked"
+		},
+		{ "$type": "Say, CobaltCore",
+		  "who": "gauss",
+		  "loopTag": "happy"
+		},
+      ]
+    },
+    "mezz_Gauss_JustHit_Jost_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "gauss",
+        "jost",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "jost",
+		  "loopTag": "happy"
+		},
+      ]
+    },
+    "mezz_Gauss_JustHit_Books_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "gauss",
+        "shard",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "shard",
+		  "loopTag": "plan"
+		},
+      ]
+    },
+    "mezz_Gauss_JustHit_Drake_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "gauss",
+        "eunice",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "eunice",
+		  "loopTag": "sly"
+		},
+      ]
+    },
+    "mezz_Gauss_JustHit_Isaac_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "gauss",
+        "goat",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "goat",
+		  "loopTag": "squint"
+		},
+      ]
+    },
+    "mezz_Gauss_JustHit_Peri_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "gauss",
+        "peri",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "peri",
+		},
+      ]
+    },
+    "mezz_Gauss_JustHit_Dizzy_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "gauss",
+        "dizzy",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "dizzy",
+		},
+      ]
+    },
+    "mezz_Gauss_JustHit_Max_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "gauss",
+        "hacker",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "hacker",
+		  "loopTag": "smile"
+		},
+      ]
+    },
+  
+	"mezz_Gauss_CharStart_0": {
+      "type": "event",
+      "lookup": [
+        "zone_first"
+      ],
+      "bg": "BGRunStart",
+      "allPresent": [
+        "gauss"
+      ],
+      "once": true,
+      "priority": false,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "comp",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "nap",
+          "flipped": true,
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "comp",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+          "flipped": true,
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "squint",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "side",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "happy",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "side",
+          "flipped": true,
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "intense",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "happy",
+          "flipped": true,
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "squint",
+        }, 
+      ]
+    },
+	"mezz_Gauss_CharStart_1": {
+      "type": "event",
+      "lookup": [
+        "zone_first"
+      ],
+      "bg": "BGRunStart",
+      "allPresent": [
+        "gauss"
+      ],
+      "requiredScenes": [
+        "mezz_Gauss_CharStart_0",
+      ],
+      "once": true,
+      "priority": false,
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "happy",
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "intense",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "datapad",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "squint",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "datapad",
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "mad",
+          "flipped": true,
+        }, 
+      ]
+    },
+	
+	"mezz_Gauss_CharStart_Dizzy_0": {
+      "type": "event",
+      "lookup": [
+        "zone_first"
+      ],
+      "bg": "BGRunStart",
+      "allPresent": [
+        "gauss",
+		"dizzy",
+      ],
+      "once": true,
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+          "who": "dizzy",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "nap",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "happy",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "dizzy",
+          "loopTag": "neutral",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "dizzy",
+          "loopTag": "explains",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "dizzy",
+          "loopTag": "shrug",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+          "flipped": true,
+        }, 
+      ]
+    },
+	"mezz_Gauss_CharStart_Isaac_0": {
+      "type": "event",
+      "lookup": [
+        "zone_first"
+      ],
+      "bg": "BGRunStart",
+      "allPresent": [
+        "gauss",
+		"goat",
+      ],
+      "once": true,
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+          "who": "goat",
+          "loopTag": "shy",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "goat",
+          "loopTag": "neutral",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "happy",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "goat",
+          "loopTag": "neutral",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "goat",
+          "loopTag": "explains",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "goat",
+          "loopTag": "blank",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "serious",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "side",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "side",
+          "flipped": true,
+        }, 
+      ]
+    },
+	"mezz_Gauss_CharStart_Drake_0": {
+      "type": "event",
+      "lookup": [
+        "zone_first"
+      ],
+      "bg": "BGRunStart",
+      "allPresent": [
+        "gauss",
+		"eunice",
+      ],
+      "once": true,
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "squint",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "neutral",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "mad",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "squint",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "angry",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "sly",
+        }, 
+      ]
+    },
+	"mezz_Gauss_CharStart_Max_0": {
+      "type": "event",
+      "lookup": [
+        "zone_first"
+      ],
+      "bg": "BGRunStart",
+      "allPresent": [
+        "gauss",
+		"hacker",
+      ],
+      "once": true,
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "neutral",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "hacker",
+          "flipped": true,
+          "loopTag": "neutral",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "datapad",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "hacker",
+          "flipped": true,
+          "loopTag": "squint",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "hacker",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "hacker",
+          "flipped": true,
+          "loopTag": "squint",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        }, 
+      ]
+    },
+	"mezz_Gauss_CharStart_Books_0": {
+      "type": "event",
+      "lookup": [
+        "zone_first"
+      ],
+      "bg": "BGRunStart",
+      "allPresent": [
+        "gauss",
+		"shard",
+      ],
+      "once": true,
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+          "who": "shard",
+          "loopTag": "plan",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "shard",
+          "loopTag": "stoked",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "flipped": true,
+          "loopTag": "neutral",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "flipped": true,
+          "loopTag": "side",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "flipped": true,
+          "loopTag": "happy",
+        }, 
+      ]
+    },
+	
+    "RunWinMezzWho_Gauss_1": {
+      "type": "event",
+      "bg": "BGRunWin",
+      "once": true,
+      "lookup": [
+        "runWin_Mezz.TwosCompany.GaussDeck"
+      ],
+      "allPresent": [
+        "gauss"
+      ],
+      "lines": [
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 3
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "side",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "serious",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "angry",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "void",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "side",
+        },
+      ],
+    },
+    "RunWinMezzWho_Gauss_2": {
+      "type": "event",
+      "bg": "BGRunWin",
+      "once": true,
+      "lookup": [
+        "runWin_Mezz.TwosCompany.GaussDeck"
+      ],
+      "requiredScenes": [
+        "RunWinMezzWho_Gauss_1"
+      ],
+      "allPresent": [
+        "gauss"
+      ],
+      "lines": [
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 3
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "side",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "void",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "void",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "datapad",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "happy",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "void",
+        },
+      ],
+    },
+    "RunWinMezzWho_Gauss_3": {
+      "type": "event",
+      "bg": "BGRunWin",
+      "once": true,
+      "lookup": [
+        "runWin_Mezz.TwosCompany.GaussDeck"
+      ],
+      "requiredScenes": [
+        "RunWinMezzWho_Gauss_2"
+      ],
+      "allPresent": [
+        "gauss"
+      ],
+      "lines": [
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 3
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "datapad",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "datapad",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "void",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "angry",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "void",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "side",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "serious",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "forlorn",
+        },
+      ],
+    },
+    "mezz_Gauss_Memory_1": {
+      "type": "event",
+      "bg": "TwosCompany.ModBG.BGShipyard",
+      "introDelay": false,
+      "lookup": [
+        "vault",
+        "vault_Mezz.TwosCompany.GaussDeck"
+      ],
+      "lines": [
+        {
+          "$type": "TitleCard, CobaltCore",
+          "hash": "t332days"
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 2
+        },
+        {
+          "$type": "TitleCard, CobaltCore",
+          "empty": true
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "gameover",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "happy",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "flipped": true,
+          "loopTag": "squint",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "flipped": true,
+          "loopTag": "annoyed",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "flipped": true,
+          "loopTag": "squint",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "happy",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "datapad",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "flipped": true,
+          "loopTag": "squint",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "datapad",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "vengeful",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "flipped": true,
+          "loopTag": "smug",
+        },
+      ],
+    },
+    "mezz_Gauss_Memory_2": {
+      "type": "event",
+      "bg": "TwosCompany.ModBG.BGShipyard",
+      "introDelay": false,
+      "lookup": [
+        "vault",
+        "vault_Mezz.TwosCompany.GaussDeck"
+      ],
+      "requiredScenes": [
+        "mezz_Gauss_Memory_1"
+      ],
+      "lines": [
+        {
+          "$type": "TitleCard, CobaltCore",
+          "hash": "t86days"
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 2
+        },
+        {
+          "$type": "TitleCard, CobaltCore",
+          "empty": true
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "serious",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "annoyed",
+          "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "squint",
+          "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "happy",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+        },
+        {
+          "$type": "BGAction, CobaltCore",
+          "action": "silence_cue"
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "serious",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "serious",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "angry",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "forlorn",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "forlorn",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "vengeful",
+        },
+      ],
+    },
+    "mezz_Gauss_Memory_3": {
+      "type": "event",
+      "bg": "BGCafeFlashback",
+      "introDelay": false,
+      "lookup": [
+        "vault",
+        "vault_Mezz.TwosCompany.GaussDeck"
+      ],
+      "requiredScenes": [
+        "mezz_Gauss_Memory_2"
+      ],
+      "lines": [
+        {
+          "$type": "TitleCard, CobaltCore",
+          "hash": "t03days"
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 2
+        },
+        {
+          "$type": "TitleCard, CobaltCore",
+          "empty": true
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "gameover",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "neutral",
+          "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "sly",
+          "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "side",
+        },
+        {
+          "$type": "SetBG, CobaltCore",
+          "bg": "BGBlack"
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 2
+        },
+        {
+          "$type": "SetBG, CobaltCore",
+          "bg": "BGCrime"
+        },
+        {
+          "$type": "TitleCard, CobaltCore",
+          "hash": "t03hours"
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 2
+        },
+        {
+          "$type": "TitleCard, CobaltCore",
+          "empty": true
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "neutral",
+          "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "serious",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "forlorn",
+          "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "serious",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "squint",
+          "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "angry",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+          "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "neutral",
+          "flipped": true,
+        },
+      ],
+    },
+	
+    "mezz_Gauss_LawlessZoneWarning_0": {
+      "type": "event",
+      "lookup": [
+        "zone_lawless"
+      ],
+      "once": true,
+      "priority": true,
+      "allPresent": [
+        "gauss",
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+		  "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "happy",
+		  "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "worried",
+        },
+      ]
+    },
+	"mezz_Gauss_Cobalt_0": {
+      "type": "event",
+      "lookup": [
+        "before_theCobalt"
+      ],
+      "bg": "BGRunStart",
+      "allPresent": [
+        "gauss",
+      ],
+      "once": true,
+      "priority": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "side",
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "comp",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "happy",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "vengeful",
+        }, 
+      ]
+    },
+  
+    "mezz_Gauss_ArtifactAresCannon": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "hasArtifacts": [
+        "AresCannon"
+      ],
+      "oncePerRunTags": [
+        "AresCannon"
+      ],
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "happy",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_ArtifactAresCannonV2": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "hasArtifacts": [
+        "AresCannonV2"
+      ],
+      "oncePerRunTags": [
+        "AresCannonV2"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "angry",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_ArtifactBrokenGlasses": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "oncePerRun": true,
+      "hasArtifacts": [
+        "BrokenGlasses"
+      ],
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_ArtifactCockpitTargetIsNotRelevant": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "oncePerRun": true,
+      "enemyDoesNotHavePart": "cockpit",
+      "hasArtifacts": [
+        "CockpitTarget"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "angry",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_ArtifactCockpitTargetIsRelevant": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "oncePerRun": true,
+      "enemyHasPart": "cockpit",
+      "hasArtifacts": [
+        "CockpitTarget"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "vengeful",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },	
+    "mezz_Gauss_ArtifactCrosslink": {
+      "type": "combat",
+      "hasArtifacts": [
+        "Crosslink"
+      ],
+      "lookup": [
+        "CrosslinkTrigger"
+      ],
+      "oncePerRun": true,
+      "oncePerCombatTags": [
+        "CrosslinkTriggerTag"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "vengeful",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_ArtifactDirtyEngines": {
+      "type": "combat",
+      "oncePerRun": true,
+      "hasArtifacts": [
+        "DirtyEngines"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "side",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_ArtifactDizzyBoost": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "whoDidThat": "dizzy",
+      "hasArtifacts": [
+        "DizzyBoost"
+      ],
+      "oncePerCombat": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+        },
+		{
+          "$type": "Say, CobaltCore",
+          "who": "dizzy",
+		  "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_ArtifactEnergyPrep": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "hasArtifacts": [
+        "EnergyPrep"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_ArtifactFractureDetection": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "hasArtifacts": [
+        "FractureDetection"
+      ],
+      "oncePerCombatTags": [
+        "FractureDetectionBarks"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "vengeful",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_ArtifactGeminiCore": {
+      "type": "combat",
+      "hasArtifacts": [
+        "GeminiCore"
+      ],
+      "oncePerRunTags": [
+        "GeminiCore"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "angry",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_ArtifactGeminiCoreBooster": {
+      "type": "combat",
+      "hasArtifacts": [
+        "GeminiCoreBooster"
+      ],
+      "oncePerRunTags": [
+        "GeminiCoreBooster"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "side",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_ArtifactIonConverter": {
+      "type": "combat",
+      "hasArtifacts": [
+        "IonConverter"
+      ],
+      "lookup": [
+        "IonConverterTrigger"
+      ],
+      "oncePerRun": true,
+      "priority": true,
+      "oncePerCombatTags": [
+        "IonConverterTag"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_ArtifactNanofiberHull_0": {
+      "type": "combat",
+      "minDamageDealtToPlayerThisTurn": 1,
+      "maxDamageDealtToPlayerThisTurn": 1,
+      "hasArtifacts": [
+        "NanofiberHull"
+      ],
+      "oncePerRunTags": [
+        "NanofiberHull"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "happy",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_ArtifactNanofiberHull_1": {
+      "type": "combat",
+      "minDamageDealtToPlayerThisTurn": 2,
+      "hasArtifacts": [
+        "NanofiberHull"
+      ],
+      "oncePerRunTags": [
+        "NanofiberHull"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_ArtifactPiercer": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "hasArtifacts": [
+        "Piercer"
+      ],
+      "oncePerCombatTags": [
+        "PiercerShouts"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "happy",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_ArtifactRecalibrator": {
+      "type": "combat",
+      "playerShotJustMissed": true,
+      "hasArtifacts": [
+        "Recalibrator"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+		  "loopTag": "squint"
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_ArtifactShieldPrepIsGone": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "oncePerRunTags": [
+        "ShieldPrepIsGoneYouFool"
+      ],
+      "doesNotHaveArtifacts": [
+        "ShieldPrep",
+        "WarpMastery"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+		  "loopTag": "squint"
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_ArtifactSimplicity": {
+      "type": "combat",
+      "oncePerRunTags": [
+        "SimplicityShouts"
+      ],
+      "hasArtifacts": [
+        "Simplicity"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "vengeful",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_ArtifactTiderunner": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "hasArtifacts": [
+        "TideRunner"
+      ],
+      "oncePerCombatTags": [
+        "TideRunner"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "happy"
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_ArtifactTridimensionalCockpit": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "oncePerCombatTags": [
+        "TridimensionalCockpit"
+      ],
+      "hasArtifacts": [
+        "TridimensionalCockpit"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint"
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "hacker",
+          "loopTag": "smile"
+        },
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+	
+    "mezz_Gauss_ArtifactFieldResonator": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "oncePerRun": true,
+      "hasArtifacts": [
+        "TwosCompany.Artifacts.FieldResonator"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "vengeful"
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "happy"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_ArtifactIonEngines": {
+      "type": "combat",
+      "lookup": [
+        "mezz_ionEngines"
+      ],
+      "oncePerCombatTags": [
+        "mezz_IonEngines"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "happy"
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "datapad"
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "vengeful"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_ArtifactRemoteStarter": {
+      "type": "combat",
+      "lookup": [
+        "mezz_remoteStarter"
+      ],
+      "oncePerCombatTags": [
+        "mezz_RemoteStarter"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "happy"
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "happy"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+
+	"mezz_Gauss_BlockedAnEnemyAttackWithArmor": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "minDamageBlockedByPlayerArmorThisTurn": 1,
+      "oncePerCombatTags": [
+        "WowArmorISPrettyCoolHuh"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "squint"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "happy"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "happy"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_BlockedALotOfAttacksWithArmor": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "minDamageBlockedByPlayerArmorThisTurn": 3,
+      "oncePerCombatTags": [
+        "YowzaThatWasALOTofArmorBlock"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "happy"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "squint"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "happy"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_BooksWentMissing": {
+      "type": "combat",
+      "lastTurnPlayerStatuses": [
+        "missingBooks"
+      ],
+      "priority": true,
+      "oncePerCombatTags": [
+        "booksWentMissing"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_CatWentMissing": {
+      "type": "combat",
+      "lastTurnPlayerStatuses": [
+        "missingCat"
+      ],
+      "priority": true,
+      "oncePerCombatTags": [
+        "CatWentMissing"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+	"mezz_Gauss_DizzyWentMissing": {
+      "type": "combat",
+      "lastTurnPlayerStatuses": [
+        "missingDizzy"
+      ],
+      "priority": true,
+      "oncePerCombatTags": [
+        "dizzyWentMissing"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "side",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+	"mezz_Gauss_DrakeWentMissing": {
+      "type": "combat",
+      "lastTurnPlayerStatuses": [
+        "missingDrake"
+      ],
+      "priority": true,
+      "oncePerCombatTags": [
+        "drakeWentMissing"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "angry",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },    
+	"mezz_Gauss_IsaacWentMissing": {
+      "type": "combat",
+      "lastTurnPlayerStatuses": [
+        "missingIsaac"
+      ],
+      "priority": true,
+      "oncePerCombatTags": [
+        "isaacWentMissing"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "side",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+	"mezz_Gauss_MaxWentMissing": {
+      "type": "combat",
+      "lastTurnPlayerStatuses": [
+        "missingMax"
+      ],
+      "priority": true,
+      "oncePerCombatTags": [
+        "maxWentMissing"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "side",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+	"mezz_Gauss_PeriWentMissing": {
+      "type": "combat",
+      "lastTurnPlayerStatuses": [
+        "missingPeri"
+      ],
+      "priority": true,
+      "oncePerCombatTags": [
+        "periWentMissing"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "happy",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+	"mezz_Gauss_RiggsWentMissing": {
+      "type": "combat",
+      "lastTurnPlayerStatuses": [
+        "missingRiggs"
+      ],
+      "priority": true,
+      "oncePerCombatTags": [
+        "riggsWentMissing"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+	
+	"mezz_Gauss_EmptyHandWithEnergy_0": {
+      "type": "combat",
+      "handEmpty": true,
+      "minEnergy": 1,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "side",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "squint",
+            },
+          ]
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+	"mezz_Gauss_EmptyHandWithEnergy_1": {
+      "type": "combat",
+      "handEmpty": true,
+      "minEnergy": 1,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+		  "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_EnemyArmorHit": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageBlockedByEnemyArmorThisTurn": 1,
+      "oncePerCombat": true,
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "gauss",
+			  "loopTag": "side",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "gauss",
+			  "loopTag": "squint",
+			},
+          ]
+        },
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_EnemyArmorHitLots": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageBlockedByEnemyArmorThisTurn": 3,
+      "oncePerCombat": true,
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "gauss",
+			  "loopTag": "side",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "gauss",
+			  "loopTag": "side",
+			},
+          ]
+        },
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_EnemyArmorPierced_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "playerJustPiercedEnemyArmor": true,
+      "oncePerCombatTags": [
+        "EnemyArmorPierced"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "happy",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_EnemyArmorPierced_1": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "playerJustPiercedEnemyArmor": true,
+      "oncePerCombatTags": [
+        "EnemyArmorPierced"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "vengeful",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_EnemyHasBrittle": {
+      "type": "combat",
+      "enemyHasBrittlePart": true,
+      "oncePerRunTags": [
+        "yelledAboutBrittle"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "vengeful",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_EnemyHasWeakness": {
+      "type": "combat",
+      "enemyHasWeakPart": true,
+      "oncePerRunTags": [
+        "yelledAboutWeakness"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "vengeful",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+	"mezz_Gauss_HandOnlyHasTrashCards": {
+      "type": "combat",
+      "handFullOfTrash": true,
+      "oncePerCombatTags": [
+        "handOnlyHasTrashCards"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+	"mezz_Gauss_HandOnlyHasUnplayableCards": {
+      "type": "combat",
+      "handFullOfUnplayableCards": true,
+      "oncePerCombatTags": [
+        "handFullOfUnplayableCards"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "side",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_JustPlayedASashaCard_0": {
+      "type": "combat",
+      "whoDidThat": "sasha",
+      "oncePerRunTags": [
+        "usedAToothCard"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "happy",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_JustPlayedASashaCard_1": {
+      "type": "combat",
+      "whoDidThat": "sasha",
+      "oncePerRunTags": [
+        "usedAToothCard"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "happy",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_JustPlayedAnEphemeralCard": {
+      "type": "combat",
+      "whoDidThat": "ephemeral",
+      "oncePerRunTags": [
+        "usedAnEphemeralCard"
+      ],
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "gauss",
+		      "loopTag": "squint",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "gauss",
+              "loopTag": "squint",
+			}
+          ]
+        },
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_HostileDrones": {
+      "type": "combat",
+      "priority": true,
+      "oncePerRunTags": [
+        "mezz_HatesDrones"
+      ],
+      "anyDronesHostile": [
+        "attackDrone",
+        "attackDroneMk2",
+      ],
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "vengeful",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "side",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "vengeful",
+            }
+          ]
+        },
+      ],
+      "allPresent": [
+        "gauss",
+      ]
+    },
+    "mezz_Gauss_Mines": {
+      "type": "combat",
+      "priority": true,
+      "oncePerRunTags": [
+        "mezz_HatesMines"
+      ],
+      "anyDronesHostile": [
+        "spaceMine",
+      ],
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "side",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "squint",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "angry",
+            }
+          ]
+        },
+      ],
+      "allPresent": [
+        "gauss",
+      ]
+    },
+    "mezz_Gauss_JustHitGeneric_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "vengeful",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_JustHitGeneric_1": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "vengeful",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_JustHitGeneric_2": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "happy",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_JustHitGeneric_3": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_JustHitGeneric_4": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "happy",
+        }
+      ],
+      "allPresent": [
+        "gauss",
+      ]
+    },
+    "mezz_Gauss_ManyFlips": {
+      "type": "combat",
+      "minTimesYouFlippedACardThisTurn": 4,
+      "oncePerCombat": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "happy",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "squint",
+            }
+          ]
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+	"mezz_Gauss_ManyTurns_0": {
+      "type": "combat",
+      "minTurnsThisCombat": 9,
+      "oncePerCombatTags": [
+        "manyTurns"
+      ],
+      "oncePerRun": true,
+      "turnStart": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "side",
+        },
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+	"mezz_Gauss_ManyTurns_1": {
+      "type": "combat",
+      "minTurnsThisCombat": 9,
+      "oncePerCombatTags": [
+        "manyTurns"
+      ],
+      "oncePerRun": true,
+      "turnStart": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        },
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_VeryManyTurns_0": {
+      "type": "combat",
+      "minTurnsThisCombat": 20,
+      "oncePerCombatTags": [
+        "veryManyTurns"
+      ],
+      "oncePerRun": true,
+      "turnStart": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_VeryManyTurns_1": {
+      "type": "combat",
+      "minTurnsThisCombat": 20,
+      "oncePerCombatTags": [
+        "veryManyTurns"
+      ],
+      "oncePerRun": true,
+      "turnStart": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_OneHitPointThisIsFine_0": {
+      "type": "combat",
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "enemyShotJustHit": true,
+      "maxHull": 1,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_OneHitPointThisIsFine_1": {
+      "type": "combat",
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "enemyShotJustHit": true,
+      "maxHull": 1,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_PlayedManyCards_0": {
+      "type": "combat",
+      "handEmpty": true,
+      "minCardsPlayedThisTurn": 6,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "happy",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "happy",
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_OverheatIlyasFault_0": {
+      "type": "combat",
+      "goingToOverheat": true,
+      "allPresent": [
+        "ilya",
+		"gauss"
+      ],
+      "oncePerCombatTags": [
+        "OverheatIlyasFault"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "angry",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        }
+      ]
+    },
+    "mezz_Gauss_OverheatDrakesFault_0": {
+      "type": "combat",
+      "goingToOverheat": true,
+      "whoDidThat": "eunice",
+      "allPresent": [
+        "eunice",
+		"gauss"
+      ],
+      "oncePerCombatTags": [
+        "OverheatDrakesFault"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "panic",
+        },
+      ]
+    },
+    "mezz_Gauss_OverheatGeneric_0": {
+      "type": "combat",
+      "goingToOverheat": true,
+      "oncePerCombatTags": [
+        "OverheatGeneric"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_OverheatGeneric_1": {
+      "type": "combat",
+      "goingToOverheat": true,
+      "oncePerCombatTags": [
+        "OverheatGeneric"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "angry",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+
+    "mezz_Gauss_StrafeHit_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "playerShotWasFromStrafe": true,
+      "oncePerCombat": true,
+      "anyDrones": [
+        "conduit",
+      ],
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "angry",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "angry",
+            }
+          ]
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_StrafeMissed_0": {
+      "type": "combat",
+      "playerShotJustMissed": true,
+      "playerShotWasFromStrafe": true,
+      "oncePerCombat": true,
+      "doesNotHaveArtifacts": [
+        "Recalibrator",
+        "GrazerBeam"
+      ],
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "squint",
+            }
+          ]
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    
+    "mezz_Gauss_WeDidOverFiveDamage_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 6,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "vengeful",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "vengeful",
+            }
+          ]
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_WeDidOverThreeDamage_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 4,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "happy",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "vengeful",
+            }
+          ]
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+	"mezz_Gauss_ThatsALotOfDamageToThem_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisTurn": 10,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "vengeful",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "vengeful",
+            }
+          ]
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_ThatsALotOfDamageToUs_0": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "minDamageDealtToPlayerThisTurn": 3,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "squint",
+            }
+          ]
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_TheyGotCorroded_0": {
+      "type": "combat",
+      "lastTurnEnemyStatuses": [
+        "corrode"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "vengeful",
+            }
+          ]
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_TheyHaveAutoDodgeLeft_0": {
+      "type": "combat",
+      "lastTurnEnemyStatuses": [
+        "autododgeLeft"
+      ],
+      "oncePerCombatTags": [
+        "aboutAutododge"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "gauss",
+		  "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_TheyHaveAutoDodgeRight_0": {
+      "type": "combat",
+      "lastTurnEnemyStatuses": [
+        "autododgeRight"
+      ],
+      "oncePerCombatTags": [
+        "aboutAutododge"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "gauss",
+		  "loopTag": "side",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_TookZeroDamageAtLowHealth_0": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxDamageDealtToPlayerThisTurn": 0,
+      "maxHull": 2,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+		  "loopTag": "squint",
+        },
+      ],
+      "allPresent": [
+        "gauss",
+      ]
+    },
+    "mezz_Gauss_WeAreCorroded_0": {
+      "type": "combat",
+      "lastTurnPlayerStatuses": [
+        "corrode"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_WeAreMovingAroundALot_0": {
+      "type": "combat",
+      "minMovesThisTurn": 3,
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "happy",
+            }
+          ]
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_WeDontOverlapWithEnemyAtAll_0": {
+      "type": "combat",
+      "priority": true,
+      "shipsDontOverlapAtAll": true,
+      "oncePerCombatTags": [
+        "NoOverlapBetweenShips"
+      ],
+      "oncePerRun": true,
+      "nonePresent": [
+        "crab",
+        "scrap"
+      ],
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "gauss",
+		  "loopTag": "nap",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_WeDontOverlapWithEnemyAtAll_1": {
+      "type": "combat",
+      "priority": true,
+      "shipsDontOverlapAtAll": true,
+      "oncePerCombatTags": [
+        "NoOverlapBetweenShips"
+      ],
+      "oncePerRun": true,
+      "nonePresent": [
+        "crab",
+        "scrap"
+      ],
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "gauss",
+		  "loopTag": "happy",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_WeGotHurtButNotTooBad_0": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "minDamageDealtToPlayerThisTurn": 1,
+      "maxDamageDealtToPlayerThisTurn": 1,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "squint",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "angry",
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_WeGotShotButTookNoDamage_0": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxDamageDealtToPlayerThisTurn": 0,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "happy",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "gauss",
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_WeMissedOopsie_0": {
+      "type": "combat",
+      "playerShotJustMissed": true,
+      "oncePerCombat": true,
+      "doesNotHaveArtifacts": [
+        "Recalibrator",
+        "GrazerBeam"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "angry",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_WeMissedOopsie_1": {
+      "type": "combat",
+      "playerShotJustMissed": true,
+      "oncePerCombat": true,
+      "doesNotHaveArtifacts": [
+        "Recalibrator",
+        "GrazerBeam"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_WeMissedOopsie_2": {
+      "type": "combat",
+      "playerShotJustMissed": true,
+      "oncePerCombat": true,
+      "doesNotHaveArtifacts": [
+        "Recalibrator",
+        "GrazerBeam"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "angry",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+	
+    "mezz_Gauss_Card_AsteroidField": {
+      "type": "combat",
+      "lookup": [
+        "mezz_asteroidField"
+      ],
+      "oncePerCombatTags": [
+        "mezz_AsteroidField"
+      ],
+      "oncePerRun": true,
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "happy"
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "happy"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },	
+    "mezz_Gauss_Card_Autocurrent": {
+      "type": "combat",
+      "lookup": [
+        "mezz_autoCurrent"
+      ],
+      "oncePerCombatTags": [
+        "mezz_AutoCurrent"
+      ],
+      "oncePerRun": true,
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "happy"
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "happy"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },	
+    "mezz_Gauss_Card_ConductorField": {
+      "type": "combat",
+      "lookup": [
+        "mezz_conductorField"
+      ],
+      "oncePerCombatTags": [
+        "mezz_ConductorField"
+      ],
+      "oncePerRun": true,
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "happy"
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "vengeful"
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "vengeful"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_Card_Feedback": {
+      "type": "combat",
+      "lookup": [
+        "mezz_feedback"
+      ],
+      "oncePerCombatTags": [
+        "mezz_Feedback"
+      ],
+      "oncePerRun": true,
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "vengeful"
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "happy"
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "vengeful"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },	
+    "mezz_Gauss_Card_TremblingAirs": {
+      "type": "combat",
+      "lookup": [
+        "mezz_tremblingAirs"
+      ],
+      "oncePerCombatTags": [
+        "mezz_TremblingAirs"
+      ],
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "vengeful"
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "vengeful"
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "vengeful"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },		
+	
+
+    "mezz_Gauss_FeedbackProc": {
+      "type": "combat",
+      "lookup": [
+        "mezz_feedbackProc"
+      ],
+      "oncePerCombatTags": [
+        "mezz_FeedbackProc"
+      ],
+      "oncePerRun": true,
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "happy"
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "happy"
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "vengeful"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_KineticProc": {
+      "type": "combat",
+      "lookup": [
+        "mezz_kineticProc"
+      ],
+      "oncePerCombatTags": [
+        "mezz_KineticProc"
+      ],
+      "oncePerRun": true,
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "happy"
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "happy"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_ShieldProc": {
+      "type": "combat",
+      "lookup": [
+        "mezz_shieldProc"
+      ],
+      "oncePerCombatTags": [
+        "mezz_ShieldProc"
+      ],
+      "oncePerRun": true,
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "happy"
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "vengeful"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
+    "mezz_Gauss_StunProc": {
+      "type": "combat",
+      "lookup": [
+        "mezz_stunProc"
+      ],
+      "oncePerCombatTags": [
+        "mezz_StunProc"
+      ],
+      "oncePerRun": true,
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "vengeful"
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "vengeful"
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+			  "loopTag": "vengeful"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },		
+	
+    "mezz_Gauss_Pirate_0": {
+      "type": "event",
+      "lookup": [
+        "before_pirate"
+      ],
+      "once": true,
+      "priority": true,
+      "requireCharsUnlocked": [
+        "eunice"
+      ],
+      "requiredScenes": [
+        "Pirate_1"
+      ],
+      "allPresent": [
+        "gauss",
+      ],
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "serious",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "pirate",
+          "flipped": true,
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "angry",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "pirate",
+          "flipped": true,
+          "loopTag": "sly",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "pirate",
+          "flipped": true,
+          "loopTag": "mad",
+        },
+      ]
+    },
+    "mezz_Gauss_Pirate_1_1": {
+      "type": "combat",
+      "turnStart": true,
+      "priority": true,
+      "oncePerRun": true,
+      "allPresent": [
+        "pirate",
+		"gauss",
+      ],
+      "requiredScenes": [
+        "Pirate_1"
+      ],
+      "excludedScenes": [
+        "Pirate_2"
+      ],
+      "oncePerCombatTags": [
+        "mezz_IsaIlyaPirateBanter"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+		  "loopTag": "vengeful",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "pirate",
+		  "loopTag": "sly",
+        },
+      ]
+    },
+    "mezz_Gauss_Pirate_1_2": {
+      "type": "combat",
+      "turnStart": true,
+      "priority": true,
+      "oncePerRun": true,
+      "allPresent": [
+        "pirate",
+		"gauss",
+      ],
+      "requiredScenes": [
+        "Pirate_1"
+      ],
+      "excludedScenes": [
+        "Pirate_2"
+      ],
+      "oncePerCombatTags": [
+        "mezz_IsaIlyaPirateBanter"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+		  "loopTag": "angry",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "pirate",
+        },
+      ]
+    },
+	
+    "mezz_Gauss_ShopkeeperInfinite_0": {
+      "type": "event",
+      "lookup": [
+        "shopBefore"
+      ],
+      "bg": "BGShop",
+      "allPresent": [
+        "gauss"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "nerd",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+		  "loopTag": "happy",
+        },
+        {
+          "$type": "Jump, CobaltCore",
+          "key": "NewShop"
+        }
+      ]
+    },
+    "mezz_Gauss_ShopkeeperInfinite_1": {
+      "type": "event",
+      "lookup": [
+        "shopBefore"
+      ],
+      "bg": "BGShop",
+      "allPresent": [
+        "gauss"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "nerd",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+		  "loopTag": "happy",
+        },
+        {
+          "$type": "Jump, CobaltCore",
+          "key": "NewShop"
+        }
+      ]
+    },
+  
+  
+	"mezz_Gauss_StardogGetsChatty_0": {
+      "type": "combat",
+      "turnStart": true,
+      "allPresent": [
+        "wolf",
+        "gauss"
+      ],
+      "oncePerCombatTags": [
+        "StardogLeaveUsAlone"
+      ],
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "wolf",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "vengeful",
+        },
+      ]
+    },
+	"mezz_Gauss_StardogGetsChatty_1": {
+      "type": "combat",
+      "turnStart": true,
+      "allPresent": [
+        "wolf",
+        "gauss"
+      ],
+      "oncePerCombatTags": [
+        "StardogLeaveUsAlone"
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+          "who": "wolf",
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "vengeful",
+        },
+      ]
+    },
+  
+    "mezz_Gauss_WizardGeneralShouts_0": {
+      "type": "combat",
+      "turnStart": true,
+      "allPresent": [
+        "wizard",
+        "gauss"
+      ],
+      "enemyIntent": "wizardMagic",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "wizard",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+		  "loopTag": "angry",
+        }
+      ]
+    },
+    "mezz_Gauss_WizardGeneralShouts_1": {
+      "type": "combat",
+      "turnStart": true,
+      "allPresent": [
+        "wizard",
+        "gauss"
+      ],
+      "enemyIntent": "wizardMagic",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "wizard",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+		  "loopTag": "angry",
+        }
+      ]
+    },
+  
+  }
+}

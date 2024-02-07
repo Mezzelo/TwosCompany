@@ -1,11 +1,12 @@
-﻿using TwosCompany.Actions;
+﻿using System.Collections.Generic;
+using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Isabelle {
     [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class Couch : Card {
 
-        public int initialX = 0;
-
+        public int dist = 0;
+        public bool inHand = false;
         public override CardData GetData(State state) {
             string cardText;
             if (upgrade == Upgrade.None)
@@ -19,7 +20,8 @@ namespace TwosCompany.Cards.Isabelle {
                     GetDistanceString(state));
 
             return new CardData() {
-                cost = upgrade == Upgrade.A ? 1 : 2,
+                cost = upgrade == Upgrade.B ? 3 : 2,
+                exhaust = upgrade == Upgrade.None,
                 description = cardText,
             };
         }
@@ -32,14 +34,14 @@ namespace TwosCompany.Cards.Isabelle {
 
         private string GetDistanceString(State s) {
             if (s.route is Combat) {
-                return " <c=textMain>(</c><c=hurt>" + GetDistance(s).ToString() + "</c><c=maintext>)</c>";
+                return " <c=textMain>(</c><c=hurt>" + GetDmg(s, GetDistance(s)).ToString() + "</c><c=maintext>)</c>";
             }
             else
                 return "";
         }
         private int GetDistance(State s) {
             if (s.route is Combat)
-                return Math.Abs(initialX - s.ship.x) * (upgrade == Upgrade.B ? 2 : 1);
+                return dist * (upgrade == Upgrade.B ? 2 : 1);
             return 0;
         }
 
@@ -52,21 +54,8 @@ namespace TwosCompany.Cards.Isabelle {
             });
             return actions;
         }
-        public override void OnExitCombat(State s, Combat c) {
-            // roundDrawn = 0;
-            initialX = 0;
-        }
-        public override void OnDraw(State s, Combat c) {
-            // roundDrawn = c.turn;
-            initialX = s.ship.x;
-        }
-        public override void AfterWasPlayed(State state, Combat c) {
-            // roundDrawn = 0;
-        }
-        public override void OnDiscard(State s, Combat c) {
-            // roundDrawn = 0;
-        }
-
+        public override void OnExitCombat(State s, Combat c) => dist = 0;
+        public override void OnDraw(State s, Combat c) => dist = 0;
 
         public override string Name() => "Couch";
     }

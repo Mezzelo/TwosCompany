@@ -7,7 +7,7 @@ namespace TwosCompany.Cards.Ilya {
     public class Imbue : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = upgrade == Upgrade.A ? 2 : 1,
+                cost = upgrade == Upgrade.B ? 2 : 1,
             };
         }
         public override List<CardAction> GetActions(State s, Combat c) {
@@ -25,7 +25,7 @@ namespace TwosCompany.Cards.Ilya {
             });
             actions.Add(new StatCostAction() {
                 action = new AStatus() {
-                    status = upgrade == Upgrade.A ? Status.overdrive : Status.shield,
+                    status = upgrade == Upgrade.B ? Status.overdrive : Status.shield,
                     targetPlayer = true,
                     statusAmount = 1,
                 },
@@ -34,7 +34,7 @@ namespace TwosCompany.Cards.Ilya {
                 cumulative = 1,
             });
             actions.Add(new StatCostAction() {
-                action = upgrade == Upgrade.B ? new AStatus() {
+                action = upgrade == Upgrade.A ? new AStatus() {
                     status = Status.heat,
                     targetPlayer = true,
                     statusAmount = 5,
@@ -56,7 +56,7 @@ namespace TwosCompany.Cards.Ilya {
                 },
                 statusReq = Status.heat,
                 statusCost = 1,
-                cumulative = upgrade == Upgrade.B ? 2 : 3,
+                cumulative = upgrade == Upgrade.A ? 2 : 3,
             });
             return actions;
         }

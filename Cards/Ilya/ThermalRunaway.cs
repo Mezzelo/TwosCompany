@@ -5,7 +5,7 @@ namespace TwosCompany.Cards.Ilya {
     public class ThermalRunaway : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 1,
+                cost = 2,
                 recycle = upgrade == Upgrade.B
             };
         }
@@ -24,7 +24,7 @@ namespace TwosCompany.Cards.Ilya {
                 handAmount = this.GetHandSize(s)
             });
             actions.Add(new AExhaustEntireHandImmediate() {
-                dialogueSelector = GetHandSize(s) > 1 ? ".mezz_thermalRunaway" : null
+                dialogueSelector = GetHandSize(s) > 2 ? ".mezz_thermalRunaway" : null
             });
             actions.Add(new AAddCard() {
                 amount = this.GetHandSize(s),

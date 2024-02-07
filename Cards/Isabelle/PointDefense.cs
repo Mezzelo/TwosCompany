@@ -12,7 +12,9 @@ namespace TwosCompany.Cards.Isabelle {
                 cost = 0,
                 infinite = true,
                 retain = costIncrease == 0,
-                flippable = upgrade == Upgrade.A
+                flippable = upgrade == Upgrade.A,
+                art = new Spr?((Spr)((flipped ? Manifest.Sprites["PointDefenseCardSpriteFlip"] : Manifest.Sprites["PointDefenseCardSprite"]).Id
+                    ?? throw new Exception("missing flip art")))
             };
         }
 

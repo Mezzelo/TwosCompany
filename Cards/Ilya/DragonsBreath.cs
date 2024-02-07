@@ -5,8 +5,10 @@ namespace TwosCompany.Cards.Ilya {
     public class DragonsBreath : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 2,
-                flippable = upgrade == Upgrade.A
+                cost = 1,
+                flippable = upgrade == Upgrade.A,
+                art = new Spr?((Spr)((flipped ? Manifest.Sprites["DragonsBreathCardSpriteFlip"] : Manifest.Sprites["DragonsBreathCardSprite"]).Id
+                    ?? throw new Exception("missing flip art")))
             };
         }
         private bool InsufficientStatus (State s, Status status, int cost) {
@@ -37,7 +39,8 @@ namespace TwosCompany.Cards.Ilya {
                     statusCost = 1,
                     cumulative = 0,
                     moveEnemy = -1,
-                    first = true
+                    first = true,
+                    cardFlipped = this.flipped
                 });
             actions.Add(new StatCostAttack() {
                 action = new AAttack() {
@@ -49,11 +52,12 @@ namespace TwosCompany.Cards.Ilya {
                 statusCost = 1,
                 cumulative = 1,
                 timer = -0.5,
-                moveEnemy = -1
+                moveEnemy = -1,
+                cardFlipped = this.flipped
             });
             actions.Add(new StatCostAttack() {
                 action = new AAttack() {
-                    damage = GetDmg(s, 1),
+                    damage = GetDmg(s, 2),
                     moveEnemy = -1,
                     fast = true,
                     dialogueSelector = ".mezz_dragonsBreath",
@@ -62,7 +66,8 @@ namespace TwosCompany.Cards.Ilya {
                 statusCost = 1,
                 cumulative = 2,
                 timer = -0.5,
-                moveEnemy = -1
+                moveEnemy = -1,
+                cardFlipped = this.flipped
             });
             if (upgrade != Upgrade.B)
                 actions.Add(new AStatus() {
@@ -81,7 +86,8 @@ namespace TwosCompany.Cards.Ilya {
                     statusCost = 1,
                     cumulative = 3,
                     timer = -0.5,
-                    moveEnemy = -1
+                    moveEnemy = -1,
+                    cardFlipped = this.flipped
                 });
             return actions;
         }

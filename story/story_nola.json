@@ -244,13 +244,13 @@
       "lines": [
         {
           "$type": "Say, CobaltCore",
-          "who": "nola",
-          "loopTag": "annoyed",
+          "who": "isa",
+          "loopTag": "forlorn",
         },
         {
           "$type": "Say, CobaltCore",
-          "who": "isa",
-          "loopTag": "angry",
+          "who": "nola",
+          "loopTag": "squint",
         },
         {
           "$type": "Say, CobaltCore",
@@ -312,6 +312,52 @@
       "allPresent": [
         "nola",
         "ilya"
+      ]
+    },
+    "mezz_Duo_AboutToDieAndLoop_NolaJost": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "jost",
+          "loopTag": "forlorn",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "angry",
+        }
+      ],
+      "allPresent": [
+        "nola",
+        "jost"
+      ]
+    },
+    "mezz_Duo_AboutToDieAndLoop_NolaGauss": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "angry",
+        }
+      ],
+      "allPresent": [
+        "nola",
+        "gauss"
       ]
     },
     "mezz_Duo_AboutToDieAndLoop_NolaRiggs": {
@@ -962,7 +1008,7 @@
       "type": "combat",
       "whoDidThat": "sasha",
       "oncePerRunTags": [
-        "usedAToothCard"
+        "usedASashaCard"
       ],
       "lines": [
         {
@@ -1653,59 +1699,39 @@
       ]
     },
 	
-	
-	"mezz_Nola_CharStart_0": {
+    "mezz_Nola_LawlessZoneWarning_0": {
       "type": "event",
       "lookup": [
-        "zone_first"
-      ],
-      "bg": "BGRunStart",
-      "allPresent": [
-        "nola"
+        "zone_lawless"
       ],
       "once": true,
-      "priority": false,
+      "priority": true,
+      "allPresent": [
+        "nola",
+      ],
       "lines": [
-		{ "$type": "Say, CobaltCore",
+        {
+          "$type": "Say, CobaltCore",
           "who": "nola",
-          "loopTag": "squint",
-        }, 
-        { "$type": "Say, CobaltCore",
-          "who": "comp",
-          "flipped": true,
-        }, 
-		{ "$type": "Say, CobaltCore",
-          "who": "nola",
-          "loopTag": "annoyed",
-        }, 
-		{ "$type": "Say, CobaltCore",
-          "who": "nola",
-          "loopTag": "squint",
-        }, 
-        { "$type": "Say, CobaltCore",
-          "who": "comp",
-          "loopTag": "worried",
-          "flipped": true,
-        }, 
-		{ "$type": "Say, CobaltCore",
-          "who": "nola",
-          "loopTag": "happy",
-        }, 
-        { "$type": "Say, CobaltCore",
-          "who": "comp",
-          "flipped": true,
-        }, 
-		{ "$type": "Say, CobaltCore",
+        },
+        {
+          "$type": "Say, CobaltCore",
           "who": "nola",
           "loopTag": "smug",
-        }, 
-		{ "$type": "Say, CobaltCore",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "worried",
+		  "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
           "who": "nola",
-          "loopTag": "vengeful",
-        }, 
+          "loopTag": "nap",
+        },
       ]
     },
-	
 	"mezz_Nola_Cobalt_0": {
       "type": "event",
       "lookup": [
@@ -1781,8 +1807,129 @@
         }, 
       ]
     },
+	"mezz_Nola_Cobalt_Gauss_0": {
+      "type": "event",
+      "lookup": [
+        "before_theCobalt"
+      ],
+      "bg": "BGRunStart",
+      "allPresent": [
+        "nola",
+		"gauss"
+      ],
+      "once": true,
+      "priority": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "nola",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "happy",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "squint",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+          "flipped": true,
+        }, 
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "dizzy",
+              "loopTag": "squint",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "peri",
+              "loopTag": "panic",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "goat",
+              "loopTag": "panic",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "eunice",
+              "loopTag": "sly",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "hacker",
+              "loopTag": "intense",
+            },
+          ]
+        },
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "happy",
+          "flipped": true,
+        }, 
+      ]
+    },
 	
-	
+	"mezz_Nola_CharStart_0": {
+      "type": "event",
+      "lookup": [
+        "zone_first"
+      ],
+      "bg": "BGRunStart",
+      "allPresent": [
+        "nola"
+      ],
+      "once": true,
+      "priority": false,
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "squint",
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "comp",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "annoyed",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "squint",
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "worried",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "happy",
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "comp",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "smug",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "vengeful",
+        }, 
+      ]
+    },
 	"mezz_Nola_CharStart_Isa_0": {
       "type": "event",
       "lookup": [
@@ -1928,6 +2075,75 @@
 		{ "$type": "Say, CobaltCore",
           "who": "ilya",
           "loopTag": "bashful",
+        }, 
+      ]
+    },
+	"mezz_Nola_CharStart_Gauss_0": {
+      "type": "event",
+      "lookup": [
+        "zone_first"
+      ],
+      "bg": "BGRunStart",
+      "allPresent": [
+        "nola",
+		"gauss",
+      ],
+      "once": true,
+      "priority": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "nola",
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "annoyed",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "happy",
+          "flipped": true,
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "squint",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "serious",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "angry",
+          "flipped": true,
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "smug",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+          "flipped": true,
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "nap",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "angry",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "angry",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "happy",
+          "flipped": true,
         }, 
       ]
     },
@@ -2247,7 +2463,7 @@
     },
     "mezz_Nola_Memory_1": {
       "type": "event",
-      "bg": "BGVault",
+      "bg": "TwosCompany.ModBG.BGVaultTwos",
       "introDelay": false,
       "lookup": [
         "vault",
@@ -2327,13 +2543,24 @@
           "$type": "Say, CobaltCore",
           "who": "peri",
           "flipped": true,
+          "loopTag": "squint",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "smug",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "peri",
+          "flipped": true,
           "loopTag": "nap",
         },
       ],
     },
     "mezz_Nola_Memory_2": {
       "type": "event",
-      "bg": "BGHacker",
+      "bg": "TwosCompany.ModBG.BGVaultTwos",
       "introDelay": false,
       "lookup": [
         "vault",
@@ -2411,7 +2638,7 @@
     },
     "mezz_Nola_Memory_3": {
       "type": "event",
-      "bg": "BGHacker",
+      "bg": "TwosCompany.ModBG.BGCoreEmpty",
       "introDelay": false,
       "lookup": [
         "vault",
@@ -2479,44 +2706,6 @@
       ],
     },
 	
-	
-    "mezz_Nola_LawlessZoneWarning_0": {
-      "type": "event",
-      "lookup": [
-        "zone_lawless"
-      ],
-      "once": true,
-      "priority": true,
-      "allPresent": [
-        "nola",
-      ],
-      "lines": [
-        {
-          "$type": "Say, CobaltCore",
-          "who": "nola",
-        },
-        {
-          "$type": "Say, CobaltCore",
-          "who": "nola",
-          "loopTag": "smug",
-        },
-        {
-          "$type": "Say, CobaltCore",
-          "who": "comp",
-          "loopTag": "worried",
-		  "flipped": true,
-        },
-        {
-          "$type": "Say, CobaltCore",
-          "who": "nola",
-          "loopTag": "nap",
-        },
-      ]
-    },
-	
-	
-
-	
     "ChoiceCardRewardOfYourColorChoice_Mezz.TwosCompany.NolaDeck": {
       "type": "event",
       "oncePerRun": true,
@@ -2544,7 +2733,7 @@
     "LoseCharacterCard_Mezz.TwosCompany.NolaDeck": {
       "type": "event",
       "oncePerRun": true,
-      "bg": "BGBootSequence",
+      "bg": "BGSupernova",
       "lines": [
         {
           "$type": "Say, CobaltCore",
@@ -2556,7 +2745,7 @@
         "nola"
       ]
     },
-    "CrystallizedFriendEvent_Mezz.TwosCompany.NolaDeck": {
+    "CrystallizedFriendEvent_nolaID": {
       "type": "event",
       "oncePerRun": true,
       "bg": "BGCrystalizedFriend",
@@ -2688,84 +2877,6 @@
         "nola"
       ]
     },	
-    "mezz_Nola_ArtifactCockpitTargetIsRelevant_1": {
-      "type": "combat",
-      "turnStart": true,
-      "maxTurnsThisCombat": 1,
-      "oncePerRun": true,
-      "enemyHasPart": "cockpit",
-      "hasArtifacts": [
-        "CockpitTarget"
-      ],
-      "lines": [
-        {
-          "$type": "Say, CobaltCore",
-          "who": "nola",
-          "loopTag": "vengeful",
-        },
-        {
-          "$type": "SaySwitch, CobaltCore",
-          "lines": [
-            {
-              "$type": "Say, CobaltCore",
-              "who": "comp",
-              "loopTag": "intense",
-            },
-            {
-              "$type": "Say, CobaltCore",
-              "who": "dizzy",
-            },
-            {
-              "$type": "Say, CobaltCore",
-              "who": "riggs",
-            },
-            {
-              "$type": "Say, CobaltCore",
-              "who": "peri",
-            },
-            {
-              "$type": "Say, CobaltCore",
-              "who": "goat",
-			  "loopTag": "sly",
-            },
-            {
-              "$type": "Say, CobaltCore",
-              "who": "eunice",
-			  "loopTag": "sly",
-            },
-            {
-              "$type": "Say, CobaltCore",
-              "who": "hacker",
-			  "loopTag": "smile",
-            },
-            {
-              "$type": "Say, CobaltCore",
-              "who": "shard",
-			  "loopTag": "smile",
-            },
-          ]
-        },
-        {
-          "$type": "SaySwitch, CobaltCore",
-          "lines": [
-			{
-			  "$type": "Say, CobaltCore",
-			  "who": "isa",
-			  "loopTag": "snide",
-			},
-			{
-			  "$type": "Say, CobaltCore",
-			  "who": "ilya",
-			  "loopTag": "side",
-			},
-          ]
-        },
-
-      ],
-      "allPresent": [
-        "nola",
-      ]
-    },	
     "mezz_Nola_ArtifactCrosslink": {
       "type": "combat",
       "hasArtifacts": [
@@ -2881,7 +2992,7 @@
         }
       ],
       "allPresent": [
-        "smug"
+        "nola"
       ]
     },
     "mezz_Nola_ArtifactIonConverter": {
@@ -3247,6 +3358,7 @@
       "oncePerCombatTags": [
         "mezz_CommandCenter"
       ],
+      "oncePerRun": true,
       "lines": [
         {
           "$type": "SaySwitch, CobaltCore",
@@ -3277,6 +3389,7 @@
       "oncePerCombatTags": [
         "mezz_FingerlessGloves"
       ],
+      "oncePerRun": true,
       "lines": [
         {
           "$type": "SaySwitch, CobaltCore",
@@ -3307,6 +3420,7 @@
       "oncePerCombatTags": [
         "mezz_SecondGear"
       ],
+      "oncePerRun": true,
       "priority": true,
       "lines": [
         {
@@ -3415,6 +3529,16 @@
 			  "$type": "Say, CobaltCore",
 			  "who": "ilya",
               "loopTag": "intense",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "jost",
+              "loopTag": "happy",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "gauss",
+              "loopTag": "happy",
 			},
           ]
         },
@@ -3586,6 +3710,16 @@
 			  "who": "ilya",
               "loopTag": "bashful",
 			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "jost",
+              "loopTag": "happy",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "gauss",
+              "loopTag": "happy",
+			},
           ]
         },
       ],
@@ -3601,6 +3735,7 @@
       "oncePerCombatTags": [
         "mezz_HoldOn"
       ],
+      "oncePerRun": true,
       "lines": [
         {
           "$type": "SaySwitch, CobaltCore",
@@ -3640,6 +3775,7 @@
       "oncePerCombatTags": [
         "mezz_OpeningGambit"
       ],
+      "oncePerRun": true,
       "lines": [
         {
           "$type": "SaySwitch, CobaltCore",
@@ -3679,6 +3815,7 @@
       "oncePerCombatTags": [
         "mezz_Outmaneuver"
       ],
+      "oncePerRun": true,
       "lines": [
         {
           "$type": "SaySwitch, CobaltCore",
@@ -3718,6 +3855,7 @@
       "oncePerCombatTags": [
         "mezz_Relentless"
       ],
+      "oncePerRun": true,
       "lines": [
         {
           "$type": "SaySwitch, CobaltCore",

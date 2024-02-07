@@ -6,7 +6,8 @@ namespace TwosCompany.Artifacts {
         public BlackfootPendant() => Manifest.EventHub.ConnectToEvent<Tuple<int, bool, bool, Combat, State>>("Mezz.TwosCompany.Movement", Movement);
 
         public int counter = 0;
-        public override string Description() => "Whenever you move <c=keyword>4+</c> spaces from playing a single card, gain 2 <c=status>TEMP SHIELD</c>.";
+        public override string Description() => "Whenever you move <c=keyword>3</c> spaces from playing a single card, gain 1 <c=status>TEMP SHIELD</c>. " +
+            "If you move <c=keyword>4+</c> spaces, gain another.";
 
         public override void OnRemoveArtifact(State state) => Manifest.EventHub.DisconnectFromEvent<Tuple<int, bool, bool, Combat, State>>("Mezz.TwosCompany.Movement", Movement);
 
@@ -28,12 +29,12 @@ namespace TwosCompany.Artifacts {
 
             if (fromEvade)
                 return;
-            if (counter <= 3 && counter + Math.Abs(distance) > 3) {
+            if (counter <= 3 && counter + Math.Abs(distance) > 2) {
                 this.Pulse();
                 c.QueueImmediate(new AStatus() {
                     targetPlayer = true,
                     status = Status.tempShield,
-                    statusAmount = 2,
+                    statusAmount = Math.Abs(distance) > 3 ? 2 : 1,
                     dialogueSelector = ".mezz_blackfootPendant",
                 });
             }

@@ -2,12 +2,12 @@
 
 namespace TwosCompany.Cards.Isabelle {
     [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B }, dontOffer = true)]
-    public class Fleche : Card, DisguisedCard {
+    public class Fleche : Card, IDisguisedCard {
         public bool disguised = false;
         public bool forTooltip = false;
         // public bool wasPlayed = false;
-        bool DisguisedCard.disguised { get => disguised;  set => disguised = value; }
-        bool DisguisedCard.forTooltip { get => forTooltip; set => forTooltip = value; }
+        bool IDisguisedCard.disguised { get => disguised;  set => disguised = value; }
+        bool IDisguisedCard.forTooltip { get => forTooltip; set => forTooltip = value; }
 
         public override CardData GetData(State state) {
             return new CardData() {

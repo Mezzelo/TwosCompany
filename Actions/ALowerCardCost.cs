@@ -32,6 +32,6 @@
 
         }
         public override List<Tooltip> GetTooltips(State s) => new List<Tooltip>() { new TTGlossary(Manifest.Glossary["LowerCostHint"]?.Head ??
-                throw new Exception("missing glossary entry: LowerCostHint"), amount) };
+                throw new Exception("missing glossary entry: LowerCostHint"), -amount) };
     }
 }

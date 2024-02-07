@@ -5,7 +5,7 @@ namespace TwosCompany.Cards.Isabelle {
     public class FalseOpening : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = upgrade == Upgrade.B ? 1 : 2,
+                cost = upgrade == Upgrade.B ? 2 : 1,
                 exhaust = upgrade == Upgrade.B
             };
         }
@@ -21,7 +21,7 @@ namespace TwosCompany.Cards.Isabelle {
 
 
             if (upgrade != Upgrade.B) {
-                actions.Add((CardAction)new AVariableHint() {
+                actions.Add(new AVariableHint() {
                     status = Status.shield
                 });
                 actions.Add(new AStatus() {
@@ -53,8 +53,8 @@ namespace TwosCompany.Cards.Isabelle {
                 });
             ExternalStatus falseStatus = Manifest.Statuses?["FalseOpening" + (upgrade == Upgrade.B ? "B" : "")] ?? throw new Exception("status missing: falseopening");
             actions.Add(new AStatus() {
-                status = falseStatus.Id != null ? (Status)falseStatus.Id : Status.overdrive,
-                statusAmount = 1,
+                status = falseStatus.Id != null ? (Status) falseStatus.Id : Status.overdrive,
+                statusAmount = 2,
                 targetPlayer = true
             });
             return actions;

@@ -1,0 +1,1353 @@
+{
+  "all": {
+    "AbandonedShipyard": {
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "annoyed",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "snide",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "nap",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "nap",
+            },
+          ]
+        },
+      ],
+    },
+    "AbandonedShipyard_Repaired": {
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "forlorn",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "forlorn",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "angry",
+            },
+          ]
+        },
+      ],
+    },
+	
+    "ArtifactCrosslink_Multi_2": {
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "shard",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "smug",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "snide",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "happy",
+            },
+          ]
+        },
+      ],
+    },
+    "ArtifactGeminiCore_Multi_4": {
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "dizzy",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "smug",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "angry",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "nap",
+            },
+          ]
+        }
+      ],
+    },
+    "ArtifactIonConverter_Multi_3": {
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "shard",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "side",
+            },
+          ]
+        }
+      ],
+    },
+    "ArtifactOverclockedGeneratorSeenMaxMemory3_Multi_0": {
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "dizzy",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "smug",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "happy",
+            },
+          ]
+        }
+      ],
+    },
+	
+    "BanditThreats_Multi_0": {
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "bandit",
+          "loopTag": "smile",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "annoyed",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "intense",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "side",
+            },
+          ]
+        }
+      ]
+    },
+    "BatboyKeepsTalking_Multi_0": {
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "batboy",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "smug",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "snide",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "happy",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "happy",
+            },
+          ]
+        }
+      ]
+    },
+    "CrabFacts1_Multi_0": {
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "crab",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "snide",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "squint",
+            },
+          ]
+        }
+      ]
+    },
+    "CrabFacts2_Multi_0": {
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "crab",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "smug",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "glare",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "happy",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "squint",
+            },
+          ]
+        }
+      ]
+    },
+    "CrabFactsAreOverNow_Multi_0": {
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "crab",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "smug",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "glare",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "annoyed",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "angry",
+            },
+          ]
+        }
+      ]
+    },
+    "ShopKeepBattleInsult": {
+      "type": "combat",
+      "lines": [
+		{
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "smug",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "intense",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "happy",
+            },
+          ]
+        }
+      ],
+    },
+    "SkunkFirstTurnShouts_Multi_0": {
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "skunk",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "smug",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "snide",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "annoyed",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "vengeful",
+            },
+          ]
+        }
+      ]
+    },
+    "SogginsEscapeIntent_1": {
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "soggins",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "angry",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "annoyed",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "side",
+            },
+          ]
+        }
+      ]
+    },
+    "Soggins_Missile_Shout_1": {
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "soggins",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "smug",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "snide",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "happy",
+            },
+          ]
+        }
+      ]
+    },
+    "SpikeGetsChatty_Multi_0": {
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "oxygenguy",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "smug",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "glare",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "intense",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "vengeful",
+            },
+          ]
+        }
+      ]
+    },
+	
+	
+	
+    "JustPlayedASashaCard_Multi_2": {
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "happy",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "squint",
+            },
+          ]
+        },
+      ],
+    },
+    "ManyTurns_Multi_5": {
+      "type": "combat",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "riggs",
+          "loopTag": "banana",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "happy",
+            },
+          ]
+        }
+      ],
+    },
+    "OneHitPointThisIsFine_Multi_4": {
+      "type": "combat",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "goat",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "angry",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "side",
+            },
+          ]
+        }
+      ],
+    },
+    "OneHitPointThisIsFine_Multi_5": {
+      "type": "combat",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "goat",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "forlorn",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "squint",
+            },
+          ]
+        }
+      ],
+    },
+    "OneHitPointThisIsFine_Multi_5": {
+      "type": "combat",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "eunice",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "angry",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "forlorn",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "annoyed",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "nap",
+            },
+          ]
+        }
+      ],
+    },
+    "OverheatDrakeFix_Multi_6": {
+      "type": "combat",
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "glare",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "happy",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "nap",
+            },
+          ]
+        }
+      ],
+    },
+    "OverheatDrakesFault_Multi_9": {
+      "type": "combat",
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "angry",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "glare",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "side",
+            },
+          ]
+        }
+      ],
+    },
+    "ThatsALotOfDamageToThem_Multi_6": {
+      "type": "combat",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "peri",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "smug",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "happy",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "happy",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "happy",
+            },
+          ]
+        }
+      ],
+    },
+    "TookDamageHave2HP_Multi_0": {
+      "type": "combat",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "dizzy",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "annoyed",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "angry",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "squint",
+            },
+          ]
+        }
+      ],
+    },
+    "TookDamageHave2HP_Multi_1": {
+      "type": "combat",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "dizzy",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "angry",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "forlorn",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "intense",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "forlorn",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "squint",
+            },
+          ]
+        }
+      ],
+    },
+    "TookDamageHave2HP_Multi_2": {
+      "type": "combat",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "dizzy",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "annoyed",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "angry",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "squint",
+            },
+          ]
+        }
+      ],
+    },
+    "WeJustGainedHeatAndDrakeIsHere_Multi_0": {
+      "type": "combat",
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "snide",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "side",
+            },
+          ]
+        }
+      ],
+    },
+	
+	
+    "CrystallizedFriendEvent": {
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "forlorn",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "forlorn",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "nap",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "side",
+            },
+          ]
+        },
+      ],
+    },
+    "DraculaTime": {
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "dracula",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "smug",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "swordsquint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "squint",
+            },
+          ]
+        },
+      ],
+    },
+    "ForeignCardOffering_After": {
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "smug",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "snide",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "nap",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "nap",
+            },
+          ]
+        },
+      ],
+    },
+    "ForeignCardOffering_Refuse": {
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "forlorn",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "forlorn",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "side",
+            },
+          ]
+        },
+      ],
+    },
+    "Freeze_1": {
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "smug",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "snide",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "happy",
+            },
+          ]
+        },
+      ],
+    },
+	"EphemeralCardGift": {
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "nap",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "forlorn",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "annoyed",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "squint",
+            },
+          ]
+        },
+      ],
+      "choiceFunc": "EphemeralCardGift"
+    },
+	"GrandmaShop": {
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "grandma",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "comp",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "happy",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "forlorn",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "happy",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "happy",
+            },
+          ]
+        },
+      ],
+    },
+    "LoseCharacterCard": {
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "smug",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "shocked",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "datapad",
+            },
+          ]
+        }
+      ]
+    },
+    "LoseCharacterCard_No": {
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "datapad",
+            },
+          ]
+        }
+      ]
+    },
+    "OverheatDrakesFault_Multi_9": {
+      "type": "combat",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sasha",
+        },
+		{
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "smug",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "happy",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "happy",
+            },
+          ]
+        }
+      ],
+    },
+    "SogginsEscape_1": {
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "soggins",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "soggins",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "soggins",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "annoyed",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "glare",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "intense",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "annoyed",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "happy",
+            },
+          ]
+        }
+      ]
+    },
+    "Soggins_1": {
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "soggins",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "soggins",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "soggins",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "smug",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "snide",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "happy",
+            },
+          ]
+        }
+      ]
+    },
+    "Soggins_Infinite": {
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "soggins",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "smug",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "snide",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "side",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "happy",
+            },
+          ]
+        }
+      ]
+    },
+  
+  
+  }
+}

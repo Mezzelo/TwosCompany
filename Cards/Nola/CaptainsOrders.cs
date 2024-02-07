@@ -13,7 +13,7 @@ namespace TwosCompany.Cards.Nola {
                 cardText = Loc.GetLocString(Manifest.Cards?["CaptainsOrders"].DescBLocKey ?? throw new Exception("Missing card description"));
 
             return new CardData() {
-                cost = upgrade == Upgrade.B ? 4 : 3,
+                cost = 3,
                 description = cardText,
                 retain = true
             };

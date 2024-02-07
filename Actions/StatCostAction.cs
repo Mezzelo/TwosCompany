@@ -1,21 +1,21 @@
 ﻿using System.Collections.Generic;
 
 namespace TwosCompany.Actions {
-    public class StatCostAction : CardAction, StatCost {
+    public class StatCostAction : CardAction, IStatCost {
         public Status statusReq;
         public int statusCost = 1;
         public int cumulative = 0;
         public CardAction? action;
         public bool first = false;
-        Status StatCost.statusReq { get => statusReq; }
-        int StatCost.statusCost { get => statusCost; }
-        int StatCost.cumulative { get => cumulative; }
-        CardAction? StatCost.action { get => action; }
-        bool StatCost.first { get => first; }
+        Status IStatCost.statusReq { get => statusReq; }
+        int IStatCost.statusCost { get => statusCost; }
+        int IStatCost.cumulative { get => cumulative; }
+        CardAction? IStatCost.action { get => action; }
+        bool IStatCost.first { get => first; }
         public override void Begin(G g, State s, Combat c) {
             if (action == null)
                 return;
-            if (s.ship.statusEffects.ContainsKey(statusReq) && s.ship.statusEffects[statusReq] >= statusCost) {
+            if (s.ship.Get(statusReq) >= statusCost) {
                 s.ship.Set(statusReq, s.ship.Get(statusReq) - this.statusCost);
                 if (statusReq == Status.evade)
                     Audio.Play(FSPRO.Event.Status_EvadeDown);
@@ -33,6 +33,10 @@ namespace TwosCompany.Actions {
         public override List<Tooltip> GetTooltips(State s) {
             List<Tooltip> list = (action ?? throw new Exception("no action set")).GetTooltips(s);
             string status = statusReq.ToString();
+            if (Manifest.Statuses["DefensiveStance"].Id.ToString()!.Equals(status))
+                status = "DefensiveStance";
+            else if (Manifest.Statuses["OffensiveStance"].Id.ToString()!.Equals(status))
+                status = "OffensiveStance";
             status = string.Concat(status[0].ToString().ToUpper(), status.AsSpan(1));
             list.Add(new TTGlossary(Manifest.Glossary[status + "Cost"]?.Head ??
                 throw new Exception("missing glossary entry: status cost hint"), statusCost));

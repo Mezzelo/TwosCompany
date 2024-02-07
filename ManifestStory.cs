@@ -3,14 +3,17 @@ using CobaltCoreModding.Definitions.ModContactPoints;
 using CobaltCoreModding.Definitions.ModManifests;
 using Microsoft.Extensions.Logging;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using TwosCompany.Helper;
 
 namespace TwosCompany {
     public partial class Manifest : IStoryManifest {
 
-        private string GetHash(string input, SHA256 hash) {
+        private static string GetHash(string input, SHA256 hash) {
             byte[] bytes = hash.ComputeHash(Encoding.UTF8.GetBytes(input));
             StringBuilder builder = new StringBuilder();
             foreach (Byte thisByte in bytes)
@@ -18,7 +21,42 @@ namespace TwosCompany {
             return builder.ToString().Substring(0, 8);
         }
 
-        private void LoadStory(string storyFileName, Dictionary<string, string> loc, Dictionary<string, string> whos, IStoryRegistry storyRegistry) {
+        public static void PatchStory(string storyFileName, Dictionary<string, string> loc) {
+            if (Manifest.Instance.ModRootFolder == null)
+                throw new Exception("Root Folder not set");
+
+            Type[] bgs = Assembly.GetExecutingAssembly().GetTypes()
+              .Where(t => String.Equals(t.Namespace, "TwosCompany.ModBG"))
+              .ToArray();
+
+            foreach (Type bg in bgs)
+                DB.backgrounds.Add("TwosCompany.ModBG" + "." + bg.Name, bg);
+
+            Story parseStory = Mutil.LoadJsonFile<Story>(Path.Combine(Manifest.Instance.ModRootFolder.FullName, "story", Path.GetFileName(storyFileName + ".json")));
+            SHA256 hash = SHA256.Create();
+            foreach (string key in parseStory.all.Keys) {
+                int counter = 0;
+                // Manifest.Instance.Logger!.LogInformation("key: " + key);
+                if (DB.story.all.ContainsKey(key)) {
+                    for (int i = 0; i < DB.story.all[key].lines.Count && i < parseStory.all[key].lines.Count; i++) {
+                        Instruction line = DB.story.all[key].lines[i];
+                        if (line is SaySwitch saySwitch && parseStory.all[key].lines[i] is SaySwitch addLines) {
+                            foreach (Say sayLine in addLines.lines) {
+                                string newHash = GetHash(key + ":" + counter + ":mezz_" + sayLine.who, hash);
+                                DB.currentLocale.strings.Add(key + ":" + newHash, loc[key + ":" + counter + ":mezz_" + sayLine.who]);
+                                if (ManifHelper.charStoryNames.ContainsKey(sayLine.who))
+                                    sayLine.who = ManifHelper.charStoryNames[sayLine.who];
+                                sayLine.hash = newHash;
+                                saySwitch.lines.Add(sayLine);
+                            }
+                        }
+                    }
+                    counter++;
+                }
+            }
+        }
+
+        private void LoadStory(string storyFileName, Dictionary<string, string> loc, Dictionary<string, string> whos, IStoryRegistry? storyRegistry) {
             if (ModRootFolder == null)
                 throw new Exception("Root Folder not set");
 
@@ -28,6 +66,13 @@ namespace TwosCompany {
             SHA256 hash = SHA256.Create();
 
             foreach (string key in parseStory.all.Keys) {
+                string keyName = key;
+                foreach (string charKey in ManifHelper.charStoryNames.Keys) {
+                    if (keyName.Contains(charKey + "ID")) {
+                        keyName = Regex.Replace(keyName, charKey + "ID", "" + ManifHelper.GetDeckId(charKey));
+                        break;
+                    }
+                }
                 if (whos.ContainsKey(key))
                     parseStory.all[key].whoDidThat = (Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId(whos[key])), 
                         typeof(Deck));
@@ -78,14 +123,18 @@ namespace TwosCompany {
                         }
                     }
                 }
-                ExternalStory newStory = new ExternalStory(key, parseStory.all[key], parseStory.all[key].lines);
-                for (int i = 0; i < hashes.Count; i++) {
-                    if (!loc.ContainsKey(whats[i]))
-                        throw new Exception("key not found in loc: " + whats[i]);
-                    newStory.AddLocalisation(hashes[i], loc[whats[i]]);
-                }
+                if (storyRegistry != null) {
+                    ExternalStory newStory = new ExternalStory(keyName, parseStory.all[key], parseStory.all[key].lines);
+                    for (int i = 0; i < hashes.Count; i++) {
+                        if (!loc.ContainsKey(whats[i]))
+                            throw new Exception("key not found in loc: " + whats[i]);
+                        newStory.AddLocalisation(hashes[i], loc[whats[i]]);
+                    }
 
-                storyRegistry.RegisterStory(newStory);
+                    storyRegistry.RegisterStory(newStory);
+                } else {
+
+                }
 
                 hashes.Clear();
                 whats.Clear();
@@ -100,6 +149,8 @@ namespace TwosCompany {
             LoadStory("story_nola", loc, whos, storyRegistry);
             LoadStory("story_isabelle", loc, whos, storyRegistry);
             LoadStory("story_ilya", loc, whos, storyRegistry);
+            LoadStory("story_jost", loc, whos, storyRegistry);
+            LoadStory("story_gauss", loc, whos, storyRegistry);
         }
     }
 }

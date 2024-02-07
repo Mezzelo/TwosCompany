@@ -8,9 +8,6 @@
         public override void OnReceiveArtifact(State state) {
 
             int increase = state.ship.shieldMaxBase *= 2;
-            int num = increase;
-            foreach (Artifact enumerateAllArtifact in state.EnumerateAllArtifacts())
-                num += enumerateAllArtifact.ModifyHealAmount(increase, state, true);
 
             state.rewardsQueue.Add(new AHullMax() {
                 amount = increase,
@@ -18,7 +15,7 @@
                 timer = 0.5
             });
             state.rewardsQueue.Add(new AHeal() {
-                healAmount = num,
+                healAmount = increase,
                 targetPlayer = true,
                 timer = 0.5
             });

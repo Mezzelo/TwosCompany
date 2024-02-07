@@ -28,9 +28,9 @@ namespace TwosCompany.Actions {
                 amount2--;
             else
                 amount1--;
-            if (disguise && newCard is DisguisedCard) {
-                ((DisguisedCard)newCard).disguised = true;
-                ((DisguisedCard)newCard).forTooltip = false;
+            if (disguise && newCard is IDisguisedCard) {
+                ((IDisguisedCard)newCard).disguised = true;
+                ((IDisguisedCard)newCard).forTooltip = false;
             }
             newCard.pos = new Vec(G.screenSize.x * 0.5 - 30.0, 30.0);
             newCard.waitBeforeMoving = waitBeforeMoving;

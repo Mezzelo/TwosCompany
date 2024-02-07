@@ -9,6 +9,7 @@
 	  <OutputPath>C:\Program Files (x86)\Steam\steamapps\common\Cobalt Core\ModLibrary\TwosCompany</OutputPath>
     <Configurations>Debug;Release;Empty</Configurations>
     <BaseIntermediateOutputPath />
+    <AssemblyVersion>2.0.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>

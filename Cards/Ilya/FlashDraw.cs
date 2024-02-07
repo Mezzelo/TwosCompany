@@ -10,7 +10,8 @@ namespace TwosCompany.Cards.Ilya {
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 0,
-                recycle = upgrade == Upgrade.B
+                recycle = upgrade == Upgrade.B,
+                exhaust = upgrade != Upgrade.B
             };
         }
 
@@ -25,12 +26,12 @@ namespace TwosCompany.Cards.Ilya {
 
             actions.Add(new ADiscard());
             actions.Add(new ADrawCard() {
-                count = upgrade == Upgrade.B ? 5 : 4
+                count = upgrade == Upgrade.A ? 7 : (upgrade == Upgrade.B ? 6 : 5)
             });
 
             actions.Add(new AStatus() {
                 status = Status.heat,
-                statusAmount = upgrade == Upgrade.None ? 2 : 1,
+                statusAmount = 2,
                 targetPlayer = true,
             });
             return actions;
@@ -39,6 +40,7 @@ namespace TwosCompany.Cards.Ilya {
 
         public override void OnExitCombat(State s, Combat c) {
             wasPlayed = false;
+            costIncrease = 0;
         }
 
         public override void OnDraw(State s, Combat c) {

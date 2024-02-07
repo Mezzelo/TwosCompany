@@ -23,6 +23,8 @@ namespace TwosCompany.Actions {
                 Audio.Play(FSPRO.Event.CardHandling);
                 s.RemoveCardFromWhereverItIs(selectedCard.uuid);
                 c.SendCardToHand(s, selectedCard);
+                foreach (Artifact enumerateAllArtifact in s.EnumerateAllArtifacts())
+                    enumerateAllArtifact.OnDrawCard(s, c, 1);
             }
         }
         public override Icon? GetIcon(State s) => new Icon((Spr)(Manifest.Sprites["IconCallAndResponseHint"].Id ?? throw new Exception("missing icon")), null, Colors.textMain);

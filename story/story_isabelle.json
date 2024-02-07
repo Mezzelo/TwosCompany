@@ -22,7 +22,7 @@
     "LoseCharacterCard_Mezz.TwosCompany.IsabelleDeck": {
       "type": "event",
       "oncePerRun": true,
-      "bg": "BGBootSequence",
+      "bg": "BGSupernova",
       "lines": [
         {
           "$type": "Say, CobaltCore",
@@ -34,7 +34,7 @@
         "isa"
       ]
     },
-    "CrystallizedFriendEvent_Mezz.TwosCompany.IsabelleDeck": {
+    "CrystallizedFriendEvent_isaID": {
       "type": "event",
       "oncePerRun": true,
       "bg": "BGCrystalizedFriend",
@@ -55,6 +55,75 @@
     },
   
 
+    "mezz_Duo_AboutToDieAndLoop_IsaIlya": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "angry",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "intense",
+        }
+      ],
+      "allPresent": [
+        "isa",
+        "ilya"
+      ]
+    },
+    "mezz_Duo_AboutToDieAndLoop_IsaJost": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "forlorn",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "jost",
+          "loopTag": "neutral",
+        }
+      ],
+      "allPresent": [
+        "isa",
+        "jost"
+      ]
+    },
+    "mezz_Duo_AboutToDieAndLoop_IsaGauss": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "isa",
+        "gauss"
+      ]
+    },
     "mezz_Duo_AboutToDieAndLoop_IsaRiggs": {
       "type": "combat",
       "enemyShotJustHit": true,
@@ -522,6 +591,66 @@
 		},
       ]
     },
+    "mezz_Isa_JustHit_Jost_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "isa",
+        "jost",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "jost",
+		  "loopTag": "happy",
+		},
+      ]
+    },
+    "mezz_Isa_JustHit_Jost_1": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "isa",
+        "jost",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "jost",
+		  "loopTag": "happy",
+		},
+      ]
+    },
+    "mezz_Isa_JustHit_Jost_2": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "isa",
+        "jost",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "jost",
+		  "loopTag": "happy",
+		},
+      ]
+    },
+    "mezz_Isa_JustHit_Gauss_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "isa",
+        "gauss",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "gauss",
+		  "loopTag": "happy",
+		},
+      ]
+    },
     "mezz_Isa_JustHit_Books_0": {
       "type": "combat",
       "playerShotJustHit": true,
@@ -738,15 +867,18 @@
         }, 
       ]
     },
-	"mezz_Isa_Cobalt_Ilya_0": {
+	"mezz_Isa_CharStart_Jost_0": {
       "type": "event",
       "lookup": [
-        "before_theCobalt"
+        "zone_first"
       ],
-      "bg": "BGRunStart",
+      "requiredScenes": [
+        "mezz_Jost_CharStart_0",
+      ],
+      "bg": "TwosCompany.ModBG.BGRunStartScripted",
       "allPresent": [
         "isa",
-		"ilya",
+		"jost",
       ],
       "once": true,
       "priority": true,
@@ -756,23 +888,99 @@
         }, 
 		{ "$type": "Say, CobaltCore",
           "who": "isa",
+          "loopTag": "shocked",
         }, 
-        { "$type": "Say, CobaltCore",
-          "who": "ilya",
-          "loopTag": "blush",
+		{ "$type": "Say, CobaltCore",
+          "who": "jost",
           "flipped": true,
         }, 
 		{ "$type": "Say, CobaltCore",
-          "who": "ilya",
-          "loopTag": "bashful",
-          "flipped": true,
+          "who": "isa",
+          "loopTag": "shocked",
+        }, 
+        {
+          "$type": "BGAction, CobaltCore",
+          "action": "silence_cue"
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "forlorn",
         }, 
         { "$type": "Say, CobaltCore",
           "who": "isa",
-          "loopTag": "snide",
+          "loopTag": "angry",
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "nap",
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "angry",
+        }, 
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 2
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "forlorn",
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "jost",
+          "loopTag": "forlorn",
+          "flipped": true,
         }, 
       ]
     },
+	"mezz_Isa_CharStart_Gauss_0": {
+      "type": "event",
+      "lookup": [
+        "zone_first"
+      ],
+      "bg": "BGRunStart",
+      "allPresent": [
+        "isa",
+		"gauss",
+      ],
+      "once": true,
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "isa",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "isa",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "squint",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "serious",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "snide",
+          "flipped": true,
+        }, 
+      ]
+    },
+	
 	"mezz_Isa_CharStart_Riggs_0": {
       "type": "event",
       "lookup": [
@@ -1015,6 +1223,41 @@
       ]
     },
   
+	"mezz_Isa_Cobalt_Ilya_0": {
+      "type": "event",
+      "lookup": [
+        "before_theCobalt"
+      ],
+      "bg": "BGRunStart",
+      "allPresent": [
+        "isa",
+		"ilya",
+      ],
+      "once": true,
+      "priority": true,
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+          "who": "isa",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "isa",
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "blush",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "bashful",
+          "flipped": true,
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "snide",
+        }, 
+      ]
+    },
 	"mezz_Isa_Cobalt_Peri_0": {
       "type": "event",
       "lookup": [
@@ -1255,7 +1498,7 @@
     },
     "mezz_Isa_Memory_2": {
       "type": "event",
-      "bg": "BGVault",
+      "bg": "TwosCompany.ModBG.BGVaultTwos",
       "introDelay": false,
       "lookup": [
         "vault",
@@ -1285,48 +1528,49 @@
           "$type": "Say, CobaltCore",
           "who": "batboy",
           "loopTag": "rude",
+		  "flipped": true,
         },
         {
           "$type": "Say, CobaltCore",
           "who": "batboy",
           "loopTag": "rude",
+		  "flipped": true,
         },
         {
           "$type": "Say, CobaltCore",
           "who": "batboy",
           "loopTag": "nervous",
+		  "flipped": true,
         },
         {
           "$type": "Say, CobaltCore",
           "who": "batboy",
           "loopTag": "nervous",
+		  "flipped": true,
         },
         {
           "$type": "Say, CobaltCore",
           "who": "isa",
           "loopTag": "squint",
-		  "flipped": true,
         },
         {
           "$type": "Say, CobaltCore",
           "who": "isa",
-		  "flipped": true,
         },
         {
           "$type": "Say, CobaltCore",
           "who": "isa",
-		  "flipped": true,
         },
         {
           "$type": "Say, CobaltCore",
           "who": "batboy",
           "loopTag": "sad",
+		  "flipped": true,
         },
         {
           "$type": "Say, CobaltCore",
           "who": "isa",
-          "loopTag": "happy",
-		  "flipped": true,
+          "loopTag": "glare",
         },
       ],
     },
@@ -1483,6 +1727,53 @@
         "PeriRiggsCoolGun_2"
       ]
     },
+    "mezz_Isa_Lawless_JostPeri_0": {
+      "type": "event",
+      "lookup": [
+        "zone_lawless"
+      ],
+      "once": true,
+      "priority": true,
+      "allPresent": [
+        "peri",
+        "jost",
+		"isa",
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "peri",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "peri",
+          "loopTag": "mad",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "jost",
+          "loopTag": "swordhappy",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "swordhappy",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "peri",
+          "loopTag": "squint",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "peri",
+          "loopTag": "mad",
+        },
+      ],
+      "requiredScenes": [
+        "PeriRiggsCoolGun_2"
+      ]
+    },
 	
     "mezz_Isa_ArtifactAresCannon": {
       "type": "combat",
@@ -1614,86 +1905,7 @@
       "allPresent": [
         "isa"
       ]
-    },	
-    "mezz_Isa_ArtifactCockpitTargetIsRelevant_1": {
-      "type": "combat",
-      "turnStart": true,
-      "maxTurnsThisCombat": 1,
-      "oncePerRun": true,
-      "enemyHasPart": "cockpit",
-      "hasArtifacts": [
-        "CockpitTarget"
-      ],
-      "lines": [
-        {
-          "$type": "Say, CobaltCore",
-          "who": "isa",
-          "loopTag": "snide",
-        },
-        {
-          "$type": "SaySwitch, CobaltCore",
-          "lines": [
-            {
-              "$type": "Say, CobaltCore",
-              "who": "comp",
-              "loopTag": "worried",
-            },
-            {
-              "$type": "Say, CobaltCore",
-              "who": "riggs",
-			  "loopTag": "squint",
-            },
-            {
-              "$type": "Say, CobaltCore",
-              "who": "peri",
-			  "loopTag": "squint",
-            },
-            {
-              "$type": "Say, CobaltCore",
-              "who": "dizzy",
-			  "loopTag": "squint",
-            },
-            {
-              "$type": "Say, CobaltCore",
-              "who": "goat",
-			  "loopTag": "writing",
-            },
-            {
-              "$type": "Say, CobaltCore",
-              "who": "eunice",
-			  "loopTag": "squint",
-            },
-            {
-              "$type": "Say, CobaltCore",
-              "who": "hacker",
-			  "loopTag": "squint",
-            },
-            {
-              "$type": "Say, CobaltCore",
-              "who": "shard",
-            },
-          ]
-        },
-        {
-          "$type": "SaySwitch, CobaltCore",
-          "lines": [
-			{
-			  "$type": "Say, CobaltCore",
-			  "who": "nola",
-			  "loopTag": "smug",
-			},
-			{
-			  "$type": "Say, CobaltCore",
-			  "who": "ilya",
-			  "loopTag": "side",
-			},
-          ]
-        },
-      ],
-      "allPresent": [
-        "isa",
-      ]
-    },	
+    },
     "mezz_Isa_ArtifactCrosslink": {
       "type": "combat",
       "hasArtifacts": [
@@ -2105,6 +2317,48 @@
 		"isa"
       ]
     },
+    "mezz_Isa_ArtifactQuickDraw": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "hasArtifacts": [
+        "Quickdraw"
+      ],
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "happy",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "squint",
+            }
+          ]
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "riggs",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "riggs",
+            }
+          ]
+        },
+      ],
+      "allPresent": [
+        "isa",
+        "riggs"
+      ]
+    },
     "mezz_Isa_ArtifactRecalibrator": {
       "type": "combat",
       "playerShotJustMissed": true,
@@ -2221,6 +2475,7 @@
       "oncePerCombatTags": [
         "mezz_CannonGuard"
       ],
+      "oncePerRun": true,
       "lines": [
         {
           "$type": "SaySwitch, CobaltCore",
@@ -2248,6 +2503,7 @@
       "oncePerCombatTags": [
         "mezz_BlackfootPendant"
       ],
+      "oncePerRun": true,
       "lines": [
         {
           "$type": "SaySwitch, CobaltCore",
@@ -2276,6 +2532,7 @@
         "mezz_Metronome"
       ],
       "priority": true,
+      "oncePerRun": true,
       "lines": [
         {
           "$type": "SaySwitch, CobaltCore",
@@ -2305,6 +2562,7 @@
       "oncePerCombatTags": [
         "mezz_Bind"
       ],
+      "oncePerRun": true,
       "lines": [
         {
           "$type": "SaySwitch, CobaltCore",
@@ -2560,7 +2818,40 @@
         "isa"
       ]
     },	
-
+    "mezz_Isa_Card_Taunt": {
+      "type": "combat",
+      "lookup": [
+        "mezz_taunt"
+      ],
+      "oncePerCombatTags": [
+        "mezz_Taunt"
+      ],
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "isa",
+			  "loopTag": "snide"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "isa",
+			  "loopTag": "snide"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "isa",
+			  "loopTag": "happy"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "isa"
+      ]
+    },
 	
     "mezz_Isa_Batboy_0": {
       "type": "event",
@@ -2979,7 +3270,7 @@
         {
           "$type": "Say, CobaltCore",
           "who": "eunice",
-          "loopTag": "angry",
+          "loopTag": "mad",
         },
         {
           "$type": "Say, CobaltCore",
@@ -3193,7 +3484,7 @@
 			{
 			  "$type": "Say, CobaltCore",
 			  "who": "isa",
-		      "loopTag": "nap",
+		      "loopTag": "neutral",
 			},
 			{
 			  "$type": "Say, CobaltCore",
@@ -3558,30 +3849,6 @@
         {
           "$type": "Say, CobaltCore",
           "who": "isa",
-        }
-      ],
-      "allPresent": [
-        "isa"
-      ]
-    },
-    "mezz_Isa_StrafeHit_0": {
-      "type": "combat",
-      "playerShotJustHit": true,
-      "minDamageDealtToEnemyThisAction": 1,
-      "playerShotWasFromStrafe": true,
-      "oncePerCombat": true,
-      "lines": [
-        {
-          "$type": "SaySwitch, CobaltCore",
-          "lines": [
-            { "$type": "Say, CobaltCore",
-              "who": "isa",
-              "loopTag": "happy",
-            },
-            { "$type": "Say, CobaltCore",
-              "who": "isa",
-            }
-          ]
         }
       ],
       "allPresent": [
@@ -4048,6 +4315,7 @@
     "mezz_Isa_Knight_Midcombat_Greeting_0": {
       "type": "event",
       "oncePerCombat": true,
+	  "once": true,
 	  "priority": true,
       "allPresent": [
         "isa"
@@ -4085,6 +4353,7 @@
     "mezz_Isa_Knight_Midcombat_Greeting_1": {
       "type": "event",
       "oncePerCombat": true,
+	  "once": true,
 	  "priority": true,
       "allPresent": [
         "isa"
@@ -4510,6 +4779,32 @@
           "$type": "Say, CobaltCore",
           "who": "ilya",
 		  "loopTag": "side",
+        },
+      ]
+    },
+    "mezz_Isa_WizardGeneralShouts_Jost_0": {
+      "type": "combat",
+      "turnStart": true,
+      "allPresent": [
+        "wizard",
+        "isa",
+        "jost"
+      ],
+      "enemyIntent": "wizardMagic",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "wizard",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "isa",
+		  "loopTag": "glare",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "jost",
+		  "loopTag": "happy",
         },
       ]
     },

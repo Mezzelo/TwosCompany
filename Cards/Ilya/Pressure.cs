@@ -5,13 +5,10 @@ namespace TwosCompany.Cards.Ilya {
     [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class Pressure : Card {
 
-        public bool isTemp = false;
-
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 0,
                 exhaust = upgrade == Upgrade.B,
-                temporary = isTemp
             };
         }
 
@@ -40,7 +37,7 @@ namespace TwosCompany.Cards.Ilya {
             });
             if (upgrade == Upgrade.B)
                 actions.Add(new AAddCard() {
-                    card = new Pressure() { upgrade = Upgrade.B, isTemp = true },
+                    card = new Pressure() { upgrade = Upgrade.B, temporaryOverride = true },
                     destination = CardDestination.Deck,
                     showCardTraitTooltips = true
                 });

@@ -1,5 +1,5 @@
 ﻿namespace TwosCompany.Cards.Isabelle {
-    [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
+    [CardMeta(rarity = Rarity.rare, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class Remise : Card {
         public override CardData GetData(State state) {
             string cardText;
@@ -11,7 +11,7 @@
                     IncomingString(state, true), IncomingString(state, false));
             else
                 cardText = String.Format(Loc.GetLocString(Manifest.Cards?["Remise"].DescBLocKey ?? throw new Exception("Missing card description")),
-                    IncomingString(state, true), IncomingString(state, false));
+                    IncomingString(state, true), GetDmg(state, 1), IncomingString(state, false));
 
             return new CardData() {
                 cost = 3,
@@ -58,7 +58,7 @@
                 status = Status.evade,
                 statusAmount = incoming / 2,
                 targetPlayer = true,
-                dialogueSelector = incoming > 2 ? ".mezz_remise" : null,
+                dialogueSelector = incoming > 3 ? ".mezz_remise" : null,
             });
             if (upgrade == Upgrade.B)
                 for (int i = 0; i < incoming; i++) {
