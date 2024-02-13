@@ -2,11 +2,11 @@
 using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Jost {
-    [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B }, extraGlossary = new string[] { "action.StanceCard" })]
+    [CardMeta(rarity = Rarity.rare, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B }, extraGlossary = new string[] { "action.StanceCard" })]
     public class MoveAsOne : Card, IJostCard {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 3,
+                cost = 4,
                 retain = upgrade == Upgrade.B,
                 art = new Spr?((Spr)(Manifest.Sprites["JostDefaultCardSprite" + Stance.AppendName(state)].Id
                     ?? throw new Exception("missing card art")))
@@ -19,7 +19,7 @@ namespace TwosCompany.Cards.Jost {
             List<CardAction> actions = new List<CardAction>();
 
             actions.Add(new ACostDecreaseAttackHint() {
-                amount = 1,
+                amount = 2,
                 disabled = Stance.Get(s) % 2 != 1
             });
             actions.Add(new AStatus() {
@@ -28,7 +28,14 @@ namespace TwosCompany.Cards.Jost {
                 targetPlayer = true,
                 disabled = Stance.Get(s) % 2 != 1
             });
-            actions.Add(new ADummyAction());
+            actions.Add(new ADummyTooltip() {
+                action = Stance.Get(s) == 1 ? (new AOtherPlayedHint() {
+                    amount = 1,
+                    perma = true,
+                }) : (Stance.Get(s) == 2 ? (new ACostDecreaseAttackHint() {
+                    amount = 2,
+                }) : null),
+            });
             actions.Add(new AOtherPlayedHint() {
                 amount = 1,
                 perma = true,
@@ -57,8 +64,8 @@ namespace TwosCompany.Cards.Jost {
         }
 
         public void OtherAttackDiscount() {
-            costIncrease-= 1;
-            this.discount-= 1;
+            costIncrease-= 2;
+            this.discount-= 2;
         }
 
         public override string Name() => "MoveAsOne";

@@ -18,7 +18,88 @@ namespace TwosCompany {
             eventHub.MakeEvent<Tuple<State, Combat>>("Mezz.TwosCompany.StanceSwitch");
             eventHub.MakeEvent<Tuple<State, int>>("Mezz.TwosCompany.ChainLightning");
 
+            eventHub.ConnectToEvent<Func<IManifest, IPrelaunchContactPoint>>("Nickel::OnAfterDbInitPhaseFinished", contactPointProvider => {
+                var contactPoint = contactPointProvider(this);
+
+                if (contactPoint.GetApi<IDraculaApi>("Shockah.Dracula") is { } draculaApi) {
+                    draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["TempStrafe"].Id!.Value, (_, _, status) => [
+                        new AHurt { targetPlayer = true, hurtAmount = 1 },
+                        new AStatus { targetPlayer = true, status = status, statusAmount = 1 },
+                    ]);
+                    draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["MobileDefense"].Id!.Value, (_, _, status) => [
+                        new AHurt { targetPlayer = true, hurtAmount = 1 },
+                        new AStatus { targetPlayer = true, status = status, statusAmount = 1 },
+                    ]);
+                    draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["Onslaught"].Id!.Value, (_, _, status) => [
+                        new AHurt { targetPlayer = true, hurtAmount = 1 },
+                        new AStatus { targetPlayer = true, status = status, statusAmount = 3 },
+                    ]);
+                    draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["FalseOpening"].Id!.Value, (_, _, status) => [
+                        new AHurt { targetPlayer = true, hurtAmount = 1 },
+                        new AStatus { targetPlayer = true, status = status, statusAmount = 4 },
+                    ]);
+                    draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["FalseOpeningB"].Id!.Value, (_, _, status) => [
+                        new AHurt { targetPlayer = true, hurtAmount = 1 },
+                        new AStatus { targetPlayer = true, status = status, statusAmount = 2 },
+                    ]);
+                    draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["Enflamed"].Id!.Value, (_, _, status) => [
+                        new AHurt { targetPlayer = true, hurtAmount = 1 },
+                        new AStatus { targetPlayer = true, status = status, statusAmount = 1 },
+                    ]);
+                    draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["DefensiveStance"].Id!.Value, (_, _, status) => [
+                        new AHurt { targetPlayer = true, hurtAmount = 1 },
+                        new AStatus { targetPlayer = true, status = status, statusAmount = 1 },
+                    ]);
+                    draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["OffensiveStance"].Id!.Value, (_, _, status) => [
+                        new AHurt { targetPlayer = true, hurtAmount = 1 },
+                        new AStatus { targetPlayer = true, status = status, statusAmount = 1 },
+                    ]);
+                    draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["StandFirm"].Id!.Value, (_, _, status) => [
+                        new AHurt { targetPlayer = true, hurtAmount = 1 },
+                        new AStatus { targetPlayer = true, status = status, statusAmount = 1 },
+                    ]);
+                    draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["Footwork"].Id!.Value, (_, _, status) => [
+                        new AHurt { targetPlayer = true, hurtAmount = 1 },
+                        new AStatus { targetPlayer = true, status = status, statusAmount = 1 },
+                    ]);
+                    draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["BattleTempo"].Id!.Value, (_, _, status) => [
+                        new AHurt { targetPlayer = true, hurtAmount = 1 },
+                        new AStatus { targetPlayer = true, status = status, statusAmount = 1 },
+                    ]);
+                    draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["DistantStrike"].Id!.Value, (_, _, status) => [
+                        new AHurt { targetPlayer = true, hurtAmount = 1 },
+                        new AStatus { targetPlayer = true, status = status, statusAmount = 3 },
+                    ]);
+                    draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["ElectrocuteCharge"].Id!.Value, (_, _, status) => [
+                        new AHurt { targetPlayer = true, hurtAmount = 2 },
+                        new AStatus { targetPlayer = true, status = status, statusAmount = 1 },
+                    ]);
+                    draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["ElectrocuteChargeSpent"].Id!.Value, (_, _, status) => [
+                        new AHurt { targetPlayer = true, hurtAmount = 2 },
+                        new AStatus { targetPlayer = true, status = status, statusAmount = 1 },
+                    ]);
+                    draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["Autocurrent"].Id!.Value, (_, _, status) => [
+                        new AHurt { targetPlayer = true, hurtAmount = 1 },
+                        new AStatus { targetPlayer = true, status = status, statusAmount = 1 },
+                    ]);
+                    draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["HyperspaceStorm"].Id!.Value, (_, _, status) => [
+                        new AHurt { targetPlayer = true, hurtAmount = 1 },
+                        new AStatus { targetPlayer = true, status = status, statusAmount = 1 },
+                    ]);
+                    draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["HyperspaceStormA"].Id!.Value, (_, _, status) => [
+                        new AHurt { targetPlayer = true, hurtAmount = 1 },
+                        new AStatus { targetPlayer = true, status = status, statusAmount = 1 },
+                    ]);
+                    draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["HyperspaceStormB"].Id!.Value, (_, _, status) => [
+                        new AHurt { targetPlayer = true, hurtAmount = 1 },
+                        new AStatus { targetPlayer = true, status = status, statusAmount = 1 },
+                    ]);
+                }
+            });
         }
+
+        public object? GetApi(IManifest requestingMod)
+            => new APIImplementation();
 
         public void BootMod(IModLoaderContact contact) {
 
@@ -29,8 +110,8 @@ namespace TwosCompany {
 
             // midrow chain lightning rendering patch
             harmony.Patch(
-                original: AccessTools.DeclaredMethod(typeof(StuffBase), nameof(StuffBase.DrawWithHilight)),
-                prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.MidrowHilightPrefix))
+                original: AccessTools.DeclaredMethod(typeof(Combat), nameof(Combat.RenderDrones)),
+                prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.RenderDronesPrefix))
             );
             harmony.Patch(
                 original: AccessTools.DeclaredMethod(typeof(Combat), nameof(Combat.RenderHintsUnderlay)),

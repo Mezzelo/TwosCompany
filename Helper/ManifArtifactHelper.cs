@@ -71,10 +71,11 @@ namespace TwosCompany.Helper {
             "Start each combat with 1 <c=status>DEF. STANCE</c>. " +
                 "When you start your turn with no stance, gain an <c=card>Off Balance</c> if one isn't in your hand.",
             "Gain 3 <c=status>ONSLAUGHT</c> every turn. <c=downside>Draw 1 less card per turn.</c>",
-            "Once per turn when you gain <c=keyword>total</c> <c=status>STANCE</c>, gain 1 <c=status>OVERDRIVE</c> and 1 <c=status>SHIELD</c>.",
+            "Once per turn when you increase your total <c=status>OFF.</c> and <c=status>DEF. STANCE</c>, " +
+                "gain 1 <c=status>OVERDRIVE</c>.",
             "Every <c=keyword>4</c> times you switch stance from playing a " +
                 "<c=card>STANCE CARD</c>, gain a <c=cardtrait>temp exhaustable</c> <c=card>Heartbeat</c>.",
-            "Choose a card in your deck. Whenever you play that card, <c=status>switch stance</c>. " +
+            "Choose a card in your deck. Whenever you play that card, <c=status>switch stance</c> and gain 1 <c=status>SHIELD</c>. " +
                 "Switch stance an additional time if it is already a <c=card>STANCE CARD</c>.",
             "All " + Manifest.JostColH + "Jost</c> cards deal 1 more damage while you have <c=status>OFF. STANCE</c>," +
                 " and <c=card>Off Balance</c> costs 1 less energy. <c=downside>If you end your turn with any DEF. STANCE, lose all stance.</c>",
@@ -84,7 +85,7 @@ namespace TwosCompany.Helper {
                 "combine the split damage into the <c=redd>right end</c> instead of firing from the <c=attackFail>left end</c>.",
             "For every 5 <c=midrow>midrow objects</c> you " + Manifest.ChainColH + "chain</c> through, gain 1 <c=status>EVADE</c>.",
             Manifest.ChainColH + "Chain lightning</c> no longer damages <c=midrow>asteroids</c>. " +
-                " Drones increase chain damage by <c=keyword>2</c> instead of <c=keyword>1</c>.",
+                " Non-missile, active objects increase chain damage by <c=keyword>2</c> instead of <c=keyword>1</c>.",
             Manifest.ChainColH + "Chain lightning</c> now <c=keyword>pierces</c> armor, shields and bubbles.",
             "For every 4 <c=midrow>midrow objects</c> you destroy, gain a free <c=cardtrait>temp exhaustable</c> <c=card>Conduit</c>, up to" +
                 "once per turn.",

@@ -27,7 +27,7 @@ namespace TwosCompany.Cards.Jost {
 
             actions.Add(new AStatus() {
                 status = Status.shield,
-                statusAmount = 3,
+                statusAmount = 2,
                 targetPlayer = true,
                 disabled = Stance.Get(s) % 2 != 1,
                 dialogueSelector = Stance.Get(s) % 2 != 1 || this.discount > -1 ? null : ".mezz_keepFighting",

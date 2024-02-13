@@ -10,8 +10,8 @@ namespace TwosCompany.Artifacts {
         public TTCard? cardImpression;
         int IAssignableArtifact.assignedUUID { set => assignedUUID = value; }
         TTCard IAssignableArtifact.cardImpression { set => cardImpression = value; }
-        public override string Description() => "Choose a card in your deck.  Whenever you play that card, <c=status>switch stance</c>. " +
-            "Switch stance an additional time if already a <c=card>STANCE CARD</c>.";
+        public override string Description() => "Choose a card in your deck. Whenever you play that card, <c=status>switch stance</c> and gain 1 <c=status>SHIELD</c>. " +
+            "Switch stance an additional time if it is already a <c=card>STANCE CARD</c>.";
 
         public override void OnReceiveArtifact(State state) {
             state.GetCurrentQueue().Insert(0, new ACardSelect() {
@@ -26,6 +26,11 @@ namespace TwosCompany.Artifacts {
             if (card.uuid == assignedUUID) {
                 this.Pulse();
                 combat.Queue(new AStanceSwitch());
+                combat.Queue(new AStatus() {
+                    targetPlayer = true,
+                    status = Status.shield,
+                    statusAmount = 1,
+                });
             }
         }
 

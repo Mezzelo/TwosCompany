@@ -22,6 +22,7 @@ namespace TwosCompany {
         public DirectoryInfo? ModRootFolder { get; set; }
         public DirectoryInfo? GameRootFolder { get; set; }
         internal static Manifest Instance { get; private set; } = null!;
+        internal static APIImplementation Api { get; private set; } = null!;
         public static IMoreDifficultiesApi? MoreDifficultiesApi = null;
 
         public string Name { get; init; } = "Mezz.TwosCompany";

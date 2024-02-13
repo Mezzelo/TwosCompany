@@ -147,7 +147,8 @@ namespace TwosCompany.Actions {
                     timer = 0.0;
                 }
                 else if (cRoute != null) {
-                    ChainData.Cannon(g, targetPlayer, CombatUtils.RaycastGlobal(c, ship, false, raycastResult.worldX), new DamageDone());
+                    raycastResult.hitDrone = true;
+                    ChainData.Cannon(g, targetPlayer, raycastResult, new DamageDone());
                     g.state.storyVars.playerJustShotAMidrowObject = true;
                     List<CardAction> actions = new List<CardAction>();
                     List<CardAction> midActions = new List<CardAction>();

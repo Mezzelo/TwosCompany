@@ -53,10 +53,10 @@ namespace TwosCompany {
             addStatus("Enflamed", "Enflamed", "Gain {0} <c=downside>HEAT</c> every turn.",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xffff5660)), System.Drawing.Color.FromArgb(unchecked((int)0xffff5660)), registry, true);
             addStatus("DefensiveStance", "Defensive Stance", "Allows you to play the <c=keyword>top</c> actions on " + JostColH + "Jost's</c> cards. " +
-                "<c=downside>If you end your turn with over 1 total stance, lose all stance.</c>",
+                "<c=downside>If you end your turn with over 1 total stance, lose 1 of each stance.</c>",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xff87b2cf)), System.Drawing.Color.FromArgb(unchecked((int)0xff87b2cf)), registry, true);
             addStatus("OffensiveStance", "Offensive Stance", "Allows you to play the <c=keyword>bottom</c> actions on " + JostColH + "Jost's</c> cards. " +
-                "<c=downside>If you end your turn with over 1 total stance, lose all stance.</c>",
+                "<c=downside>If you end your turn with over 1 total stance, lose 1 of each stance.</c>",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xff87b2cf)), System.Drawing.Color.FromArgb(unchecked((int)0xff87b2cf)), registry, true);
             addStatus("StandFirm", "Stand Firm", "Prevents you from switching <c=status>STANCE</c> from playing <c=card>STANCE CARDS</c>, " +
                 "or losing stance from excess stance. <c=downside>Decreases by 1 at start of turn.</c>",
@@ -166,8 +166,8 @@ namespace TwosCompany {
                 "<c=status>OFF. STANCE</c>. If you have any <c=status>OFF. STANCE</c>, do the opposite."
                 , registry);
             addGlossary("ChainLightning", "Chain Lightning",
-               "Fires " + Manifest.ChainColH + "lightning</c> from your <c=keyword>drone bay</c>. Travels through " +
-                    "<c=midrow>midrow objects</c>, damaging them, <c=midrow>activating drones</c>, and gaining <c=keyword>1</c> damage for each object travelled through. " +
+               "Fires " + Manifest.ChainColH + "lightning</c> from your <c=keyword>drone bay</c> for {0} damage. Travels through " +
+                    "<c=midrow>midrow objects</c>, damaging them, activating non-missile objects, and gaining 1 damage for each object travelled through. " +
                     " Fires towards the other ship at the end of the chain."
                 , registry);
             addGlossary("Conduit", "Conduit",

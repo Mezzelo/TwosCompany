@@ -7,8 +7,8 @@ namespace TwosCompany.Artifacts {
     public class MilitiaArmband : Artifact {
         public int prevTotal = 0;
         public bool procced = false;
-        public override string Description() => "Once per turn when you gain <c=keyword>total</c> <c=status>STANCE</c>, gain 1 <c=status>OVERDRIVE</c>" +
-            " and 1 <c=status>SHIELD</c>.";
+        public override string Description() => "Once per turn when you increase your total <c=status>OFF.</c> and <c=status>DEF. STANCE</c>, " +
+            "gain 1 <c=status>OVERDRIVE</c>.";
 
         public override void OnPlayerPlayCard(int energyCost, Deck deck, Card card, State state, Combat combat, int handPosition, int handCount) {
             combat.Queue(new AStanceTotalCheck() {
@@ -53,12 +53,6 @@ namespace TwosCompany.Artifacts {
             procced = true;
             c.Queue(new AStatus() {
                 status = Status.overdrive,
-                statusAmount = 1,
-                targetPlayer = true,
-                artifactPulse = this.Key(),
-            });
-            c.Queue(new AStatus() {
-                status = Status.shield,
                 statusAmount = 1,
                 targetPlayer = true,
                 artifactPulse = this.Key(),

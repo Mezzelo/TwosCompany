@@ -50,7 +50,7 @@ namespace TwosCompany.Cards.Nola {
         
         public override void OnOtherCardPlayedWhileThisWasInHand(State s, Combat c, int handPosition) {
             this.discount += upgrade == Upgrade.B ? 2 : 1;
-            costIncrease++;
+            costIncrease+= upgrade == Upgrade.B ? 2 : 1;
         }
         public override void OnDiscard(State s, Combat c) {
             if (wasPlayed)

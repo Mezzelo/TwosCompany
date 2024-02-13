@@ -178,9 +178,9 @@ namespace TwosCompany {
             if (state.ship.Get((Status)defensiveStance.Id!) + state.ship.Get((Status)offensiveStance.Id!) > 1 &&
                 state.ship.Get((Status)standFirm.Id!) <= 0 && state.ship.Get(Status.timeStop) <= 0) {
 
-                state.ship.Set((Status)defensiveStance.Id, 0);
+                state.ship.Set((Status)defensiveStance.Id, state.ship.Get((Status)defensiveStance.Id!) - 1);
                 if (state.ship.Get((Status)offensiveStance.Id!) > 0)
-                    state.ship.Set((Status)offensiveStance.Id, 0);
+                    state.ship.Set((Status)offensiveStance.Id, state.ship.Get((Status)offensiveStance.Id!) - 1);
                 Audio.Play(FSPRO.Event.Status_ShieldDown);
             }
         }
@@ -429,15 +429,14 @@ namespace TwosCompany {
 
         public static void RenderHintsUnderlayPrefix(Combat __instance, G g) {
 
-            Rect? rect = default(Rect) + Combat.arenaPos + __instance.GetCamOffset();
-            g.Push(null, rect);
+            g.Push(rect: default(Rect) + Combat.arenaPos + __instance.GetCamOffset());
             foreach (StuffBase value in __instance.stuff.Values) {
                 if (!ChainData.hilights.ContainsKey(value.x))
                     continue;
                 int x = Math.Abs(ChainData.hilights[value.x]);
                 if (x < 300)
                     continue;
-                Box box = g.Push(null, value.GetGetRect());
+                Box box = g.Push(rect: value.GetGetRect());
                 Vec v2 = box.rect.xy;
                 bool targetPlayer = x < 0;
                 Color color2 = targetPlayer ? Colors.redd : Colors.attackStatusHintPlayer;
@@ -457,13 +456,13 @@ namespace TwosCompany {
             ChainData.hilights.Clear();
         }
 
-        public static void MidrowHilightPrefix(StuffBase __instance, G g, Spr id, Vec v, bool flipX, bool flipY) {
-            if (ChainData.chainTimer > 0 && ChainData.hilights.ContainsKey(__instance.x)) {
-                Vec v2 = v - __instance.GetOffset(g, false);
+        public static void DrawLightningNumbers(int x, G g, Vec v) {
+            if (ChainData.chainTimer > 0 && ChainData.hilights.ContainsKey(x)) {
+                // Vec v2 = v - sb.GetOffset(g, false);
                 // v2.x = v2.x - v2.x % 1.0;
                 // v2.y = v2.y - v2.y % 1.0;
-                int endType = Math.Abs(ChainData.hilights[__instance.x]);
-                bool targetPlayer = ChainData.hilights[__instance.x] < 0;
+                int endType = Math.Abs(ChainData.hilights[x]);
+                bool targetPlayer = ChainData.hilights[x] < 0;
                 int damage = endType % 100;
                 Color drawColor = Colors.droneOutline;
                 if (endType >= 400)
@@ -481,6 +480,20 @@ namespace TwosCompany {
                     BigNumbers.Render(damage, v.x + 5.0, v.y + 25.0, drawColor);
                 }
             }
+        }
+
+        public static void RenderDronesPrefix(Combat __instance, G g) {
+            if (ChainData.chainTimer <= 0)
+                return;
+            g.Push(null, default(Rect) + Combat.arenaPos + __instance.GetCamOffset());
+            foreach (int x in ChainData.hilights.Keys) {
+                if (__instance.stuff.ContainsKey(x)) {
+                    Box box = g.Push(rect: new Rect?(__instance.stuff[x].GetGetRect()));
+                    DrawLightningNumbers(x, g, box.rect.xy);
+                    g.Pop();
+                }
+            }
+            g.Pop();
         }
 
         public static bool Card_StatCostAction_Prefix(G g, State state, ref CardAction action, bool dontDraw) {

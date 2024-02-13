@@ -14,6 +14,7 @@ namespace TwosCompany.Cards.Jost {
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
+            actions.Add(new ADummyAction());
             ExternalStatus battleTempo = Manifest.Statuses?["BattleTempo"] ?? throw new Exception("status missing: battleTempo");
             actions.Add(new AStatus() {
                 status = (Status) battleTempo.Id!,
@@ -26,6 +27,12 @@ namespace TwosCompany.Cards.Jost {
                     statusAmount = 3,
                     targetPlayer = true,
                 });
+            actions.Add(new ADummyTooltip() {
+                action = new AAddCard() {
+                    card = new Heartbeat() { temporaryOverride = true, exhaustOverride = true },
+                    destination = CardDestination.Hand,
+                }
+            });
 
             return actions;
         }

@@ -7,7 +7,7 @@ namespace TwosCompany.Cards.Gauss {
 
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = upgrade == Upgrade.A ? 2 : (upgrade == Upgrade.B ? 4 : 3),
+                cost = upgrade == Upgrade.A ? 2 : 3,
                 exhaust = upgrade != Upgrade.B,
             };
         }
@@ -20,6 +20,11 @@ namespace TwosCompany.Cards.Gauss {
                 targetPlayer = true,
                 dialogueSelector = ".mezz_autocurrent",
             });
+            if (upgrade == Upgrade.B)
+                actions.Add(new AChainLightning() {
+                    targetPlayer = false,
+                    damage = GetDmg(s, 1),
+                });
             return actions;
         }
 
