@@ -3,12 +3,12 @@ using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Jost {
     [CardMeta(rarity = Rarity.rare, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B }, extraGlossary = new string[] { "action.StanceCard" })]
-    public class MoveAsOne : Card, IJostCard {
+    public class MoveAsOne : Card, IJostCard, IOtherAttackIncreaseCard {
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 4,
                 retain = upgrade == Upgrade.B,
-                art = new Spr?((Spr)(Manifest.Sprites["JostDefaultCardSprite" + Stance.AppendName(state)].Id
+                art = new Spr?((Spr)(Manifest.Sprites["JostDefaultCardSpriteDown1" + Stance.AppendName(state)].Id
                     ?? throw new Exception("missing card art")))
             };
         }
@@ -29,18 +29,9 @@ namespace TwosCompany.Cards.Jost {
                 disabled = Stance.Get(s) % 2 != 1
             });
             actions.Add(new ADummyTooltip() {
-                action = Stance.Get(s) == 1 ? (new AOtherPlayedHint() {
-                    amount = 1,
-                    perma = true,
-                }) : (Stance.Get(s) == 2 ? (new ACostDecreaseAttackHint() {
-                    amount = 2,
-                }) : null),
+                action = Stance.Get(s) % 2 != 1 ? new ACostDecreaseAttackHint() : null
             });
-            actions.Add(new AOtherPlayedHint() {
-                amount = 1,
-                perma = true,
-                disabled = Stance.Get(s) < 2,
-            });
+
             actions.Add(new AAttack() {
                 damage = GetDmg(s, 4),
                 stunEnemy = true,
@@ -56,18 +47,14 @@ namespace TwosCompany.Cards.Jost {
             this.discount -= costIncrease;
             costIncrease = 0;
         }
-        public override void OnOtherCardPlayedWhileThisWasInHand(State s, Combat c, int handPosition) {
-            if (Stance.Get(s) > 1) {
-                this.discount += 1;
-                costIncrease++;
+
+        public void OtherAttackDiscount(State s) {
+            if (Stance.Get(s) % 2 == 1) {
+                costIncrease += 2;
+                this.discount -= 2;
             }
         }
 
-        public void OtherAttackDiscount() {
-            costIncrease-= 2;
-            this.discount-= 2;
-        }
-
-        public override string Name() => "MoveAsOne";
+        public override string Name() => "Move as One";
     }
 }

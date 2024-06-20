@@ -3,7 +3,9 @@ using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Jost {
     [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B }, extraGlossary = new string[] { "action.StanceCard" })]
-    public class PommelBlow : Card, IJostCard {
+    public class PommelBlow : Card, IJostCard, IJostFlippableCard {
+        public bool markForFlop = false;
+        bool IJostFlippableCard.markForFlop { get => markForFlop; set => markForFlop = value; }
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 1,
@@ -31,6 +33,11 @@ namespace TwosCompany.Cards.Jost {
                 disabled = Stance.Get(s) < 2,
             });
             return actions;
+        }
+
+        public override void OnExitCombat(State s, Combat c) {
+            markForFlop = false;
+            flipped = false;
         }
 
         public override string Name() => "Pommel Blow";

@@ -24,7 +24,7 @@ namespace TwosCompany.Cards.Gauss {
             List<CardAction> actions = new List<CardAction>();
             actions.Add(new AAddCard() {
                 amount = 1,
-                card = new SparkCard() { upgrade = this.upgrade, temporaryOverride = true, discount = -1 },
+                card = new SparkCard() { upgrade = this.upgrade, discount = -1 },
                 destination = CardDestination.Hand,
             });
             return actions;

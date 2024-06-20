@@ -5,7 +5,7 @@ namespace TwosCompany.Cards.Nola {
     public class Contingency : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 1,
+                cost = 0,
                 retain = upgrade == Upgrade.A,
                 exhaust = true,
             };
@@ -33,7 +33,7 @@ namespace TwosCompany.Cards.Nola {
             });
             if (upgrade == Upgrade.B)
                 actions.Add(new AEnergy() {
-                    changeAmount = 3,
+                    changeAmount = 1,
                 });
             return actions;
         }

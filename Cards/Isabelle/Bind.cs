@@ -3,21 +3,20 @@ using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Isabelle {
     [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
-    public class Bind : Card {
+    public class Bind : Card, IOtherAttackIncreaseCard {
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 0,
+                retain = true,
             };
         }
 
         public int costIncrease = 0;
-        public bool wasPlayed = false;
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            ExternalStatus strafeStatus = Manifest.Statuses?["TempStrafe"] ?? throw new Exception("status missing: temp strafe");
-            actions.Add(new AOtherPlayedHint() {
+            actions.Add(new ACostIncreaseAttackHint() {
                 amount = 1,
             });
             actions.Add(new AStatus() {
@@ -28,35 +27,32 @@ namespace TwosCompany.Cards.Isabelle {
             });
             actions.Add(new AStatus() {
                 status = Status.engineStall,
-                statusAmount = 2,
+                statusAmount = upgrade == Upgrade.A ? 1 : 2,
                 targetPlayer = true
             });
-            if (upgrade == Upgrade.B)
+            if (upgrade == Upgrade.B) {
+                ExternalStatus strafeStatus = Manifest.Statuses?["TempStrafe"] ?? throw new Exception("status missing: temp strafe");
                 actions.Add(new AStatus() {
-                    status = strafeStatus.Id != null ? (Status) strafeStatus.Id : Status.strafe,
+                    status = strafeStatus.Id != null ? (Status)strafeStatus.Id : Status.strafe,
                     statusAmount = 1,
                     targetPlayer = true,
                 });
+            }
             return actions;
         }
         public override void AfterWasPlayed(State state, Combat c) {
             costIncrease = 0;
         }
         public override void OnExitCombat(State s, Combat c) {
-            // this.discount -= costIncrease;
+            this.discount -= costIncrease;
             costIncrease = 0;
-            wasPlayed = false;
         }
-
-        public override void OnOtherCardPlayedWhileThisWasInHand(State s, Combat c, int handPosition) {
-            this.discount += 1;
+        public void OtherAttackDiscount(State s) {
             costIncrease++;
+            this.discount++;
         }
         public override void OnDiscard(State s, Combat c) {
-            if (wasPlayed)
-                wasPlayed = false;
-            else
-                this.discount -= costIncrease;
+            this.discount -= costIncrease;
             costIncrease = 0;
         }
 

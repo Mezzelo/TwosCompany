@@ -54,6 +54,25 @@
         "jost"
       ]
     },
+    "CrystallizedFriendEvent_Mezz.TwosCompany.JostDeck": {
+      "type": "event",
+      "oncePerRun": true,
+      "bg": "BGCrystalizedFriend",
+      "lines": [
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1.5
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "jost",
+		  "loopTag": "forlorn"
+        }
+      ],
+      "allPresent": [
+        "jost"
+      ]
+    },
 
     "mezz_Duo_AboutToDieAndLoop_JostGauss": {
       "type": "combat",

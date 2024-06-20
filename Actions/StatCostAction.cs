@@ -16,7 +16,7 @@ namespace TwosCompany.Actions {
             if (action == null)
                 return;
             if (s.ship.Get(statusReq) >= statusCost) {
-                s.ship.Set(statusReq, s.ship.Get(statusReq) - this.statusCost);
+                s.ship.Add(statusReq, -this.statusCost);
                 if (statusReq == Status.evade)
                     Audio.Play(FSPRO.Event.Status_EvadeDown);
                 else if (statusReq == Status.shield)

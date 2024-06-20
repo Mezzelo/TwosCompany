@@ -26,7 +26,7 @@
             });
             actions.Add(new AStatus() {
                 status = Status.drawLessNextTurn,
-                statusAmount = 2,
+                statusAmount = 1,
                 targetPlayer = true
             });
             return actions;

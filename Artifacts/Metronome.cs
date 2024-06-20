@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using TwosCompany.Cards.Ilya;
 
 namespace TwosCompany.Artifacts {
-    [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Boss })]
+    [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Common })]
     public class Metronome : Artifact {
         public int counter = 0;
         public bool lastWasMove = false;

@@ -12,8 +12,8 @@
             List<CardAction> actions = new List<CardAction>();
 
             actions.Add(new AStatus() {
-                status = upgrade != Upgrade.A ? Status.shield : Status.tempShield,
-                statusAmount = upgrade != Upgrade.A ? 2 : 4,
+                status = Status.shield,
+                statusAmount = upgrade != Upgrade.A ? 3 : 5,
                 targetPlayer = true
             });
             actions.Add(new AHeal() {

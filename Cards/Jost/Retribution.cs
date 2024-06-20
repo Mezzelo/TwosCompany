@@ -7,7 +7,7 @@ namespace TwosCompany.Cards.Jost {
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = upgrade == Upgrade.A ? 2 : 3,
-                exhaust = Stance.Get(state) % 2 == 1,
+                exhaust = false,
                 art = new Spr?((Spr)(Manifest.Sprites["JostDefaultCardSpriteDown1" + Stance.AppendName(state)].Id
                     ?? throw new Exception("missing card art")))
             };
@@ -28,8 +28,8 @@ namespace TwosCompany.Cards.Jost {
                 disabled = Stance.Get(s) % 2 != 1
             });
             actions.Add(new AExhaustSelf() {
-                selectedCard = this,
-                omitFromTooltips = true,
+                uuid = this.uuid,
+                omitFromTooltips = false,
                 disabled = Stance.Get(s) % 2 != 1,
             });
 

@@ -6,22 +6,27 @@
   "ChoiceCardRewardOfYourColorChoice_Mezz.TwosCompany.IsabelleDeck:1": "Energy readings are back to normal.",
   "ChoiceCardRewardOfYourColorChoice_Mezz.TwosCompany.IlyaDeck:0": "Maybe some memories are better left forgotten...",
   "ChoiceCardRewardOfYourColorChoice_Mezz.TwosCompany.IlyaDeck:1": "Energy readings are back to normal.",
-  "ChoiceCardRewardOfYourColorChoice_Mezz.TwosCompany.JostDeck:0": "A distant memory... One I'd have preferred left behind, maybe.",
+  "ChoiceCardRewardOfYourColorChoice_Mezz.TwosCompany.JostDeck:0": "A memory I'd have preferred left behind, maybe.",
   "ChoiceCardRewardOfYourColorChoice_Mezz.TwosCompany.JostDeck:1": "Energy readings are back to normal.",
   "ChoiceCardRewardOfYourColorChoice_Mezz.TwosCompany.GaussDeck:0": "Great. More to keep in mind, as if I'm not dealing with enough already.",
   "ChoiceCardRewardOfYourColorChoice_Mezz.TwosCompany.GaussDeck:1": "Energy readings are back to normal.",
   
-  "LoseCharacterCard_Mezz.TwosCompany.NolaDeck:0": "Would you believe me if I told you I've been closer to an event horizon before?",
+  "LoseCharacterCard_Mezz.TwosCompany.NolaDeck:0": "We should just fly in next time. Those are quite pretty inside.",
   "LoseCharacterCard_Mezz.TwosCompany.IsabelleDeck:0": ".. gaze long into an abyss and you lose a bunch of expensive equipment, I guess.",
-  "LoseCharacterCard_Mezz.TwosCompany.IlyaDeck:0": "Black-body radiation feels nice, actually. Maybe we could stay a little longer...",
-  "LoseCharacterCard_Mezz.TwosCompany.JostDeck:0": "Into the void it goes. It will be missed, but we do what we must.",
+  "LoseCharacterCard_Mezz.TwosCompany.IlyaDeck:0": "Black-body radiation feels pretty good actually.",
+  "LoseCharacterCard_Mezz.TwosCompany.JostDeck:0": "Into the void it goes.",
   "LoseCharacterCard_Mezz.TwosCompany.GaussDeck:0": "I may have lost more than just a probe in there. Worth it, though!",
   
   "CrystallizedFriendEvent_nolaID:0": "I've.. decided not to question why I'm here. Let's get moving.",
+  "CrystallizedFriendEvent_Mezz.TwosCompany.NolaDeck:0": "I've.. decided not to question why I'm here. Let's get moving.",
   "CrystallizedFriendEvent_isaID:0": "Can't get enough of me, is that it?",
+  "CrystallizedFriendEvent_Mezz.TwosCompany.IsabelleDeck:0": "Can't get enough of me, is that it?",
   "CrystallizedFriendEvent_ilyaID:0": ".. It was nice and quiet in there. Is it too late to put me back?",
+  "CrystallizedFriendEvent_Mezz.TwosCompany.IlyaDeck:0": ".. It was cozy in there. Is it too late to put me back?",
   "CrystallizedFriendEvent_jostID:0": "I'm.. awake. It was so cold in there...",
+  "CrystallizedFriendEvent_Mezz.TwosCompany.JostDeck:0": "I'm.. awake. It was so cold in there...",
   "CrystallizedFriendEvent_gaussID:0": "Hope you've got stuff I can zap. If not, maybe you should've left me in there...",
+  "CrystallizedFriendEvent_Mezz.TwosCompany.GaussDeck:0": "Hope you've got stuff I can zap. If not, maybe you should've left me in there...",
   
   "mezz_Trio_CharStart_0:0": "..Nola?",
   "mezz_Trio_CharStart_0:1": "Isabelle?",
@@ -53,7 +58,7 @@
   "mezz_Trio_Cobalt_1:1": "No matter what it takes to break out of this.",
   "mezz_Trio_Cobalt_1:2": "...",
   "mezz_Trio_Cobalt_1:3": ".. I'd rather have nobody else by my side but you two.",
-  "mezz_Trio_Cobalt_1:4": "How about a fourth? Can't have just been us that got trapped in here.",
+  "mezz_Trio_Cobalt_1:4": "How about a third person? Can't have just been us that got trapped here.",
   "mezz_Trio_Cobalt_1:5": "Don't.",
   
   
@@ -362,7 +367,7 @@
   "mezz_Nola_CharStart_Peri_0:3": "They were under my watch. And I...",
   "mezz_Nola_CharStart_Peri_0:4": "Peri.",
   "mezz_Nola_CharStart_Peri_0:5": "Your employers asked a lot of you. Too much of anyone.",
-  "mezz_Nola_CharStart_Peri_0:6": "Whether they be our wrongs or another's, we can't awlays make everything right.",
+  "mezz_Nola_CharStart_Peri_0:6": "We can't always make everything right.",
   "mezz_Nola_CharStart_Peri_0:7": ".. but we can always start somewhere.",
   "mezz_Nola_CharStart_Peri_0:8": "Are you with me?",
   "mezz_Nola_CharStart_Peri_0:9": "...",
@@ -415,7 +420,7 @@
   "mezz_Isa_CharStart_Gauss_0:1": "Hey. You.",
   "mezz_Isa_CharStart_Gauss_0:2": "What do you mean, 'hey you'?",
   "mezz_Isa_CharStart_Gauss_0:3": "I wasn't expecting to see you. It's good, sure.",
-  "mezz_Isa_CharStart_Gauss_0:4": "But you're not about to invent your way out of this again, are you?",
+  "mezz_Isa_CharStart_Gauss_0:4": "But this isn't exactly a situation you can invent your way out of.",
   "mezz_Isa_CharStart_Gauss_0:5": "Watch me.",
   "mezz_Isa_CharStart_Gauss_0:6": "Gladly.",
   
@@ -439,7 +444,7 @@
   "mezz_Isa_CharStart_Peri_0:7": "Yes.",
   
   "mezz_Isa_CharStart_Drake_0:0": "If it isn't everyone's favorite bounty board contender.",
-  "mezz_Isa_CharStart_Drake_0:1": "You've any idea how much your ship is worth, Drake?",
+  "mezz_Isa_CharStart_Drake_0:1": "You've any idea how much yours is worth, Drake?",
   "mezz_Isa_CharStart_Drake_0:2": "Don't care.",
   "mezz_Isa_CharStart_Drake_0:3": "Well, maybe you're not one of the lame ones after all.",
   "mezz_Isa_CharStart_Drake_0:4": "Step off. That's my line.",
@@ -457,7 +462,7 @@
   "mezz_Isa_CharStart_Max_0:2": "Less confounding to me than your weird.. code wizardry.",
   "mezz_Isa_CharStart_Max_0:3": "Computer majycks.",
   "mezz_Isa_CharStart_Max_0:4": "You know what they did to witches, back in the day?",
-  "mezz_Isa_CharStart_Max_0:5": "Show off swords to them and offer to read together, apparently.",
+  "mezz_Isa_CharStart_Max_0:5": "Ask them to read books with you, apparently.",
   "mezz_Isa_CharStart_Max_0:6": "...",
   "mezz_Isa_CharStart_Max_0:7": "So how about it?",
   
@@ -530,7 +535,7 @@
   "mezz_Gauss_CharStart_Dizzy_0:1": "Among other things. Engineering, ship maintenance, AI interfacing.",
   "mezz_Gauss_CharStart_Dizzy_0:2": "Ever worked with entropic consolidation?",
   "mezz_Gauss_CharStart_Dizzy_0:3": "Nope. I'm a field specialist.",
-  "mezz_Gauss_CharStart_Dizzy_0:4": "Oh. I've done research into time crystals, too.",
+  "mezz_Gauss_CharStart_Dizzy_0:4": "I've been doing research with time crystals, too.",
   "mezz_Gauss_CharStart_Dizzy_0:5": "But who hasn't worked with one of those? Imagine that.",
   "mezz_Gauss_CharStart_Dizzy_0:6": "...",
   
@@ -564,7 +569,7 @@
   "mezz_Gauss_CharStart_Books_0:0": "I sense.. a residual charge here.",
   "mezz_Gauss_CharStart_Books_0:1": "The air of mana... A lightning caster!",
   "mezz_Gauss_CharStart_Books_0:2": "I suppose you could call me that, yes.",
-  "mezz_Gauss_CharStart_Books_0:3": "That's probably just some static electricity on me, though.",
+  "mezz_Gauss_CharStart_Books_0:3": "That's probably just static electricity on me, though.",
   "mezz_Gauss_CharStart_Books_0:4": "Got some expensive equipment I can ruin real quick?",
   
   "mezz_Nola_LawlessZoneWarning_0:0": "The risk posed by piracy in parts like these is overstated, actually.",
@@ -607,7 +612,7 @@
   "mezz_Isa_Lawless_JostPeri_0:2": "...",
   "mezz_Isa_Lawless_JostPeri_0:3": "...",
   "mezz_Isa_Lawless_JostPeri_0:4": "Riggs, you'd better not be hiding somewhere.",
-  "mezz_Isa_Lawless_JostPeri_0:5": "Three lethal weapons in the cockpit definitely violates some form of international space law.",
+  "mezz_Isa_Lawless_JostPeri_0:5": "Three small arms in the cockpit definitely violates some form of international space law.",
   
   "RunWinMezzWho_Nola_1:0": "This isn't divine punishment, is it?",
   "RunWinMezzWho_Nola_1:1": "If it is, I'm afraid it's not working.",
@@ -944,7 +949,7 @@
   "mezz_Jost_ArtifactIonConverter:0": "Stay solid. Take a moment to breathe.",
   "mezz_Gauss_ArtifactIonConverter:0": "Put the residual energy to use. Smart.",
   "mezz_Isa_ArtifactJetThrusters_0:0": "I'll admit, the extra mobility is nice.",
-  "mezz_Isa_ArtifactJetThrusters_1:0": "Pfft, jet thrusters, really? We were doing just fine without these.",
+  "mezz_Isa_ArtifactJetThrusters_1:0": "Pfft, jet thrusters, really? We were doing fine without these.",
   "mezz_Isa_ArtifactJetThrusters_1:1a": "... yeah.",
   "mezz_Isa_ArtifactJetThrusters_1:1b": "More mobility never hurts.",
   "mezz_Isa_ArtifactJetThrusters_1:1c": "Speak for yourself.",
@@ -1935,7 +1940,7 @@
   "mezz_Gauss_WeAreMovingAroundALot_0:0b": "Getting antsy, are we?",
   
   "mezz_Nola_WeDontOverlapWithEnemyAtAllButWeDoHaveASeekerToDealWith_0:0a": "We're not safe until that seeker's dealt with.",
-  "mezz_Nola_WeDontOverlapWithEnemyAtAllButWeDoHaveASeekerToDealWith_0:0b": "I could just dodge that seeker if we were in the Moonrise...",
+  "mezz_Nola_WeDontOverlapWithEnemyAtAllButWeDoHaveASeekerToDealWith_0:0b": "I could just dodge that seeker if we were in my frigate...",
   "mezz_Isa_WeDontOverlapWithEnemyAtAllButWeDoHaveASeekerToDealWith_0:0a": "Right. The seeker.",
   "mezz_Isa_WeDontOverlapWithEnemyAtAllButWeDoHaveASeekerToDealWith_0:0b": "Don't forget about that missile...",
   
@@ -2023,7 +2028,7 @@
   "mezz_Jost_Knight_Midcombat_Greeting_Infinite:1a": "So be it!",
   "mezz_Jost_Knight_Midcombat_Greeting_Infinite:1b": "Have at thee!",
   
-  "mezz_Nola_Miner:0": ".. this seems excessive.",
+  "mezz_Nola_Miner:0": ".. this ship of yours seems excessive.",
   "mezz_Nola_Miner:1": "I can't imagine the fuel cost on that is worthwhile. Have you considered downsizing?",
   "mezz_Nola_Miner:2": "Have you considered dying?",
   "mezz_Nola_Miner_Infinite:0": "Will you ever address that weak point on your ship?",
@@ -2041,7 +2046,7 @@
   "mezz_Nola_MinerOncePerFightShouts:0": "That is really far too many cannons...",
   "mezz_Nola_MinerOncePerFightShouts:1": "I know.",
   "mezz_Isa_MinerOncePerFightShouts:0": "Look at yourself. So many wasted shots.",
-  "mezz_Isa_MinerOncePerFightShouts:1": "Not if any hit you.",
+  "mezz_Isa_MinerOncePerFightShouts:1": "Not if one hits you.",
   
   "mezz_Ilya_Oxygenguy_Midcombat:0": "So I finally managed to get into the Cobalt.",
   "mezz_Ilya_Oxygenguy_Midcombat:1": "Was I right? What was inside?",
@@ -2062,8 +2067,8 @@
   "mezz_Gauss_Pirate_0:1": "What's up.",
   "mezz_Gauss_Pirate_0:2": "This is all your fault, you know.",
   "mezz_Gauss_Pirate_0:3": "Yeah, and?",
-  "mezz_Gauss_Pirate_0:4": "Reality's a mess and you're still a thorn in my side.",
-  "mezz_Gauss_Pirate_0:5": "That so? Well, it's about to hurt a lot more for you.",
+  "mezz_Gauss_Pirate_0:4": "Reality's a mess and you still insist on being a thorn in my side.",
+  "mezz_Gauss_Pirate_0:5": "Well, it's about to hurt a lot more for you.",
   
   "mezz_Isa_Pirate_1_1:0": "Let us tango.",
   "mezz_Isa_Pirate_1_1:1": "Let's.",

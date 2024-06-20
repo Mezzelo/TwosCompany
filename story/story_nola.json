@@ -2764,6 +2764,25 @@
         "nola"
       ]
     },
+    "CrystallizedFriendEvent_Mezz.TwosCompany.NolaDeck": {
+      "type": "event",
+      "oncePerRun": true,
+      "bg": "BGCrystalizedFriend",
+      "lines": [
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1.5
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+		  "loopTag": "smug"
+        }
+      ],
+      "allPresent": [
+        "nola"
+      ]
+    },
 	
 	
     "mezz_Nola_ArtifactAresCannon": {

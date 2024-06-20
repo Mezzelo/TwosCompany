@@ -11,9 +11,9 @@
                 cardText = Loc.GetLocString(Manifest.Cards?["BattlePlan"].DescBLocKey ?? throw new Exception("Missing card description"));
 
             return new CardData() {
-                cost = upgrade == Upgrade.A ? 1 : 2,
+                cost = 1,
                 description = cardText,
-                retain = upgrade == Upgrade.B,
+                retain = upgrade == Upgrade.A,
                 exhaust = true
             };
         }

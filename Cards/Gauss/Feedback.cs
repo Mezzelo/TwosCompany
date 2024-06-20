@@ -6,9 +6,9 @@ namespace TwosCompany.Cards.Gauss {
 
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 3,
+                cost = 2,
                 flippable = upgrade == Upgrade.B,
-                art = new Spr?((Spr)((flipped ? Manifest.Sprites["FeedbackCardSpriteFlip"] : Manifest.Sprites["FeedbackCardSprite"]).Id
+                art = new Spr?((Spr)((flipped ? Manifest.Sprites["FeedbackCardSprite"] : Manifest.Sprites["FeedbackCardSprite"]).Id
                     ?? throw new Exception("missing flip art")))
             };
         }

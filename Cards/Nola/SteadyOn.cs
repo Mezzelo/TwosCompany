@@ -42,7 +42,7 @@ namespace TwosCompany.Cards.Nola {
                 action = new AStatus() {
                     status = upgrade == Upgrade.B ? Status.powerdrive : Status.overdrive,
                     targetPlayer = true,
-                    statusAmount = 1,
+                    statusAmount = upgrade == Upgrade.B ? 1 : 2,
                 },
                 statusReq = Status.evade,
                 statusCost = 1,

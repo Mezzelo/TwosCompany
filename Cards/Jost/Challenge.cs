@@ -2,7 +2,8 @@
 using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Jost {
-    [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B }, extraGlossary = new string[] { "action.StanceCard" })]
+    [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B }, extraGlossary = new string[] { "action.StanceCard" },
+        dontOffer = true, unreleased = true)]
     public class Challenge : Card, IJostCard {
         public override CardData GetData(State state) {
             return new CardData() {

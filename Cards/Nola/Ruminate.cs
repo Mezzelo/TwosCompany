@@ -22,7 +22,8 @@ namespace TwosCompany.Cards.Nola {
             List<CardAction> actions = new List<CardAction>();
 
             actions.Add(new ADelay() {
-                time = -0.5
+                time = -0.5,
+                dialogueSelector = ".mezz_ruminate"
             });
 
             for (int i = 0; i < 2; i++)
@@ -39,9 +40,6 @@ namespace TwosCompany.Cards.Nola {
                 status = Status.drawNextTurn,
                 statusAmount = 2,
                 targetPlayer = true
-            });
-            actions.Add(new AEndTurn() {
-                dialogueSelector = ".mezz_ruminate"
             });
             return actions;
         }

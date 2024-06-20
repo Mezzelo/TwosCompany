@@ -53,6 +53,25 @@
         "isa"
       ]
     },
+    "CrystallizedFriendEvent_Mezz.TwosCompany.IsabelleDeck": {
+      "type": "event",
+      "oncePerRun": true,
+      "bg": "BGCrystalizedFriend",
+      "lines": [
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1.5
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "isa",
+		  "loopTag": "snide"
+        }
+      ],
+      "allPresent": [
+        "isa"
+      ]
+    },
   
 
     "mezz_Duo_AboutToDieAndLoop_IsaIlya": {

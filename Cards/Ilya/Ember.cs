@@ -7,6 +7,7 @@ namespace TwosCompany.Cards.Ilya {
             return new CardData() {
                 cost = 0,
                 temporary = true,
+                retain = true,
                 exhaust = upgrade == Upgrade.B
             };
         }
@@ -15,11 +16,11 @@ namespace TwosCompany.Cards.Ilya {
             List<CardAction> actions = new List<CardAction>();
 
             actions.Add(new AAttack() {
-                damage = GetDmg(s, upgrade == Upgrade.B ? 2 : 1),
+                damage = GetDmg(s, 1),
             });
             actions.Add(new StatCostAction() {
                 action = new AHurt() {
-                    hurtAmount = 2,
+                    hurtAmount = 1,
                     targetPlayer = true,
                     hurtShieldsFirst = false,
                 },

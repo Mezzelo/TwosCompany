@@ -71,15 +71,14 @@ namespace TwosCompany.Actions {
         }
 
         public override void Begin(G g, State s, Combat c) {
+            timer = 0.0;
             Ship ship = targetPlayer ? s.ship : c.otherShip;
             Ship ship2 = targetPlayer ? c.otherShip : s.ship;
             if (ship == null || ship2 == null || ship.hull <= 0) {
-                timer = 0.0;
                 return;
             }
             int? num = GetFromX(s, c);
             if (num == null) {
-                timer = 0.0;
                 return;
             }
             if (!targetPlayer && g.state.ship.GetPartTypeCount(PType.missiles) > 1 && !multiCannonVolley) {
@@ -90,7 +89,7 @@ namespace TwosCompany.Actions {
             else {
                 Input.Rumble(0.5);
                 bool stun = ship2.Get((Status)Manifest.Statuses?["ElectrocuteCharge"].Id!) > 0 ||
-                    ship2.Get(Status.stunCharge) > 0;
+                    ship2.Get(Status.stunCharge) > 0 || stunEnemy;
                 bool piercing = false;
                 bool flag = ship2.Get(Status.libra) > 0;
                 RaycastResult raycastResult = CombatUtils.RaycastFromShipLocal(s, c, num.Value, targetPlayer);
@@ -115,9 +114,18 @@ namespace TwosCompany.Actions {
                         else if (artif is TwinMaleCable artifCable)
                             cable = artifCable;
                     }
-                // miss
-                if (cRoute == null && !raycastResult.hitShip) {
-                    timer = this.fast ? 0.1 : 0.4;
+                // no chain
+                if (cRoute == null) {
+                    hitActions.Add(new AChainHit() {
+                        damage = this.damage,
+                        targetPlayer = this.targetPlayer,
+                        fromX = raycastResult.worldX,
+                        piercing = piercing,
+                        stun = stun,
+                        fromDrone = false,
+                        timer = this.fast ? 0.1 : 0.4,
+                    });
+                    /*
                     ChainData.Cannon(g, targetPlayer, CombatUtils.RaycastGlobal(c, ship, false, s.ship.x + num.Value), new DamageDone());
                     foreach (Artifact item10 in s.EnumerateAllArtifacts()) {
                         item10.OnEnemyDodgePlayerAttack(s, c);
@@ -133,18 +141,7 @@ namespace TwosCompany.Actions {
                         foreach (Artifact item11 in s.EnumerateAllArtifacts()) {
                             item11.OnEnemyDodgePlayerAttackByOneTile(s, c);
                         }
-                }
-                else if (cRoute == null && raycastResult.hitShip) {
-                    hitActions.Add(new AChainHit() {
-                        damage = this.damage,
-                        targetPlayer = this.targetPlayer,
-                        fromX = raycastResult.worldX,
-                        piercing = piercing,
-                        stun = stun,
-                        fromDrone = false,
-                        timer = this.fast ? 0.1 : 0.4,
-                    });
-                    timer = 0.0;
+                    */
                 }
                 else if (cRoute != null) {
                     raycastResult.hitDrone = true;
@@ -161,6 +158,7 @@ namespace TwosCompany.Actions {
                     bool hitAsteroid = false;
 
                     bool salvageArm = s.EnumerateAllArtifacts().OfType<SalvageArm>().Any();
+                    TuningTrident? trident = s.EnumerateAllArtifacts().OfType<TuningTrident>().FirstOrDefault();
 
                     if (!targetPlayer) {
                         exotics = s.EnumerateAllArtifacts().OfType<ExoticMetals>().FirstOrDefault();
@@ -168,8 +166,13 @@ namespace TwosCompany.Actions {
 
                     for (int n = 0; n < cRoute.Count; n++) {
                         int i = cRoute[n];
+                        if (n == 0)
+                            c.stuff[i].pulse -= 0.4;
                         // chain ends: mark for fire
-                        bool end = n == cRoute.Count - 1 || (n < cRoute.Count - 1 && cRoute[n] < cRoute[n + 1] && cRoute[n] < cRoute[0]);
+                        bool end = n == cRoute.Count - 1 || 
+                            (trident != null && n == 0) || (n < cRoute.Count - 1 && cRoute[n] < cRoute[n + 1] && cRoute[n] < cRoute[0]);
+                        if (trident != null && cRoute.Count > 0)
+                            trident.Pulse();
                         // after left end: reset damage to initial
                         if (n > 0 && cRoute[n] > cRoute[n - 1] && cRoute[n - 1] < cRoute[0]) {
                             if (cable != null)
@@ -224,8 +227,10 @@ namespace TwosCompany.Actions {
                                 c.stuff[i].bubbleShield = true;
                             if (cond.condType == Conduit.ConduitType.amplifier)
                                 cDamage++;
-                            else if (cond.condType == Conduit.ConduitType.kinetic)
+                            else if (cond.condType == Conduit.ConduitType.kinetic && !cond.disabled) {
+                                cond.disabled = true;
                                 evadeGain += 1;
+                            }
                             else if (cond.condType == Conduit.ConduitType.shield && !cond.disabled) {
                                 cond.disabled = true;
                                 shieldGain += 2;
@@ -233,7 +238,7 @@ namespace TwosCompany.Actions {
                             else if (cond.condType == Conduit.ConduitType.feedback && !cond.disabled) {
                                 cond.disabled = true;
                                 c.Queue(new AChainLightning() {
-                                    damage = 0,
+                                    damage = 1,
                                     targetPlayer = this.targetPlayer,
                                     dialogueSelector = ".mezz_feedbackProc",
                                 });
@@ -250,7 +255,7 @@ namespace TwosCompany.Actions {
                         else {
                             List<CardAction>? droneActions = c.stuff[i].GetActions(s, c);
                             if ((!(c.stuff[i] is Missile) && droneActions != null) || c.stuff[i] is JupiterDrone) {
-                                if (droneActions != null && c.stuff[i] is not JupiterDrone) {
+                                if (droneActions != null && c.stuff[i] is not JupiterDrone && c.stuff[i] is not Conduit) {
                                     midActions.InsertRange(0, droneActions);
                                 }
                                 if (exotics != null) {
@@ -281,43 +286,18 @@ namespace TwosCompany.Actions {
                                         hasSalvageArm = salvageArm,
                                     });
                             }
-                        } 
+                        }
                         if (end && !(cable != null && n < cRoute.Count - 1 && n > 0)) {
                             RaycastResult chainRay = CombatUtils.RaycastGlobal(c, ship, true, cRoute[n]);
-                            if (chainRay.hitShip) {
-                                hitActions.Insert(0, new AChainHit() {
-                                    damage = cDamage,
-                                    targetPlayer = this.targetPlayer,
-                                    fromX = cRoute[n],
-                                    piercing = piercing,
-                                    stun = stun,
-                                    fromDrone = true,
-                                    timer = (n == cRoute.Count - 1) ? 0.4 : 0.0,
-                                });
-                            }
-                            else {
-                                ChainData.Cannon(g, targetPlayer, chainRay, new DamageDone());
-                                if (n == cRoute.Count - 1)
-                                    hitActions.Insert(0, new ADelay() {
-                                        timer = 0.4
-                                    });
-                                foreach (Artifact item10 in s.EnumerateAllArtifacts()) {
-                                    item10.OnEnemyDodgePlayerAttack(s, c);
-                                }
-                                bool flag3 = false;
-                                for (int f = -1; f <= 1; f += 2) {
-                                    if (CombatUtils.RaycastGlobal(c, ship, true, cRoute[n] + f).hitShip) {
-                                        flag3 = true;
-                                        break;
-                                    }
-                                }
-                                if (flag3)
-                                    foreach (Artifact item11 in s.EnumerateAllArtifacts()) {
-                                        item11.OnEnemyDodgePlayerAttackByOneTile(s, c);
-                                    }
-                            }
-                        } else if (n == 0) {
-                            c.stuff[i].pulse = -0.4;
+                            hitActions.Insert(0, new AChainHit() {
+                                damage = Math.Max(0, cDamage - (n == 0 && trident != null ? 1 : 0)),
+                                targetPlayer = this.targetPlayer,
+                                fromX = cRoute[n],
+                                piercing = piercing,
+                                stun = stun,
+                                fromDrone = true,
+                                timer = (n == cRoute.Count - 1) ? 0.4 : 0.0,
+                            });
                         }
                     }
                     Manifest.EventHub.SignalEvent<Tuple<State, int>>("Mezz.TwosCompany.ChainLightning", new(s, cRoute.Count));
@@ -437,6 +417,7 @@ namespace TwosCompany.Actions {
                         continue;
                     bool remote = s.EnumerateAllArtifacts().OfType<RemoteStarter>().Any();
                     bool twin = s.EnumerateAllArtifacts().OfType<TwinMaleCable>().Any();
+                    bool trident = s.EnumerateAllArtifacts().OfType<TuningTrident>().Any();
                     int zeroDamage = 0;
                     int cDamage = damage;
                     for (int g = 0; g < cRoute.Count; g++) {
@@ -457,9 +438,11 @@ namespace TwosCompany.Actions {
                         if (g == 0)
                             zeroDamage = cDamage;
 
-                        int hilightVal = cDamage +
-                            ((g == cRoute.Count - 1 || (g < cRoute.Count - 1 && cRoute[g] < cRoute[g + 1] && cRoute[g] < cRoute[0])) ?
-                            (twin && g != cRoute.Count - 1 ? 200 : 400) : 0);
+                        int hilightVal = Math.Max(0, cDamage - (g == 0 && trident ? 1 : 0)) +
+                            ((g == cRoute.Count - 1 || 
+                            (g == 0 && trident) ||
+                            (g < cRoute.Count - 1 && cRoute[g] < cRoute[g + 1] && cRoute[g] < cRoute[0])) ?
+                            (twin && g != cRoute.Count - 1 && g > 0 ? 200 : 400) : 0);
 
                         c.stuff[cRoute[g]].hilight = 2;
                         if (!ChainData.hilights.ContainsKey(cRoute[g]))

@@ -1,5 +1,4 @@
 ﻿using TwosCompany.Actions;
-using TwosCompany.Cards.Ilya;
 
 namespace TwosCompany.Cards.Gauss {
     [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
@@ -26,7 +25,7 @@ namespace TwosCompany.Cards.Gauss {
             List<CardAction> actions = new List<CardAction>();
             actions.Add(new AAddCard() {
                 amount = 3,
-                card = new SparkCard() { upgrade = Upgrade.None, discount = upgrade == Upgrade.B ? -1 : 0, temporaryOverride = true },
+                card = new SparkCard() { upgrade = Upgrade.None, discount = upgrade == Upgrade.B ? -1 : 0 },
                 destination = upgrade == Upgrade.A ? CardDestination.Hand : CardDestination.Deck,
             });
             return actions;

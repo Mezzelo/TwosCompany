@@ -7,7 +7,7 @@ namespace TwosCompany.Cards.Jost {
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = upgrade == Upgrade.B ? 0 : 1,
-                art = new Spr?((Spr)(Manifest.Sprites["JostDefaultCardSprite" + (upgrade == Upgrade.A ? "Down1" : "") + Stance.AppendName(state)].Id
+                art = new Spr?((Spr)(Manifest.Sprites["JostDefaultCardSprite" + Stance.AppendName(state)].Id
                     ?? throw new Exception("missing card art")))
             };
         }
@@ -32,9 +32,17 @@ namespace TwosCompany.Cards.Jost {
 
             actions.Add(new ADummyAction());
 
+            if (upgrade == Upgrade.A) {
+                actions.Add(new AStatus() {
+                    status = Status.shield,
+                    statusAmount = 1,
+                    targetPlayer = true,
+                    disabled = Stance.Get(s) < 2,
+                });
+            }
             actions.Add(new AStatus() {
-                status = upgrade == Upgrade.B ? Status.overdrive : Status.shield,
-                statusAmount = upgrade == Upgrade.A ? 2 : 1,
+                status = upgrade == Upgrade.B ? Status.overdrive : Status.tempShield,
+                statusAmount = upgrade == Upgrade.B ? 1 : 2,
                 targetPlayer = true,
                 disabled = Stance.Get(s) < 2,
             });

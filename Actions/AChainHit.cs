@@ -24,11 +24,22 @@ namespace TwosCompany.Actions {
             Ship ship = targetPlayer ? s.ship : c.otherShip;
 
             if (c.stuff.ContainsKey(fromX))
-                c.stuff[fromX].pulse = 0.4;
+                c.stuff[fromX].pulse += 0.4;
             RaycastResult raycastResult = CombatUtils.RaycastGlobal(c, ship, fromDrone, fromX);
             DamageDone dmg = new DamageDone();
+            bool autododge = ApplyAutododge(c, ship, raycastResult);
             // direct hits
-            if (!ApplyAutododge(c, ship, raycastResult)) {
+            if (autododge)
+                return;
+            if (raycastResult.hitShip) {
+                if (!targetPlayer && c.otherShip.ai != null) {
+                    c.otherShip.ai.OnHitByAttack(s, c, fromX, new AAttack() {
+                        damage = this.damage,
+                        fromX = this.fromX,
+                        piercing = this.piercing,
+                        stunEnemy = this.stun,
+                    });
+                }
                 dmg = ship.NormalDamage(s, c, damage, fromX, piercing);
                 Part? partAtWorldX = ship.GetPartAtWorldX(fromX);
                 bool stunShout = false;
@@ -47,7 +58,7 @@ namespace TwosCompany.Actions {
                         targetPlayer = !targetPlayer,
                         fast = true,
                         storyFromPayback = true,
-                        timer = 0.0,
+                        timer = 0.1,
                     });
                 }
                 if (stun) {
@@ -65,14 +76,24 @@ namespace TwosCompany.Actions {
                         timer = 0.0,
                     });
                 }
-                if (!targetPlayer)
+                if (!targetPlayer) {
+                    g.state.storyVars.playerShotJustHit = true;
+                    g.state.storyVars.playerShotJustMissed = false;
                     foreach (Artifact item9 in s.EnumerateAllArtifacts())
                         item9.OnEnemyGetHit(s, c, ship.GetPartAtWorldX(fromX));
+                }
             } else {
+                if (!targetPlayer && !g.state.storyVars.playerShotJustHit)
+                    g.state.storyVars.playerShotJustMissed = true;
                 raycastResult.hitShip = false;
-                foreach (Artifact item10 in s.EnumerateAllArtifacts()) {
+                foreach (Artifact item10 in s.EnumerateAllArtifacts())
                     item10.OnEnemyDodgePlayerAttack(s, c);
-                    item10.OnEnemyDodgePlayerAttackByOneTile(s, c);
+                for (int i = -1; i <= 1; i += 2) {
+                    if (CombatUtils.RaycastGlobal(c, ship, false, raycastResult.worldX + i).hitShip) {
+                        foreach (Artifact item11 in s.EnumerateAllArtifacts())
+                            item11.OnEnemyDodgePlayerAttackByOneTile(s, c);
+                        break;
+                    }
                 }
             }
             ChainData.Cannon(g, targetPlayer, raycastResult, dmg);
@@ -87,8 +108,10 @@ namespace TwosCompany.Actions {
                     new AMove
                     {
                         targetPlayer = targetPlayer,
-                        dir = dir
+                        dir = dir,
+                        timer = 0.1,
                     },
+                    this,
                 });
                     timer = 0.0;
                     return true;
@@ -101,8 +124,10 @@ namespace TwosCompany.Actions {
                     new AMove
                     {
                         targetPlayer = targetPlayer,
-                        dir = dir2
+                        dir = dir2,
+                        timer = 0.1,
                     },
+                    this,
                 });
                     timer = 0.0;
                     return true;

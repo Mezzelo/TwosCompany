@@ -1,3 +1,129 @@
+2.5.0-RC2
+MAJOR balance & fixes patch
+
++ Major design reworks balance changes across all characters, with a focus on consistency.  Significant buffs to Nola, Jost & Gauss, heavy reworks to all decks (particularly Isabelle's).
++ 5 new artifacts, 1 for each character.
+
++ Onslaught status now draws from discard, if no eligible cards are in the draw pile.
++ When ending turn with double stance, both stacks decrease by 1 instead of being reduced to 0.  This should make playing double stance considerably more consistent/forgiving.
++ Base damage of Gauss' chain lightning increased to 2, from 1.  Changes to her cards reflect this.
+
++ New artifacts: Buffer Echo, Flawless Core, Pressure Reservoir, Abandoned Tassels, Tuning Trident
+~ Complete reworks to: Messenger Bag, Blackfoot Sigil
+~ Metronome and Messenger Bag are now common, from boss.
+
++ Burden of Hindsight now increases ALL attack damage, and by current stacks of offensive stance rather than a flat +1.  When ending turn with defensive stance, you now lose 1 of both stance instead of both being set to 0.
+
+~ Cards removals/additions 
+Nola:
++ Follow Through
++ Take the Lead
+- Opening Gambit
+- Damage Control
+Isabelle:
++ Finesse
++ Blade Dance
++ Cascade
++ En Garde
+- Grapple
+- Shove
+- Wild Strikes
+- Point Defense
+~ Completely reworked: False Opening, Riposte
+Ilya: 
++ Heat Recycler
++ Searing Rupture
+- Reactor Burn
+- Maul
+~ Alternate starting deck changed to Blast Shield & Thermal Blast, from Pressure & Thermal Blast.
+Jost
++ Limitless
++ Rush of Battle
++ Breathe In
+- Follow My Lead
+- Heartbeat (no longer offered)
+- Challenge
+Gauss:
++ Heavy Bolt
+- Spark (no longer offered)
+~ Starting deck changed to Conduit & Latent Energy, from Conduit & Spark
+
+- Adaptation A's bottom side no longer gives temp shield.
++ Call and Response A now retains, rather than B, and only discounts by 1 energy.  B now retains.  For all variants, it is now capable of retrieving exhausted cards.
+~ Onslaught A now retains, rather than being buoyant.  B's cost increased to 1, from 0, and now draws 2 cards rather than giving 5 onslaught.
++ Ruminate no longer ends turn.
++ Steady On now gives 2 overdrive at the end, from 1, for all variants aside from B.
+~ Anticipation's cost reduced to 1, from 2.  discounts a selected card by 2, from 4.  A discounts 2 cards by 1 energy.
++ Contingency's cost reduced to 0, from 1.  Contingency B now gives 1 energy, from 3.
+~ Let Loose is now uncommon, from common.  Default and A variants now retain.  B now costs 1, from 2.
+~ Weak Point's stun removed, aside from B.  Cost increased by 1 for all variants, from 2/3 to 3/4.  Now gives brittle, rather than weak.  B now exhausts.
++ All Hands' cost lowered by 1 for all variants, from 5/4 to 4/3.
++ Battle Plan's cost decreased to 1, from 2.  A and B upgrades swapped.
+
++ Bind's cost now only increases when playing attack cards, rather than when playing any card.  It now retains.
++ Lightning Strikes A and B swapped, A and B are now flippable.  Only B is urgent now.  
+~ Measure Break's upgrades reworked.  A does 2 damage for both hits, B stuns for both hits.
++ Couch's cost reduced by 1 for all variants.  A and B variants swapped.
++ Haymaker now reduces card draw next turn by 1, from 2.
++ Compound Attack's cost reduced to 0, from 1.  Compound Attack B now gives 3 Jab Bs, from 4.
+- Coup de Grace's damage decreased to 6, from 8.
+
+~ Ember now retains.  B variant only does 1 damage, from 2.  Damage taken from overheating reduced to 1, from 2.
+- Flash Draw B now only gives 4 cards, from 6.
+~ Pressure B is now infinite and increases in cost when played, rather than duplicating itself into draw and causing damage on overheat.
+~ Heat Treatment is now uncommon, from common.
+~ Imbue's cost reduced to 1 for all variants.  B now gives enflamed rather than 5 heat, both A and B now give 2 overdrive instead of 1 overdrive and 1 shield.
+- Fireball's cost is now 2 for all variants.
+
++ Backstep's cost reduced to 0, from 1.
++ Front Guard B now gives 2 shield in offensive stance for base and A variants.
++ Heartbeat default variant now draws an extra card when double-stancing, instead of losing 1 energy.  B now draws 3, from 2.
++ High Guard's payback drive now no longer requires shield, and payback drive reduced to 2 from 3.  Defensive side gives shield for all variants.
++ Regain Poise now costs 0, from 1, and retains for all variants aside from B.  A gives 2 temp shield. It no longer gives card draw.
+~ Battle Tempo's rarity changed to uncommon, from rare.  Cost is now 1 for all variants, from 2/1/2.  A is now buoyant, B only gives 2 shield, from 3.
+~ Reckless Abandon now retains for all variants.  A now gives 2 of a stack instead of adding Regain Poise to hand.  B now gives a stack of stand firm on both sides.
++ Stand Firm's default and A variants now cost 0, from 1.  A now lets you gain Superposition instead by flopping, rather than flopping to change initial stance.  B now gives a stack of defense and exhausts, rather than 2 stacks.
++ Move as One is now no longer urgent.
+
+~ Conductor Field B now costs 1, from 2.  Only A now retains, rather than A and B.
++ Shield Conduit's default cost reduced to 1, from 2.  A now bubbles the shield conduit, B now bubbles the shield drone.
+~ Spark's damage increased to 2 for all variants, from 1 for default and B variants, A now gives 1 evade.
++ Feedback Conduit's cost reduced to 2 for all variants, from 3.
++ Solder Shuffle's cost reduced from 2/2/3 to 2/1/2.  All variants are now 	flippable.
++ Strike Twice's cost reduced to 2, from 3.
+- Autocurrent B's damage reduced to 0, from 1.
++ Hyperspace Storm's cost reduced to 1 for all variants, from 2.  
+	+ Hyperspace Wind's variants are now all flippable, rather than only A.  Default and B now increase in cost when attacks are played.  Default and A retain, B now fires a 0 damage chain lightning.
+
+
+~ Compatibility fixes for APurpleApple's Shipyard, courtesy of purple.
+~ Asteroid Belt rewritten internally, should be less buggy.
+~ String revisions to lots of dialogue and tooltips.
+~ Sprite revisions to several icons.
+~ Fixed broken sprites in memories.
+~ Fixed broken vanilla move enemy tooltips.
+
+2.0.2
+smaller balance change and fixes update
+
+- Sudden Shift B's cost increases by 2 per other card played, from 1.
++ Autocurrent B's cost reduced from 4 to 3.	Autocurrent B now also fires a 1 damage chain lightning.
++ Move as One is now rare, from uncommon, and decreases cost by 2 per attack played, from 1.
+- Keep Fighting now gives 2 shield, from 3.
+
++ Blackfoot Sigil now gives 1 shield, whenever you play the chosen card.
+- Revised wording for Militia Armband.  It no longer gives shield on stance increase - only overdrive.
+
+~ API support for Dracula added - Blood Tap statuses, in particular.
+~ Added external API for other mods to add cross-character dialogue with.
+~ Fixes to hilighting/tooltips for chain lightning.
+~ Minor string revisions, across tooltips & dialogue.
+~ (fix) Fixed an off-by-one bug with Asteroid Belt.
+~ (fix) Added tooltips for some cards that add other cards to hand or have conditional actions - Battle Tempo, Rising Storm and Move as One, in particular.
+~ Revised the wording on Exotic Metals to be broader to more than just "drones"
+
+
+
 2.0.0
 NEW STUFF (and removed stuff)
 + Two new characters - Jost and Gauss, with 45 cards and 11 artifacts (1 starter) between them.  Both utilize new, novel mechanics that deviate further from vanilla than the original trio.

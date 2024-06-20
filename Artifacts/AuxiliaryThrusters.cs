@@ -1,7 +1,5 @@
 ﻿using TwosCompany.Actions;
-using TwosCompany.Cards;
 using TwosCompany.Cards.Isabelle;
-using TwosCompany.Cards.Nola;
 
 namespace TwosCompany.Artifacts {
 

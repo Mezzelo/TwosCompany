@@ -2,7 +2,7 @@
 
 namespace TwosCompany.Cards.Isabelle {
     [CardMeta(rarity = Rarity.rare, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
-    public class CoupDeGrace : Card {
+    public class CoupDeGrace : Card, IOtherAttackIncreaseCard {
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = upgrade == Upgrade.B ? 7 : 5,
@@ -19,7 +19,7 @@ namespace TwosCompany.Cards.Isabelle {
             });
 
             actions.Add(new AAttack() {
-                damage = GetDmg(s, 8),
+                damage = GetDmg(s, 6),
                 stunEnemy = true,
                 piercing = upgrade == Upgrade.A,
                 dialogueSelector = ".mezz_coupDeGrace",
@@ -33,12 +33,12 @@ namespace TwosCompany.Cards.Isabelle {
             this.discount += costIncrease;
             costIncrease = 0;
         }
-
-        public void OtherAttackDiscount() {
-            costIncrease--;
+        public void OtherAttackDiscount(State s) {
+            costIncrease++;
             this.discount--;
         }
 
         public override string Name() => "Coup De Grace";
+
     }
 }

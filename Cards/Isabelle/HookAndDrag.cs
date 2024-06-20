@@ -1,4 +1,6 @@
-﻿namespace TwosCompany.Cards.Isabelle {
+﻿using TwosCompany.Actions;
+
+namespace TwosCompany.Cards.Isabelle {
     [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class HookAndDrag : Card {
         public override CardData GetData(State state) {
@@ -12,7 +14,7 @@
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
-            actions.Add(new AMove() {
+            actions.Add(new AMoveEnemy() {
                 dir = -4,
                 targetPlayer = false,
             });

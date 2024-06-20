@@ -4,6 +4,7 @@
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 1,
+                retain = true,
             };
         }
         private int GetHeatAmt(State s) {
@@ -19,9 +20,9 @@
             actions.Add((CardAction)new AVariableHint() {
                 status = new Status?(Status.heat)
             });
-            actions.Add(new ADiscard() {
-                count = GetHeatAmt(s),
-                xHint = 1
+            actions.Add(new ADrawCard() {
+                count = GetHeatAmt(s) * (upgrade == Upgrade.A ? 3 : 2),
+                xHint = upgrade == Upgrade.A ? 3 : 2
             });
             actions.Add(new AStatus() {
                 status = Status.heat,
@@ -29,11 +30,6 @@
                 mode = AStatusMode.Set,
                 targetPlayer = true
             });
-
-            if (upgrade != Upgrade.None)
-                actions.Add(new ADrawCard() {
-                    count = 2,
-                });
 
             return actions;
         }

@@ -27,6 +27,15 @@
         public override List<Tooltip> GetTooltips(State s) => new List<Tooltip>() { new TTGlossary(Manifest.Glossary["EnergyPerAttack"]?.Head ??
             throw new Exception("missing glossary entry: EnergyPerAttack"), amount) };
     }
+    public class ACostIncreaseAttackHint : CardAction {
+        public int amount = 1;
+        public override void Begin(G g, State s, Combat c) => this.timer = 0.0;
+
+        public override Icon? GetIcon(State s) => new Icon((Spr)(Manifest.Sprites["IconEnergyPerAttackIncrease"].Id ?? throw new Exception("missing icon")), amount, Colors.textMain);
+
+        public override List<Tooltip> GetTooltips(State s) => new List<Tooltip>() { new TTGlossary(Manifest.Glossary["EnergyPerAttackIncrease"]?.Head ??
+            throw new Exception("missing glossary entry: EnergyPerAttack"), amount) };
+    }
     public class AOtherPlayedHint : CardAction {
         public int amount = 1;
         public bool perma = false;

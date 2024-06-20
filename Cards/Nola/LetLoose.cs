@@ -1,7 +1,7 @@
 ﻿using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Nola {
-    [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
+    [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class LetLoose : Card {
         public override CardData GetData(State state) {
             string cardText;
@@ -13,7 +13,8 @@ namespace TwosCompany.Cards.Nola {
                 cardText = Loc.GetLocString(Manifest.Cards?["LetLoose"].DescBLocKey ?? throw new Exception("Missing card description"));
 
             return new CardData() {
-                cost = upgrade == Upgrade.B ? 2 : 1,
+                cost = 1,
+                retain = upgrade != Upgrade.B,
                 description = cardText,
                 exhaust = upgrade == Upgrade.B,
             };

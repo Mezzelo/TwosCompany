@@ -148,6 +148,7 @@ namespace TwosCompany {
             // midrow
             addSprite("DroneConduit", "conduit", "drones", artReg);
             addSprite("DroneConduitKinetic", "conduitKinetic", "drones", artReg);
+            addSprite("DroneConduitKineticDisabled", "conduitKineticDisabled", "drones", artReg);
             addSprite("DroneConduitShield", "conduitShield", "drones", artReg);
             addSprite("DroneConduitShieldDisabled", "conduitShieldDisabled", "drones", artReg);
             addSprite("DroneConduitFeedback", "conduitFeedback", "drones", artReg);
@@ -162,6 +163,7 @@ namespace TwosCompany {
             addSprite("IconEnergyPerCard", "energyPerCard", "icons", artReg);
             addSprite("IconEnergyPerCardPerma", "energyPerCardPerma", "icons", artReg);
             addSprite("IconEnergyPerAttack", "energyPerAttack", "icons", artReg);
+            addSprite("IconEnergyPerAttackIncrease", "energyPerAttackIncrease", "icons", artReg);
             addSprite("IconEnergyPerPlay", "energyPerPlay", "icons", artReg);
             addSprite("IconRaiseCostHint", "energyPerPlay", "icons", artReg);
             addSprite("IconLowerPerPlay", "lowerPerPlay", "icons", artReg);
@@ -187,6 +189,7 @@ namespace TwosCompany {
             addSprite("IconStanceCard", "stanceCard", "icons", artReg);
             addSprite("IconChainLightning", "chainLightning", "icons", artReg);
             addSprite("IconConductorField", "conductorField", "icons", artReg);
+            addSprite("IconControl", "control", "icons", artReg);
 
             // status icons
             addSprite("IconTempStrafe", "tempStrafe", "icons", artReg);
@@ -213,6 +216,13 @@ namespace TwosCompany {
             addSprite("IconHyperspaceStorm", "hyperspaceStorm", "icons", artReg);
             addSprite("IconHyperspaceStormA", "hyperspaceStormA", "icons", artReg);
             addSprite("IconHyperspaceStormB", "hyperspaceStormB", "icons", artReg);
+            addSprite("IconHeatFeedback", "heatFeedback", "icons", artReg);
+            addSprite("ThermalAttacks", "thermalAttacks", "icons", artReg);
+            addSprite("IconFollowUp", "followUp", "icons", artReg);
+            addSprite("IconSuperposition", "superposition", "icons", artReg);
+            addSprite("IconMoveEnemyRight", "moveEnemyRight", "icons", artReg);
+            addSprite("IconMoveEnemyLeft", "moveEnemyLeft", "icons", artReg);
+            addSprite("IconMoveEnemyZero", "moveEnemyRight", "icons", artReg);
             // chars
             addSprite("NolaFrame", "char_nola", "panels", artReg);
             addSprite("IsabelleFrame", "char_isabelle", "panels", artReg);
@@ -247,6 +257,10 @@ namespace TwosCompany {
             addSprite("JostDefaultCardSpriteDown2Both", "default_jost_down2_both", "cards", artReg);
             addSprite("JostDefaultCardSpriteDown2Neither", "default_jost_down2_neither", "cards", artReg);
             addSprite("GaussDefaultCardSprite", "default_gauss", "cards", artReg);
+            addSprite("AdaptationCardSpriteDown1", "AdaptationDown1", "cards", artReg);
+            addSprite("AdaptationCardSpriteDown1Flip", "AdaptationDown1_flip", "cards", artReg);
+            addSprite("NolaCardSpriteUp1", "NolaUp1", "cards", artReg);
+            addSprite("NolaCardSpriteUp1Flip", "NolaUp1_flip", "cards", artReg);
 
             addSprite("NolaFullbodySprite", "nola_end", "fullchars", artReg);
             addSprite("IsabelleFullbodySprite", "isabelle_end", "fullchars", artReg);
@@ -280,6 +294,7 @@ namespace TwosCompany {
             // variable artifact icons
             addSprite("IconMetronomeAttacked", "metronome_attack", "artifacts", artReg);
             addSprite("IconMetronomeMoved", "metronome_move", "artifacts", artReg);
+            addSprite("IconFlawlessCoreOff", "flawlessCore_off", "artifacts", artReg);
             addSprite("IconRemoteStarterUsed", "remoteStarter_used", "artifacts", artReg);
 
 
@@ -344,13 +359,13 @@ namespace TwosCompany {
 
             if (MoreDifficultiesApi != null) {
                 MoreDifficultiesApi.RegisterAltStarters((Deck)NolaDeck.Id!, new StarterDeck() {
-                    cards = new List<Card> { new Adaptation(), new CallAndResponse() }
+                    cards = new List<Card> { new CallAndResponse(), new HoldOn() }
                 });
                 MoreDifficultiesApi.RegisterAltStarters((Deck)IsabelleDeck.Id!, new StarterDeck() {
                     cards = new List<Card> { new Bind(), new MeasureBreak() }
                 });
                 MoreDifficultiesApi.RegisterAltStarters((Deck)IlyaDeck.Id!, new StarterDeck() {
-                    cards = new List<Card> { new Pressure(), new ThermalBlast() }
+                    cards = new List<Card> { new BlastShield(), new ThermalBlast() }
                 });
                 MoreDifficultiesApi.RegisterAltStarters((Deck)JostDeck.Id!, new StarterDeck() {
                     cards = new List<Card> { new HighGuard(), new SweepingStrikes() },
@@ -393,11 +408,16 @@ namespace TwosCompany {
         }
 
         void ICardManifest.LoadManifest(ICardRegistry registry) {
-            ManifHelper.DefineCards(0, 22, "Nola", NolaDeck ?? throw new Exception("missing deck"), Cards ?? throw new Exception("missing dictionary: cards"), Sprites, registry);
-            ManifHelper.DefineCards(22, 27, "Isabelle", IsabelleDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
-            ManifHelper.DefineCards(49, 23, "Ilya", IlyaDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
-            ManifHelper.DefineCards(72, 24, "Jost", JostDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
-            ManifHelper.DefineCards(96, 22, "Gauss", GaussDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
+            ManifHelper.DefineCards(0, ManifHelper.deckSize[0], 
+                "Nola", NolaDeck ?? throw new Exception("missing deck"), Cards ?? throw new Exception("missing dictionary: cards"), Sprites, registry);
+            ManifHelper.DefineCards(ManifHelper.getDeckSum(0), ManifHelper.deckSize[1], 
+                "Isabelle", IsabelleDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
+            ManifHelper.DefineCards(ManifHelper.getDeckSum(1), ManifHelper.deckSize[2],
+                "Ilya", IlyaDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
+            ManifHelper.DefineCards(ManifHelper.getDeckSum(2), ManifHelper.deckSize[3],
+                "Jost", JostDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
+            ManifHelper.DefineCards(ManifHelper.getDeckSum(3), ManifHelper.deckSize[4],
+                "Gauss", GaussDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
         }
 
         void IAnimationManifest.LoadManifest(IAnimationRegistry animReg) {
@@ -491,7 +511,7 @@ namespace TwosCompany {
             GaussCharacter = new ExternalCharacter("Mezz.TwosCompany.Character.Gauss",
                 GaussDeck ?? throw new Exception("Missing Deck"),
                 Sprites["GaussFrame"] ?? throw new Exception("Missing Portrait"),
-                new Type[] { typeof(SparkCard), typeof(ConduitCard) },
+                new Type[] { typeof(LatentEnergy), typeof(ConduitCard) },
                 new Type[0],
                 Animations["GaussNeutralAnim"] ?? throw new Exception("missing default animation"),
                 Animations["GaussMiniAnim"] ?? throw new Exception("missing mini animation"));

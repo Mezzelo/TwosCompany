@@ -28,7 +28,7 @@
                     targetPlayer = true,
                 });
             actions.Add(new AVariableHint() {
-                status = new Status?(Status.heat)
+                status = Status.heat
             });
             actions.Add(new AAttack() {
                 damage = GetDmg(s, this.GetHeatAmt(s)),

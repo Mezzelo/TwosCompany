@@ -53,6 +53,25 @@
         "ilya"
       ]
     },
+    "CrystallizedFriendEvent_Mezz.TwosCompany.IlyaDeck": {
+      "type": "event",
+      "oncePerRun": true,
+      "bg": "BGCrystalizedFriend",
+      "lines": [
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1.5
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+		  "loopTag": "forlorn"
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
   
     "mezz_Duo_AboutToDieAndLoop_IlyaJost": {
       "type": "combat",

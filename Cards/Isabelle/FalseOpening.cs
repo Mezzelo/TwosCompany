@@ -1,62 +1,38 @@
 ﻿using CobaltCoreModding.Definitions.ExternalItems;
+using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Isabelle {
-    [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
+    [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class FalseOpening : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = upgrade == Upgrade.B ? 2 : 1,
-                exhaust = upgrade == Upgrade.B
+                cost = upgrade == Upgrade.A ? 1 : 2,
             };
-        }
-        private int GetShieldAmt(State s) {
-            int shieldAmt = 0;
-            if (s.route is Combat)
-                shieldAmt = s.ship.Get(Status.shield);
-            return shieldAmt;
         }
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
-
-
-            if (upgrade != Upgrade.B) {
-                actions.Add(new AVariableHint() {
-                    status = Status.shield
-                });
-                actions.Add(new AStatus() {
-                    status = Status.tempShield,
-                    statusAmount = GetShieldAmt(s),
-                    targetPlayer = true,
-                    xHint = 1,
-                });
-                if (upgrade == Upgrade.A)
-                    actions.Add(new AStatus() {
-                        status = Status.tempShield,
-                        statusAmount = 2,
-                        targetPlayer = true
-                    });
-            }
             actions.Add(new AStatus() {
-                status = Status.shield,
-                statusAmount = 0,
-                mode = AStatusMode.Set,
+                status = Status.tempShield,
+                statusAmount = 2,
+                mode = AStatusMode.Add,
+                targetPlayer = true,
+            });
+            actions.Add(new AStatus() {
+                status = Status.tempPayback,
+                statusAmount = 1,
+                mode = AStatusMode.Add,
+                targetPlayer = true,
+            });
+            actions.Add(new AStatus() {
+                status = Status.stunCharge,
+                statusAmount = 1,
+                mode = AStatusMode.Add,
                 targetPlayer = true,
                 dialogueSelector = ".mezz_falseOpening",
             });
-            if (upgrade == Upgrade.B)
-                actions.Add(new AStatus() {
-                    status = Status.tempShield,
-                    statusAmount = 0,
-                    mode = AStatusMode.Set,
-                    targetPlayer = true,
-                });
-            ExternalStatus falseStatus = Manifest.Statuses?["FalseOpening" + (upgrade == Upgrade.B ? "B" : "")] ?? throw new Exception("status missing: falseopening");
-            actions.Add(new AStatus() {
-                status = falseStatus.Id != null ? (Status) falseStatus.Id : Status.overdrive,
-                statusAmount = 2,
-                targetPlayer = true
-            });
+            if (upgrade != Upgrade.B)
+                actions.Add(new AEndTurn());
             return actions;
         }
 

@@ -5,6 +5,7 @@ using TwosCompany.Helper;
 using HarmonyLib;
 using TwosCompany.ExternalAPI;
 using Microsoft.Extensions.Logging;
+using TwosCompany.Actions;
 
 namespace TwosCompany {
     public partial class Manifest : IStoryManifest {
@@ -21,6 +22,10 @@ namespace TwosCompany {
             eventHub.ConnectToEvent<Func<IManifest, IPrelaunchContactPoint>>("Nickel::OnAfterDbInitPhaseFinished", contactPointProvider => {
                 var contactPoint = contactPointProvider(this);
 
+                if (contactPoint.GetApi<IAppleShipyardApi>("APurpleApple.Shipyard") is { } apurpleappleApi) {
+                    apurpleappleApi.RegisterActionLooksForPartType(typeof(AChainLightning), PType.missiles);
+                }
+
                 if (contactPoint.GetApi<IDraculaApi>("Shockah.Dracula") is { } draculaApi) {
                     draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["TempStrafe"].Id!.Value, (_, _, status) => [
                         new AHurt { targetPlayer = true, hurtAmount = 1 },
@@ -33,6 +38,10 @@ namespace TwosCompany {
                     draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["Onslaught"].Id!.Value, (_, _, status) => [
                         new AHurt { targetPlayer = true, hurtAmount = 1 },
                         new AStatus { targetPlayer = true, status = status, statusAmount = 3 },
+                    ]);
+                    draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["FollowUp"].Id!.Value, (_, _, status) => [
+                        new AHurt { targetPlayer = true, hurtAmount = 1 },
+                        new AStatus { targetPlayer = true, status = status, statusAmount = 2 },
                     ]);
                     draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["FalseOpening"].Id!.Value, (_, _, status) => [
                         new AHurt { targetPlayer = true, hurtAmount = 1 },
@@ -94,6 +103,14 @@ namespace TwosCompany {
                         new AHurt { targetPlayer = true, hurtAmount = 1 },
                         new AStatus { targetPlayer = true, status = status, statusAmount = 1 },
                     ]);
+                    draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["Control"].Id!.Value, (_, _, status) => [
+                        new AHurt { targetPlayer = true, hurtAmount = 1 },
+                        new AStatus { targetPlayer = true, status = status, statusAmount = 1 },
+                    ]);
+                    draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["Superposition"].Id!.Value, (_, _, status) => [
+                        new AHurt { targetPlayer = true, hurtAmount = 1 },
+                        new AStatus { targetPlayer = true, status = status, statusAmount = 1 },
+                    ]);
                 }
             });
         }
@@ -138,6 +155,38 @@ namespace TwosCompany {
                 original: AccessTools.DeclaredMethod(typeof(Card), nameof(Card.RenderAction)),
                 prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.Card_StatCostAction_Prefix))
             );
+
+            // card ondraw patch
+            harmony.Patch(
+                original: AccessTools.DeclaredMethod(typeof(Combat), nameof(Combat.SendCardToHand)),
+                postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.Card_OnDraw_Postfix))
+            );
+
+            /*
+            // draincardactions patch
+            harmony.Patch(
+                original: AccessTools.DeclaredMethod(typeof(Combat), nameof(Combat.DrainCardActions)),
+                prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.Card_DrainCardActions_Prefix))
+            );
+
+            // begincardactions patch
+            harmony.Patch(
+                original: AccessTools.DeclaredMethod(typeof(Combat), "BeginCardAction"),
+                postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.Card_BeginCardAction_Postfix))
+            ); */
+
+            // card flip patch
+            harmony.Patch(
+                original: AccessTools.DeclaredMethod(typeof(Combat), nameof(Combat.FlipCardInHand)),
+                postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.Card_FlipCardInHand_Postfix))
+            );
+
+            // card damage patch
+            harmony.Patch(
+                original: AccessTools.DeclaredMethod(typeof(Card), nameof(Card.GetActualDamage)),
+                postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.Card_GetActualDamage_Postfix))
+            );
+
 
             // card name patch
             harmony.Patch(
@@ -249,13 +298,13 @@ namespace TwosCompany {
                 if (NolaDeck == null || IsabelleDeck == null || IlyaDeck == null || JostDeck == null || GaussDeck == null)
                     throw new Exception("deck not initialized in artif registry");
                 ExternalDeck pickDeck = GaussDeck;
-                if (i < 5)
+                if (i < 6)
                     pickDeck = NolaDeck;
-                else if (i < 10)
+                else if (i < 12)
                     pickDeck = IsabelleDeck;
-                else if (i < 15)
+                else if (i < 18)
                     pickDeck = IlyaDeck;
-                else if (i < 21)
+                else if (i < 25)
                     pickDeck = JostDeck;
 
                 Artifacts.Add(artifact, new ExternalArtifact("TwosCompany.Artifacts." + artifact,

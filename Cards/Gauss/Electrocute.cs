@@ -13,15 +13,17 @@ namespace TwosCompany.Cards.Gauss {
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
-            actions.Add(new AStatus() {
-                status = Status.stunCharge,
-                statusAmount = upgrade == Upgrade.B ? 2 : 1,
-                targetPlayer = true,
-            });
             actions.Add(new AChainLightning() {
                 targetPlayer = false,
                 damage = GetDmg(s, upgrade == Upgrade.A ? 1 : 0),
+                stunEnemy = true,
             });
+            if (upgrade == Upgrade.B)
+                actions.Add(new AStatus() {
+                    status = Status.stunCharge,
+                    statusAmount = 1,
+                    targetPlayer = true,
+                });
             return actions;
         }
 

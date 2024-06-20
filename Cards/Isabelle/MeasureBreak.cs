@@ -21,9 +21,9 @@
                 isRandom = true
             });
             actions.Add(new AAttack() {
-                damage = GetDmg(s, upgrade == Upgrade.A ? 0 : 2),
+                damage = GetDmg(s, upgrade == Upgrade.A ? 2 : 3),
                 fast = true,
-                stunEnemy = upgrade != Upgrade.B
+                stunEnemy = true
             });
             return actions;
         }

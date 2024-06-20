@@ -6,7 +6,7 @@ namespace TwosCompany.Cards.Gauss {
 
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 3,
+                cost = 2,
             };
         }
 

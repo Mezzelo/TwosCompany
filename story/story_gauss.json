@@ -54,6 +54,25 @@
         "gauss"
       ]
     },
+    "CrystallizedFriendEvent_Mezz.TwosCompany.GaussDeck": {
+      "type": "event",
+      "oncePerRun": true,
+      "bg": "BGCrystalizedFriend",
+      "lines": [
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1.5
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+		  "loopTag": "serious"
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
   
     "mezz_Duo_AboutToDieAndLoop_GaussRiggs": {
       "type": "combat",

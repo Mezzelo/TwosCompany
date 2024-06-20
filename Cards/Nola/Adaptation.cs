@@ -8,7 +8,7 @@ namespace TwosCompany.Cards.Nola {
                 cost = 1,
                 floppable = true,
                 infinite = true,
-                art = new Spr?((Spr) ((flipped ? Manifest.Sprites["AdaptationCardSpriteFlip"] : Manifest.Sprites["AdaptationCardSprite"]).Id 
+                art = new Spr?((Spr) (Manifest.Sprites["AdaptationCardSprite" + (upgrade == Upgrade.A ? "Down1" : "") + (flipped ? "Flip" : "")].Id 
                     ?? throw new Exception("missing flop art")))
             };
         }
@@ -44,13 +44,6 @@ namespace TwosCompany.Cards.Nola {
                 statusCost = upgrade == Upgrade.B ? 2 : 1,
                 disabled = !flipped
             });
-            if (upgrade == Upgrade.A)
-                actions.Add(new AStatus() {
-                    status = Status.tempShield,
-                    targetPlayer = true,
-                    statusAmount = 1,
-                    disabled = !flipped
-                });
 
             return actions;
         }

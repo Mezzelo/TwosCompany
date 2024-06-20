@@ -32,10 +32,11 @@ namespace TwosCompany {
         public void LoadManifest(IStatusRegistry registry) {
             addStatus("TempStrafe", "Temp Strafe", "Fire for {0} damage immediately after every move you make. <c=downside>Goes away at start of next turn.</c>",
                 true, System.Drawing.Color.Violet, System.Drawing.Color.FromArgb(unchecked((int)0xff5e5ce3)), registry, true);
-            addStatus("MobileDefense", "Mobile Defense", "Whenever this ship moves, it gains {0} <c=status>TEMP SHIELD</c>. <c=downside>Decreases by 1 at end of turn.</c>",
+            addStatus("MobileDefense", "Mobile Defense", "Whenever this ship moves, it gains {0} <c=status>TEMP SHIELD</c>. " +
+                "<c=downside>Decreases by 1 at end of turn.</c>",
                 true, System.Drawing.Color.Cyan, null, registry, true);
-            addStatus("Onslaught", "Onslaught", "Whenever you play a card this turn, draw a card of the <c=keyword>same color</c> from your draw pile." +
-                " Decreases by 1 for each card drawn." +
+            addStatus("Onslaught", "Onslaught", "Whenever you play a card this turn, draw a card of the <c=keyword>same color</c>, " +
+                "prioritizing draw over discard. Decreases by 1 for each card drawn." +
                 " <c=downside>Goes away at end of turn.</c>",
                 true, System.Drawing.Color.Cyan, null, registry, true);
             // addStatus("Dominance", "Dominance", "Gain {0} <c=status>EVADE</c> each turn. If you don't hit your enemy before your turn ends, <c=downside>lose this status.</c>",
@@ -43,14 +44,14 @@ namespace TwosCompany {
             addStatus("UncannyEvasion", "Damage Control", "Gain {0} <c=status>AUTODODGE</c> if you end your turn without any <c=status>SHIELD</c>.",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xffff44b6)), null, registry, true);
             addStatus("FalseOpening", "Payback Drive", "Whenever you receieve damage from an attack or missile this turn, " +
-                "gain <c=keyword>1</c> <c=status>OVERDRIVE</c> and lower this by <c=keyword>1</c>. " +
+                "gain 1 <c=status>OVERDRIVE</c> and lower this by <c=keyword>1</c>. " +
                 "<c=downside>Goes away at start of next turn.</c>",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xffff3838)), null, registry, true);
             addStatus("FalseOpeningB", "Payback Powerdrive", "Whenever you receieve damage from an attack or missile this turn, " +
-                "gain <c=keyword>1</c> <c=status>POWERDRIVE</c> and lower this by <c=keyword>1</c>. " +
+                "gain 1 <c=status>POWERDRIVE</c> and lower this by <c=keyword>1</c>. " +
                 "<c=downside>Goes away at start of next turn.</c>",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xffffd33e)), System.Drawing.Color.FromArgb(unchecked((int)0xffff9e48)), registry, false);
-            addStatus("Enflamed", "Enflamed", "Gain {0} <c=downside>HEAT</c> every turn.",
+            addStatus("Enflamed", "Enflamed", "Gain {0} <c=status>HEAT</c> every turn.",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xffff5660)), System.Drawing.Color.FromArgb(unchecked((int)0xffff5660)), registry, true);
             addStatus("DefensiveStance", "Defensive Stance", "Allows you to play the <c=keyword>top</c> actions on " + JostColH + "Jost's</c> cards. " +
                 "<c=downside>If you end your turn with over 1 total stance, lose 1 of each stance.</c>",
@@ -87,7 +88,7 @@ namespace TwosCompany {
             addStatus("ElectrocuteChargeSpent", "Electrocute Source (Spent)", "Replenishes back into <c=status> ELECTROCUTE CHARGE</c> at end of turn.",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xffffc47b)), System.Drawing.Color.FromArgb(unchecked((int)0xffffc47b)), registry, false);
             
-            addStatus("Autocurrent", "Autocurrent", "Automatically shoot a 1 damage " + ChainColH + "chain lightning</c> at the start of every turn.",
+            addStatus("Autocurrent", "Autocurrent", "Automatically shoot a 1 damage " + ChainColH + "chain lightning</c> at the end of every turn.",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xff00e5ff)), System.Drawing.Color.FromArgb(unchecked((int)0xff00e5ff)), registry, false);
             addStatus("HyperspaceStorm", "Hyperspace Storm", "Gain a <c=card>Hyperspace Wind</c> every turn.",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xff59f790)), System.Drawing.Color.FromArgb(unchecked((int)0xff59f790)), registry, false);
@@ -95,6 +96,19 @@ namespace TwosCompany {
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xff59f790)), System.Drawing.Color.FromArgb(unchecked((int)0xff59f790)), registry, false);
             addStatus("HyperspaceStormB", "Hyperspace Storm B", "Gain a <c=card>Hyperspace Wind B</c> every turn.",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xff59f790)), System.Drawing.Color.FromArgb(unchecked((int)0xff59f790)), registry, false);
+            addStatus("Control", "Control", "The next {0} times you would move, gain 1 <c=status>EVADE</c> instead. " +
+                "<c=downside>Decreases by 1 every time it triggers.</c>",
+                true, System.Drawing.Color.FromArgb(unchecked((int)0xffffe373)), System.Drawing.Color.FromArgb(unchecked((int)0xffffe373)), registry, true);
+            addStatus("HeatFeedback", "Heat Recycler", "Add 1 damage to all attacks. Whenever this ship attacks, it gains 1 <c=status>HEAT</c>. " +
+                "<c=downside>Decreases by 1 every time it triggers.</c>",
+                true, System.Drawing.Color.FromArgb(unchecked((int)0xffff5660)), System.Drawing.Color.FromArgb(unchecked((int)0xffff5660)), registry, true);
+            addStatus("FollowUp", "Follow Through", "The next {0} times you move a card to hand, immediately play it for free. " +
+                "<c=downside>Decreases by 1 every time it triggers.</c>",
+                true, System.Drawing.Color.Cyan, null, registry, true);
+            addStatus("Superposition", "Superposition", "While you have this status, you can <c=cardtrait>flop</c> <c=card>STANCE CARDS</c> " +
+                "to swap your stacks of <c=status>STANCE</c>. " +
+                "<c=downside>Decreases by 1 at end of turn.</c>",
+                true, System.Drawing.Color.FromArgb(unchecked((int)0xffffe373)), System.Drawing.Color.FromArgb(unchecked((int)0xffffe373)), registry, true);
 
         }
         public void LoadManifest(IGlossaryRegisty registry) {
@@ -110,6 +124,10 @@ namespace TwosCompany {
             addGlossary("EnergyPerAttack", "Patient",
                 "This card's cost decreases by <c=keyword>{0}</c> for every other <c=keyword>attack</c> card " +
                     "played while in your hand. Resets when played, or when combat ends."
+                , registry);
+            addGlossary("EnergyPerAttackIncrease", "Impatient",
+                "This card's cost increases by <c=keyword>{0}</c> for every other <c=keyword>attack</c> card " +
+                    "played while in your hand. Resets when played, discarded, or when combat ends."
                 , registry);
             addGlossary("LowerCostHint", "Discount Other",
                 "Lower a card's cost by <c=keyword>{0}</c> until played, or until combat ends."
@@ -134,11 +152,11 @@ namespace TwosCompany {
             addGlossary("PointDefense", "Point Defense",
                 "Align your cannon {0} to the {1} hostile <c=drone>midrow object</c> over your ship. " +
                 "If there are none, <c=downside>discard instead</c>. " +
-                "Removes <c=cardtrait>retain for this turn when played."
+                "Removes <c=cardtrait>retain</c> for this turn when played."
                 , registry);
             addGlossary("CallAndResponseHint", "Call and Response",
-                "Store the selected card. Whenever you play this card, draw the stored card from the <c=keyword>draw or discard pile</c>{0}.\n" +
-                "If the stored card was <c=cardtrait>exhausted</c> or <c=downside>single use</c>, choose another."
+                "Select a card in hand. Whenever you play this card, move that card to hand{0}.\n" +
+                "If the stored card was <c=downside>single use</c>, choose another."
                 , registry);
             addGlossary("ShieldCost", "Shield Cost",
                 "Lose {0} <c=status>SHIELD</c>. If you don't have enough, this action does not happen."
@@ -174,18 +192,27 @@ namespace TwosCompany {
                "Will block one attack before being destroyed. Takes no damage from " + Manifest.ChainColH + "chain lightning</c>."
                 , registry);
             addGlossary("ConduitKinetic", "Kinetic Conduit",
-               "Will block one attack before being destroyed. When hit by " + Manifest.ChainColH + "chain lightning</c>, gives 1 <c=status>EVADE</c>."
+               "Will block one attack before being destroyed. Once per turn when hit by " + Manifest.ChainColH + "chain lightning</c>, gives 1 <c=status>EVADE</c>."
                 , registry);
             addGlossary("ConduitFeedback", "Feedback Conduit",
-               "Will block one attack before being destroyed. When hit by " + Manifest.ChainColH + "chain lightning</c>, causes the attacker to " +
-                    "shoot another 0 damage " + Manifest.ChainColH + "chain lightning</c>, once per turn."
+               "Will block one attack before being destroyed. Once per turn when hit by " + Manifest.ChainColH + "chain lightning</c>, causes the attacker to " +
+                    "shoot another 1 damage " + Manifest.ChainColH + "chain lightning</c>."
                 , registry);
             addGlossary("ConduitShield", "Shield Conduit",
-               "Will block one attack before being destroyed. The first time hit by " + Manifest.ChainColH + "chain lightning</c>, gives 2 <c=status>SHIELD</c> " +
-                    "and <c=keyword>bubbles</c> all <c=midrow>midrow objects</c> after it that are not destroyed."
+               "Will block one attack before being destroyed. The first time this is hit by " + Manifest.ChainColH + "chain lightning</c>, " +
+                    "gives 2 <c=status>SHIELD</c> and <c=keyword>bubbles</c> all <c=midrow>midrow objects</c> after it that are not destroyed."
                 , registry);
             addGlossary("ConductorField", "Conductor Field",
                "Instantly turn every <c=midrow>object in the midrow</c> into <c=drone>conduits</c>."
+                , registry);
+            addGlossary("MoveEnemyRight", "Move Enemy Right",
+               "Instantly move the enemy {0} spaces to the <c=keyword>RIGHT</c>."
+                , registry);
+            addGlossary("MoveEnemyLeft", "Move Enemy Left",
+               "Instantly move the enemy {0} spaces to the <c=keyword>LEFT</c>."
+                , registry);
+            addGlossary("MoveEnemyZero", "Move Enemy",
+               "Instantly move the enemy {0} spaces."
                 , registry);
         }
     }

@@ -10,7 +10,7 @@ namespace TwosCompany.Cards.Jost {
             return new CardData() {
                 cost = 1,
                 infinite = upgrade == Upgrade.A,
-                exhaust = Stance.Get(state) > 1,
+                exhaust = false,
                 art = new Spr?((Spr)(Manifest.Sprites["JostDefaultCardSprite" + (upgrade == Upgrade.B ? "" : "Up1") + Stance.AppendName(state)].Id
                     ?? throw new Exception("missing card art")))
             };
@@ -30,7 +30,14 @@ namespace TwosCompany.Cards.Jost {
             });
 
             if (upgrade == Upgrade.B) {
-                actions.Add(new ADummyAction());
+                actions.Add(new ADummyTooltip() {
+                    action = Stance.Get(s) < 2 ? new AAddCard() {
+                        card = new HackAndSlash(),
+                        destination = CardDestination.Hand,
+                        amount = costIncrease + (Stance.Get(s) == 3 ? 2 : 0) + 1,
+                        disabled = Stance.Get(s) < 2,
+                    } : null,
+                });
                 actions.Add(new AAddCard() {
                     card = new HackAndSlash(),
                     destination = CardDestination.Hand,
@@ -51,8 +58,8 @@ namespace TwosCompany.Cards.Jost {
                 });
             }
             actions.Add(new AExhaustSelf() {
-                selectedCard = this,
-                omitFromTooltips = true,
+                uuid = this.uuid,
+                omitFromTooltips = false,
                 disabled = Stance.Get(s) < 2,
             });
             return actions;

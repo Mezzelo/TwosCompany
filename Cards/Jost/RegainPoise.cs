@@ -6,8 +6,8 @@ namespace TwosCompany.Cards.Jost {
     public class RegainPoise : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 1,
-                retain = upgrade == Upgrade.A,
+                cost = 0,
+                retain = upgrade != Upgrade.B,
             };
         }
 
@@ -29,9 +29,12 @@ namespace TwosCompany.Cards.Jost {
                 mode = AStatusMode.Set,
                 targetPlayer = true,
             });
-            actions.Add(new ADrawCard {
-                count = 2,
-            });
+            if (upgrade == Upgrade.A)
+                actions.Add(new AStatus() {
+                    status = Status.tempShield,
+                    statusAmount = 2,
+                    targetPlayer = true,
+                });
 
             return actions;
         }

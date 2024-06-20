@@ -1,12 +1,13 @@
 ﻿using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Gauss {
-    [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
+    [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B }, dontOffer = true)]
     public class SparkCard : Card {
 
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 1,
+                temporary = true,
                 recycle = upgrade == Upgrade.B,
             };
         }
@@ -15,8 +16,14 @@ namespace TwosCompany.Cards.Gauss {
             List<CardAction> actions = new List<CardAction>();
             actions.Add(new AChainLightning() {
                 targetPlayer = false,
-                damage = GetDmg(s, upgrade == Upgrade.A ? 2 : 1),
+                damage = GetDmg(s, 2),
             });
+            if (upgrade == Upgrade.A)
+                actions.Add(new AStatus() {
+                    status = Status.evade,
+                    statusAmount = 1,
+                    targetPlayer = true,
+                });
             return actions;
         }
 

@@ -78,15 +78,15 @@ namespace TwosCompany.Cards.Ilya {
             else
                 actions.Add(new StatCostAttack() {
                     action = new AAttack() {
-                        damage = GetDmg(s, 2),
-                        moveEnemy = -1,
+                        damage = GetDmg(s, 3),
+                        moveEnemy = -2,
                         fast = true,
                     },
                     statusReq = Status.heat,
                     statusCost = 1,
                     cumulative = 3,
                     timer = -0.5,
-                    moveEnemy = -1,
+                    moveEnemy = -2,
                     cardFlipped = this.flipped
                 });
             return actions;

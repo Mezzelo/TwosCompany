@@ -6,8 +6,8 @@ namespace TwosCompany.Cards.Gauss {
 
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = upgrade == Upgrade.B ? 2 : 1,
-                retain = upgrade != Upgrade.None,
+                cost = 1,
+                retain = upgrade == Upgrade.A,
             };
         }
 

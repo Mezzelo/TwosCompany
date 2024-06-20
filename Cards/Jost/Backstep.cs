@@ -6,7 +6,7 @@ namespace TwosCompany.Cards.Jost {
     public class Backstep : Card, IJostCard {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 1,
+                cost = 0,
                 retain = upgrade == Upgrade.A,
                 art = new Spr?((Spr)(Manifest.Sprites["JostDefaultCardSprite" + Stance.AppendName(state)].Id
                     ?? throw new Exception("missing card art")))

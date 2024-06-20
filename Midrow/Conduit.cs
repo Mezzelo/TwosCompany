@@ -29,7 +29,7 @@ namespace TwosCompany.Midrow {
             return (Spr)(Manifest.Sprites[sprite]?.Id ?? throw new Exception("missing conduit icon"));
         }
         public override List<CardAction>? GetActions(State s, Combat c) {
-            if (condType != ConduitType.feedback)
+            if (condType == ConduitType.normal || condType == ConduitType.shield || !disabled)
                 return null;
             return new List<CardAction>() {
                 new AEnableConduit() {
@@ -66,8 +66,11 @@ namespace TwosCompany.Midrow {
 
         public override void Render(G g, Vec v) {
             string sprite = "DroneConduit";
-            if (condType == ConduitType.kinetic)
+            if (condType == ConduitType.kinetic) {
                 sprite += "Kinetic";
+                if (disabled)
+                    sprite += "Disabled";
+            }
             else if (condType == ConduitType.feedback) {
                 sprite += "Feedback";
                 if (disabled)

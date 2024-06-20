@@ -3,7 +3,7 @@
     public class Fireball : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = upgrade == Upgrade.A ? 2 : 1,
+                cost = 2,
                 infinite = upgrade == Upgrade.B
             };
         }

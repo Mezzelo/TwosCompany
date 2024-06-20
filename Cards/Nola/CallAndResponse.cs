@@ -8,7 +8,8 @@ namespace TwosCompany.Cards.Nola {
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 1,
-                retain = upgrade == Upgrade.B,
+                retain = upgrade == Upgrade.A,
+                recycle = upgrade == Upgrade.B,
                 art = storedCardState(state) ? (storedCard ?? throw new Exception("bad null check ig, c&r")).GetArt(state) :
                     new Spr?((Spr)(Manifest.Sprites["CallAndResponseCardSprite"].Id
                     ?? throw new Exception("missing c&r art"))),
@@ -28,6 +29,7 @@ namespace TwosCompany.Cards.Nola {
         private bool storedCardState(State s) {
             if (storedCard == null)
                 return false;
+            /*
             if (s.route is Combat route) {
                 foreach (Card search in route.exhausted)
                     if (search.uuid == storedCard.uuid)
@@ -35,7 +37,7 @@ namespace TwosCompany.Cards.Nola {
 
                 if (s.FindCard(storedCard.uuid) == null)
                     return false;
-            }
+            }*/
             return true;
         }
 
@@ -58,14 +60,14 @@ namespace TwosCompany.Cards.Nola {
                 });
                 actions.Add(new ACallAndResponse() {
                     recall = false,
-                    discount = upgrade == Upgrade.A ? 2 : 1
+                    discount = 1
                 });
             }
             else {
                 actions.Add(new ACallAndResponse() {
                     selectedCard = this.storedCard,
                     recall = true,
-                    discount = upgrade == Upgrade.A ? 2 : 1
+                    discount = 1
                 });
             }
             if (!storedCardState(s))

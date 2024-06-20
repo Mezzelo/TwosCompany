@@ -23,7 +23,7 @@ namespace TwosCompany.Cards.Gauss {
             if (upgrade == Upgrade.B)
                 actions.Add(new AChainLightning() {
                     targetPlayer = false,
-                    damage = GetDmg(s, 1),
+                    damage = GetDmg(s, 0),
                 });
             return actions;
         }

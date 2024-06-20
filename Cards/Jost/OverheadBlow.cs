@@ -32,7 +32,7 @@ namespace TwosCompany.Cards.Jost {
             actions.Add(new StatCostAction() {
                 action = new AAttack() {
                     fast = upgrade == Upgrade.B,
-                    damage = GetDmg(s, upgrade == Upgrade.B ? 2 : 4),
+                    damage = GetDmg(s, upgrade == Upgrade.B ? 2 : 5),
                 },
                 statusReq = Status.shield,
                 statusCost = upgrade == Upgrade.None ? 2 : 1,
@@ -43,7 +43,7 @@ namespace TwosCompany.Cards.Jost {
                 actions.Add(new StatCostAction() {
                     action = new AAttack() {
                         fast = true,
-                        damage = GetDmg(s, 4),
+                        damage = GetDmg(s, 5),
                     },
                     statusReq = Status.shield,
                     statusCost = upgrade == Upgrade.A ? 1 : 2,

@@ -3,8 +3,8 @@
     public class WeakPoint : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = upgrade == Upgrade.B ? 3 : 2,
-                exhaust = upgrade != Upgrade.B
+                cost = upgrade == Upgrade.A ? 3 : 4,
+                exhaust = true,
             };
         }
 
@@ -14,8 +14,8 @@
             actions.Add(new AAttack() {
                 damage = GetDmg(s, 0),
                 piercing = true,
-                stunEnemy = upgrade != Upgrade.None,
-                weaken = true,
+                stunEnemy = upgrade == Upgrade.B,
+                brittle = true,
             });
             actions.Add(new AStatus() {
                 status = Status.overdrive,

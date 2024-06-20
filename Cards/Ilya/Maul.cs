@@ -1,5 +1,5 @@
 ﻿namespace TwosCompany.Cards.Ilya {
-    [CardMeta(rarity = Rarity.rare, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
+    [CardMeta(rarity = Rarity.rare, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B }, unreleased = true, dontOffer = true)]
     public class Maul : Card {
         public override CardData GetData(State state) {
             return new CardData() {

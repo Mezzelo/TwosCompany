@@ -8,8 +8,8 @@ namespace TwosCompany.Artifacts {
 
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Boss } )]
     public class BurdenOfHindsight : Artifact {
-        public override string Description() => "All " + Manifest.JostColH + "Jost</c> cards deal 1 more damage while you have <c=status>OFF. STANCE</c>," +
-            " and <c=card>Off Balance</c> costs 1 less energy. <c=downside>If you end your turn with any DEF. STANCE, lose all stance.</c>";
+        public override string Description() => "Increase damage dealt bystacks of <c=status>OFF. STANCE</c>," +
+            " and <c=card>Off Balance</c> costs 1 less energy. <c=downside>If you end your turn with any DEF. STANCE, lose 1 of each stance.</c>";
 
         public MilitiaArmband? armband;
 
@@ -34,8 +34,8 @@ namespace TwosCompany.Artifacts {
             ExternalStatus standFirm = Manifest.Statuses?["StandFirm"] ?? throw new Exception("status missing: standfirm");
             if (state.ship.Get((Status)defensiveStance.Id!) > 0 && state.ship.Get((Status)standFirm.Id!) <= 0) {
                 this.Pulse();
-                state.ship.Set((Status) defensiveStance.Id!, 0);
-                state.ship.Set((Status) offensiveStance.Id!, 0);
+                state.ship.Add((Status) defensiveStance.Id!, -1);
+                state.ship.Add((Status) offensiveStance.Id!, -1);
                 combat.QueueImmediate(new ADummyAction() {
                     timer = 0.0,
                     dialogueSelector = ".mezz_burdenOfHindsight",
@@ -56,7 +56,7 @@ namespace TwosCompany.Artifacts {
                 return 0;
             Deck? deck = card?.GetMeta()?.deck;
             ExternalStatus offensiveStance = Manifest.Statuses?["OffensiveStance"] ?? throw new Exception("status missing: offensivestance");
-            return deck.GetValueOrDefault().ToString().Equals(ManifHelper.GetDeckId("jost").ToString()) && state.ship.Get((Status) offensiveStance.Id!) > 0 ? 1 : 0;
+            return state.ship.Get((Status) offensiveStance.Id!);
         }
         public override List<Tooltip>? GetExtraTooltips() => new List<Tooltip>() { 
             new TTCard() {

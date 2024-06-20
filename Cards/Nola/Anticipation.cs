@@ -13,7 +13,7 @@ namespace TwosCompany.Cards.Nola {
                 cardText = Loc.GetLocString(Manifest.Cards?["Anticipation"].DescBLocKey ?? throw new Exception("Missing card description"));
 
             return new CardData() {
-                cost = 2,
+                cost = 1,
                 description = cardText,
                 recycle = upgrade == Upgrade.B
             };
@@ -40,14 +40,14 @@ namespace TwosCompany.Cards.Nola {
                 if (upgrade == Upgrade.A)
                     actions.Add(new ACardSelect() {
                         browseAction = new ALowerCardCost() {
-                            amount = -2,
+                            amount = -1,
                             minimum = -1
                         },
                         browseSource = CardBrowse.Source.DrawPile
                     });
             } else if (drawSize == 1) {
                 actions.Add(new ALowerCardCost() {
-                    amount = upgrade == Upgrade.A ? -2 : -4,
+                    amount = upgrade == Upgrade.A ? -1 : -2,
                     selectedIndex = 0,
                     minimum = -1
                 });

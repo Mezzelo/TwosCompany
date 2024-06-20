@@ -1,11 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
+using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Runtime.Versioning;
 using CobaltCoreModding.Definitions.ExternalItems;
 using CobaltCoreModding.Definitions.ModContactPoints;
 using daisyowl.text;
+using FSPRO;
 using HarmonyLib;
 using Microsoft.Extensions.Logging;
 using Microsoft.Xna.Framework.Graphics;
@@ -33,9 +38,17 @@ namespace TwosCompany {
             if (!flag && ship == s.ship && (Enumerable.Any<TrashAnchor>(Enumerable.OfType<TrashAnchor>(c.hand)) ||
                 ship.Get(Status.lockdown) > 0 || ship.Get(Status.engineStall) > 0))
                 return true;
+            ExternalStatus control = Manifest.Statuses?["Control"] ?? throw new Exception("status missing: control");
+            if (!flag && ship == s.ship && ship.Get((Status) control.Id!) > 0) {
+                Audio.Play(Event.Status_PowerDown);
+                ship.shake += 1.0;
+                ship.Add(Status.evade, 1);
+                ship.Add((Status) control.Id!, -1);
+            }
+
             ExternalStatus strafeStatus = Manifest.Statuses?["TempStrafe"] ?? throw new Exception("status missing: temp strafe");
             if (strafeStatus.Id == null) return true;
-            if (ship.Get((Status)strafeStatus.Id) > 0)
+            if (ship.Get((Status)strafeStatus.Id) > 0 && (__instance.dir != 0 || (ship.Get(Status.hermes) > 0 && !__instance.ignoreHermes)))
                 c.QueueImmediate(new AAttack() {
                     damage = Card.GetActualDamage(s, ship.Get((Status)strafeStatus.Id)),
                     targetPlayer = !__instance.targetPlayer,
@@ -52,7 +65,7 @@ namespace TwosCompany {
                     Manifest.EventHub.SignalEvent<Tuple<int, bool, bool, Combat, State>>(
                         "Mezz.TwosCompany.Movement", new(dist, __instance.targetPlayer, __instance.fromEvade, c, s));
 
-                // this approach sucks, but i can't find where to patch card removal to unhook events: would be potential memory leak
+                // this approach sucks, but i can't find where to patch card removal to unhook events
                 foreach (Card card in c.hand)
                     if (card is Couch couchCard)
                         couchCard.dist += Math.Abs(dist);
@@ -82,35 +95,47 @@ namespace TwosCompany {
         }
 
         public struct healthStats {
-            public healthStats(int hull, int shield, int tempShield) {
+            public healthStats(int hull, int shield, int tempShield, int autoDodge) {
                 this.hull = hull;
                 this.shield = shield;
                 this.tempShield = tempShield;
+                this.autoDodge = autoDodge;
             }
             public int hull { get; }
             public int shield { get; }
             public int tempShield { get; }
+            public int autoDodge { get; }
         }
         public static bool AttackBegin(AAttack __instance, State s, Combat c, out healthStats __state) {
             Ship ship = __instance.targetPlayer ? s.ship : c.otherShip;
-            __state = new healthStats(ship.hull, ship.Get(Status.shield), ship.Get(Status.tempShield));
+            __state = new healthStats(ship.hull, ship.Get(Status.shield), ship.Get(Status.tempShield),
+                ship.Get(Status.autododgeLeft) + ship.Get(Status.autododgeRight));
 
             return true;
         }
         public static void AttackEnd(AAttack __instance, State s, Combat c, healthStats __state) {
-            Ship ship = __instance.targetPlayer ? s.ship : c.otherShip;
-            if (ship.hull < __state.hull || ship.Get(Status.shield) < __state.shield || ship.Get(Status.tempShield) < __state.tempShield) {
+            Ship ship = __instance.targetPlayer ? c.otherShip : s.ship;
+            Ship target = __instance.targetPlayer ? s.ship : c.otherShip;
+            if (__state.autoDodge == target.Get(Status.autododgeRight) + target.Get(Status.autododgeLeft) &&
+                !__instance.fromDroneX.HasValue && ship.Get((Status)Manifest.Statuses?["HeatFeedback"].Id!) > 0) {
+                ship.PulseStatus((Status)Manifest.Statuses?["HeatFeedback"].Id!);
+                ship.Add((Status)Manifest.Statuses?["HeatFeedback"].Id!, -1);
+                ship.Add(Status.heat, 1);
+            }
+            if (target.hull < __state.hull || target.Get(Status.shield) < __state.shield || target.Get(Status.tempShield) < __state.tempShield) {
                 ExternalStatus falseStatus = Manifest.Statuses?["FalseOpening"] ?? throw new Exception("status missing: falseopening");
                 if (falseStatus.Id != null) {
-                    if (ship.Get((Status)falseStatus.Id) > 0) {
+                    if (target.Get((Status)falseStatus.Id) > 0) {
                         c.QueueImmediate(new AStatus() {
                             status = Status.overdrive,
+                            mode = AStatusMode.Add,
                             statusAmount = 1,
                             targetPlayer = __instance.targetPlayer,
-                            statusPulse = (Status)falseStatus.Id,
+                            statusPulse = (Status) falseStatus.Id,
                         });
                         c.QueueImmediate(new AStatus() {
-                            status = (Status)falseStatus.Id,
+                            status = (Status) falseStatus.Id,
+                            mode = AStatusMode.Add,
                             statusAmount = -1,
                             targetPlayer = __instance.targetPlayer,
                             timer = 0.0,
@@ -118,7 +143,7 @@ namespace TwosCompany {
                     }
                     ExternalStatus falseBStatus = Manifest.Statuses?["FalseOpeningB"] ?? throw new Exception("status missing: falseopeningb");
                     if (falseBStatus.Id != null) {
-                        if (ship.Get((Status)falseBStatus.Id) > 0) {
+                        if (target.Get((Status)falseBStatus.Id) > 0) {
                             c.QueueImmediate(new AStatus() {
                                 status = Status.powerdrive,
                                 statusAmount = 1,
@@ -140,7 +165,8 @@ namespace TwosCompany {
 
         public static bool MissileHitBegin(AMissileHit __instance, State s, Combat c, out healthStats __state) {
             Ship ship = __instance.targetPlayer ? s.ship : c.otherShip;
-            __state = new healthStats(ship.hull, ship.Get(Status.shield), ship.Get(Status.tempShield));
+            __state = new healthStats(ship.hull, ship.Get(Status.shield), ship.Get(Status.tempShield), 
+                ship.Get(Status.autododgeLeft) + ship.Get(Status.autododgeRight));
 
             return true;
         }
@@ -148,23 +174,37 @@ namespace TwosCompany {
             Ship ship = __instance.targetPlayer ? s.ship : c.otherShip;
             if (ship.hull < __state.hull || ship.Get(Status.shield) < __state.shield || ship.Get(Status.tempShield) < __state.tempShield) {
                 ExternalStatus falseStatus = Manifest.Statuses?["FalseOpening"] ?? throw new Exception("status missing: falseopening");
-                if (falseStatus.Id != null) {
-                    if (ship.Get((Status)falseStatus.Id) > 0)
+                if (ship.Get((Status) falseStatus.Id!) > 0) {
+                    c.QueueImmediate(new AStatus() {
+                        status = Status.overdrive,
+                        mode = AStatusMode.Add,
+                        statusAmount = 1,
+                        targetPlayer = __instance.targetPlayer,
+                        statusPulse = (Status)falseStatus.Id,
+                    });
+                    c.QueueImmediate(new AStatus() {
+                        status = (Status)falseStatus.Id,
+                        mode = AStatusMode.Add,
+                        statusAmount = -1,
+                        targetPlayer = __instance.targetPlayer,
+                        timer = 0.0,
+                    });
+                }
+                ExternalStatus falseBStatus = Manifest.Statuses?["FalseOpeningB"] ?? throw new Exception("status missing: falseopeningb");
+                if (falseBStatus.Id != null) {
+                    if (ship.Get((Status)falseBStatus.Id) > 0) {
                         c.QueueImmediate(new AStatus() {
-                            status = Status.overdrive,
-                            statusAmount = ship.Get((Status)falseStatus.Id),
+                            status = Status.powerdrive,
+                            statusAmount = 1,
                             targetPlayer = __instance.targetPlayer,
-                            statusPulse = (Status)falseStatus.Id,
+                            statusPulse = (Status)falseBStatus.Id,
                         });
-                    ExternalStatus falseBStatus = Manifest.Statuses?["FalseOpeningB"] ?? throw new Exception("status missing: falseopeningb");
-                    if (falseBStatus.Id != null) {
-                        if (ship.Get((Status)falseBStatus.Id) > 0)
-                            c.QueueImmediate(new AStatus() {
-                                status = Status.powerdrive,
-                                statusAmount = ship.Get((Status)falseBStatus.Id),
-                                targetPlayer = __instance.targetPlayer,
-                                statusPulse = (Status)falseBStatus.Id,
-                            });
+                        c.QueueImmediate(new AStatus() {
+                            status = (Status)falseBStatus.Id,
+                            statusAmount = -1,
+                            targetPlayer = __instance.targetPlayer,
+                            timer = 0.0,
+                        });
                     }
                 }
             }
@@ -178,9 +218,9 @@ namespace TwosCompany {
             if (state.ship.Get((Status)defensiveStance.Id!) + state.ship.Get((Status)offensiveStance.Id!) > 1 &&
                 state.ship.Get((Status)standFirm.Id!) <= 0 && state.ship.Get(Status.timeStop) <= 0) {
 
-                state.ship.Set((Status)defensiveStance.Id, state.ship.Get((Status)defensiveStance.Id!) - 1);
+                state.ship.Add((Status)defensiveStance.Id, -1);
                 if (state.ship.Get((Status)offensiveStance.Id!) > 0)
-                    state.ship.Set((Status)offensiveStance.Id, state.ship.Get((Status)offensiveStance.Id!) - 1);
+                    state.ship.Add((Status)offensiveStance.Id, -1);
                 Audio.Play(FSPRO.Event.Status_ShieldDown);
             }
         }
@@ -222,13 +262,6 @@ namespace TwosCompany {
                     __instance.Get((Status)Manifest.Statuses["ElectrocuteChargeSpent"].Id!));
                 __instance.Set((Status)Manifest.Statuses["ElectrocuteChargeSpent"].Id!, 0);
             }
-
-            if (__instance.Get((Status)Manifest.Statuses["Autocurrent"].Id!) > 0)
-                for (int i = 0; i < __instance.Get((Status)Manifest.Statuses["Autocurrent"].Id!); i++)
-                    c.Queue(new AChainLightning() {
-                        damage = Card.GetActualDamage(s, 1, !__instance.isPlayerShip),
-                        targetPlayer = !__instance.isPlayerShip,
-                    });
 
             ExternalStatus fortress = Manifest.Statuses?["Fortress"] ?? throw new Exception("status missing: fortress");
             if (fortress.Id != null)
@@ -278,16 +311,24 @@ namespace TwosCompany {
             return true;
         }
 
-        public static bool TurnEnd(Ship __instance, State s, Combat c) {
-            if (__instance.isPlayerShip)
+        public static void TurnEnd(Ship __instance, State s, Combat c) {
+            if (__instance.isPlayerShip) {
                 foreach (Card card in c.hand)
                     if (card is ITurnIncreaseCard increaseCard) {
                         card.discount += increaseCard.increasePerTurn;
                         increaseCard.costIncrease += increaseCard.increasePerTurn;
                     }
 
+                if (__instance.Get((Status)Manifest.Statuses["Autocurrent"].Id!) > 0)
+                    for (int i = 0; i < __instance.Get((Status)Manifest.Statuses["Autocurrent"].Id!); i++)
+                        c.Queue(new AChainLightning() {
+                            damage = Card.GetActualDamage(s, 1, !__instance.isPlayerShip),
+                            targetPlayer = false,
+                        });
+            }
+
             ExternalStatus dodgeStatus = Manifest.Statuses?["UncannyEvasion"] ?? throw new Exception("status missing: uncanny evasion");
-            if (dodgeStatus.Id == null) return true;
+            if (dodgeStatus.Id == null) return;
             if (__instance.Get((Status)dodgeStatus.Id) > 0 && __instance.Get(Status.shield) <= 0)
                 c.QueueImmediate(new AStatus() {
                     status = Status.autododgeRight,
@@ -298,9 +339,20 @@ namespace TwosCompany {
 
             if (__instance.Get(Status.timeStop) <= 0) {
                 if (__instance.Get((Status)Manifest.Statuses["MobileDefense"].Id!) > 0)
-                    __instance.Set((Status)Manifest.Statuses["MobileDefense"].Id!, __instance.Get((Status)Manifest.Statuses["MobileDefense"].Id!) - 1);
+                    c.QueueImmediate(new AStatus {
+                        status = (Status)Manifest.Statuses["MobileDefense"].Id!,
+                        mode = AStatusMode.Add,
+                        statusAmount = -1,
+                        targetPlayer = __instance.isPlayerShip
+                    });
                 if (__instance.Get((Status)Manifest.Statuses["Onslaught"].Id!) > 0)
                     __instance.Set((Status)Manifest.Statuses["Onslaught"].Id!, 0);
+                if (__instance.Get((Status)Manifest.Statuses["Superposition"].Id!) > 0)
+                    c.QueueImmediate(new AStatus {
+                        status = (Status)Manifest.Statuses["Superposition"].Id!,
+                        statusAmount = -1,
+                        targetPlayer = __instance.isPlayerShip
+                    });
             }
 
             if (__instance.isPlayerShip) {
@@ -316,8 +368,6 @@ namespace TwosCompany {
                     });
                 TurnEndStance(null, s, c);
             }
-
-            return true;
         }
 
         public static void PlayCardPrefix(Combat __instance, State s, Card card, bool playNoMatterWhatForFree, bool exhaustNoMatterWhat) {
@@ -334,7 +384,7 @@ namespace TwosCompany {
                 List<CardAction> actions = card.GetActions(s, c);
                 bool isAttack = false;
                 foreach (CardAction action in actions) {
-                    if ((action is AAttack || action is AChainLightning) && !action.disabled) {
+                    if (action is AAttack && !action.disabled) {
                         isAttack = true;
                         break;
                     }
@@ -342,38 +392,34 @@ namespace TwosCompany {
                 if (isAttack) {
                     List<Card> cards = c.hand;
                     foreach (Card searchCard in cards) {
-                        if (searchCard is CoupDeGrace cdg && searchCard.uuid != card.uuid)
-                            cdg.OtherAttackDiscount();
+                        if (searchCard is IOtherAttackIncreaseCard oic && searchCard.uuid != card.uuid)
+                            oic.OtherAttackDiscount(s);
                         else if (searchCard is MoveAsOne mao && searchCard.uuid != card.uuid &&
                             Stance.Get(s) % 2 == 1)
-                            mao.OtherAttackDiscount();
+                            mao.OtherAttackDiscount(s);
                     }
                 }
             }
             ExternalStatus onslaughtStatus = Manifest.Statuses?["Onslaught"] ?? throw new Exception("status missing: onslaught");
             if (onslaughtStatus.Id == null) return;
             if (s.ship.Get((Status)onslaughtStatus.Id) > 0) {
-                List<Card> cardList = s.deck;
                 bool fromDiscard = false;
-                if (cardList.Count == 0 && __instance.hand.Count < 10 && __instance.discard.Count > 0) {
+                bool shuffle = false;
+                if (__instance.discard.Count > 0) {
                     for (int i = __instance.discard.Count - 1; i >= 0; --i)
                         if (__instance.discard[i].GetMeta().deck == card.GetMeta().deck)
                             if (card.uuid != __instance.discard[i].uuid) {
                                 fromDiscard = true;
+                                shuffle = true;
                                 break;
                             }
-
-                    if (!fromDiscard)
-                        return;
-
-                    cardList = __instance.discard;
                 }
-                int count = 0;
                 //  && count < s.ship.statusEffects[(Status)onslaughtStatus.Id]
-                for (int drawIdx = cardList.Count - 1; drawIdx >= 0; --drawIdx) {
-                    Card selectCard = cardList[drawIdx];
+                for (int drawIdx = s.deck.Count - 1; drawIdx >= 0; --drawIdx) {
+                    Card selectCard = s.deck[drawIdx];
                     if (selectCard.GetMeta().deck == card.GetMeta().deck) {
                         if (card.uuid != selectCard.uuid) {
+                            fromDiscard = false;
                             if (__instance.hand.Count >= 10) {
                                 __instance.PulseFullHandWarning();
                                 break;
@@ -381,8 +427,7 @@ namespace TwosCompany {
                             __instance.DrawCardIdx(s, drawIdx, fromDiscard ? CardDestination.Discard : CardDestination.Deck);
                             s.ship.PulseStatus((Status)onslaughtStatus.Id);
                             Audio.Play(FSPRO.Event.CardHandling);
-                            count++;
-                            s.ship.Set((Status) onslaughtStatus.Id, s.ship.Get((Status)onslaughtStatus.Id) - 1);
+                            s.ship.Add((Status)onslaughtStatus.Id, -1);
                             foreach (Artifact enumerateAllArtifact in s.EnumerateAllArtifacts())
                                 enumerateAllArtifact.OnDrawCard(s, __instance, 1);
                             // continue;
@@ -390,11 +435,34 @@ namespace TwosCompany {
                         }
                     }
                 }
+
                 if (fromDiscard) {
-                    foreach (Card thisCard in __instance.discard)
-                        s.SendCardToDeck(thisCard, true, true);
-                    __instance.discard.Clear();
-                    s.ShuffleDeck(true);
+                    for (int drawIdx = __instance.discard.Count - 1; drawIdx >= 0; --drawIdx) {
+                        Card selectCard = __instance.discard[drawIdx];
+                        if (selectCard.GetMeta().deck == card.GetMeta().deck) {
+                            if (card.uuid != selectCard.uuid) {
+                                if (__instance.hand.Count >= 10) {
+                                    __instance.PulseFullHandWarning();
+                                    shuffle = false;
+                                    break;
+                                }
+                                __instance.DrawCardIdx(s, drawIdx, fromDiscard ? CardDestination.Discard : CardDestination.Deck);
+                                s.ship.PulseStatus((Status)onslaughtStatus.Id);
+                                Audio.Play(FSPRO.Event.CardHandling);
+                                s.ship.Add((Status)onslaughtStatus.Id, -1);
+                                foreach (Artifact enumerateAllArtifact in s.EnumerateAllArtifacts())
+                                    enumerateAllArtifact.OnDrawCard(s, __instance, 1);
+                                // continue;
+                                break;
+                            }
+                        }
+                    }
+                    if (shuffle) {
+                        foreach (Card thisCard in __instance.discard)
+                            s.SendCardToDeck(thisCard, true, true);
+                        __instance.discard.Clear();
+                        s.ShuffleDeck(true);
+                    }
                 }
             }
         }
@@ -402,10 +470,16 @@ namespace TwosCompany {
         public static void CardDataPostfix(Card __instance, ref CardData __result, State state) {
             if (state.route is not Combat)
                 return;
+            if (__instance is IJostCard && !__result.flippable && 
+                !__result.floppable && state.ship.Get((Status)Manifest.Statuses["Superposition"].Id!) > 0 &&
+                state.ship.Get((Status)Manifest.Statuses["DefensiveStance"].Id!) != state.ship.Get((Status)Manifest.Statuses["OffensiveStance"].Id!))
+                __result.floppable = true;
             if (!__result.flippable && state.ship.Get(Status.tableFlip) > 0) {
                 if (__instance is Wildfire ||
                 __instance is PointDefense ||
-                __instance is AllHands) {
+                __instance is AllHands ||
+                __instance is Cascade ||
+                __instance is EnGarde) {
                     __result.flippable = true;
                 }
             }
@@ -568,6 +642,108 @@ namespace TwosCompany {
             return true;
         }
 
+        public static void Card_OnDraw_Postfix(State s, Card card, Combat __instance) {
+            if (s.ship.Get((Status)Manifest.Statuses?["FollowUp"].Id!) > 0) {
+                __instance.Queue(new AFollowUp() {
+                    selectedCard = card,
+                });
+            }
+        }
+        /* i have decided this artifact was too funny.
+        public static bool Card_DrainCardActions_Prefix(Combat __instance, G g) {
+            if (__instance.cardActions.Count <= 0)
+                return true;
+            string key = "";
+            if (g.state.EnumerateAllArtifacts().OfType<ManualSteering>().FirstOrDefault() == null)
+                return true;
+            else
+                key = g.state.EnumerateAllArtifacts().OfType<ManualSteering>().FirstOrDefault()!.Key();
+            if (__instance.cardActions[0] is AAttack a && !a.storyFromStrafe && 
+                (__instance.cardActions.Count == 1 || __instance.cardActions[1] is not AIsaMarker)) {
+                __instance.cardActions.Insert(1, new AIsaMarker());
+                int missByOne = 0;
+                for (int f = 0; f < g.state.ship.parts.Count && missByOne == 0; f++) {
+                    if (g.state.ship.parts[f].type == PType.cannon && g.state.ship.parts[f].active) {
+                        RaycastResult raycastResult = CombatUtils.RaycastFromShipLocal(g.state, __instance, f, false);
+                        if (!raycastResult.hitShip && !raycastResult.hitDrone) {
+                            for (int n = -1; n <= 1; n += 2) {
+                                if (CombatUtils.RaycastGlobal(__instance, __instance.otherShip, fromDrone: true, raycastResult.worldX + n).hitShip) {
+                                    missByOne = g.state.ship.x + f < __instance.otherShip.x + __instance.otherShip.parts.Count / 2 ? 1 : -1;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                if (missByOne != 0)
+                    __instance.cardActions.Insert(0, new AMove() { targetPlayer = true, fromEvade = false, dir = missByOne, artifactPulse = key });
+            }
+            return true;
+        }
+        public static void Card_BeginCardAction_Postfix(Combat __instance, G g) {
+            if (__instance.cardActions.Count <= 0)
+                return;
+            string key = "";
+            if (g.state.EnumerateAllArtifacts().OfType<ManualSteering>().FirstOrDefault() == null)
+                return;
+            else
+                key = g.state.EnumerateAllArtifacts().OfType<ManualSteering>().FirstOrDefault()!.Key();
+            if (__instance.cardActions[0] is AAttack a && !a.storyFromStrafe && 
+                (__instance.cardActions.Count == 1 || __instance.cardActions[1] is not AIsaMarker)) {
+                __instance.cardActions.Insert(1, new AIsaMarker());
+                int missByOne = 0;
+                for (int f = 0; f < g.state.ship.parts.Count && missByOne == 0; f++) {
+                    if (g.state.ship.parts[f].type == PType.cannon && g.state.ship.parts[f].active) {
+                        RaycastResult raycastResult = CombatUtils.RaycastFromShipLocal(g.state, __instance, f, false);
+                        if (!raycastResult.hitShip && !raycastResult.hitDrone) {
+                            for (int n = -1; n <= 1; n += 2) {
+                                if (CombatUtils.RaycastGlobal(__instance, __instance.otherShip, fromDrone: true, raycastResult.worldX + n).hitShip) {
+                                    missByOne = g.state.ship.x + f < __instance.otherShip.x + __instance.otherShip.parts.Count / 2 ? 1 : -1;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                if (missByOne != 0)
+                    __instance.cardActions.Insert(0, new AMove() { targetPlayer = true, fromEvade = false, dir = missByOne, artifactPulse = key });
+            }
+        }
+        */
+        public static void Card_FlipCardInHand_Postfix(G g, Card card) {
+            if (card is IJostCard && g.state.route is Combat &&
+                g.state.ship.Get((Status)Manifest.Statuses["Superposition"].Id!) > 0 &&
+                g.state.ship.Get((Status)Manifest.Statuses["OffensiveStance"].Id!) - 
+                    g.state.ship.Get((Status)Manifest.Statuses["DefensiveStance"].Id!) != 0) {
+                if (card is IJostFlippableCard jCard && card.GetDataWithOverrides(g.state).flippable && !jCard.markForFlop) {
+                    jCard.markForFlop = true;
+                    card.flopAnim = 0.0;
+                    card.flipAnim = 1.0;
+                } else {
+                    int off = g.state.ship.Get((Status)Manifest.Statuses["OffensiveStance"].Id!);
+                    g.state.ship.Set((Status)Manifest.Statuses["OffensiveStance"].Id!, g.state.ship.Get((Status)Manifest.Statuses["DefensiveStance"].Id!));
+                    g.state.ship.Set((Status)Manifest.Statuses["DefensiveStance"].Id!, off);
+                    if (card.GetDataWithOverrides(g.state).floppable || card.GetDataWithOverrides(g.state).flippable)
+                        card.flipped = !card.flipped;
+                    if (card is IJostFlippableCard jCard2 && card.GetDataWithOverrides(g.state).flippable) {
+                        jCard2.markForFlop = !jCard2.markForFlop;
+                        card.flipAnim = 0.0;
+                    }
+                    card.flopAnim = g.state.ship.Get((Status)Manifest.Statuses["OffensiveStance"].Id!) >
+                        g.state.ship.Get((Status)Manifest.Statuses["DefensiveStance"].Id!) ? -1.0 : 1.0;
+                }
+
+            }
+        }
+
+        public static void Card_GetActualDamage_Postfix(State s, Card __instance, bool targetPlayer, ref int __result) {
+            if (s.route is Combat route) {
+                Ship ship = targetPlayer ? route.otherShip : s.ship;
+                __result += ship.Get((Status) Manifest.Statuses?["HeatFeedback"].Id!) > 0 ? 1 : 0;
+            } else 
+                return;
+        }
+
         public static bool DisguisedCardName(Card __instance, ref string __result) {
             if (__instance is IDisguisedCard) {
                 if (((IDisguisedCard)__instance).disguised) {
@@ -603,7 +779,7 @@ namespace TwosCompany {
                 Manifest.IsaColH + "ISABELLE</c>\nDefeat a boss <c=downside>with full hull remaining</c> <c=keyword>OR</c> " +
                 "beat a run with <c=peri>Peri</c> on <c=downside>HARD</c> or harder to unlock " + Manifest.IsaColH + "Isabelle</c>" + "!");
             __result.Add("char." + ManifHelper.GetDeckId("ilya") + ".desc.locked",
-                Manifest.IlyaColH + "ILYA</c>\nReach 7 <c=downside>HEAT</c> <c=keyword>OR</c> " +
+                Manifest.IlyaColH + "ILYA</c>\nReach 7 <c=status>HEAT</c> <c=keyword>OR</c> " +
                 "beat a run with <c=eunice>Drake</c> on <c=downside>HARD</c> or harder to unlock " + Manifest.IlyaColH + "Ilya</c>" + "!");
             __result.Add("char." + ManifHelper.GetDeckId("jost") + ".desc.locked",
                 Manifest.JostColH + "JOST</c>\nDefeat a boss <c=downside>without moving</c> <c=keyword>OR</c> " +

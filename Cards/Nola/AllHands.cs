@@ -19,7 +19,7 @@ namespace TwosCompany.Cards.Nola {
                     flipped ? "right" : "left", flipped ? "left" : "right");
 
             return new CardData() {
-                cost = upgrade == Upgrade.B ? 4 : 5,
+                cost = upgrade == Upgrade.B ? 3 : 4,
                 description = cardText,
                 flippable = upgrade == Upgrade.A,
             };
@@ -38,43 +38,6 @@ namespace TwosCompany.Cards.Nola {
             actions.Add(new ADelay() {
                 time = -0.5
             });
-            /*
-            if (upgrade == Upgrade.B && s.route is Combat route) {
-                bool preventPlay = false;
-                bool doubleInf = false;
-                int handPosition = flipped ? c.hand.Count - 1 : 0;
-                if (c.hand.Count == 1) {
-                    actions.Add(new ADiscard());
-                } else {
-                    if (!flipped && this.uuid == c.hand[0].uuid)
-                        handPosition += 1;
-                    else if (flipped && this.uuid == c.hand[c.hand.Count - 1].uuid)
-                        handPosition -= 1;
-                    if (this.GetFullDisplayName().Equals(c.hand[handPosition].GetFullDisplayName()))
-                        preventPlay = true;
-                    if (c.hand[handPosition].GetData(s).infinite)
-                        doubleInf = true;
-                }
-                if (preventPlay)
-                    actions.Add(new ADiscardSpecific() {
-                        selectedCard = this,
-                        drawNotDiscard = false,
-                        discount = 0
-                    });
-                else
-                    actions.Add(new APlayOtherCard() {
-                        handPosition = handPosition,
-                        timer = 0.5,
-                        exhaustThisCardAfterwards = false,
-                    });
-                if (doubleInf)
-                    actions.Add(new ADiscardSpecific() {
-                        selectedCard = this,
-                        drawNotDiscard = false,
-                        discount = 0
-                    });
-            } 
-            else */
             actions.Add(new APlayAllCards() {
                     leftToRight = !flipped,
                     gainHeat = 0,
@@ -86,17 +49,9 @@ namespace TwosCompany.Cards.Nola {
             return actions;
         }
         public override void HilightOtherCards(State s, Combat c1) {
-            /*
-            if (upgrade == Upgrade.B) {
-                var card = Enumerable.FirstOrDefault(Enumerable.Where(c1.hand, c2 => c2 != this));
-                if (card == null)
-                    return;
-                c1.hilightedCards.Add(card.uuid);
-            } else {*/
                 foreach (Card card in c1.hand)
                     if (card.uuid != this.uuid)
                         c1.hilightedCards.Add(card.uuid);
-            // }
         }
         public override void OnExitCombat(State s, Combat c) {
             wasPlayed = false;

@@ -9,7 +9,8 @@ namespace TwosCompany.Cards.Isabelle {
 
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = upgrade == Upgrade.A ? 0 : 1,
+                cost = upgrade == Upgrade.B ? 0 : 1,
+                flippable = upgrade != Upgrade.None,
                 art = new Spr?((Spr)((flipped ? Manifest.Sprites["LightningStrikesCardSpriteFlip"] : Manifest.Sprites["LightningStrikesCardSprite"]).Id
                     ?? throw new Exception("missing flip art")))
             };
@@ -18,30 +19,22 @@ namespace TwosCompany.Cards.Isabelle {
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            actions.Add(new AOtherPlayedHint() {
-                amount = 1
-            });
-            if (upgrade != Upgrade.B)
-                actions.Add(new AMove() {
-                    dir = -1,
-                    targetPlayer = true,
+            if (upgrade == Upgrade.B)
+                actions.Add(new AOtherPlayedHint() {
+                    amount = 1
                 });
+            actions.Add(new AMove() {
+                dir = -1,
+                targetPlayer = true,
+            });
             actions.Add(new AAttack() {
                 damage = GetDmg(s, 1),
                 fast = true,
-                moveEnemy = upgrade == Upgrade.B ? 1 : 0
             });
-            if (upgrade != Upgrade.B)
-                actions.Add(new AMove() {
-                    dir = 2,
-                    targetPlayer = true,
-                });
-            else
-                actions.Add(new AAttack() {
-                    damage = GetDmg(s, 1),
-                    fast = true,
-                    moveEnemy = -2
-                });
+            actions.Add(new AMove() {
+                dir = 2,
+                targetPlayer = true,
+            });
             actions.Add(new AAttack() {
                 damage = GetDmg(s, 1),
                 fast = true,
@@ -58,8 +51,10 @@ namespace TwosCompany.Cards.Isabelle {
         }
 
         public override void OnOtherCardPlayedWhileThisWasInHand(State s, Combat c, int handPosition) {
-            this.discount += 1;
-            costIncrease++;
+            if (upgrade == Upgrade.B) {
+                this.discount += 1;
+                costIncrease++;
+            }
         }
         public override void OnDiscard(State s, Combat c) {
             if (wasPlayed)

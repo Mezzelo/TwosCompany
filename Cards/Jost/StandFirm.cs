@@ -1,4 +1,5 @@
 ﻿using CobaltCoreModding.Definitions.ExternalItems;
+using System.Collections.Generic;
 using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Jost {
@@ -6,9 +7,10 @@ namespace TwosCompany.Cards.Jost {
     public class StandFirm : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 1,
+                cost = upgrade == Upgrade.B ? 1 : 0,
                 retain = upgrade != Upgrade.B,
                 floppable = upgrade == Upgrade.A,
+                exhaust = upgrade == Upgrade.B,
                 art = new Spr?((Spr)(Manifest.Sprites[upgrade != Upgrade.A ? "JostDefaultCardSpriteUnsided" : ("StandFirmCardSprite" + (this.flipped ? "Flip" : ""))].Id
                     ?? throw new Exception("missing card art")))
             };
@@ -18,57 +20,39 @@ namespace TwosCompany.Cards.Jost {
             List<CardAction> actions = new List<CardAction>();
 
             ExternalStatus defensiveStance = Manifest.Statuses?["DefensiveStance"] ?? throw new Exception("status missing: defensiveStance");
-            ExternalStatus offensiveStance = Manifest.Statuses?["OffensiveStance"] ?? throw new Exception("status missing: offensiveStance");
-            if (upgrade == Upgrade.A)
-                actions.Add(new StatCostAction() {
-                    action = new AStatus() {
-                        status = (Status) defensiveStance.Id!,
-                        statusAmount = 1,
-                        targetPlayer = true,
-                    },
-                    statusReq = (Status) offensiveStance.Id!,
-                    statusCost = 1,
-                    first = true,
-                    disabled = flipped,
+            if (upgrade == Upgrade.B)
+                actions.Add(new AStatus() {
+                    status = (Status) defensiveStance.Id!,
+                    statusAmount = 1,
+                    targetPlayer = true,
                 });
-            else if (upgrade == Upgrade.B)
-                actions.Add(new StatCostAction() {
-                    action = new AStatus() {
-                        status = (Status)defensiveStance.Id!,
-                        statusAmount = 1,
-                        targetPlayer = true,
-                    },
-                    statusReq = Status.shield,
-                    statusCost = 4,
-                    first = true,
-                });
-
             ExternalStatus standFirm = Manifest.Statuses?["StandFirm"] ?? throw new Exception("status missing: standfirm");
             actions.Add(new AStatus() {
                 status = (Status) standFirm.Id!,
-                statusAmount = upgrade == Upgrade.B ? 2 : 1,
+                statusAmount = 1,
                 targetPlayer = true,
                 disabled = upgrade == Upgrade.A && flipped,
             });
 
             if (upgrade == Upgrade.A) {
-                actions.Add(new ADummyAction());
-                actions.Add(new StatCostAction() {
+                actions.Add(new ADummyTooltip() {
                     action = new AStatus() {
-                        status = (Status) offensiveStance.Id!,
+                        status = (Status)Manifest.Statuses?[!flipped ? "Superposition" : "StandFirm"].Id!,
                         statusAmount = 1,
                         targetPlayer = true,
-                    },
-                    statusReq = (Status) defensiveStance.Id!,
-                    statusCost = 1,
-                    first = true,
-                    disabled = !flipped,
+                        disabled = !flipped,
+                    }
                 });
 
                 actions.Add(new AStatus() {
-                    status = (Status)standFirm.Id!,
-                    statusAmount = upgrade == Upgrade.B ? 2 : 1,
+                    status = (Status) Manifest.Statuses?["Superposition"].Id!,
+                    statusAmount = 1,
                     targetPlayer = true,
+                    disabled = !flipped,
+                });
+                actions.Add(new AExhaustSelf() {
+                    uuid = this.uuid,
+                    omitFromTooltips = false,
                     disabled = !flipped,
                 });
             }

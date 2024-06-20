@@ -4,8 +4,7 @@ namespace TwosCompany.Cards.Isabelle {
     [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class Harry : Card {
 
-        public int costIncrease = 1;
-        // public bool wasPlayed = false;
+        public int costIncrease = 0;
 
         public override CardData GetData(State state) {
             return new CardData() {
@@ -22,21 +21,21 @@ namespace TwosCompany.Cards.Isabelle {
                 isCombat = upgrade == Upgrade.B
             });
             actions.Add(new AAttack() {
-                damage = GetDmg(s, costIncrease),
+                damage = GetDmg(s, costIncrease + 1),
                 fast = true,
             });
             actions.Add(new AMove() {
-                dir = (upgrade == Upgrade.None ? 1 : 0) + costIncrease,
+                dir = (upgrade == Upgrade.None ? 2 : 1) + costIncrease,
                 targetPlayer = true,
                 isRandom = true,
             });
             actions.Add(new AAttack() {
-                damage = GetDmg(s, costIncrease),
+                damage = GetDmg(s, costIncrease + 1),
                 fast = true,
-                dialogueSelector = costIncrease > 1 ? ".mezz_harry" : null,
+                dialogueSelector = costIncrease > 0 ? ".mezz_harry" : null,
             });
             actions.Add(new AMove() {
-                dir = (upgrade == Upgrade.None ? 1 : 0) + costIncrease,
+                dir = (upgrade == Upgrade.None ? 2 : 1) + costIncrease,
                 targetPlayer = true,
                 isRandom = true,
             });
@@ -45,21 +44,20 @@ namespace TwosCompany.Cards.Isabelle {
 
 
         public override void OnExitCombat(State s, Combat c) {
-            costIncrease = 1;
+            costIncrease = 0;
         }
 
         public override void OnDraw(State s, Combat c) {
             if (upgrade != Upgrade.B) {
-                this.discount -= costIncrease - 1;
-                costIncrease = 1;
+                this.discount -= costIncrease;
+                costIncrease = 0;
             }
             
         }
 
         public override void AfterWasPlayed(State state, Combat c) {
-            this.discount += costIncrease;
             costIncrease++;
-            // wasPlayed = true;
+            this.discount += costIncrease;
         }
 
         public override string Name() => "Harry";

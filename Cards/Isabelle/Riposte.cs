@@ -3,30 +3,37 @@
     public class Riposte : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 1
+                cost = 2,
             };
         }
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            if (upgrade != Upgrade.B)
             actions.Add(new AStatus() {
-                status = Status.evade,
-                statusAmount = 1,
+                status = Status.autododgeRight,
+                statusAmount = 2,
                 targetPlayer = true
             });
             actions.Add(new AStatus() {
-                status = Status.tempPayback,
-                statusAmount = upgrade == Upgrade.A ? 3 : 2,
-                targetPlayer = true
+                status = (Status) Manifest.Statuses?["TempStrafe"].Id!,
+                statusAmount = upgrade == Upgrade.B ? 2 : 1,
+                mode = AStatusMode.Add,
+                targetPlayer = true,
             });
-            if (upgrade == Upgrade.B)
+            if (upgrade == Upgrade.A)
                 actions.Add(new AStatus() {
-                    status = Status.tempShield,
+                    status = Status.stunCharge,
                     statusAmount = 2,
-                    targetPlayer = true
+                    mode = AStatusMode.Add,
+                    targetPlayer = true,
                 });
+            actions.Add(new AStatus() {
+                status = Status.lockdown,
+                statusAmount = 1,
+                mode = AStatusMode.Add,
+                targetPlayer = true,
+            });
             return actions;
         }
 

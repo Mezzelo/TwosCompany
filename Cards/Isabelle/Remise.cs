@@ -14,7 +14,7 @@
                     IncomingString(state, true), GetDmg(state, 1), IncomingString(state, false));
 
             return new CardData() {
-                cost = 3,
+                cost = 2,
                 description = cardText,
                 retain = upgrade == Upgrade.A
             };

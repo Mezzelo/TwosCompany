@@ -16,7 +16,7 @@ namespace TwosCompany.Cards.Gauss {
         
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
-            actions.Add(new AMove() {
+            actions.Add(new AMoveEnemy() {
                 dir = upgrade == Upgrade.B ? 2 : 3,
                 targetPlayer = false,
             });

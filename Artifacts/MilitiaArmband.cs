@@ -7,7 +7,7 @@ namespace TwosCompany.Artifacts {
     public class MilitiaArmband : Artifact {
         public int prevTotal = 0;
         public bool procced = false;
-        public override string Description() => "Once per turn when you increase your total <c=status>OFF.</c> and <c=status>DEF. STANCE</c>, " +
+        public override string Description() => "Once per turn when you increase your total <c=status>STANCE</c>, " +
             "gain 1 <c=status>OVERDRIVE</c>.";
 
         public override void OnPlayerPlayCard(int energyCost, Deck deck, Card card, State state, Combat combat, int handPosition, int handCount) {

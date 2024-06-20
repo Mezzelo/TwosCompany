@@ -3,7 +3,9 @@ using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Jost {
     [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B }, extraGlossary = new string[] { "action.StanceCard" })]
-    public class SweepingStrikes : Card, IJostCard {
+    public class SweepingStrikes : Card, IJostCard, IJostFlippableCard {
+        public bool markForFlop = false;
+        bool IJostFlippableCard.markForFlop { get => markForFlop; set => markForFlop = value; }
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 2,
