@@ -32,7 +32,7 @@ namespace TwosCompany.Cards.Nola {
             if (drawSize > 1) {
                 actions.Add(new ACardSelect() {
                     browseAction = new ALowerCardCost() {
-                        amount = upgrade == Upgrade.A ? -2 : -4,
+                        amount = upgrade == Upgrade.A ? -1 : -2,
                         minimum = -1
                     },
                     browseSource = CardBrowse.Source.DrawPile

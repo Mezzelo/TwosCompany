@@ -12,7 +12,9 @@ MAJOR balance & fixes patch
 ~ Complete reworks to: Messenger Bag, Blackfoot Sigil
 ~ Metronome and Messenger Bag are now common, from boss.
 
+- Second Gear now increases status effects by 1, instead of doubling them.
 + Burden of Hindsight now increases ALL attack damage, and by current stacks of offensive stance rather than a flat +1.  When ending turn with defensive stance, you now lose 1 of both stance instead of both being set to 0.
++ Exotic Metals now increases chain damage for all non conduit/asteroid midrow objects.
 
 ~ Cards removals/additions 
 Nola:
@@ -45,14 +47,12 @@ Jost
 - Challenge
 Gauss:
 + Heavy Bolt
-- Spark (no longer offered)
-~ Starting deck changed to Conduit & Latent Energy, from Conduit & Spark
+- Conductor Field
 
 - Adaptation A's bottom side no longer gives temp shield.
 + Call and Response A now retains, rather than B, and only discounts by 1 energy.  B now retains.  For all variants, it is now capable of retrieving exhausted cards.
 ~ Onslaught A now retains, rather than being buoyant.  B's cost increased to 1, from 0, and now draws 2 cards rather than giving 5 onslaught.
 + Ruminate no longer ends turn.
-+ Steady On now gives 2 overdrive at the end, from 1, for all variants aside from B.
 ~ Anticipation's cost reduced to 1, from 2.  discounts a selected card by 2, from 4.  A discounts 2 cards by 1 energy.
 + Contingency's cost reduced to 0, from 1.  Contingency B now gives 1 energy, from 3.
 ~ Let Loose is now uncommon, from common.  Default and A variants now retain.  B now costs 1, from 2.
@@ -60,16 +60,19 @@ Gauss:
 + All Hands' cost lowered by 1 for all variants, from 5/4 to 4/3.
 + Battle Plan's cost decreased to 1, from 2.  A and B upgrades swapped.
 
-+ Bind's cost now only increases when playing attack cards, rather than when playing any card.  It now retains.
++ Bind's cost now only increases when playing attack cards, rather than when playing any card.  All variants retain. Decreased engine stall by 1, for all variants. 
 + Lightning Strikes A and B swapped, A and B are now flippable.  Only B is urgent now.  
 ~ Measure Break's upgrades reworked.  A does 2 damage for both hits, B stuns for both hits.
 + Couch's cost reduced by 1 for all variants.  A and B variants swapped.
 + Haymaker now reduces card draw next turn by 1, from 2.
 + Compound Attack's cost reduced to 0, from 1.  Compound Attack B now gives 3 Jab Bs, from 4.
 - Coup de Grace's damage decreased to 6, from 8.
++ Remise's cost reduced to 2 for all variants, from 3.
 
++ Dragon's Breath's heat generation removed from default and A variants.  A and B upgrades swapped.
 ~ Ember now retains.  B variant only does 1 damage, from 2.  Damage taken from overheating reduced to 1, from 2.
 - Flash Draw B now only gives 4 cards, from 6.
++ Galvanize generally reworked, gives an additional shield for most variants.
 ~ Pressure B is now infinite and increases in cost when played, rather than duplicating itself into draw and causing damage on overheat.
 ~ Heat Treatment is now uncommon, from common.
 ~ Imbue's cost reduced to 1 for all variants.  B now gives enflamed rather than 5 heat, both A and B now give 2 overdrive instead of 1 overdrive and 1 shield.
@@ -79,6 +82,7 @@ Gauss:
 + Front Guard B now gives 2 shield in offensive stance for base and A variants.
 + Heartbeat default variant now draws an extra card when double-stancing, instead of losing 1 energy.  B now draws 3, from 2.
 + High Guard's payback drive now no longer requires shield, and payback drive reduced to 2 from 3.  Defensive side gives shield for all variants.
++ Overhead Blow's damage increased to 5 for all variants, from 4.
 + Regain Poise now costs 0, from 1, and retains for all variants aside from B.  A gives 2 temp shield. It no longer gives card draw.
 ~ Battle Tempo's rarity changed to uncommon, from rare.  Cost is now 1 for all variants, from 2/1/2.  A is now buoyant, B only gives 2 shield, from 3.
 ~ Reckless Abandon now retains for all variants.  A now gives 2 of a stack instead of adding Regain Poise to hand.  B now gives a stack of stand firm on both sides.
@@ -87,6 +91,7 @@ Gauss:
 
 ~ Conductor Field B now costs 1, from 2.  Only A now retains, rather than A and B.
 + Shield Conduit's default cost reduced to 1, from 2.  A now bubbles the shield conduit, B now bubbles the shield drone.
+	~ Shield Conduit now negates damage to midrow objects down the chain.
 ~ Spark's damage increased to 2 for all variants, from 1 for default and B variants, A now gives 1 evade.
 + Feedback Conduit's cost reduced to 2 for all variants, from 3.
 + Solder Shuffle's cost reduced from 2/2/3 to 2/1/2.  All variants are now 	flippable.
@@ -94,6 +99,8 @@ Gauss:
 - Autocurrent B's damage reduced to 0, from 1.
 + Hyperspace Storm's cost reduced to 1 for all variants, from 2.  
 	+ Hyperspace Wind's variants are now all flippable, rather than only A.  Default and B now increase in cost when attacks are played.  Default and A retain, B now fires a 0 damage chain lightning.
++ Static Charge now fires a 0 damage chain lightning, instead of giving 2 stun charges.
+~ Tempest is now rare, from uncommon.  Tempest default and A variants' cost reduced to 0, from 1.
 
 
 ~ Compatibility fixes for APurpleApple's Shipyard, courtesy of purple.
@@ -102,6 +109,9 @@ Gauss:
 ~ Sprite revisions to several icons.
 ~ Fixed broken sprites in memories.
 ~ Fixed broken vanilla move enemy tooltips.
+- Fixed shield conduits bubbling objects on the opposite side of the chain.
+- Fixed exotic metals boosting the damage of some conduits.
+~ Fixed conduit condenser showing increased damage on chain lightning previews.
 
 2.0.2
 smaller balance change and fixes update

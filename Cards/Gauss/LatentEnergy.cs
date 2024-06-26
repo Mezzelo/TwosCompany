@@ -15,7 +15,7 @@ namespace TwosCompany.Cards.Gauss {
                 cardText = String.Format(Loc.GetLocString(Manifest.Cards?["LatentEnergy"].DescBLocKey ?? throw new Exception("Missing card description")));
 
             return new CardData() {
-                cost = 1,
+                cost = upgrade == Upgrade.A ? 0 : 1,
                 description = cardText,
             };
         }
@@ -24,7 +24,7 @@ namespace TwosCompany.Cards.Gauss {
             List<CardAction> actions = new List<CardAction>();
             actions.Add(new AAddCard() {
                 amount = 1,
-                card = new SparkCard() { upgrade = this.upgrade, discount = -1 },
+                card = new SparkCard() { upgrade = (this.upgrade == Upgrade.B ? Upgrade.B : Upgrade.None), discount = -1, temporaryOverride = true, },
                 destination = CardDestination.Hand,
             });
             return actions;

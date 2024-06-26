@@ -10,16 +10,19 @@ namespace TwosCompany.Artifacts {
     public class BlackfootSigil : Artifact {
         public override string Description() => "At the start of combat, gain a <c=card>Freedom of Movement</c>.";
 
-        public override void OnCombatStart(State state, Combat combat) => combat.QueueImmediate(new AAddCard() {
-            card = new FreedomOfMovement(),
-            destination = CardDestination.Hand,
-            amount = 1
-        });
+        public override void OnCombatStart(State state, Combat combat) {
+            this.Pulse();
+            combat.QueueImmediate(new AAddCard() {
+                card = new FreedomOfMovement(),
+                destination = CardDestination.Hand,
+                amount = 1
+            });
+        }
 
         public override List<Tooltip>? GetExtraTooltips() {
             List<Tooltip> extraTooltips = new List<Tooltip>();
-            extraTooltips.Add((Tooltip)new TTCard() {
-                card = (Card)new FreedomOfMovement()
+            extraTooltips.Add(new TTCard() {
+                card = new FreedomOfMovement()
             });
             return extraTooltips;
         }

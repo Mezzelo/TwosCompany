@@ -10,7 +10,8 @@ namespace TwosCompany.Artifacts {
 
         public AbandonedTassels() =>
             Manifest.EventHub.ConnectToEvent<Tuple<State, Combat>>("Mezz.TwosCompany.StanceSwitch", StanceSwitch);
-        public override string Description() => "The second time you change <c=status>STANCE</c> each turn, gain 1 <c=energy>ENERGY</c>.";
+        public override string Description() => "The second time you change <c=status>STANCE</c> from playing a " +
+            "<c=card>STANCE CARD</c> each turn, gain 1 <c=energy>ENERGY</c>.\"";
 
         public override int? GetDisplayNumber(State s) => counter > -1 ? counter : null;
 

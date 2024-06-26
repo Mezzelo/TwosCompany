@@ -20,10 +20,10 @@ namespace TwosCompany.Cards.Gauss {
                 targetPlayer = true,
             });
             if (upgrade == Upgrade.A)
-                actions.Add(new AStatus() {
-                    status = Status.stunCharge,
-                    statusAmount = 2,
-                    targetPlayer = true,
+                actions.Add(new AChainLightning() {
+                    targetPlayer = false,
+                    damage = GetDmg(s, 0),
+                    stunEnemy = true,
                 });
             return actions;
         }

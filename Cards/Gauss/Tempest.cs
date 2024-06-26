@@ -1,7 +1,7 @@
 ﻿using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Gauss {
-    [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
+    [CardMeta(rarity = Rarity.rare, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class Tempest : Card {
 
         public override CardData GetData(State state) {
@@ -14,8 +14,7 @@ namespace TwosCompany.Cards.Gauss {
                 cardText = String.Format(Loc.GetLocString(Manifest.Cards?["Tempest"].DescBLocKey ?? throw new Exception("Missing card description")));
 
             return new CardData() {
-                cost = 1,
-                retain = upgrade == Upgrade.A,
+                cost = upgrade == Upgrade.B ? 1 : 0,
                 description = cardText,
                 exhaust = true,
             };
@@ -25,7 +24,7 @@ namespace TwosCompany.Cards.Gauss {
             List<CardAction> actions = new List<CardAction>();
             actions.Add(new AAddCard() {
                 amount = 3,
-                card = new SparkCard() { upgrade = Upgrade.None, discount = upgrade == Upgrade.B ? -1 : 0 },
+                card = new SparkCard() { upgrade = Upgrade.None, temporaryOverride = true, discount = upgrade == Upgrade.B ? -1 : 0 },
                 destination = upgrade == Upgrade.A ? CardDestination.Hand : CardDestination.Deck,
             });
             return actions;

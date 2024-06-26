@@ -41,7 +41,7 @@ namespace TwosCompany.Helper {
             { "FieldAlternator", "Field Alternator"},
             { "BlackfootSigil", "Crowsfoot Sigil"},
             { "BurdenOfHindsight", "Burden of Hindsight"},
-            { "AbandonedTassels", "Abandoned Tassels"},
+            { "AbandonedTassels", "Frayed Tassels"},
             // 21-25: gauss
             { "TwinMaleCable", "Twin Male Cable"},
             { "IonEngines", "Ion Engines"},
@@ -59,7 +59,7 @@ namespace TwosCompany.Helper {
             "Whenever you play <c=keyword>3</c> different colored cards in the same turn, gain 1 <c=energy>ENERGY</c>.",
             "Every <c=keyword>3</c> turns you go without shuffling your deck, gain a free <c=cardtrait>temp exhaustable</c> <c=card>Foresight</c>.",
             "Whenever you play 5 cards in a single turn, gain 1 <c=status>EVADE</c>.",
-            "At the start of turn 6, <c=keyword>double</c> all of your current status effects.",
+            "At the start of turn 6, increase all of your current <c=status>statuses</c> by <c=keyword>1</c>.",
             // 6-11: Isabelle
             "Cards that cost <c=keyword>2</c> or <c=keyword>4</c> <c=energy>ENERGY</c> are discounted by <c=keyword>1</c> when drawn.\r\n" +
                 "Cards that cost <c=keyword>0</c> <c=energy>ENERGY</c> <c=downside>cost 1 more when drawn</c>.",
@@ -73,7 +73,7 @@ namespace TwosCompany.Helper {
             "Whenever you <c=downside>overheat</c>, gain 1 <c=status>OVERDRIVE</c> and 1 <c=status>HEAT</c>.",
             "At the start of combat, <c=healing>heal 1</c> and <c=downside>gain 2 HEAT</c>.",
             "Whenever you hit your enemy, they gain your current <c=status>HEAT</c>. If they would <c=downside>overheat</c>, they do so immediately.",
-            "Whenever you lose 3 or more <c=status>HEAT</c> at once, gain 2 <c=status>HEAT</c>.",
+            "Whenever you start your turn with 2+ <c=status>HEAT</c>, convert 1 stack into <c=status>HEAT FEEDBACK</c>.",
             "On pickup, <c=downside>reduce your max shield to 1</c>, but permanently gain <c=keyword>double</c> your prior max shield as " +
                 "<c=hull>max hull</c> and <c=healing>heal</c> the same amount.",
             "<c=healing>Heal 1</c> and gain 1 <c=status>SERENITY</c> whenever you <c=downside>overheat</c>, up to once every <c=keyword>4</c> turns.",
@@ -88,19 +88,19 @@ namespace TwosCompany.Helper {
             "At the start of combat, gain a <c=card>Freedom of Movement</c>.",
             "Increases damage dealt by stacks of <c=status>OFF. STANCE</c>," +
                 " and <c=card>Off Balance</c> costs 1 less energy. <c=downside>If you end your turn with any DEF. STANCE, lose 1 of each stance.</c>",
-            "The second time you change <c=status>STANCE</c> each turn, gain 1 <c=energy>ENERGY</c>.",
+            "The second time you change <c=status>STANCE</c> from playing a <c=card>STANCE CARD</c> each turn, gain 1 <c=energy>ENERGY</c>.",
             // 25-30: gauss
             "<c=keyword>+1</c> " + Manifest.ChainColH + "chain lightning</c> damage. " +
                 "Whenever you split " + Manifest.ChainColH + "chain lightning</c>, " +
                 "combine the split damage into the <c=redd>right end</c> instead of firing from the <c=attackFail>left end</c>.",
             "For every 5 <c=midrow>midrow objects</c> you " + Manifest.ChainColH + "chain</c> through, gain 1 <c=status>EVADE</c>.",
             Manifest.ChainColH + "Chain lightning</c> no longer damages <c=midrow>asteroids</c>. " +
-                " Non-missile, active objects increase chain damage by <c=keyword>2</c> instead of <c=keyword>1</c>.",
+                "Non-conduit/asteroid midrow objects increase chain damage by <c=keyword>2</c> instead of <c=keyword>1</c>.",
             Manifest.ChainColH + "Chain lightning</c> now <c=keyword>pierces</c> armor, shields and bubbles.",
             "For every 4 <c=midrow>midrow objects</c> you destroy, gain a free <c=cardtrait>temp exhaustable</c> <c=card>Conduit</c>, up to " +
                 "once per turn.",
-            Manifest.ChainColH + "Chain lightning</c> always fires through the first <c=midrow</c>midrow object</c> " +
-                "it hits, <c=downside>at a -1 damage penalty.</c>",
+            "When you " + Manifest.ChainColH + "chain</c> across 2 or more <c=midrow</c>midrow objects</c>, " + Manifest.ChainColH +
+                "lightning</c> fires from the start of the chain <c=downside>at a -1 damage penalty.</c>",
         };
     }
 }

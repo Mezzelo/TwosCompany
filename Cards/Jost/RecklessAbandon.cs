@@ -8,7 +8,7 @@ namespace TwosCompany.Cards.Jost {
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = upgrade == Upgrade.B ? 2 : 1,
-                retain = true,
+                retain = upgrade != Upgrade.B,
                 exhaust = upgrade != Upgrade.B,
                 art = new Spr?((Spr)(Manifest.Sprites["JostDefaultCardSprite" + Stance.AppendName(state)].Id
                     ?? throw new Exception("missing card art")))
@@ -18,7 +18,7 @@ namespace TwosCompany.Cards.Jost {
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
             actions.Add(new AStatus() {
-                status = (Status) Manifest.Statuses?["DefensiveStance"].Id!,
+                status = (Status) Manifest.Statuses?[upgrade == Upgrade.B ? "OffensiveStance" : "DefensiveStance"].Id!,
                 statusAmount = upgrade == Upgrade.A ? 2 : 1,
                 targetPlayer = true,
                 disabled = Stance.Get(s) % 2 != 1,
@@ -36,7 +36,7 @@ namespace TwosCompany.Cards.Jost {
             actions.Add(new ADummyAction());
 
             actions.Add(new AStatus() {
-                status = (Status) Manifest.Statuses?["OffensiveStance"].Id!,
+                status = (Status) Manifest.Statuses?[upgrade == Upgrade.B ? "DefensiveStance" : "OffensiveStance"].Id!,
                 statusAmount = upgrade == Upgrade.A ? 2 : 1,
                 targetPlayer = true,
                 disabled = Stance.Get(s) < 2,

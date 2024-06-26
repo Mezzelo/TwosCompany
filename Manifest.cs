@@ -511,7 +511,7 @@ namespace TwosCompany {
             GaussCharacter = new ExternalCharacter("Mezz.TwosCompany.Character.Gauss",
                 GaussDeck ?? throw new Exception("Missing Deck"),
                 Sprites["GaussFrame"] ?? throw new Exception("Missing Portrait"),
-                new Type[] { typeof(LatentEnergy), typeof(ConduitCard) },
+                new Type[] { typeof(SparkCard), typeof(ConduitCard) },
                 new Type[0],
                 Animations["GaussNeutralAnim"] ?? throw new Exception("missing default animation"),
                 Animations["GaussMiniAnim"] ?? throw new Exception("missing mini animation"));

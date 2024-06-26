@@ -1,6 +1,6 @@
 {
     "UniqueName": "Mezz.TwosCompany",
-    "Version": "2.5.0",
+    "Version": "2.5.1",
 	"DisplayName": "Two's Company",
 	"Description": "A pack of 5 modded characters, with dialogue, memories, and story events.",
 	"Author": "Mezzelo",
@@ -17,5 +17,13 @@
 		  "Version": "1.3.2",
 		  "IsRequired": false
 		}
-    ]
+    ],
+	"UpdateChecks": {
+		"NexusMods": {
+			"ID": 26
+		},
+		"GitHub": {
+			"Repository": "Mezzelo/TwosCompany"
+		}
+	},
 }

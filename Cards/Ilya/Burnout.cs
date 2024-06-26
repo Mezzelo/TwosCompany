@@ -21,8 +21,8 @@
                 status = new Status?(Status.heat)
             });
             actions.Add(new ADrawCard() {
-                count = GetHeatAmt(s) * (upgrade == Upgrade.A ? 3 : 2),
-                xHint = upgrade == Upgrade.A ? 3 : 2
+                count = GetHeatAmt(s) * (upgrade == Upgrade.None ? 1 : 2),
+                xHint = upgrade == Upgrade.None ? 1 : 2
             });
             actions.Add(new AStatus() {
                 status = Status.heat,

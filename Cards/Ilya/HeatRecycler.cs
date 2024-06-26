@@ -12,7 +12,7 @@
 
             actions.Add(new AStatus() {
                 status = (Status)Manifest.Statuses?["HeatFeedback"].Id!,
-                statusAmount = upgrade == Upgrade.B ? 4 : 3,
+                statusAmount = upgrade == Upgrade.B ? 3 : 2,
                 targetPlayer = true,
             });
             if (upgrade == Upgrade.A) {

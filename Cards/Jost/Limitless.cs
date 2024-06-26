@@ -12,7 +12,6 @@ namespace TwosCompany.Cards.Jost {
                 retain = true,
                 singleUse = upgrade != Upgrade.B,
                 exhaust = upgrade == Upgrade.B,
-                buoyant = upgrade == Upgrade.A,
             };
         }
 
@@ -30,6 +29,18 @@ namespace TwosCompany.Cards.Jost {
                 destination = CardDestination.Hand,
                 showCardTraitTooltips = false,
             });
+            if (upgrade == Upgrade.A) {
+                actions.Add(new AStatus() {
+                    status = Status.tempShield,
+                    statusAmount = 2,
+                    targetPlayer = true,
+                });
+                actions.Add(new AStatus() {
+                    status = Status.overdrive,
+                    statusAmount = 1,
+                    targetPlayer = true,
+                });
+            }
             return actions;
         }
 

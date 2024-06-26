@@ -67,7 +67,7 @@ namespace TwosCompany {
 
                 // this approach sucks, but i can't find where to patch card removal to unhook events
                 foreach (Card card in c.hand)
-                    if (card is Couch couchCard)
+                    if (card is Couch couchCard && __instance.targetPlayer)
                         couchCard.dist += Math.Abs(dist);
 
                 Ship ship = __instance.targetPlayer ? s.ship : c.otherShip;
@@ -116,8 +116,7 @@ namespace TwosCompany {
         public static void AttackEnd(AAttack __instance, State s, Combat c, healthStats __state) {
             Ship ship = __instance.targetPlayer ? c.otherShip : s.ship;
             Ship target = __instance.targetPlayer ? s.ship : c.otherShip;
-            if (__state.autoDodge == target.Get(Status.autododgeRight) + target.Get(Status.autododgeLeft) &&
-                !__instance.fromDroneX.HasValue && ship.Get((Status)Manifest.Statuses?["HeatFeedback"].Id!) > 0) {
+            if (!__instance.fromDroneX.HasValue && ship.Get((Status)Manifest.Statuses?["HeatFeedback"].Id!) > 0) {
                 ship.PulseStatus((Status)Manifest.Statuses?["HeatFeedback"].Id!);
                 ship.Add((Status)Manifest.Statuses?["HeatFeedback"].Id!, -1);
                 ship.Add(Status.heat, 1);
@@ -246,7 +245,7 @@ namespace TwosCompany {
                 if (__instance.Get((Status)Manifest.Statuses["FalseOpeningB"].Id!) > 0)
                     __instance.Set((Status)Manifest.Statuses["FalseOpeningB"].Id!, 0);
                 if (__instance.Get((Status)Manifest.Statuses["StandFirm"].Id!) > 0)
-                    __instance.Set((Status)Manifest.Statuses["StandFirm"].Id!, 0);
+                    __instance.Add((Status)Manifest.Statuses["StandFirm"].Id!, -1);
 
             }
             if (__instance.Get((Status)Manifest.Statuses?["Enflamed"].Id!) > 0) {

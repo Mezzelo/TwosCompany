@@ -40,7 +40,7 @@ namespace TwosCompany.Cards.Jost {
                 disabled = Stance.Get(s) < 2,
             });
             actions.Add(new AAttack() {
-                damage = GetDmg(s, upgrade == Upgrade.B ? 3 : 2),
+                damage = GetDmg(s, upgrade == Upgrade.B ? 4 : 3),
                 moveEnemy = upgrade == Upgrade.B ? -3 : -2,
                 disabled = Stance.Get(s) < 2,
             });

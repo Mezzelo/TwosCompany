@@ -9,8 +9,8 @@
 	  <OutputPath>C:\Program Files (x86)\Steam\steamapps\common\Cobalt Core\Nickel\ModLibrary\TwosCompany</OutputPath>
     <Configurations>Debug;Release;Empty</Configurations>
     <BaseIntermediateOutputPath />
-    <AssemblyVersion>2.5.0</AssemblyVersion>
-	<VersionPrefix>2.5.0</VersionPrefix>
+    <AssemblyVersion>2.5.1</AssemblyVersion>
+	<VersionPrefix>2.5.1</VersionPrefix>
     <LangVersion>preview</LangVersion>
   </PropertyGroup>
 

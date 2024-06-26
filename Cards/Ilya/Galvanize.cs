@@ -10,7 +10,7 @@
             int shieldAmt = 0;
             if (s.route is Combat)
                 shieldAmt = s.ship.Get(Status.shield)
-                    + (upgrade == Upgrade.A ? 1 : (upgrade == Upgrade.B ? s.ship.Get(Status.tempShield) : 0));
+                    + (upgrade == Upgrade.B ? 1 : 0);
 
             return shieldAmt;
         }
@@ -18,7 +18,7 @@
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            if (upgrade == Upgrade.A) {
+            if (upgrade == Upgrade.B) {
                 actions.Add(new AStatus() {
                     status = Status.shield,
                     statusAmount = 1,
@@ -27,7 +27,6 @@
             }
             actions.Add(new AVariableHint() {
                 status = Status.shield,
-                secondStatus = upgrade == Upgrade.B ? Status.tempShield : null
             });
 
             actions.Add(new AStatus() {
@@ -42,6 +41,13 @@
                 targetPlayer = true,
                 xHint = 1
             });
+            if (upgrade != Upgrade.B) {
+                actions.Add(new AStatus() {
+                    status = Status.shield,
+                    statusAmount = 1,
+                    targetPlayer = true,
+                });
+            }
             if (upgrade == Upgrade.A) {
                 actions.Add(new AStatus() {
                     status = Status.heat,

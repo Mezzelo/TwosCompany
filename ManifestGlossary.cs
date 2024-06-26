@@ -99,7 +99,7 @@ namespace TwosCompany {
             addStatus("Control", "Control", "The next {0} times you would move, gain 1 <c=status>EVADE</c> instead. " +
                 "<c=downside>Decreases by 1 every time it triggers.</c>",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xffffe373)), System.Drawing.Color.FromArgb(unchecked((int)0xffffe373)), registry, true);
-            addStatus("HeatFeedback", "Heat Recycler", "Add 1 damage to all attacks. Whenever this ship attacks, it gains 1 <c=status>HEAT</c>. " +
+            addStatus("HeatFeedback", "Heat Feedback", "Add 1 damage to all attacks. Whenever this ship attacks, it gains 1 <c=status>HEAT</c>. " +
                 "<c=downside>Decreases by 1 every time it triggers.</c>",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xffff5660)), System.Drawing.Color.FromArgb(unchecked((int)0xffff5660)), registry, true);
             addStatus("FollowUp", "Follow Through", "The next {0} times you move a card to hand, immediately play it for free. " +
@@ -200,7 +200,7 @@ namespace TwosCompany {
                 , registry);
             addGlossary("ConduitShield", "Shield Conduit",
                "Will block one attack before being destroyed. The first time this is hit by " + Manifest.ChainColH + "chain lightning</c>, " +
-                    "gives 2 <c=status>SHIELD</c> and <c=keyword>bubbles</c> all <c=midrow>midrow objects</c> after it that are not destroyed."
+                    "gives 2 <c=status>SHIELD</c> and <c=keyword>bubbles</c> all <c=midrow>midrow objects</c> after it instead of damaging them."
                 , registry);
             addGlossary("ConductorField", "Conductor Field",
                "Instantly turn every <c=midrow>object in the midrow</c> into <c=drone>conduits</c>."

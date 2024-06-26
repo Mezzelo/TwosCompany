@@ -3,7 +3,7 @@
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Common })]
     public class SecondGear : Artifact {
         public int counter = 0;
-        public override string Description() => "On turn 6, <c=keyword>double</c> all of your current status effects.";
+        public override string Description() => "At the start of turn 6, increase all of your current <c=status>statuses</c> by <c=keyword>1</c>.";
         public override int? GetDisplayNumber(State s) => counter > 5 || counter < 1 ? null : counter;
 
         public override void OnTurnStart(State state, Combat combat) {
@@ -26,7 +26,8 @@
                         combat.Queue(new AStatus() {
                             targetPlayer = true,
                             status = thisStatus.Key,
-                            statusAmount = thisStatus.Value,
+                            statusAmount = 1,
+                            mode = AStatusMode.Add,
                             dialogueSelector = first ? ".mezz_secondGear" : null,
                             artifactPulse = !first ? this.Key() : null,
                             timer = !first ? 0.4 : 0.0,

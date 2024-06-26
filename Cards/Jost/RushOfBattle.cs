@@ -25,7 +25,7 @@ namespace TwosCompany.Cards.Jost {
             List<CardAction> actions = new List<CardAction>();
             actions.Add(new AAddCard() {
                 amount = 3,
-                card = new Heartbeat() { upgrade = Upgrade.None, temporaryOverride = true, retainOverride = true, breatheInRetain = true },
+                card = new Heartbeat() { upgrade = Upgrade.None, temporaryOverride = true, retainOverride = upgrade == Upgrade.B, breatheInRetain = upgrade == Upgrade.B },
                 destination = upgrade == Upgrade.B ? CardDestination.Deck : CardDestination.Hand,
                 showCardTraitTooltips = false,
             });

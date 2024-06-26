@@ -10,7 +10,7 @@ namespace TwosCompany.Artifacts {
         public override void OnEnemyGetHit(State state, Combat combat, Part? part) {
             // if (firstHit) {
             //     firstHit = false;
-                if (state.ship.Get(Status.heat) > -1) {
+                if (state.ship.Get(Status.heat) > 0) {
                     this.Pulse();
                 combat.QueueImmediate(new AIncendOverheat() {
                     timer = 0.0,

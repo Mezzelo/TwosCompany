@@ -153,6 +153,7 @@ namespace TwosCompany.Actions {
                     int cDamage = damage;
                     int evadeGain = 0;
                     int shieldGain = 0;
+                    bool bubbleDown = false;
 
                     ExoticMetals? exotics = null;
                     bool hitAsteroid = false;
@@ -180,6 +181,7 @@ namespace TwosCompany.Actions {
                             else
                                 cDamage = 0;
                             cDamage += damage;
+                            bubbleDown = false;
                             cDamage += c.stuff[cRoute[0]] is Conduit cond && cond.condType == Conduit.ConduitType.amplifier ? 2 : 1;
                             if (c.stuff[i] is Conduit cond2 && cond2.condType == Conduit.ConduitType.amplifier)
                                 cDamage++;
@@ -191,7 +193,7 @@ namespace TwosCompany.Actions {
                         cDamage++;
                         // damage midrow
                         bool hadBubble = false;
-                        if (c.stuff[i].bubbleShield && shieldGain == 0) {
+                        if (c.stuff[i].bubbleShield && !bubbleDown) {
                             c.stuff[i].bubbleShield = false;
                             hadBubble = true;
                         }
@@ -203,27 +205,27 @@ namespace TwosCompany.Actions {
                             }
                         }
                         if (invincible) {
-                            if (!c.stuff[i].bubbleShield && shieldGain > 0)
+                            if (!c.stuff[i].bubbleShield && bubbleDown)
                                 c.stuff[i].bubbleShield = true;
                             List<CardAction>? invulActions = c.stuff[i].GetActionsOnShotWhileInvincible(s, c, !this.targetPlayer, cDamage - 1);
                             if (invulActions != null) {
                                 invulActions.Reverse();
                                 midActions.InsertRange(0, invulActions);
                             }
-                            List<CardAction>? droneActions = c.stuff[i].GetActions(s, c);
-                            if (!(c.stuff[i] is Missile) && droneActions != null) {
-                                if (exotics != null) {
-                                    cDamage++;
-                                    if (!hitAsteroid) {
-                                        hitAsteroid = true;
-                                        exotics.Pulse();
-                                    }
+                            if (exotics != null && c.stuff[i] is not Asteroid && c.stuff[i] is not Conduit) {
+                                cDamage++;
+                                if (!hitAsteroid) {
+                                    hitAsteroid = true;
+                                    exotics.Pulse();
                                 }
+                            }
+                            List<CardAction>? droneActions = c.stuff[i].GetActions(s, c);
+                            if (c.stuff[i] is not Missile && droneActions != null) {
                                 midActions.InsertRange(0, droneActions);
                             }
                         }
                         else if (c.stuff[i] is Conduit cond) {
-                            if (!c.stuff[i].bubbleShield && shieldGain > 0)
+                            if (!c.stuff[i].bubbleShield && bubbleDown)
                                 c.stuff[i].bubbleShield = true;
                             if (cond.condType == Conduit.ConduitType.amplifier)
                                 cDamage++;
@@ -234,6 +236,7 @@ namespace TwosCompany.Actions {
                             else if (cond.condType == Conduit.ConduitType.shield && !cond.disabled) {
                                 cond.disabled = true;
                                 shieldGain += 2;
+                                bubbleDown = true;
                             }
                             else if (cond.condType == Conduit.ConduitType.feedback && !cond.disabled) {
                                 cond.disabled = true;
@@ -245,7 +248,7 @@ namespace TwosCompany.Actions {
                                 Audio.Play(FSPRO.Event.Status_PowerUp);
                             }
                         } else if (exotics != null && c.stuff[i] is Asteroid) {
-                            if (!c.stuff[i].bubbleShield && shieldGain > 0)
+                            if (!c.stuff[i].bubbleShield && bubbleDown)
                                 c.stuff[i].bubbleShield = true;
                             if (!hitAsteroid) {
                                 hitAsteroid = true;
@@ -254,19 +257,19 @@ namespace TwosCompany.Actions {
                         }
                         else {
                             List<CardAction>? droneActions = c.stuff[i].GetActions(s, c);
-                            if ((!(c.stuff[i] is Missile) && droneActions != null) || c.stuff[i] is JupiterDrone) {
-                                if (droneActions != null && c.stuff[i] is not JupiterDrone && c.stuff[i] is not Conduit) {
-                                    midActions.InsertRange(0, droneActions);
-                                }
-                                if (exotics != null) {
-                                    cDamage++;
-                                    if (!hitAsteroid) {
-                                        hitAsteroid = true;
-                                        exotics.Pulse();
-                                    }
+                            if (exotics != null && c.stuff[i] is not Asteroid) {
+                                cDamage++;
+                                if (!hitAsteroid) {
+                                    hitAsteroid = true;
+                                    exotics.Pulse();
                                 }
                             }
-                            if ((!hadBubble && !c.stuff[i].bubbleShield) || piercing) {
+                            if (c.stuff[i] is not Missile && droneActions != null) {
+                                midActions.InsertRange(0, droneActions);
+                            }
+                            if (bubbleDown && !c.stuff[i].bubbleShield)
+                                c.stuff[i].bubbleShield = true;
+                            else if (((!hadBubble && !c.stuff[i].bubbleShield) || piercing)) {
                                 StuffBase? stuff2 = null;
                                 if (i < cRoute[0] && cRoute.Contains(cRoute[0] * 2 - i) &&
                                     !c.stuff[cRoute[0] * 2 - i].Invincible() &&
@@ -290,7 +293,7 @@ namespace TwosCompany.Actions {
                         if (end && !(cable != null && n < cRoute.Count - 1 && n > 0)) {
                             RaycastResult chainRay = CombatUtils.RaycastGlobal(c, ship, true, cRoute[n]);
                             hitActions.Insert(0, new AChainHit() {
-                                damage = Math.Max(0, cDamage - (n == 0 && trident != null ? 1 : 0)),
+                                damage = Math.Max(0, cDamage - (cRoute.Count > 1 && trident != null ? 1 : 0)),
                                 targetPlayer = this.targetPlayer,
                                 fromX = cRoute[n],
                                 piercing = piercing,
@@ -327,15 +330,20 @@ namespace TwosCompany.Actions {
                 }
                 if (stun) {
                     if (ship2.Get((Status)Manifest.Statuses?["ElectrocuteCharge"].Id!) > 0) {
-                        ship2.Set((Status)Manifest.Statuses?["ElectrocuteCharge"].Id!, ship2.Get((Status)Manifest.Statuses?["ElectrocuteCharge"].Id!) - 1);
-                        ship2.Set((Status)Manifest.Statuses?["ElectrocuteChargeSpent"].Id!, ship2.Get((Status)Manifest.Statuses?["ElectrocuteChargeSpent"].Id!) + 1);
+                        ship2.Add((Status)Manifest.Statuses?["ElectrocuteCharge"].Id!, -1);
+                        ship2.Add((Status)Manifest.Statuses?["ElectrocuteChargeSpent"].Id!, 1);
                         s.ship.PulseStatus((Status)Manifest.Statuses?["ElectrocuteChargeSpent"].Id!);
                     } else if (ship2.Get(Status.stunCharge) > 0)
                         ship2.Set(Status.stunCharge, ship2.Get(Status.stunCharge) - 1);
                 }
                 if (hasJump) {
                     s.ship.PulseStatus((Status)Manifest.Statuses?["DistantStrike"].Id!);
-                    ship2.Set((Status)Manifest.Statuses?["DistantStrike"].Id!, ship2.Get((Status)Manifest.Statuses?["DistantStrike"].Id!) - 1);
+                    ship2.Add((Status)Manifest.Statuses?["DistantStrike"].Id!, -1);
+                }
+                if (ship2.Get((Status)Manifest.Statuses?["HeatFeedback"].Id!) > 0) {
+                    ship2.PulseStatus((Status)Manifest.Statuses?["HeatFeedback"].Id!);
+                    ship2.Add((Status)Manifest.Statuses?["HeatFeedback"].Id!, -1);
+                    ship2.Add(Status.heat, 1);
                 }
                 if (!targetPlayer) {
                     if (flag)
@@ -415,7 +423,7 @@ namespace TwosCompany.Actions {
                     List<int>? cRoute = CalculateRoute(s.ship.x + parts[i], !targetPlayer, hasJump, s, c);
                     if (cRoute == null)
                         continue;
-                    bool remote = s.EnumerateAllArtifacts().OfType<RemoteStarter>().Any();
+                    bool exotics = s.EnumerateAllArtifacts().OfType<ExoticMetals>().Any();
                     bool twin = s.EnumerateAllArtifacts().OfType<TwinMaleCable>().Any();
                     bool trident = s.EnumerateAllArtifacts().OfType<TuningTrident>().Any();
                     int zeroDamage = 0;
@@ -432,13 +440,13 @@ namespace TwosCompany.Actions {
                             if (cond.condType == Conduit.ConduitType.amplifier)
                                 ++cDamage;
                         }
-                        else if (remote && !(c.stuff[cRoute[g]] is Missile || c.stuff[cRoute[g]] is Asteroid) && c.stuff[cRoute[g]].GetActions(s, c) != null)
+                        else if (exotics && !(c.stuff[cRoute[g]] is Asteroid || c.stuff[cRoute[g]] is Conduit))
                             ++cDamage;
                         
                         if (g == 0)
                             zeroDamage = cDamage;
 
-                        int hilightVal = Math.Max(0, cDamage - (g == 0 && trident ? 1 : 0)) +
+                        int hilightVal = Math.Max(0, cDamage - (cRoute.Count > 1 && trident ? 1 : 0)) +
                             ((g == cRoute.Count - 1 || 
                             (g == 0 && trident) ||
                             (g < cRoute.Count - 1 && cRoute[g] < cRoute[g + 1] && cRoute[g] < cRoute[0])) ?

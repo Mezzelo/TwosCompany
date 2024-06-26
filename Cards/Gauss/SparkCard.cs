@@ -1,13 +1,12 @@
 ﻿using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Gauss {
-    [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B }, dontOffer = true)]
+    [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class SparkCard : Card {
 
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 1,
-                temporary = true,
                 recycle = upgrade == Upgrade.B,
             };
         }

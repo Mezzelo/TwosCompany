@@ -6,7 +6,7 @@ namespace TwosCompany.Cards.Ilya {
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 1,
-                flippable = upgrade == Upgrade.A,
+                flippable = upgrade == Upgrade.B,
                 art = new Spr?((Spr)((flipped ? Manifest.Sprites["DragonsBreathCardSpriteFlip"] : Manifest.Sprites["DragonsBreathCardSprite"]).Id
                     ?? throw new Exception("missing flip art")))
             };
@@ -23,7 +23,7 @@ namespace TwosCompany.Cards.Ilya {
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            if (upgrade == Upgrade.A)
+            if (upgrade == Upgrade.B)
                 actions.Add(new AAttack() {
                     damage = GetDmg(s, 1),
                     moveEnemy = -1
@@ -50,7 +50,8 @@ namespace TwosCompany.Cards.Ilya {
                 },
                 statusReq = Status.heat,
                 statusCost = 1,
-                cumulative = 1,
+                cumulative = upgrade == Upgrade.B ? 0 : 1,
+                first = upgrade == Upgrade.B,
                 timer = -0.5,
                 moveEnemy = -1,
                 cardFlipped = this.flipped
@@ -64,21 +65,15 @@ namespace TwosCompany.Cards.Ilya {
                 },
                 statusReq = Status.heat,
                 statusCost = 1,
-                cumulative = 2,
+                cumulative = upgrade == Upgrade.B ? 1 : 2,
                 timer = -0.5,
                 moveEnemy = -1,
                 cardFlipped = this.flipped
             });
-            if (upgrade != Upgrade.B)
-                actions.Add(new AStatus() {
-                    status = Status.heat,
-                    statusAmount = upgrade == Upgrade.A ? 1 : 2,
-                    targetPlayer = true,
-                });
-            else
+            if (upgrade == Upgrade.A)
                 actions.Add(new StatCostAttack() {
                     action = new AAttack() {
-                        damage = GetDmg(s, 3),
+                        damage = GetDmg(s, 2),
                         moveEnemy = -2,
                         fast = true,
                     },
