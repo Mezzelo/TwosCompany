@@ -50,7 +50,7 @@ namespace TwosCompany.Cards.Ilya {
                         statusAmount = 1,
                     },
                     statusReq = Status.heat,
-                    statusCost = 2,
+                    statusCost = upgrade == Upgrade.A ? 1 : 2,
                     cumulative = 0,
                     first = true,
                 });
@@ -61,8 +61,8 @@ namespace TwosCompany.Cards.Ilya {
                         statusAmount = 1,
                     },
                     statusReq = Status.heat,
-                    statusCost = upgrade == Upgrade.A ? 1 : 2,
-                    cumulative = 2,
+                    statusCost = 2,
+                    cumulative = upgrade == Upgrade.A ? 1 : 2,
                     first = false,
                 });
             }
