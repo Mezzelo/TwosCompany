@@ -28,7 +28,7 @@ namespace TwosCompany.Actions {
                 }
             }
             c.QueueImmediate(new AAttack() {
-                damage = Card.GetActualDamage(s, 1),
+                damage = Card.GetActualDamage(s, this.damage),
                 fast = true,
                 targetPlayer = false,
                 dialogueSelector = ".mezz_cascadeSports",
