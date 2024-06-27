@@ -325,9 +325,9 @@ namespace TwosCompany.Helper {
             {"TremblingAirs", "Move all " + Manifest.ChainColH +"chain lightning</c> cards to hand."},
             {"TremblingAirsA", "Move all " + Manifest.ChainColH + "chain lightning</c> cards to hand."},
             {"TremblingAirsB", "Move all " + Manifest.ChainColH + "lightning</c> cards to hand and discount them by 1."},
-            {"Wildfire", "Play your hand from <c=card>{0}</c> to <c=card>{1}</c>. Gain <c=downside>HEAT</c> for each card."},
-            {"WildfireA", "Play your hand from <c=card>{0}</c> to <c=card>{1}</c>. Gain <c=downside>HEAT</c> for each, then lose 2."},
-            {"WildfireB", "Play your hand from <c=card>{0}</c> to <c=card>{1}</c>. Gain <c=downside>HEAT</c> for each card."},
+            {"Wildfire", "Play your hand from <c=card>{0}</c> to <c=card>{1}</c>. Gain <c=downside>heat</c> for each card."},
+            {"WildfireA", "Play your hand from <c=card>{0}</c> to <c=card>{1}</c>. Gain <c=downside>heat</c> for each, then lose 2."},
+            {"WildfireB", "Play your hand from <c=card>{0}</c> to <c=card>{1}</c>. Gain <c=downside>heat</c> for each card."},
         };
 
         public static Dictionary<string, string> charStoryNames = new Dictionary<string, string> {

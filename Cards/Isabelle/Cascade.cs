@@ -14,10 +14,10 @@ namespace TwosCompany.Cards.Isabelle {
                     flipped ? "left" : "right", GetDmg(state, 1));
             else
                 cardText = String.Format(Loc.GetLocString(Manifest.Cards?["Cascade"].DescBLocKey ?? throw new Exception("Missing card description")),
-                    flipped ? "left" : "right", GetDmg(state, 1));
+                    flipped ? "left" : "right", GetDmg(state, 2));
 
             return new CardData() {
-                cost = upgrade == Upgrade.B ? 0 : 2,
+                cost = upgrade == Upgrade.B ? 3 : 2,
                 exhaust = upgrade == Upgrade.B,
                 flippable = upgrade == Upgrade.A,
                 description = cardText,
@@ -26,9 +26,19 @@ namespace TwosCompany.Cards.Isabelle {
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
+            actions.Add(new AMove() {
+                dir = 0,
+                ignoreHermes = true,
+                targetPlayer = true,
+                isRandom = false,
+                timer = 0.0,
+                omitFromTooltips = true,
+            });
             actions.Add(new ACascadeAttack() {
                 dir = flipped ? -1 : 1,
                 timer = 0.0,
+                damage = 1,
+                sportsCounter = 0,
             });
             return actions;
         }

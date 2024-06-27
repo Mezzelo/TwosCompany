@@ -2613,6 +2613,33 @@
         "isa"
       ]
     },
+    "mezz_Isa_Card_CascadeSports": {
+      "type": "combat",
+      "lookup": [
+        "mezz_cascadeSports"
+      ],
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "isa",
+			  "loopTag": "glare"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "isa",
+			  "loopTag": "glare"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "isa"
+      ]
+    },
     "mezz_Isa_Card_CoupDeGrace": {
       "type": "combat",
       "lookup": [

@@ -20,7 +20,7 @@
             });
             actions.Add(new AStatus() {
                 status = Status.overdrive,
-                statusAmount = 1,
+                statusAmount = 2,
                 targetPlayer = true
             });
             if (upgrade == Upgrade.B)

@@ -35,8 +35,13 @@ namespace TwosCompany.Cards.Nola {
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            actions.Add(new ADelay() {
-                time = -0.5
+            actions.Add(new AMove() {
+                dir = 0,
+                ignoreHermes = true,
+                targetPlayer = true,
+                isRandom = false,
+                timer = -0.5,
+                omitFromTooltips = true,
             });
             actions.Add(new APlayAllCards() {
                     leftToRight = !flipped,

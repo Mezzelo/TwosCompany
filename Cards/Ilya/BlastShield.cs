@@ -4,23 +4,32 @@
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 1,
-                retain = true
+                recycle = upgrade == Upgrade.B,
+                retain = upgrade != Upgrade.B,
             };
         }
         private int GetHeatAmt(State s) {
-            int heatAmt = 0;
-            if (s.route is Combat)
-                heatAmt = Math.Max(0, s.ship.Get(Status.heat) + (upgrade == Upgrade.A ? 0 : 2 + s.ship.Get(Status.boost)));
+            int heatAmt = 1;
+            if (upgrade == Upgrade.None)
+                heatAmt = 2;
+            if (s.route is Combat) {
+                heatAmt = Math.Max(0, s.ship.Get(Status.heat) + heatAmt + s.ship.Get(Status.boost));
+            }
             return heatAmt;
         }
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            if (upgrade != Upgrade.A)
+            actions.Add(new AStatus() {
+                status = Status.heat,
+                statusAmount = upgrade == Upgrade.None ? 2 : 1,
+                targetPlayer = true
+            });
+            if (upgrade == Upgrade.A)
                 actions.Add(new AStatus() {
-                    status = Status.heat,
-                    statusAmount = 2,
+                    status = Status.tempShield,
+                    statusAmount = 1,
                     targetPlayer = true
                 });
             actions.Add(new AVariableHint() {
@@ -32,12 +41,6 @@
                 xHint = 1,
                 targetPlayer = true
             });
-            if (upgrade != Upgrade.None)
-                actions.Add(new AStatus() {
-                    status = Status.heat,
-                    statusAmount = -2,
-                    targetPlayer = true
-                });
             return actions;
         }
 

@@ -473,15 +473,15 @@ namespace TwosCompany {
                 !__result.floppable && state.ship.Get((Status)Manifest.Statuses["Superposition"].Id!) > 0 &&
                 state.ship.Get((Status)Manifest.Statuses["DefensiveStance"].Id!) != state.ship.Get((Status)Manifest.Statuses["OffensiveStance"].Id!))
                 __result.floppable = true;
+            /*
             if (!__result.flippable && state.ship.Get(Status.tableFlip) > 0) {
                 if (__instance is Wildfire ||
                 __instance is PointDefense ||
                 __instance is AllHands ||
-                __instance is Cascade ||
-                __instance is EnGarde) {
+                __instance is Cascade) {
                     __result.flippable = true;
                 }
-            }
+            }*/
         }
 
         public static void ResetHilightsPrefix(Combat __instance) {

@@ -7,6 +7,8 @@ namespace TwosCompany.Actions {
 
         public int dir = 1;
         public int? originalPos;
+        public int damage = 1;
+        public int sportsCounter = 0;
 
         public override void Begin(G g, State s, Combat c) {
             if (originalPos != null && originalPos == s.ship.x)
@@ -17,10 +19,11 @@ namespace TwosCompany.Actions {
                 if (s.ship.parts[i].type == PType.cannon && s.ship.parts[i].active) {
                     RaycastResult ray = CombatUtils.RaycastFromShipLocal(s, c, i, false);
                     if (ray != null && ((ray.hitShip && 
-                        c.otherShip.Get(Status.autododgeLeft) <= 0 && c.otherShip.Get(Status.autododgeRight) <= 0) ||
+                        c.otherShip.Get(Status.autododgeLeft) + c.otherShip.Get(Status.autododgeRight) <= 0) ||
                         ray.hitDrone)) {
                         hit = true;
-                        break;
+                        if (ray.hitDrone && c.stuff[s.ship.x + i] != null && c.stuff[s.ship.x + i] is Football)
+                            sportsCounter++;
                     }
                 }
             }
@@ -28,8 +31,16 @@ namespace TwosCompany.Actions {
                 damage = Card.GetActualDamage(s, 1),
                 fast = true,
                 targetPlayer = false,
+                dialogueSelector = ".mezz_cascadeSports",
             });
-            if (hit) {
+            if (sportsCounter > 12 || (c.otherShip.ai != null && c.otherShip.ai is FootballFoe && sportsCounter > 5)) {
+                if (sportsCounter < 10)
+                    c.Queue(new AAddCard() {
+                        card = new YellowCardTrash(),
+                        destination = CardDestination.Hand
+                    });
+            }
+            else if (hit) {
                 c.Queue(new AMove() {
                     dir = this.dir,
                     targetPlayer = true,
@@ -38,6 +49,8 @@ namespace TwosCompany.Actions {
                     dir = this.dir,
                     originalPos = s.ship.x,
                     timer = 0.0,
+                    damage = this.damage,
+                    sportsCounter = this.sportsCounter,
                 });
             }
         }

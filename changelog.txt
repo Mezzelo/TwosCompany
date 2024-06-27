@@ -1,3 +1,14 @@
+2.5.2
+bug/balance hotfix
+
++ En Garde now gives 2 overdrive for all variants, from 1.
+~ Revised Blast Shield's variants - A only generates 1 heat for the same shield, B is 1 heat but recycles rather than retaining.
+
+~ (fix) En Garde now no longer erroneously displays as flippable.
+~ (fix) All Hands, Wildfire and Cascade are internally rewritten to be flippable by other mods properly.
+- (fix) Isabelle can now no longer pick up the sports orb and run off with it into the distance.
+~ Minor string revisions
+
 2.5.0-RC2
 MAJOR balance & fixes patch
 
