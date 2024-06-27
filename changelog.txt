@@ -1,3 +1,16 @@
+2.5.3
+bug/balance hotfix 2x combo
+
++ Fleche now only reduces evade by 1, for all variants.
+
+- Heat Treatment B now reduces heat by 1 before heal, from no reduction.
++ Apex does 3 damage for all variants, from 1.
+- Searing Rupture reworked - now a straight heat cost for default/A.  B retains prior behaviour, at a -2 heat penalty.
+
+~ (fix) Pressure no longer shows a discount on default/A variants.
+~ (fix) Rush of Battle no longer erroneously adds heartbeats to draw, instead of hand.
+
+
 2.5.2
 bug/balance hotfix
 
