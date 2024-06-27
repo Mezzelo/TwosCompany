@@ -17,7 +17,7 @@ namespace TwosCompany.Cards.Isabelle {
                     flipped ? "left" : "right", GetDmg(state, 2));
 
             return new CardData() {
-                cost = upgrade == Upgrade.B ? 3 : 2,
+                cost = 2,
                 exhaust = upgrade == Upgrade.B,
                 flippable = upgrade == Upgrade.A,
                 description = cardText,

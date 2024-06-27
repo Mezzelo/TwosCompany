@@ -1,6 +1,7 @@
 2.5.2
 bug/balance hotfix
 
+~ Cascade B now does 2 damage per shot, and costs 2, previously was free.
 + En Garde now gives 2 overdrive for all variants, from 1.
 ~ Revised Blast Shield's variants - A only generates 1 heat for the same shield, B is 1 heat but recycles rather than retaining.
 
