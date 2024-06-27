@@ -1,48 +1,71 @@
-﻿namespace TwosCompany.Cards.Ilya {
+﻿using TwosCompany.Actions;
+
+namespace TwosCompany.Cards.Ilya {
     [CardMeta(rarity = Rarity.rare, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class MagmaInjection : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = upgrade == Upgrade.A ? 2 : 3,
+                cost = 2,
                 exhaust = true,
             };
         }
         private int GetHeatAmt(State s) {
-            int heatAmt = 0;
             if (s.route is Combat) {
-                heatAmt = s.ship.Get(Status.heat);
-                if (upgrade == Upgrade.B)
-                    heatAmt += s.ship.Get(Status.overdrive);
-            }
-            return heatAmt;
+                return Math.Max(0, s.ship.Get(Status.heat) - 2);
+            } else
+                return 0;
         }
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            actions.Add(new AVariableHint() {
-                status = Status.heat,
-                secondStatus = upgrade == Upgrade.B ? Status.overdrive : null
-            });
-            actions.Add(new AStatus() {
-                status = Status.corrode,
-                statusAmount = GetHeatAmt(s),
-                xHint = 1,
-                targetPlayer = false
-            });
-            actions.Add(new AStatus() {
-                status = Status.heat,
-                statusAmount = 0,
-                mode = AStatusMode.Set,
-                targetPlayer = true
-            });
-            if (upgrade == Upgrade.B)
+            if (upgrade == Upgrade.B) {
                 actions.Add(new AStatus() {
-                    status = Status.overdrive,
+                    status = Status.heat,
+                    statusAmount = -2,
+                    mode = AStatusMode.Add,
+                    targetPlayer = true
+                });
+                actions.Add(new AVariableHint() {
+                    status = Status.heat,
+                });
+                actions.Add(new AStatus() {
+                    status = Status.corrode,
+                    statusAmount = GetHeatAmt(s),
+                    xHint = 1,
+                    targetPlayer = false
+                });
+                actions.Add(new AStatus() {
+                    status = Status.heat,
                     statusAmount = 0,
                     mode = AStatusMode.Set,
                     targetPlayer = true
                 });
+            }
+            else {
+                actions.Add(new AStatCostStatus() {
+                    action = new AStatus() {
+                        status = Status.corrode,
+                        targetPlayer = false,
+                        statusAmount = 1,
+                    },
+                    statusReq = Status.heat,
+                    statusCost = 2,
+                    cumulative = 0,
+                    first = true,
+                });
+                actions.Add(new AStatCostStatus() {
+                    action = new AStatus() {
+                        status = Status.corrode,
+                        targetPlayer = false,
+                        statusAmount = 1,
+                    },
+                    statusReq = Status.heat,
+                    statusCost = upgrade == Upgrade.A ? 1 : 2,
+                    cumulative = 2,
+                    first = false,
+                });
+            }
             return actions;
         }
 

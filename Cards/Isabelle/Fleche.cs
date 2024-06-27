@@ -41,8 +41,8 @@ namespace TwosCompany.Cards.Isabelle {
                 actions.Add(new ADisguisedStatus() {
                     targetPlayer = true,
                     status = Status.evade,
-                    statusAmount = this.disguised ? 1 : (upgrade == Upgrade.B ? -1 : -2),
-                    realAmount = upgrade == Upgrade.B ? -1 : -2,
+                    statusAmount = this.disguised ? 1 : -1,
+                    realAmount = -1,
                 });
             return actions;
         }

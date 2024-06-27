@@ -5,7 +5,7 @@ namespace TwosCompany.Cards.Ilya {
     [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class Pressure : Card {
 
-        public int costIncrease = 1;
+        public int costIncrease = 0;
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 0,

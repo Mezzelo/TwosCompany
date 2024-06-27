@@ -17,12 +17,11 @@
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            if (upgrade != Upgrade.B)
-                actions.Add(new AStatus() {
-                    status = Status.heat,
-                    statusAmount = -2,
-                    targetPlayer = true
-                });
+            actions.Add(new AStatus() {
+                status = Status.heat,
+                statusAmount = upgrade == Upgrade.B ? -1 : -2,
+                targetPlayer = true
+            });
             actions.Add((CardAction)new AVariableHint() {
                 status = new Status?(Status.heat)
             });
