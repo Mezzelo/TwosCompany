@@ -26,7 +26,7 @@ namespace TwosCompany.Artifacts {
                 this.Pulse();
                 Card newCard = cardImpression.card.CopyWithNewId();
                 newCard.temporaryOverride = true;
-                newCard.exhaustOverride = false;
+                newCard.exhaustOverride = null;
                 combat.Queue(new AAddCard() {
                     card = newCard,
                     destination = CardDestination.Hand,

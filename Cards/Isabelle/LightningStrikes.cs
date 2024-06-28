@@ -36,7 +36,7 @@ namespace TwosCompany.Cards.Isabelle {
                 targetPlayer = true,
             });
             actions.Add(new AAttack() {
-                damage = GetDmg(s, 1),
+                damage = GetDmg(s, upgrade == Upgrade.A ? 2 : 1),
                 fast = true,
             });
             return actions;
