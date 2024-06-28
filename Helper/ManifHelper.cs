@@ -204,7 +204,6 @@ namespace TwosCompany.Helper {
             "BlindGrab",
             "CaptainsOrders",
             "Cascade",
-            "Couch",
             "DoubleDown",
             "Foresight",
             "Guidance",

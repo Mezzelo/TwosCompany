@@ -2,7 +2,7 @@
 using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Isabelle {
-    [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
+    [CardMeta(rarity = Rarity.rare, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class Couch : Card {
 
         public int dist = 0;

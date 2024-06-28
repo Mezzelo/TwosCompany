@@ -1,9 +1,11 @@
 2.5.3
 bug/balance hotfix 2x combo
 
+- En Garde is now impatient for all variants.  Rarity adjusted to uncommon, from rare.
 + Lightning Strikes A's damage increased to 1/2, from 1/1.
 - Compound Attack now costs 1 for all variants, from 0.
 	+ Fleche now only reduces evade by 1, for all variants.
+~ Couch is now rare, from uncommon.
 
 - Heat Treatment B now reduces heat by 1 before heal, from no reduction.
 + Apex does 3 damage for all variants, from 1.
