@@ -1,5 +1,12 @@
 {
   "all": {
+  
+    "mezz_Ilya_UnlockMarker": {
+      "type": "event",
+      "lines": [
+      ],
+    },
+  
     "ChoiceCardRewardOfYourColorChoice_Mezz.TwosCompany.IlyaDeck": {
       "type": "event",
       "oncePerRun": true,
@@ -117,6 +124,29 @@
       "allPresent": [
         "ilya",
         "gauss"
+      ]
+    },
+    "mezz_Duo_AboutToDieAndLoop_IlyaSorrel": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "intense",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "side",
+        },
+      ],
+      "allPresent": [
+        "ilya",
+        "sorrel"
       ]
     },
     "mezz_Duo_AboutToDieAndLoop_IlyaRiggs": {
@@ -562,6 +592,36 @@
 		},
 		{ "$type": "Say, CobaltCore",
 		  "who": "ilya",
+		  "loopTag": "happy"
+		},
+      ]
+    },
+    "mezz_Ilya_JustHit_Sorrel_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "ilya",
+        "sorrel",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "sorrel",
+		  "loopTag": "happy"
+		},
+      ]
+    },
+    "mezz_Ilya_JustHit_Sorrel_1": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "ilya",
+        "sorrel",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "sorrel",
 		  "loopTag": "happy"
 		},
       ]
@@ -2321,6 +2381,11 @@
 			  "who": "gauss",
               "loopTag": "squint",
 			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "sorrel",
+              "loopTag": "angry",
+			},
           ]
         },
       ],
@@ -2531,6 +2596,11 @@
 			  "$type": "Say, CobaltCore",
 			  "who": "gauss",
               "loopTag": "angry",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "sorrel",
+              "loopTag": "annoyed",
 			},
           ]
         },
@@ -3188,8 +3258,8 @@
               "loopTag": "squint",
             },
             { "$type": "Say, CobaltCore",
-              "who": "peri",
-              "loopTag": "panic",
+              "who": "riggs",
+              "loopTag": "nervous",
             },
             {
               "$type": "Say, CobaltCore",
@@ -3224,6 +3294,10 @@
             { "$type": "Say, CobaltCore",
               "who": "gauss",
               "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "side",
             }
           ]
         },
@@ -3508,6 +3582,11 @@
               "$type": "Say, CobaltCore",
               "who": "gauss",
               "loopTag": "happy",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "neutral",
             },
           ]
         },
@@ -4607,6 +4686,7 @@
       ]
     },
 	
+	
     "mezz_Ilya_Miner": {
       "type": "event",
       "lookup": [
@@ -4834,6 +4914,41 @@
           "who": "pirate",
 		  "loopTag": "sly",
         },
+      ]
+    },
+	
+    "mezz_Ilya_Rider_1": {
+      "type": "event",
+      "lookup": [
+        "rider_midcombat"
+      ],
+      "once": true,
+      "priority": true,
+      "allPresent": [
+        "rider",
+        "ilya"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "rider",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "neutral",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "rider",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "happy",
+        }
       ]
     },
 	

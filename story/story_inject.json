@@ -37,6 +37,10 @@
               "who": "gauss",
               "loopTag": "nap",
             },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "happy",
+            },
           ]
         },
       ],
@@ -67,6 +71,10 @@
             { "$type": "Say, CobaltCore",
               "who": "gauss",
               "loopTag": "angry",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "peaceful",
             },
           ]
         },
@@ -102,6 +110,10 @@
               "who": "gauss",
               "loopTag": "happy",
             },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "happy",
+            },
           ]
         },
       ],
@@ -134,6 +146,10 @@
             { "$type": "Say, CobaltCore",
               "who": "gauss",
               "loopTag": "nap",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "side",
             },
           ]
         }
@@ -378,6 +394,10 @@
               "who": "gauss",
               "loopTag": "happy",
             },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "vengeful",
+            },
           ]
         }
       ],
@@ -510,6 +530,10 @@
               "who": "gauss",
               "loopTag": "vengeful",
             },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "happy",
+            },
           ]
         }
       ]
@@ -625,7 +649,7 @@
         }
       ],
     },
-    "OneHitPointThisIsFine_Multi_5": {
+    "OneHitPointThisIsFine_Multi_9": {
       "type": "combat",
       "lines": [
         {
@@ -654,6 +678,10 @@
             { "$type": "Say, CobaltCore",
               "who": "gauss",
               "loopTag": "nap",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "happy",
             },
           ]
         }
@@ -685,6 +713,10 @@
               "who": "gauss",
               "loopTag": "nap",
             },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "side",
+            },
           ]
         }
       ],
@@ -713,6 +745,10 @@
             },
             { "$type": "Say, CobaltCore",
               "who": "gauss",
+              "loopTag": "side",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
               "loopTag": "side",
             },
           ]
@@ -749,6 +785,10 @@
               "who": "gauss",
               "loopTag": "happy",
             },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "happy",
+            },
           ]
         }
       ],
@@ -782,6 +822,10 @@
             { "$type": "Say, CobaltCore",
               "who": "gauss",
               "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "side",
             },
           ]
         }
@@ -817,6 +861,10 @@
               "who": "gauss",
               "loopTag": "squint",
             },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "side",
+            },
           ]
         }
       ],
@@ -851,6 +899,10 @@
               "who": "gauss",
               "loopTag": "squint",
             },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "side",
+            },
           ]
         }
       ],
@@ -879,6 +931,10 @@
             },
             { "$type": "Say, CobaltCore",
               "who": "gauss",
+              "loopTag": "side",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
               "loopTag": "side",
             },
           ]
@@ -924,6 +980,10 @@
               "who": "gauss",
               "loopTag": "side",
             },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "side",
+            },
           ]
         },
       ],
@@ -961,9 +1021,50 @@
               "who": "gauss",
               "loopTag": "squint",
             },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "side",
+            },
           ]
         },
       ],
+    },
+    "DillianShouts": {
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "dillian",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "smug",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "snide",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "neutral",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "happy",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "happy",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "neutral",
+            },
+          ]
+        }
+      ]
     },
     "ForeignCardOffering_After": {
       "lines": [
@@ -988,6 +1089,10 @@
             },
             { "$type": "Say, CobaltCore",
               "who": "gauss",
+              "loopTag": "nap",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
               "loopTag": "nap",
             },
           ]
@@ -1018,6 +1123,10 @@
             { "$type": "Say, CobaltCore",
               "who": "gauss",
               "loopTag": "side",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "neutral",
             },
           ]
         },
@@ -1052,6 +1161,10 @@
               "who": "gauss",
               "loopTag": "happy",
             },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "neutral",
+            },
           ]
         },
       ],
@@ -1080,6 +1193,10 @@
             { "$type": "Say, CobaltCore",
               "who": "gauss",
               "loopTag": "squint",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "annoyed",
             },
           ]
         },
@@ -1114,6 +1231,10 @@
             },
             { "$type": "Say, CobaltCore",
               "who": "gauss",
+              "loopTag": "happy",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
               "loopTag": "happy",
             },
           ]
@@ -1153,6 +1274,10 @@
               "who": "gauss",
               "loopTag": "datapad",
             },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "squint",
+            },
           ]
         }
       ]
@@ -1186,12 +1311,15 @@
               "who": "gauss",
               "loopTag": "datapad",
             },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "angry",
+            },
           ]
         }
       ]
     },
-    "OverheatDrakesFault_Multi_9": {
-      "type": "combat",
+    "Sasha_2_Multi_2": {
       "lines": [
         {
           "$type": "Say, CobaltCore",
@@ -1218,6 +1346,10 @@
             },
             { "$type": "Say, CobaltCore",
               "who": "gauss",
+              "loopTag": "happy",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
               "loopTag": "happy",
             },
           ]
@@ -1347,7 +1479,80 @@
         }
       ]
     },
-  
+    "RiderAvast": {
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "rider",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "smug",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "snide",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "happy",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "happy",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "happy",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "happy",
+            },
+          ]
+        }
+      ]
+    },
+    "RiderTiderunnerShouts": {
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "rider",
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "nola",
+              "loopTag": "smug",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "isa",
+              "loopTag": "snide",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "ilya",
+              "loopTag": "bashful",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "jost",
+              "loopTag": "happy",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "gauss",
+              "loopTag": "happy",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "happy",
+            },
+          ]
+        }
+      ]
+    },
   
   }
 }

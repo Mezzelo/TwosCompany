@@ -62,7 +62,8 @@ namespace TwosCompany.Cards.Jost {
             MessengerBag? sigil = s.EnumerateAllArtifacts().OfType<MessengerBag>().FirstOrDefault();
             if (sigil != null && sigil.heartbeats < 2) {
                 sigil.heartbeats++;
-                s.ship.Add((Status)Manifest.Statuses?["Onslaught"].Id!, 1);
+                s.ship.Add((Status)Manifest.Statuses?["Onslaught"].Id!, 1 + s.ship.Get(Status.boost));
+                s.ship.Set(Status.boost, 0);
                 sigil.Pulse();
             }
         }

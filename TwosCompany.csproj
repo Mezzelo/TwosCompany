@@ -1,21 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	  <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 	  <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-	  <OutputPath>C:\Program Files (x86)\Steam\steamapps\common\Cobalt Core\Nickel\ModLibrary\TwosCompany</OutputPath>
+	  <OutputPath>C:\Users\cita\Desktop\Modding\Cobalt\Nickel\ModLibrary\TwosCompany</OutputPath>
     <Configurations>Debug;Release;Empty</Configurations>
     <BaseIntermediateOutputPath />
-    <AssemblyVersion>2.5.4</AssemblyVersion>
-	<VersionPrefix>2.5.4</VersionPrefix>
+    <AssemblyVersion>3.0.0</AssemblyVersion>
+	<VersionPrefix>3.0.0</VersionPrefix>
     <LangVersion>preview</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,9 +32,22 @@
       <HintPath>References\CobaltCoreModding.Definitions.dll</HintPath>
       <Private>False</Private>
     </Reference>
+	  <Reference Include="Nickel">
+		  <HintPath>References\Nickel.dll</HintPath>
+		  <Private>False</Private>
+	  </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>lib\MonoGame.Framework.dll</HintPath>
 		<Private>False</Private>
+    </Reference>
+    <Reference Include="Nickel.Legacy">
+      <HintPath>lib\Nickel.Legacy.dll</HintPath>
+    </Reference>
+    <Reference Include="NickelCommon">
+      <HintPath>lib\NickelCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="PluginManager">
+      <HintPath>lib\PluginManager.dll</HintPath>
     </Reference>
   </ItemGroup>
 

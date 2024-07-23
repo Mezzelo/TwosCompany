@@ -25,7 +25,8 @@
                     upgrade = (this.upgrade == Upgrade.A ? Upgrade.A : Upgrade.None) },
                 destination = CardDestination.Hand,
                 timer = 0.2,
-                waitBeforeMoving = 0.2
+                waitBeforeMoving = 0.2,
+                dialogueSelector = ".mezz_bladeDance",
             });
             return actions;
         }

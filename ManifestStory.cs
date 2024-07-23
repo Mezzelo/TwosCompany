@@ -9,6 +9,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using TwosCompany.Helper;
+using TwosCompany.ModBG;
 
 namespace TwosCompany {
     public partial class Manifest : IStoryManifest {
@@ -31,6 +32,23 @@ namespace TwosCompany {
 
             foreach (Type bg in bgs)
                 DB.backgrounds.Add("TwosCompany.ModBG" + "." + bg.Name, bg);
+
+            MethodInfo[] commands = typeof(StoryCommandsTC).GetMethods();
+            foreach (MethodInfo command in commands) {
+                if (command.Name.ToLower().Contains("mem"))
+                    DB.storyCommands.Add(command.Name, command);
+            }
+
+
+            MethodInfo[] memChoices = typeof(StoryChoicesTC).GetMethods();
+            foreach (MethodInfo command in memChoices) {
+                if (command.Name.ToLower().Contains("mem"))
+                    DB.eventChoiceFns.Add(command.Name, command);
+            }
+
+            DB.mapBgs.Add("zone_mezzmapmem_first",
+                (Spr)(Manifest.Sprites["MapBGJost"].Id ?? throw new Exception("missing mapbg"))
+            );
 
             Story parseStory = Mutil.LoadJsonFile<Story>(Path.Combine(Manifest.Instance.ModRootFolder.FullName, "story", Path.GetFileName(storyFileName + ".json")));
             SHA256 hash = SHA256.Create();
@@ -74,8 +92,7 @@ namespace TwosCompany {
                     }
                 }
                 if (whos.ContainsKey(key))
-                    parseStory.all[key].whoDidThat = (Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId(whos[key])), 
-                        typeof(Deck));
+                    parseStory.all[key].whoDidThat = ManifHelper.GetDeck(whos[key]);
 
                 if (parseStory.all[key].allPresent != null) {
                     foreach (String crew in parseStory.all[key].allPresent!.ToList()) {
@@ -151,6 +168,7 @@ namespace TwosCompany {
             LoadStory("story_ilya", loc, whos, storyRegistry);
             LoadStory("story_jost", loc, whos, storyRegistry);
             LoadStory("story_gauss", loc, whos, storyRegistry);
+            LoadStory("story_sorrel", loc, whos, storyRegistry);
         }
     }
 }

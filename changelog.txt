@@ -1,3 +1,45 @@
+3.0.0
+just a small update :)
+
+~ Added mod settings & unlock conditions.  Most characters have simple, vanilla-adjacent unlock conditions
+	~ Unlock conditions can be bypassed for returning players via the mod settings menu.
+	~ Settings are only accessible with Nickel, of course.  I think this mod is somehow still technically compatible with the legacy modloader.
++ Added memories for Jost, finally!
++ Added dialogue barks for new enemies, and on receiving new artifacts.
+
++ Abandoned Tassels now always triggers when playing two stance cards, regardless of whether you actually change stance.
+
+- The Onslaught status can no longer draw its own card.
++ Battle Plan B no longer adds exhaust to its temp copies.
+
+~ (fix) Cascade now uses the damage of its first attack for all attacks, which should fix some compatibility issues.
+~ Compound Attack A now costs 0 (from 1), instead of giving 1 less jab.
+- En Garde now exhausts, on all variants.
+
+- Apex's attack now does 2 damage, from 3, for all variants.
+~ Searing Rupture now fires 1 damage shots that apply corrosion, instead of applying it directly for its A and B variants.
+
++ Freedom of Movement B now costs 0, from 1.
+- High Guard now costs 2 shield on all variants.
++ Limitless A gives 3 Superposition (from 2), 3 Heartbeats (from 2), and 4 shield instead of 2 temp shield.
+	~ (fix) Limitless no longer switches stance when played.
+- Backstep B now costs 1, from 0.
++ Commit's default and B variants now deal 6 damage, from 5.
++ Practiced B does 2 damage by default, from 1.
+
+
+- (fix) Fixed card previews from Command Center causing crashes.
+~ (fix) Sped up the heat gain & overheating caused by Incendiary Rounds.
+~ (fix) Artifact pulsing added to Blackfoot Sigil.
+- (fix) Crumpled Writ no longer keeps its Off Balance discount after losing Burden of Hindsight.
+~ (fix) Boost now properly affects all status gains in this mod.
++ (fix) Asteroid Belt now works with ships that have multiple drone bays.
+~ (fix) Fixed an off-by-one error with Asteroid Belt causing it to place asteroids next to objects not above ship.
++ (fix) Chain Lightning no longer consumes electrocute/stun charge if it already stuns by default.
+~ Minor string revisions
+~ Fixed some dialogues not showing up.
+
+
 2.5.3
 bug/balance hotfix 2x combo
 

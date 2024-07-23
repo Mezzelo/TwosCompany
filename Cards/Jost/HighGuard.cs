@@ -37,7 +37,7 @@ namespace TwosCompany.Cards.Jost {
                     targetPlayer = true,
                 },
                 statusReq = Status.shield,
-                statusCost = upgrade == Upgrade.A ? 1 : 2,
+                statusCost = 2,
                 first = true,
                 disabled = Stance.Get(s) < 2,
             });

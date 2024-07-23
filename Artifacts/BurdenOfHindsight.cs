@@ -23,7 +23,7 @@ namespace TwosCompany.Artifacts {
         public override void OnRemoveArtifact(State state) {
             foreach (Artifact artifact in state.EnumerateAllArtifacts())
                 if (artifact is CrumpledWrit writ)
-                    writ.discountOffBalance = true;
+                    writ.discountOffBalance = false;
                 else if (artifact is MilitiaArmband armband)
                     this.armband = armband;
         }

@@ -37,7 +37,7 @@ namespace TwosCompany.Cards.Isabelle {
             actions.Add(new ACascadeAttack() {
                 dir = flipped ? -1 : 1,
                 timer = 0.0,
-                damage = upgrade == Upgrade.B ? 2 : 1,
+                damage = GetDmg(s, upgrade == Upgrade.B ? 2 : 1),
                 sportsCounter = 0,
             });
             return actions;

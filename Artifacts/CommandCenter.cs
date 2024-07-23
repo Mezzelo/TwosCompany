@@ -33,7 +33,7 @@ namespace TwosCompany.Artifacts {
 
                         decks.Add(playedCard.GetMeta().deck);
                         cards.Add(new TTCard() {
-                            card = playedCard,
+                            card = playedCard.CopyWithNewId(),
                             showCardTraitTooltips = false
                         });
                     } else {
@@ -48,6 +48,7 @@ namespace TwosCompany.Artifacts {
                 }
             }
         }
+        
         public override List<Tooltip>? GetExtraTooltips() {
             if (cards.Count == 0 || count == 3)
                 return null;

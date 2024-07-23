@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System;
 using System.Collections;
+using TwosCompany.Midrow;
+using Microsoft.Extensions.Logging;
 
 namespace TwosCompany.Actions {
     public class ACascadeAttack : CardAction {
@@ -18,9 +20,11 @@ namespace TwosCompany.Actions {
             for (int i = 0; i < s.ship.parts.Count; i++) {
                 if (s.ship.parts[i].type == PType.cannon && s.ship.parts[i].active) {
                     RaycastResult ray = CombatUtils.RaycastFromShipLocal(s, c, i, false);
-                    if (ray != null && ((ray.hitShip && 
-                        c.otherShip.Get(Status.autododgeLeft) + c.otherShip.Get(Status.autododgeRight) <= 0) ||
-                        ray.hitDrone)) {
+                    if (ray != null && (ray.hitShip || ray.hitDrone)) {
+                        if (ray.hitDrone && c.stuff[s.ship.x + i] != null && c.stuff[s.ship.x + i] is FrozenAttack &&
+                            !CombatUtils.RaycastGlobal(c, c.otherShip, true, s.ship.x + i).hitShip) {
+                            continue;
+                        }
                         hit = true;
                         if (ray.hitDrone && c.stuff[s.ship.x + i] != null && c.stuff[s.ship.x + i] is Football)
                             sportsCounter++;
@@ -28,10 +32,10 @@ namespace TwosCompany.Actions {
                 }
             }
             c.QueueImmediate(new AAttack() {
-                damage = Card.GetActualDamage(s, this.damage),
+                damage = this.damage,
                 fast = true,
                 targetPlayer = false,
-                dialogueSelector = ".mezz_cascadeSports",
+                dialogueSelector = sportsCounter > 5 ? ".mezz_cascadeSports" : null,
             });
             if (sportsCounter > 12 || (c.otherShip.ai != null && c.otherShip.ai is FootballFoe && sportsCounter > 5)) {
                 if (sportsCounter < 10)

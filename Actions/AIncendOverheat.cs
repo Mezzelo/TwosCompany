@@ -7,6 +7,7 @@
                 c.QueueImmediate(new AOverheat() {
                     targetPlayer = false,
                     dialogueSelector = ".mezz_incendiaryRounds",
+                    timer = 0.0,
                 });
             }
         }

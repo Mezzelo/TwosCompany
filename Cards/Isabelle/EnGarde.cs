@@ -7,6 +7,7 @@ namespace TwosCompany.Cards.Isabelle {
             return new CardData() {
                 cost = 1,
                 buoyant = upgrade == Upgrade.A,
+                exhaust = true,
                 art = new Spr?((Spr)((flipped ? Manifest.Sprites["EnGardeCardSpriteFlip"] : Manifest.Sprites["EnGardeCardSprite"]).Id
                     ?? throw new Exception("missing flip art")))
             };

@@ -35,9 +35,9 @@ namespace TwosCompany {
             addStatus("MobileDefense", "Mobile Defense", "Whenever this ship moves, it gains {0} <c=status>TEMP SHIELD</c>. " +
                 "<c=downside>Decreases by 1 at end of turn.</c>",
                 true, System.Drawing.Color.Cyan, null, registry, true);
-            addStatus("Onslaught", "Onslaught", "Whenever you play a card this turn, draw a card of the <c=keyword>same color</c>, " +
-                "prioritizing draw over discard. Decreases by 1 for each card drawn." +
-                " <c=downside>Goes away at end of turn.</c>",
+            addStatus("Onslaught", "Onslaught", "Whenever you play a card this turn, draw a card of the <c=keyword>same color</c> " +
+                "and decrease this by 1, prioritizing draw over discard." +
+                " <c=downside>Goes away at end of turn. Cannot draw itself.</c>",
                 true, System.Drawing.Color.Cyan, null, registry, true);
             // addStatus("Dominance", "Dominance", "Gain {0} <c=status>EVADE</c> each turn. If you don't hit your enemy before your turn ends, <c=downside>lose this status.</c>",
             //     true, System.Drawing.Color.FromArgb(unchecked((int)0x2F48B7)), null, registry, true);
@@ -83,9 +83,9 @@ namespace TwosCompany {
             */
             
             addStatus("ElectrocuteCharge", "Electrocute Source", "Your next " + ChainColH + "chain lightning</c> stuns every part hit. " +
-                    "Replenishes at end of turn.",
+                    "<c=keyword>Replenishes</c> at end of turn.",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xff00ff40)), System.Drawing.Color.FromArgb(unchecked((int)0xff00ff40)), registry, false);
-            addStatus("ElectrocuteChargeSpent", "Electrocute Source (Spent)", "Replenishes back into <c=status> ELECTROCUTE CHARGE</c> at end of turn.",
+            addStatus("ElectrocuteChargeSpent", "Electrocute Source (Spent)", "<c=keyword>Replenishes</c> back into <c=status> ELECTROCUTE CHARGE</c> at end of turn.",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xffffc47b)), System.Drawing.Color.FromArgb(unchecked((int)0xffffc47b)), registry, false);
             
             addStatus("Autocurrent", "Autocurrent", "Automatically shoot a 1 damage " + ChainColH + "chain lightning</c> at the end of every turn.",
@@ -108,7 +108,23 @@ namespace TwosCompany {
             addStatus("Superposition", "Superposition", "While you have this status, you can <c=cardtrait>flop</c> <c=card>STANCE CARDS</c> " +
                 "to swap your stacks of <c=status>STANCE</c>. " +
                 "<c=downside>Decreases by 1 at end of turn.</c>",
-                true, System.Drawing.Color.FromArgb(unchecked((int)0xffffe373)), System.Drawing.Color.FromArgb(unchecked((int)0xffffe373)), registry, true);
+                true, System.Drawing.Color.FromArgb(unchecked((int)0xffffb051)), System.Drawing.Color.FromArgb(unchecked((int)0xffffb051)), registry, true);
+            addStatus("BulletTime", "Bullet Time", "While you have this status, <c=card>attacks</c> become " + Manifest.FrozenColH + "frozen</c> in the " +
+                "<c=midrow>midrow</c>. " +
+                "<c=downside>Decreases by 1 at end of turn.</c>",
+                true, System.Drawing.Color.FromArgb(unchecked((int)0xff7547b2)), System.Drawing.Color.FromArgb(unchecked((int)0xff7547b2)), registry, true);
+            addStatus("DefensiveFreeze", "Defensive Freeze", "If an <c=card>attack</c> would hit your ship " +
+                "and you have no <c=status>BULLET TIME</c>, gain 1 <c=status>BULLET TIME</c> and lower this by 1.",
+                true, System.Drawing.Color.FromArgb(unchecked((int)0xff7547b2)), System.Drawing.Color.FromArgb(unchecked((int)0xff7547b2)), registry, true);
+            addStatus("FrozenStun", "Frozen Stun", "All " + Manifest.FrozenColH + "frozen attacks</c> stun. " +
+                "Decreases by 1 whenever you start your turn without <c=status>BULLET TIME</c>.",
+                true, System.Drawing.Color.FromArgb(unchecked((int)0xffff96f3)), System.Drawing.Color.FromArgb(unchecked((int)0xff7547b2)), registry, true);
+            addStatus("CarveReality", "Carve Reality", "At the start of your turn, gain 1 <c=status>BULLET TIME</c> " +
+                "if you do not have any.",
+                true, System.Drawing.Color.FromArgb(unchecked((int)0xff7547b2)), System.Drawing.Color.FromArgb(unchecked((int)0xff7547b2)), registry, true);
+            addStatus("Inevitability", "Inevitability", "At the end of your turn, <c=keyword>bubble</c> all " + Manifest.FrozenColH + "frozen attacks</c>. " +
+                "At the start of your turn, <c=keyword>un-bubble</c> all " + Manifest.FrozenColH + "frozen attacks</c>.",
+                true, System.Drawing.Color.FromArgb(unchecked((int)0xff7547b2)), System.Drawing.Color.FromArgb(unchecked((int)0xff7547b2)), registry, true);
 
         }
         public void LoadManifest(IGlossaryRegisty registry) {
@@ -213,6 +229,15 @@ namespace TwosCompany {
                 , registry);
             addGlossary("MoveEnemyZero", "Move Enemy",
                "Instantly move the enemy {0} spaces."
+                , registry);
+            addGlossary("FrozenAttack", "Frozen Attack",
+               "If <c=status>BULLET TIME</c> is exhausted, these attacks are <c=keyword>released</c> at the end of your turn."
+                , registry);
+            addGlossary("Unfreeze", "Unfreeze",
+               "Release all " + Manifest.FrozenColH + "frozen attacks</c> immediately."
+                , registry);
+            addGlossary("ForceAttack", "Force Enemy Attack",
+               "Immediately trigger all enemy <c=card>ATTACK</c> intents."
                 , registry);
         }
     }

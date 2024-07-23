@@ -22,8 +22,8 @@
                 statusAmount = upgrade == Upgrade.B ? -1 : -2,
                 targetPlayer = true
             });
-            actions.Add((CardAction)new AVariableHint() {
-                status = new Status?(Status.heat)
+            actions.Add(new AVariableHint() {
+                status = Status.heat,
             });
             actions.Add(new AHeal() {
                 targetPlayer = true,

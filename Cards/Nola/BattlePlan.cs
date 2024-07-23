@@ -30,7 +30,9 @@
                         continue;
                     Card newCard = current.CopyWithNewId();
                     newCard.temporaryOverride = true;
-                    newCard.exhaustOverride = true;
+                    if (!newCard.GetDataWithOverrides(s).singleUse && upgrade != Upgrade.B)
+                        newCard.exhaustOverride = true;
+                    newCard.exhaustOverride = upgrade != Upgrade.B;
                     actions.Add(new AAddCard() {
                         card = newCard,
                         callItTheDeckNotTheDrawPile = false,

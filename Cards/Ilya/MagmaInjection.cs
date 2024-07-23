@@ -43,27 +43,65 @@ namespace TwosCompany.Cards.Ilya {
                 });
             }
             else {
-                actions.Add(new AStatCostStatus() {
-                    action = new AStatus() {
-                        status = Status.corrode,
-                        targetPlayer = false,
-                        statusAmount = 1,
+                if (upgrade == Upgrade.A)
+                    actions.Add(new AAttack() {
+                        damage = GetDmg(s, 1),
+                        fast = true,
+                    });
+                else
+                    actions.Add(new StatCostAttack() {
+                        action = new AAttack() {
+                            damage = GetDmg(s, 1),
+                            fast = true,
+                        },
+                        statusReq = Status.heat,
+                        statusCost = 1,
+                        cumulative = 0,
+                        first = true,
+                    });
+                actions.Add(new StatCostAttack() {
+                    action = new AAttack() {
+                        damage = GetDmg(s, 1),
+                        fast = true,
                     },
                     statusReq = Status.heat,
-                    statusCost = upgrade == Upgrade.A ? 1 : 2,
-                    cumulative = 0,
-                    first = true,
+                    statusCost = 1,
+                    cumulative = upgrade == Upgrade.A ? 0 : 1,
+                    first = upgrade == Upgrade.None,
                 });
-                actions.Add(new AStatCostStatus() {
-                    action = new AStatus() {
+                actions.Add(new StatCostAttack() {
+                    action = new AAttack() {
+                        damage = GetDmg(s, 1),
                         status = Status.corrode,
                         targetPlayer = false,
                         statusAmount = 1,
+                        fast = true,
                     },
                     statusReq = Status.heat,
-                    statusCost = 2,
+                    statusCost = 1,
                     cumulative = upgrade == Upgrade.A ? 1 : 2,
                     first = false,
+                    damage = GetDmg(s, 1),
+                    status = Status.corrode,
+                    targetPlayer = false,
+                    statusAmount = 1,
+                });
+                actions.Add(new StatCostAttack() {
+                    action = new AAttack() {
+                        status = Status.corrode,
+                        targetPlayer = false,
+                        statusAmount = 1,
+                        damage = GetDmg(s, 1),
+                        fast = true,
+                    },
+                    statusReq = Status.heat,
+                    statusCost = 1,
+                    cumulative = upgrade == Upgrade.A ? 2 : 3,
+                    first = false,
+                    damage = GetDmg(s, 1),
+                    status = Status.corrode,
+                    targetPlayer = false,
+                    statusAmount = 1,
                 });
             }
             return actions;

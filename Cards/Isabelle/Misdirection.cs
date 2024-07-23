@@ -6,7 +6,9 @@ namespace TwosCompany.Cards.Isabelle {
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = upgrade == Upgrade.B ? 1 : 0,
-                retain = upgrade == Upgrade.A,
+                retain = true,
+                buoyant = upgrade == Upgrade.A,
+                exhaust = upgrade != Upgrade.B,
                 infinite = upgrade == Upgrade.B
             };
         }
@@ -16,7 +18,7 @@ namespace TwosCompany.Cards.Isabelle {
 
             actions.Add(new AFlipHandFixed());
             actions.Add(new ADrawCard() {
-                count = upgrade == Upgrade.B ? 3 : 1
+                count = upgrade == Upgrade.B ? 2 : 1
             });
 
             return actions;

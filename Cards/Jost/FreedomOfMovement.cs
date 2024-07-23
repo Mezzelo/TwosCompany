@@ -7,7 +7,7 @@ namespace TwosCompany.Cards.Jost {
     public class FreedomOfMovement : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = upgrade == Upgrade.B ? 1 : 0,
+                cost = 0,
                 temporary = true,
                 retain = true,
                 exhaust = upgrade != Upgrade.B,

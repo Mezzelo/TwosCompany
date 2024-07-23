@@ -13,28 +13,31 @@ namespace TwosCompany.Helper {
 
     public static class ManifArtifactHelper {
         public static Dictionary<string, string> artifactNames = new Dictionary<string, string> {
-            // 0-4: Nola
+            // 0-6: Nola
             { "AlphaCore", "Alpha Core"},
             { "BufferEcho", "Buffer Echo"},
             { "CommandCenter", "Command Center"},
             { "FlowBooster", "Flow Booster"},
             { "FingerlessGloves", "Fingerless Gloves"},
             { "SecondGear", "Second Gear"},
-            // 5-9: Isabelle
+            { "VestigeOfHumanity", "Vestige of Conscience"},
+            // 7-13: Isabelle
             { "AncientPhysicalCurrency", "Handful of Floren"},
             { "BlackfootPendant", "Crowsfoot Pendant"},
             { "AuxiliaryThrusters", "Auxiliary Thrusters"},
             { "CannonGuard", "Cannon Guard"},
             { "FlawlessCore", "Flawless Core"},
             { "Metronome", "Metronome"},
-            // 10-14: ilya
+            { "LongLostRegrets", "Long Lost Regrets"},
+            // 14-20: ilya
             { "AncientMatchbox", "Worn Lighter"},
             { "JerryCan", "Reactive Coating"},
             { "IncendiaryRounds", "Incendiary Rounds"},
             { "PressureReservoir", "Pressure Reservoir"},
             { "ShieldShunt", "Shield Shunt"},
             { "SleepingPills", "Sleeping Pills"},
-            // 15-20: jost
+            { "EternalFlame", "Eternal Flame"},
+            // 21-28: jost
             { "CrumpledWrit", "Crumpled Writ"},
             { "MessengerBag", "Messenger's Bag"},
             { "MilitiaArmband", "Militia Armband"},
@@ -42,17 +45,27 @@ namespace TwosCompany.Helper {
             { "BlackfootSigil", "Crowsfoot Sigil"},
             { "BurdenOfHindsight", "Burden of Hindsight"},
             { "AbandonedTassels", "Frayed Tassels"},
-            // 21-25: gauss
+            { "AimlessVengeance", "Aimless Vengeance"},
+            // 29-35: gauss
             { "TwinMaleCable", "Twin Male Cable"},
             { "IonEngines", "Ion Engines"},
             { "ExoticMetals", "Exotic Metals"},
             { "FieldResonator", "Shield Current Resonator"},
             { "RemoteStarter", "Conduit Condenser"},
             { "TuningTrident", "Tuning Trident"},
+            { "TearItAllDown", "Tear It All Down"},
+            // 36-41: sorrel
+            { "AmberedThoughts", "Ambered Thoughts"},
+            { "BlackfootSymbol", "Blackfoot Symbol"},
+            { "CrystallizedMoment", "Crystallized Moment"},
+            { "EternalIncense", "Endless Incense"},
+            { "ShrinkingHourglass", "Shrinking Hourglass"},
+            { "VoidScripture", "Void Mantra"},
+            { "Ascension", "Ascension"},
         };
 
         public static string[] artifactTexts = new string[] {
-            // 0-5: Nola
+            // 0-6: Nola
             "Gain 1 extra <c=energy>ENERGY</c> every turn.\r\nAt the start of every combat, <c=downside>exhaust 4 random cards in your draw pile.<c=downside>",
             "Choose a card in your deck. Whenever you play that card, " +
                 "<c=cardtrait>exhaust</c> it and gain a <c=cardtrait>temp</c> copy of it.",
@@ -60,7 +73,8 @@ namespace TwosCompany.Helper {
             "Every <c=keyword>3</c> turns you go without shuffling your deck, gain a free <c=cardtrait>temp exhaustable</c> <c=card>Foresight</c>.",
             "Whenever you play 5 cards in a single turn, gain 1 <c=status>EVADE</c>.",
             "At the start of turn 6, increase all of your current <c=status>statuses</c> by <c=keyword>1</c>.",
-            // 6-11: Isabelle
+            "At the start of each turn, gain 1 <c=status>ONSLAUGHT</c>.",
+            // 7-13: Isabelle
             "Cards that cost <c=keyword>2</c> or <c=keyword>4</c> <c=energy>ENERGY</c> are discounted by <c=keyword>1</c> when drawn.\r\n" +
                 "Cards that cost <c=keyword>0</c> <c=energy>ENERGY</c> <c=downside>cost 1 more when drawn</c>.",
             "Whenever you move <c=keyword>3</c> spaces from playing a single card, gain 1 <c=status>TEMP SHIELD</c>. If you move <c=keyword>4+</c> spaces, gain another.",
@@ -69,7 +83,9 @@ namespace TwosCompany.Helper {
             "Gain 1 extra <c=energy>ENERGY</c> every turn. " +
                 "<c=downside>If you miss a shot during your turn, lose the bonus energy for next turn.</c>",
             "Whenever you alternate between moving and attacking <c=keyword>6</c> times in a row, gain 1 <c=status>OVERDRIVE</c> and 1 <c=status>EVADE</c>.",
-            // 12-17: ilya
+            "Gain 1 extra <c=energy>ENERGY</c> every turn. " +
+                "<c=downside>The first time you receive hull damage each turn, gain two</c> <c=card>Fears</c>.",
+            // 14-20: ilya
             "Whenever you <c=downside>overheat</c>, gain 1 <c=status>OVERDRIVE</c> and 1 <c=status>HEAT</c>.",
             "At the start of combat, <c=healing>heal 1</c> and <c=downside>gain 2 HEAT</c>.",
             "Whenever you hit your enemy, they gain your current <c=status>HEAT</c>. If they would <c=downside>overheat</c>, they do so immediately.",
@@ -77,7 +93,8 @@ namespace TwosCompany.Helper {
             "On pickup, <c=downside>reduce your max shield to 1</c>, but permanently gain <c=keyword>double</c> your prior max shield as " +
                 "<c=hull>max hull</c> and <c=healing>heal</c> the same amount.",
             "<c=healing>Heal 1</c> and gain 1 <c=status>SERENITY</c> whenever you <c=downside>overheat</c>, up to once every <c=keyword>4</c> turns.",
-            // 18-24: jost
+            "Start each combat with 2 <c=status>ENFLAMED</c>.",
+            // 21-28: jost
             "Start each combat with 1 <c=status>DEF. STANCE</c>. " +
                 "When you start your turn with no stance, gain an <c=card>Off Balance</c> if one isn't in your hand.",
             "On pickup, gain 2 <c=card>Heartbeats</c>. The first 2 times you draw a <c=card>Heartbeat</c> each turn, gain 1 <c=status>ONSLAUGHT</c>.",
@@ -88,8 +105,9 @@ namespace TwosCompany.Helper {
             "At the start of combat, gain a <c=card>Freedom of Movement</c>.",
             "Increases damage dealt by stacks of <c=status>OFF. STANCE</c>," +
                 " and <c=card>Off Balance</c> costs 1 less energy. <c=downside>If you end your turn with any DEF. STANCE, lose 1 of each stance.</c>",
-            "The second time you change <c=status>STANCE</c> from playing a <c=card>STANCE CARD</c> each turn, gain 1 <c=energy>ENERGY</c>.",
-            // 25-30: gauss
+            "The second time you play a <c=card>STANCE CARD</c> each turn, gain 1 <c=energy>ENERGY</c>.",
+            "Start each combat with 3 <c=status>OFF. STANCE</c>.",
+            // 29-35: gauss
             "<c=keyword>+1</c> " + Manifest.ChainColH + "chain lightning</c> damage. " +
                 "Whenever you split " + Manifest.ChainColH + "chain lightning</c>, " +
                 "combine the split damage into the <c=redd>right end</c> instead of firing from the <c=attackFail>left end</c>.",
@@ -99,8 +117,20 @@ namespace TwosCompany.Helper {
             Manifest.ChainColH + "Chain lightning</c> now <c=keyword>pierces</c> armor, shields and bubbles.",
             "For every 4 <c=midrow>midrow objects</c> you destroy, gain a free <c=cardtrait>temp exhaustable</c> <c=card>Conduit</c>, up to " +
                 "once per turn.",
-            "When you " + Manifest.ChainColH + "chain</c> across 2 or more <c=midrow</c>midrow objects</c>, " + Manifest.ChainColH +
+            "When you " + Manifest.ChainColH + "chain</c> across 2 or more <c=midrow>midrow objects</c>, " + Manifest.ChainColH +
                 "lightning</c> fires from the start of the chain <c=downside>at a -1 damage penalty.</c>",
+            "Whenever you launch a regular <c=midrow>conduit</c>, gain 1 <c=status>SHIELD</c>, " +
+                "1 <c=status>TEMP SHIELD</c>, and turn it into a <c=downside>dual drone</c> instead.",
+            // 36-41: sorrel
+            "Choose a card in your deck. The first time you play it each turn, gain 1 <c=status>DRONESHIFT</c>. " +
+                "You also gain 1 <c=status>BULLET TIME</c> if you do not have any.",
+            "At the start of each turn, gain 1 <c=status>DRONESHIFT</c> if you have 2 or less and" +
+                " there are any " + Manifest.FrozenColH + "frozen attacks</c>.",
+            "Whenever you end your turn with 2+ <c=status>BULLET TIME</c>, convert 1 stack into <c=status>TIMESTOP</c>.",
+            "<c=downside>ALL</c> attacks deal +1 damage while <c=status>BULLET TIME</c> is active.",
+            "Whenever you end your turn with <c=status>BULLET TIME</c>, fire a 0 damage attack.",
+            "Whenever you end your turn with 2+ <c=status>BULLET TIME</c>, gain 1 <c=statuc>TEMP SHIELD</c> and 1 <c=status>TEMP PAYBACK</c>.",
+            "After enough turns have passed, gain an <c=cardtrait>infinite retain</c> <c=card>Karma B</c>.",
         };
     }
 }

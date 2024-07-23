@@ -3,7 +3,7 @@ using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Jost {
     [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B }, extraGlossary = new string[] { "action.StanceCard" })]
-    public class Limitless : Card, IJostCard {
+    public class Limitless : Card {
 
         public bool breatheInRetain = false;
         public override CardData GetData(State state) {
@@ -20,19 +20,19 @@ namespace TwosCompany.Cards.Jost {
 
             actions.Add(new AStatus() {
                 status = (Status)Manifest.Statuses?["Superposition"].Id!,
-                statusAmount = upgrade == Upgrade.B ? 1 : 2,
+                statusAmount = upgrade == Upgrade.B ? 1 : (upgrade == Upgrade.A ? 3 : 2),
                 targetPlayer = true,
             });
             actions.Add(new AAddCard() {
-                amount = upgrade == Upgrade.B ? 1 : 2,
+                amount = upgrade == Upgrade.A ? 3 : 2,
                 card = new Heartbeat() { upgrade = Upgrade.None, temporaryOverride = upgrade == Upgrade.B },
                 destination = CardDestination.Hand,
                 showCardTraitTooltips = false,
             });
             if (upgrade == Upgrade.A) {
                 actions.Add(new AStatus() {
-                    status = Status.tempShield,
-                    statusAmount = 2,
+                    status = Status.shield,
+                    statusAmount = 4,
                     targetPlayer = true,
                 });
                 actions.Add(new AStatus() {

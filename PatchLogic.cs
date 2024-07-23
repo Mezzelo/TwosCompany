@@ -10,6 +10,7 @@ using System.Runtime.Versioning;
 using CobaltCoreModding.Definitions.ExternalItems;
 using CobaltCoreModding.Definitions.ModContactPoints;
 using daisyowl.text;
+using FMOD;
 using FSPRO;
 using HarmonyLib;
 using Microsoft.Extensions.Logging;
@@ -25,7 +26,11 @@ using TwosCompany.Cards.Isabelle;
 using TwosCompany.Cards.Jost;
 using TwosCompany.Cards.Nola;
 using TwosCompany.Helper;
+using TwosCompany.Midrow;
 using TwosCompany.ModBG;
+using TwosCompany.Zones;
+using static System.Collections.Specialized.BitVector32;
+using static System.Net.Mime.MediaTypeNames;
 using static HarmonyLib.Code;
 
 namespace TwosCompany {
@@ -42,7 +47,8 @@ namespace TwosCompany {
             if (!flag && ship == s.ship && ship.Get((Status) control.Id!) > 0) {
                 Audio.Play(Event.Status_PowerDown);
                 ship.shake += 1.0;
-                ship.Add(Status.evade, 1);
+                ship.Add(Status.evade, 1 + ship.Get(Status.boost));
+                ship.Set(Status.boost, 0);
                 ship.Add((Status) control.Id!, -1);
             }
 
@@ -119,7 +125,8 @@ namespace TwosCompany {
             if (!__instance.fromDroneX.HasValue && ship.Get((Status)Manifest.Statuses?["HeatFeedback"].Id!) > 0) {
                 ship.PulseStatus((Status)Manifest.Statuses?["HeatFeedback"].Id!);
                 ship.Add((Status)Manifest.Statuses?["HeatFeedback"].Id!, -1);
-                ship.Add(Status.heat, 1);
+                ship.Add(Status.heat, 1 + ship.Get(Status.boost));
+                ship.Set(Status.boost, 0);
             }
             if (target.hull < __state.hull || target.Get(Status.shield) < __state.shield || target.Get(Status.tempShield) < __state.tempShield) {
                 ExternalStatus falseStatus = Manifest.Statuses?["FalseOpening"] ?? throw new Exception("status missing: falseopening");
@@ -247,6 +254,14 @@ namespace TwosCompany {
                 if (__instance.Get((Status)Manifest.Statuses["StandFirm"].Id!) > 0)
                     __instance.Add((Status)Manifest.Statuses["StandFirm"].Id!, -1);
 
+                if (__instance.Get((Status)Manifest.Statuses["FrozenStun"].Id!) > 0 &&
+                    __instance.Get((Status)Manifest.Statuses["BulletTime"].Id!) <= 0)
+                    c.QueueImmediate(new AStatus {
+                        status = (Status)Manifest.Statuses["FrozenStun"].Id!,
+                        statusAmount = -1,
+                        targetPlayer = __instance.isPlayerShip
+                    });
+
             }
             if (__instance.Get((Status)Manifest.Statuses?["Enflamed"].Id!) > 0) {
                 c.QueueImmediate(new AStatus() {
@@ -260,6 +275,22 @@ namespace TwosCompany {
                 __instance.Set((Status)Manifest.Statuses["ElectrocuteCharge"].Id!, __instance.Get((Status)Manifest.Statuses["ElectrocuteCharge"].Id!) +
                     __instance.Get((Status)Manifest.Statuses["ElectrocuteChargeSpent"].Id!));
                 __instance.Set((Status)Manifest.Statuses["ElectrocuteChargeSpent"].Id!, 0);
+            }
+
+            if (__instance.Get((Status)Manifest.Statuses["CarveReality"].Id!) > 0 &&
+                __instance.Get((Status)Manifest.Statuses["BulletTime"].Id!) <= 0)
+                c.QueueImmediate(new AStatus {
+                    status = (Status)Manifest.Statuses["BulletTime"].Id!,
+                    statusAmount = 1,
+                    targetPlayer = __instance.isPlayerShip
+                });
+
+            if (__instance.Get((Status)Manifest.Statuses["Inevitability"].Id!) > 0) {
+                foreach (StuffBase stuff in c.stuff.Values) {
+                    if (stuff is FrozenAttack frozen) {
+                        frozen.bubbleShield = false;
+                    }
+                }
             }
 
             ExternalStatus fortress = Manifest.Statuses?["Fortress"] ?? throw new Exception("status missing: fortress");
@@ -325,15 +356,12 @@ namespace TwosCompany {
                             targetPlayer = false,
                         });
             }
-
-            ExternalStatus dodgeStatus = Manifest.Statuses?["UncannyEvasion"] ?? throw new Exception("status missing: uncanny evasion");
-            if (dodgeStatus.Id == null) return;
-            if (__instance.Get((Status)dodgeStatus.Id) > 0 && __instance.Get(Status.shield) <= 0)
+            if (__instance.Get((Status)Manifest.Statuses?["UncannyEvasion"].Id!) > 0 && __instance.Get(Status.shield) <= 0)
                 c.QueueImmediate(new AStatus() {
                     status = Status.autododgeRight,
-                    statusAmount = __instance.Get((Status)dodgeStatus.Id),
+                    statusAmount = __instance.Get((Status)Manifest.Statuses?["UncannyEvasion"].Id!),
                     targetPlayer = __instance.isPlayerShip,
-                    statusPulse = (Status)dodgeStatus.Id,
+                    statusPulse = (Status) Manifest.Statuses?["UncannyEvasion"].Id!,
                 });
 
             if (__instance.Get(Status.timeStop) <= 0) {
@@ -346,12 +374,25 @@ namespace TwosCompany {
                     });
                 if (__instance.Get((Status)Manifest.Statuses["Onslaught"].Id!) > 0)
                     __instance.Set((Status)Manifest.Statuses["Onslaught"].Id!, 0);
+                if (__instance.Get((Status)Manifest.Statuses["BulletTime"].Id!) > 0)
+                    c.QueueImmediate(new AStatus {
+                        status = (Status)Manifest.Statuses["BulletTime"].Id!,
+                        statusAmount = -1,
+                        targetPlayer = __instance.isPlayerShip
+                    });
                 if (__instance.Get((Status)Manifest.Statuses["Superposition"].Id!) > 0)
                     c.QueueImmediate(new AStatus {
                         status = (Status)Manifest.Statuses["Superposition"].Id!,
                         statusAmount = -1,
                         targetPlayer = __instance.isPlayerShip
                     });
+            }
+            if (__instance.Get((Status)Manifest.Statuses["Inevitability"].Id!) > 0) {
+                foreach (StuffBase stuff in c.stuff.Values) {
+                    if (stuff is FrozenAttack frozen) {
+                        frozen.bubbleShield = true;
+                    }
+                }
             }
 
             if (__instance.isPlayerShip) {
@@ -416,7 +457,7 @@ namespace TwosCompany {
                 //  && count < s.ship.statusEffects[(Status)onslaughtStatus.Id]
                 for (int drawIdx = s.deck.Count - 1; drawIdx >= 0; --drawIdx) {
                     Card selectCard = s.deck[drawIdx];
-                    if (selectCard.GetMeta().deck == card.GetMeta().deck) {
+                    if (selectCard.GetMeta().deck == card.GetMeta().deck && selectCard is not Onslaught) {
                         if (card.uuid != selectCard.uuid) {
                             fromDiscard = false;
                             if (__instance.hand.Count >= 10) {
@@ -438,7 +479,7 @@ namespace TwosCompany {
                 if (fromDiscard) {
                     for (int drawIdx = __instance.discard.Count - 1; drawIdx >= 0; --drawIdx) {
                         Card selectCard = __instance.discard[drawIdx];
-                        if (selectCard.GetMeta().deck == card.GetMeta().deck) {
+                        if (selectCard.GetMeta().deck == card.GetMeta().deck && selectCard is not Onslaught) {
                             if (card.uuid != selectCard.uuid) {
                                 if (__instance.hand.Count >= 10) {
                                     __instance.PulseFullHandWarning();
@@ -647,11 +688,12 @@ namespace TwosCompany {
                     selectedCard = card,
                 });
             }
-        }
-        /* i have decided this artifact was too funny.
+        }/*
         public static bool Card_DrainCardActions_Prefix(Combat __instance, G g) {
             if (__instance.cardActions.Count <= 0)
                 return true;
+
+            
             string key = "";
             if (g.state.EnumerateAllArtifacts().OfType<ManualSteering>().FirstOrDefault() == null)
                 return true;
@@ -676,12 +718,65 @@ namespace TwosCompany {
                 }
                 if (missByOne != 0)
                     __instance.cardActions.Insert(0, new AMove() { targetPlayer = true, fromEvade = false, dir = missByOne, artifactPulse = key });
-            }
+            } 
             return true;
-        }
-        public static void Card_BeginCardAction_Postfix(Combat __instance, G g) {
-            if (__instance.cardActions.Count <= 0)
-                return;
+        }*/
+        public static bool Card_BeginCardAction_Prefix(Combat __instance, G g) {
+            if (__instance.currentCardAction == null)
+                return true;
+            if (__instance.currentCardAction is ASpawn spawn) {
+                int from = spawn.GetWorldX(g.state, __instance);
+                if (__instance.stuff.ContainsKey(from))
+                    if (__instance.stuff[from] is FrozenAttack fAttack)
+                        fAttack.hadBubble = fAttack.bubbleShield;
+                if (spawn.thing is Conduit cond && cond.condType == Conduit.ConduitType.normal &&
+                g.state.EnumerateAllArtifacts().OfType<TearItAllDown>().FirstOrDefault() != null) {
+                    string key = g.state.EnumerateAllArtifacts().OfType<TearItAllDown>().FirstOrDefault()!.Key();
+                    spawn.thing = new DualDrone() {
+                        yAnimation = 0.0,
+                    };
+                    spawn.artifactPulse = key;
+                    g.state.ship.Add(Status.shield, 1);
+                    g.state.ship.Add(Status.tempShield, 1);
+                    return true;
+                }
+
+            }
+            int bTime = g.state.ship.Get((Status)Manifest.Statuses["BulletTime"].Id!) +
+                __instance.otherShip.Get((Status)Manifest.Statuses["BulletTime"].Id!);
+            int freeze = g.state.ship.Get((Status)Manifest.Statuses["DefensiveFreeze"].Id!) +
+                __instance.otherShip.Get((Status)Manifest.Statuses["DefensiveFreeze"].Id!);
+            if (bTime > 0 || freeze > 0) {
+                if (__instance.currentCardAction.GetType() == typeof(AAttack) && __instance.currentCardAction is AAttack addAttack &&
+                    !addAttack.fromDroneX.HasValue && (bTime > 0 ||
+                    addAttack.targetPlayer && g.state.ship.Get((Status)Manifest.Statuses["DefensiveFreeze"].Id!) > 0 ||
+                    !addAttack.targetPlayer && __instance.otherShip.Get((Status)Manifest.Statuses["DefensiveFreeze"].Id!) > 0)) {
+                    Ship target = addAttack.targetPlayer ? g.state.ship : __instance.otherShip;
+                    int from = addAttack.fromX.GetValueOrDefault() + (addAttack.targetPlayer ? __instance.otherShip.x : g.state.ship.x);
+                    if (!addAttack.fromX.HasValue) {
+                        from += Math.Max(0,
+                            (addAttack.targetPlayer ? __instance.otherShip : g.state.ship).parts.FindIndex((Part p) => p.type == PType.cannon && p.active));
+                    }
+                    if (bTime <= 0) {
+                        RaycastResult ray = CombatUtils.RaycastGlobal(__instance, target,
+                            false, from);
+                        if (ray.hitShip) {
+                            Audio.Play(FSPRO.Event.Status_PowerUp);
+                            target.Add((Status)Manifest.Statuses["DefensiveFreeze"].Id!, -1);
+                            target.Add((Status)Manifest.Statuses["BulletTime"].Id!, 1 + target.Get(Status.boost));
+                            target.Set(Status.boost, 0);
+                        } else
+                            return true;
+                    }
+                    if (__instance.stuff.ContainsKey(from)) {
+                        if (__instance.stuff[from] is FrozenAttack fAttack)
+                            fAttack.hadBubble = fAttack.bubbleShield;
+                        return true;
+                    }
+                    __instance.stuff.Add(from, new FrozenAttack() { x = from, xLerped = from });
+                }
+            }
+            /*
             string key = "";
             if (g.state.EnumerateAllArtifacts().OfType<ManualSteering>().FirstOrDefault() == null)
                 return;
@@ -706,9 +801,9 @@ namespace TwosCompany {
                 }
                 if (missByOne != 0)
                     __instance.cardActions.Insert(0, new AMove() { targetPlayer = true, fromEvade = false, dir = missByOne, artifactPulse = key });
-            }
+            } */
+            return true;
         }
-        */
         public static void Card_FlipCardInHand_Postfix(G g, Card card) {
             if (card is IJostCard && g.state.route is Combat &&
                 g.state.ship.Get((Status)Manifest.Statuses["Superposition"].Id!) > 0 &&
@@ -772,20 +867,96 @@ namespace TwosCompany {
             if (locale != "en")
                 return;
             __result.Add("char." + ManifHelper.GetDeckId("nola") + ".desc.locked",
-                Manifest.NolaColH + "NOLA</c>\nWin a run with at least <c=keyword>30</c> cards in your deck <c=keyword>OR</c> " +
-                "with both " + Manifest.IsaColH + "Isabelle</c> and " + Manifest.IlyaColH + "Ilya</c> to unlock " + Manifest.NolaColH + "Nola</c>" + "!");
+                Manifest.NolaColH + "NOLA</c>\nReach the final boss with with " +
+                Manifest.IsaColH + "Isabelle</c> and " + Manifest.IlyaColH + "Ilya</c> on the same ship to unlock " + Manifest.NolaColH + "Nola</c>" + "!");
             __result.Add("char." + ManifHelper.GetDeckId("isa") + ".desc.locked",
-                Manifest.IsaColH + "ISABELLE</c>\nDefeat a boss <c=downside>with full hull remaining</c> <c=keyword>OR</c> " +
-                "beat a run with <c=peri>Peri</c> on <c=downside>HARD</c> or harder to unlock " + Manifest.IsaColH + "Isabelle</c>" + "!");
+                Manifest.IsaColH + "ISABELLE</c>\n" +
+                "Win a run to unlock " + Manifest.IsaColH + "Isabelle</c>" + "!");
             __result.Add("char." + ManifHelper.GetDeckId("ilya") + ".desc.locked",
-                Manifest.IlyaColH + "ILYA</c>\nReach 7 <c=status>HEAT</c> <c=keyword>OR</c> " +
-                "beat a run with <c=eunice>Drake</c> on <c=downside>HARD</c> or harder to unlock " + Manifest.IlyaColH + "Ilya</c>" + "!");
+                Manifest.IlyaColH + "ILYA</c>\n" +
+                "Win a run with <c=eunice>Drake</c> to unlock " + Manifest.IlyaColH + "Ilya</c>" + "!");
             __result.Add("char." + ManifHelper.GetDeckId("jost") + ".desc.locked",
-                Manifest.JostColH + "JOST</c>\nDefeat a boss <c=downside>without moving</c> <c=keyword>OR</c> " +
-                "beat a run with " + Manifest.IsaColH + "Isabelle</c> on <c=downside>HARD</c> or harder to unlock " + Manifest.JostColH + "Jost</c>" + "!");
+                Manifest.JostColH + "JOST</c>\n" +
+                "Reach the final boss with " + Manifest.NolaColH + "Nola</c>, " +
+                Manifest.IsaColH + "Isabelle</c>, and " +
+                Manifest.IlyaColH + "Ilya</c>, on the same ship to unlock " + Manifest.JostColH + "Jost</c>!");
             __result.Add("char." + ManifHelper.GetDeckId("gauss") + ".desc.locked",
-                Manifest.GaussColH + "GAUSS</c>\nDestroy <c=keyword>10</c> midrow objects in a single encounter <c=keyword>OR</c> " +
-                "beat a run with <c=goat>Isaac</c> on <c=downside>HARD</c> or harder to unlock " + Manifest.GaussColH + "Gauss</c>" + "!");
+                Manifest.GaussColH + "GAUSS</c>\n" +
+                "Win a run with <c=goat>Isaac</c> to unlock " + Manifest.GaussColH + "Gauss</c>" + "!");
+            __result.Add("char." + ManifHelper.GetDeckId("sorrel") + ".desc.locked",
+                "???");
+            __result.Add("zone.zone_mezzmapmem_first", "A Stirring");
+        }
+        public static bool RenderCharPrefix(Character __instance, G g,
+        double x,
+        double y,
+        bool flipX,
+        string animTag,
+        double animationFrame,
+        bool renderLocked, bool hideFace,
+        bool mini,
+        bool? isSelected) {
+
+            if (renderLocked && !hideFace &&
+                Character.GetSpriteAliasIfExists(__instance.type).Equals(ManifHelper.charStoryNames["sorrel"])) {
+                __instance.DrawFace(g, x, y, flipX, animTag, animationFrame, mini, isSelected, true, true);
+                return false;
+            }
+
+            return true;
+        }
+        public static void GetShowCockpitPostfix(ref bool __result, Dialogue __instance) {
+            if (!__result)
+                return;
+            if (__instance.bg is not null && (__instance.bg is BGRunWinCustom || __instance.bg is BGMemRunIntro)) {
+                __result = false;
+            }
+        }
+        public static bool RenderComputerPrefix(Character __instance, G g, Vec offset, bool showDialogue = true) {
+
+            if (g.state.map is TCFinaleMap) {
+                Character obj = new Character {
+                    type = "compOffline",
+                    artifacts = g.state.artifacts
+                };
+                int x = (int)offset.x;
+                int y = (int)offset.y;
+                bool showDialogue2 = showDialogue;
+                obj.Render(g, 
+                    x, 
+                    y, 
+                    flipX: false, 
+                    mini: true, 
+                    isExploding: false, 
+                    isDoneExploding: false, 
+                    isEscaping: false, null, 
+                    renderLocked: false, 
+                    hideFace: false, 
+                    showUnlockInstructions: false, 
+                    showDialogue2
+                );
+                return false;
+            }
+            return true;
+        }
+        public static bool RenderCharactersPrefix(G g, 
+            Vec offset, 
+            bool mini, 
+            double introTimer, 
+            bool showDialogue, 
+            ref bool finaleMode) {
+
+            if (g.state.map is TCFinaleMap) {
+                finaleMode = true;
+            }
+            return true;
+        }
+        public static void CharNamePostfix(Character __instance, string charId, State state, ref string __result) {
+            if (charId.Equals(ManifHelper.charStoryNames["sorrel"]) &&
+                !Manifest.Instance.settings.unlockSorrel &&
+                !state.storyVars.unlockedChars.Contains(ManifHelper.GetDeck("sorrel"))) {
+                __result = "???";
+            }
         }
 
         // this small bit of loading logic courtesy of shockah's dialogue implementation for soggins.
@@ -799,10 +970,7 @@ namespace TwosCompany {
         }
 
         public static bool AICombatStartPrefix(AI __instance, State s, Combat c) {
-            if (Enumerable.Any(s.characters, ch => {
-                Deck? deckType = ch.deckType;
-                return (int)deckType.GetValueOrDefault() == Manifest.IlyaDeck!.Id & deckType.HasValue;
-            })) {
+            if (s.characters.Any((Character ch) => ch.deckType == ManifHelper.GetDeck("ilya"))) {
                 if (__instance is OxygenLeakGuy && s.storyVars.HasEverSeen("mezz_Ilya_Cobalt_0") && !s.storyVars.HasEverSeen("mezz_Ilya_Oxygenguy_Midcombat")) {
                     c.Queue(new ADelay() {
                         time = 0.0,
@@ -857,15 +1025,21 @@ namespace TwosCompany {
         public static void DialogueMusicPostfix(Dialogue __instance, ref MusicState? __result, G g) {
             if (__instance.ctx.script.Equals("mezz_Ilya_Memory_3"))
                 __result = new MusicState() { scene = Song.SlowSilence };
-            else if (__instance.ctx.script.Equals("mezz_Jost_Memory_3"))
-                __result = new MusicState() { scene = Song.SlowSilence };
-            else if (__instance.ctx.script.Equals("mezz_Ilya_Memory_3"))
-                __result = new MusicState() { scene = Song.SlowSilence };
+            /*
+            else if (__instance.ctx.script.Contains("mezz_Jost_Memory"))
+                __result = new MusicState() { scene = Song.SlowSilence }; */
             else if (__instance.ctx.script.Equals("mezz_Gauss_Memory_2") &&
                 __instance.bg is BGShipyard bg2)
                 __result = bg2.GetMusicState();
+            else if (__instance.bg is BGBlackSilent bg5)
+                __result = new MusicState() { scene = Song.SlowSilence };
             else if (__instance.bg is BGRunStartScripted bg3)
                 __result = bg3.GetMusicState();
+            else if (__instance.bg is BGRunWinCustom bg4) {
+                __result = bg4.GetMusicState();
+                if (__result.HasValue)
+                    __result = __result.GetValueOrDefault();
+            }
             return;
         }
 
@@ -905,44 +1079,173 @@ namespace TwosCompany {
         }
 
         [HarmonyPriority(Priority.Last)]
-        public static void RelockChars(ref HashSet<Deck> __result) {
-            if (__result.Contains((Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId("nola")),
-                        typeof(Deck)))) {
-                __result.Remove((Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId("nola")),
-                        typeof(Deck)));
+        public static void RelockChars(StoryVars __instance, ref HashSet<Deck> __result) {
+            if (__result.Contains(ManifHelper.GetDeck("nola")) &&
+                !__instance.HasEverSeen("mezz_Nola_UnlockMarker") &&
+                !Manifest.Instance.settings.unlockNola) {
+                __result.Remove(ManifHelper.GetDeck("nola"));
             }
 
-            if (__result.Contains((Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId("isa")),
-                        typeof(Deck)))) {
-                __result.Remove((Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId("isa")),
-                        typeof(Deck)));
+            if (__result.Contains(ManifHelper.GetDeck("isa")) &&
+                !__result.Contains(Deck.goat) &&
+                !Manifest.Instance.settings.unlockIsa) {
+                __result.Remove(ManifHelper.GetDeck("isa"));
             }
 
-            if (__result.Contains((Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId("ilya")),
-                        typeof(Deck)))) {
-                __result.Remove((Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId("ilya")),
-                        typeof(Deck)));
+            if (__result.Contains(ManifHelper.GetDeck("ilya")) &&
+                !__result.Contains(Deck.hacker) &&
+                !Manifest.Instance.settings.unlockIlya) {
+                __result.Remove(ManifHelper.GetDeck("ilya"));
             }
 
-            if (__result.Contains((Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId("jost")),
-                        typeof(Deck)))) {
-                __result.Remove((Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId("jost")),
-                        typeof(Deck)));
+            if (__result.Contains(ManifHelper.GetDeck("jost")) &&
+                !__instance.HasEverSeen("mezz_Jost_UnlockMarker") &&
+                !Manifest.Instance.settings.unlockJost) {
+                __result.Remove(ManifHelper.GetDeck("jost"));
             }
 
-            if (__result.Contains((Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId("gauss")),
-                        typeof(Deck)))) {
-                __result.Remove((Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId("gauss")),
-                        typeof(Deck)));
+            if (__result.Contains(ManifHelper.GetDeck("gauss")) &&
+                !__result.Contains(Deck.eunice) &&
+                !Manifest.Instance.settings.unlockGauss) {
+                __result.Remove(ManifHelper.GetDeck("gauss"));
+            }
+
+            if (__result.Contains(ManifHelper.GetDeck("sorrel")) &&
+                !__instance.HasEverSeen("mezz_Sorrel_UnlockMarker") &&
+                !Manifest.Instance.settings.unlockSorrel) {
+                __result.Remove(ManifHelper.GetDeck("sorrel"));
+            }
+        }
+        public static void MapArtPostfix(G g, double t, Vec offset) {
+            if (g.state.map is TCFinaleMap memMap) {
+                double n = Math.Sin(g.state.time * 1.5);
+                BGTheCobalt.DrawSingularity(
+                    g, 
+                    t, 
+                    new Vec(400.0, 166.0), 
+                    Mutil.Remap(-1.0, 1.0, 0.0, 1.0, n), 
+                    Mutil.Remap(-1.0, 1.0, 20.0, 25.0, n), 
+                    showBeams: memMap.rays);
+                Draw.Sprite(Enum.Parse<Spr>("map_mock_zone_three_over"), 0.0, 0.0);
+            }
+        }
+        public static bool MakeRoutePrefix(ref Route __result, MapBattle __instance, State s) {
+            if (__instance.battleType == BattleType.Boss && s.map.IsFinalZone()) {
+                HashSet<Deck> unlocked = s.storyVars.GetUnlockedChars();
+                if (!unlocked.Contains(ManifHelper.GetDeck("nola")) &&
+                    s.characters.Any((Character ch) => ch.deckType == ManifHelper.GetDeck("isa")) &&
+                    s.characters.Any((Character ch) => ch.deckType == ManifHelper.GetDeck("ilya"))) {
+                    DB.story.MarkNodeSeen(s, "mezz_Nola_UnlockMarker");
+                    s.storyVars.UnlockChar(ManifHelper.GetDeck("nola"));
+                }
+                else if (!unlocked.Contains(ManifHelper.GetDeck("jost")) &&
+                    s.characters.Any((Character ch) => ch.deckType == ManifHelper.GetDeck("nola")) &&
+                    s.characters.Any((Character ch) => ch.deckType == ManifHelper.GetDeck("isa")) &&
+                    s.characters.Any((Character ch) => ch.deckType == ManifHelper.GetDeck("ilya"))) {
+                    DB.story.MarkNodeSeen(s, "mezz_Jost_UnlockMarker");
+                    s.storyVars.UnlockChar(ManifHelper.GetDeck("jost"));
+                }
+            } else if (s.map is TCFinaleMap && __instance.battleType == BattleType.Boss && __instance.ai is TheCobalt &&
+                !__instance.hasSeenPreDialogue) {
+                if (s.characters.Any((Character ch) => ch.deckType == ManifHelper.GetDeck("sorrel"))
+                     ) {
+                    __instance.hasSeenPreDialogue = true;
+                    __instance.ai.BuildShipForSelf(s);
+                    __result = Dialogue.MakeDialogueRouteOrSkip(s, "mezz_Sorrel_TCFinale_Cobalt", OnDone.visitCurrent);
+                } else if (Manifest.Instance.settings.memHistory) {
+                    s.pendingRunSummary = RunSummary.SaveFromState(s);
+                    s.SaveIfRelease();
+                    __result = Dialogue.MakeDialogueRouteOrSkip(s, DB.story.QuickLookup(s, ".mezz_TC_Finale_Closer"),
+                        OnDone.runWin);
+                }
+                else
+                    __result = Dialogue.MakeDialogueRouteOrSkip(s, DB.story.QuickLookup(s, ".mezz_TC_Finale_Closer"),
+                        OnDone.vaultNewRun);
+
+                return false;
+            }
+            return true;
+        }
+        public static bool RecordRunWinPrefix(StoryVars __instance, State state) {
+            if (!FeatureFlags.BypassUnlocks) {
+                __instance.UnlockChar(ManifHelper.GetDeck("isa"));
+                if (state.characters.Any((Character ch) => ch.deckType == Deck.goat))
+                    __instance.UnlockChar(ManifHelper.GetDeck("gauss"));
+                if (state.characters.Any((Character ch) => ch.deckType == Deck.eunice))
+                    __instance.UnlockChar(ManifHelper.GetDeck("ilya"));
+            }
+            return true;
+        }
+        public static bool CheckDeathPrefix(Combat __instance, G g) {
+            if (g.state.map is TCFinaleMap && 
+                g.state.ship.deathProgress > 1.0 && 
+                __instance.EitherShipIsDead(g.state) && __instance.cardActions.Count == 0 &&
+                !Manifest.Instance.settings.memHistory) {
+                g.state.ChangeRoute(() =>
+                new NewRunOptions() {
+                    subRoute = new Vault()
+                });
+                return false;
+            }
+            return true;
+        }
+        public static bool PlayerWonPrefix(Combat __instance, G g) {
+            if (g.state.map is TCFinaleMap && g.state.map.markers[g.state.map.currentLocation].contents is MapBattle mapBattle) {
+                if (mapBattle.battleType == BattleType.Boss && mapBattle.ai is TheCobalt &&
+                    g.state.characters.Any((Character ch) => ch.deckType == ManifHelper.GetDeck("sorrel"))) {
+                    g.state.storyVars.combatsThisRun++;
+                    g.state.map.GetCurrent().wasCleared = true;
+                    __instance.ReturnCardsToDeck(g.state);
+                    foreach (Card item in g.state.deck) {
+                        item.OnExitCombat(g.state, __instance);
+                        item.discount = 0;
+                    }
+                    foreach (Character character in g.state.characters) {
+                        character.shout = null;
+                    }
+                    g.state.storyVars.ResetAfterCombat();
+                    foreach (Artifact item2 in g.state.EnumerateAllArtifacts()) {
+                        item2.OnCombatEnd(g.state);
+                    }
+                    g.state.ship.ResetAfterCombat();
+                    g.state.rewardsQueue.Clear();
+                    g.state.RemoveAllTempCards();
+                    DB.story.MarkNodeSeen(g.state, "mezz_Sorrel_UnlockMarker");
+                    g.state.storyVars.UnlockChar(ManifHelper.GetDeck("sorrel"));
+                    g.state.ChangeRoute(() => new TCCredits {
+                    });
+                    return false;
+                }
+            }
+            return true;
+        }
+        public static bool NarrativeBarkPrefix(G g, Combat c) {
+            if (g.state.map is TCFinaleMap)
+                return false;
+            return true;
+        }
+
+        public static void GetChoicesPostfix(ref List<Choice> __result, State s) {
+            State s2 = s;
+            for (int i = 0; i < __result.Count; i++) {
+                if (((ARunWinCharChoice)__result[i].actions[0]).deck.Equals(ManifHelper.GetDeck("sorrel"))) {
+                    if (!s2.storyVars.HasEverSeen("RunWinMezzWho_Sorrel_1"))
+                        __result[i].key = ".runWin_Mezz_Glitch_Sorrel";
+                    else {
+                        __result.RemoveAt(i);
+                        i--;
+                    }
+                }
+                else if (((ARunWinCharChoice)__result[i].actions[0]).deck.Equals(ManifHelper.GetDeck("jost")) &&
+                    s2.storyVars.memoryUnlockLevel.GetValueOrDefault(ManifHelper.GetDeck("jost")) > 0) {
+                    __result.RemoveAt(i);
+                    i--;
+                }
             }
         }
 
-
         public static bool OxygenLeakGuyCombatStartPrefix(AI __instance, State s, Combat c) {
-            if (Enumerable.Any(s.characters, ch => {
-                Deck? deckType = ch.deckType;
-                return (int)deckType.GetValueOrDefault() == Manifest.IlyaDeck!.Id & deckType.HasValue;
-            })) {
+            if (s.characters.Any((Character ch) => ch.deckType == ManifHelper.GetDeck("ilya"))) {
                 if (s.storyVars.HasEverSeen("mezz_Ilya_Cobalt_0") && !s.storyVars.HasEverSeen("mezz_Ilya_Oxygenguy_Midcombat")) {
                     c.Queue(new ADelay() {
                         time = 0.0,
@@ -959,7 +1262,6 @@ namespace TwosCompany {
             }
             return true;
         }
-
 
     }
 }

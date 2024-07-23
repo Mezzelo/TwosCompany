@@ -6,11 +6,122 @@ using HarmonyLib;
 using TwosCompany.ExternalAPI;
 using Microsoft.Extensions.Logging;
 using TwosCompany.Actions;
+using Microsoft.Extensions.Logging.Abstractions;
+using System.Reflection;
+using Nickel.Legacy;
+using Nanoray.PluginManager;
+using Nickel;
 
 namespace TwosCompany {
-    public partial class Manifest : IStoryManifest {
+    public partial class Manifest : IStoryManifest, INickelManifest {
         private static ICustomEventHub? _eventHub;
         internal static ICustomEventHub EventHub { get => _eventHub ?? throw new Exception(); set => _eventHub = value; }
+
+        public void OnNickelLoad(IPluginPackage<Nickel.IModManifest> package, IModHelper helper) {
+            this.Helper = helper;
+            settings = helper.Storage.LoadJson<ModSettings>(helper.Storage.GetMainStorageFile("json"));
+
+            helper.ModRegistry.AwaitApi<IModSettingsApi>(
+                "Nickel.ModSettings",
+                settingsApi => settingsApi.RegisterModSettings(settingsApi.MakeList([
+                        settingsApi.MakeCheckbox(
+                                () => "Unlock all characters",
+                                () => Manifest.Instance.settings.unlockAll,
+                                (_, _, value) => {
+                                    Manifest.Instance.settings.unlockAll = value;
+                                    Manifest.Instance.settings.unlockNola = value;
+                                    Manifest.Instance.settings.unlockIsa = value;
+                                    Manifest.Instance.settings.unlockIlya = value;
+                                    Manifest.Instance.settings.unlockJost = value;
+                                    Manifest.Instance.settings.unlockGauss = value;
+                                }
+                        ).SetTooltips(() => [
+                            new TTText("<c=status>UNLOCK ALL CHARACTERS</c>\n" +
+                            "Check this to bypass the unlock requirements for all characters in this mod. Characters can also be unlocked individually.\n" +
+                            "<c=keyword>These options are reversible.</c>")
+                        ]),
+                        settingsApi.MakeCheckbox(
+                                () => "   NOLA",
+                                () => Manifest.Instance.settings.unlockNola,
+                                (_, _, value) => Manifest.Instance.settings.unlockNola = value
+                        ).SetTooltips(() => [
+                            new TTText("<c=status>UNLOCK NOLA</c>\n" +
+                            "Bypass the unlock requirements for " + NolaColH + "Nola</c>.\n" +
+                            "<c=keyword>This option is reversible.</c>")
+                        ]),
+                        settingsApi.MakeCheckbox(
+                                () => "   ISABELLE",
+                                () => Manifest.Instance.settings.unlockIsa,
+                                (_, _, value) => Manifest.Instance.settings.unlockIsa = value
+                        ).SetTooltips(() => [
+                            new TTText("<c=status>UNLOCK ISABELLE</c>\n" +
+                            "Bypass the unlock requirements for " + IsaColH + "Isabelle</c>.\n" +
+                            "<c=keyword>This option is reversible.</c>")
+                        ]),
+                        settingsApi.MakeCheckbox(
+                                () => "   ILYA",
+                                () => Manifest.Instance.settings.unlockIlya,
+                                (_, _, value) => Manifest.Instance.settings.unlockIlya = value
+                        ).SetTooltips(() => [
+                            new TTText("<c=status>UNLOCK ILYA</c>\n" +
+                            "Bypass the unlock requirements for " + IlyaColH + "Ilya</c>.\n" +
+                            "<c=keyword>This option is reversible.</c>")
+                        ]),
+                        settingsApi.MakeCheckbox(
+                                () => "   JOST",
+                                () => Manifest.Instance.settings.unlockJost,
+                                (_, _, value) => Manifest.Instance.settings.unlockJost = value
+                        ).SetTooltips(() => [
+                            new TTText("<c=status>UNLOCK JOST</c>\n" +
+                            "Bypass the unlock requirements for " + JostColH + "Jost</c>.\n" +
+                            "<c=keyword>This option is reversible.</c>")
+                        ]),
+                        settingsApi.MakeCheckbox(
+                                () => "   GAUSS",
+                                () => Manifest.Instance.settings.unlockGauss,
+                                (_, _, value) => Manifest.Instance.settings.unlockGauss = value
+                        ).SetTooltips(() => [
+                            new TTText("<c=status>UNLOCK GAUSS</c>\n" +
+                            "Bypass the unlock requirements for " + GaussColH + "Gauss</c>.\n" +
+                            "<c=keyword>This option is reversible.</c>")
+                        ]),
+                        settingsApi.MakeCheckbox(
+                                () => "   ???",
+                                () => Manifest.Instance.settings.unlockSorrel,
+                                (_, _, value) => Manifest.Instance.settings.unlockSorrel = value
+                        ).SetTooltips(() => [
+                            new TTText("<c=status>UNLOCK </c><c=downside>???</c>\n" +
+                            "Bypass the unlock requirements for <c=downside>???</c>.\n" +
+                            "<c=keyword>This option is reversible.</c>")
+                        ]),
+                        settingsApi.MakeCheckbox(
+                                () => "??? History",
+                                () => Manifest.Instance.settings.memHistory,
+                                (_, _, value) => Manifest.Instance.settings.memHistory = value
+                        ).SetTooltips(() => [
+                            new TTText("<c=status>LOG ???</c>\n" +
+                            "These are excluded from run history by default. You can enable it here.</c>")
+                        ]),
+                        settingsApi.MakeEnumStepper(
+                            () => "??? Difficulty",
+                            () => Manifest.Instance.settings.memoryDifficulty,
+                            (value) => Manifest.Instance.settings.memoryDifficulty = value
+                        ).SetTooltips(() => [
+                            new TTText("<c=status>??? DIFFICULTY</c>\n" +
+                            "You'll know what this means when you get there.")
+                        ]).SetValueWidth(
+                            _ => 80
+                        ).SetValueFormatter(
+                            (value) => value.ToString().ToUpper()
+                        ),
+
+                    ]).SubscribeToOnMenuClose(_ => {
+                        helper.Storage.SaveJson(helper.Storage.GetMainStorageFile("json"), settings);
+                    })
+                )
+            );
+        }
+
 
         public void LoadManifest(ICustomEventHub eventHub) {
             _eventHub = eventHub;
@@ -162,18 +273,32 @@ namespace TwosCompany {
                 postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.Card_OnDraw_Postfix))
             );
 
-            /*
-            // draincardactions patch
+            harmony.Patch(
+                original: AccessTools.DeclaredMethod(typeof(Combat), "CheckDeath"),
+                prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.CheckDeathPrefix))
+            );
+
+            harmony.Patch(
+                original: AccessTools.DeclaredMethod(typeof(Combat), "PlayerWon"),
+                prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.PlayerWonPrefix))
+            );
+
+            harmony.Patch(
+                original: AccessTools.DeclaredMethod(typeof(Narrative), nameof(Narrative.ActivateShoutSequence)),
+                prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.NarrativeBarkPrefix))
+            );
+
+            /* draincardactions patch
             harmony.Patch(
                 original: AccessTools.DeclaredMethod(typeof(Combat), nameof(Combat.DrainCardActions)),
                 prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.Card_DrainCardActions_Prefix))
-            );
+            ); */
 
             // begincardactions patch
             harmony.Patch(
                 original: AccessTools.DeclaredMethod(typeof(Combat), "BeginCardAction"),
-                postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.Card_BeginCardAction_Postfix))
-            ); */
+                prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.Card_BeginCardAction_Prefix))
+            );
 
             // card flip patch
             harmony.Patch(
@@ -246,6 +371,25 @@ namespace TwosCompany {
                 postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.LocalePostfix))
             );
 
+            // character icon render prefix
+            harmony.Patch(
+                original: AccessTools.DeclaredMethod(typeof(Character), nameof(Character.DrawFace)),
+                prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.RenderCharPrefix))
+            );
+            harmony.Patch(
+                original: AccessTools.DeclaredMethod(typeof(Character), nameof(Character.RenderComputer)),
+                prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.RenderComputerPrefix))
+            );
+            harmony.Patch(
+                original: AccessTools.DeclaredMethod(typeof(Character), nameof(Character.GetDisplayName),
+                [typeof(string), typeof(State)]),
+                postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.CharNamePostfix))
+            );
+            harmony.Patch(
+                original: AccessTools.DeclaredMethod(typeof(Character), nameof(Character.RenderCharacters)),
+                prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.RenderCharactersPrefix))
+            );
+
             // dialogue sayswitch injection patch
             harmony.Patch(
                 original: AccessTools.DeclaredMethod(typeof(MG), "DrawLoadingScreen"),
@@ -287,6 +431,31 @@ namespace TwosCompany {
                 prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.LookupColorPrefix))
             );
 
+            harmony.Patch(
+                original: AccessTools.DeclaredMethod(typeof(BGShowMapArt), nameof(BGShowMapArt.Render)),
+                postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.MapArtPostfix))
+            );
+
+            harmony.Patch(
+                original: AccessTools.DeclaredMethod(typeof(RunWinHelpers), nameof(RunWinHelpers.GetChoices)),
+                postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.GetChoicesPostfix))
+            );
+
+            harmony.Patch(
+                original: AccessTools.DeclaredMethod(typeof(Dialogue), nameof(Dialogue.GetShowCockpit)),
+                postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.GetShowCockpitPostfix))
+            );
+
+            harmony.Patch(
+                original: AccessTools.DeclaredMethod(typeof(MapBattle), nameof(MapBattle.MakeRoute)),
+                prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.MakeRoutePrefix))
+            );
+
+            harmony.Patch(
+                original: AccessTools.DeclaredMethod(typeof(StoryVars), nameof(StoryVars.RecordRunWin)),
+                prefix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.RecordRunWinPrefix))
+            );
+
 
         }
 
@@ -295,17 +464,20 @@ namespace TwosCompany {
                 string artifact = ManifArtifactHelper.artifactNames.ElementAt(i).Key;
                 if (Type.GetType("TwosCompany.Artifacts." + artifact) == null)
                     continue;
-                if (NolaDeck == null || IsabelleDeck == null || IlyaDeck == null || JostDeck == null || GaussDeck == null)
+                if (NolaDeck == null || IsabelleDeck == null || IlyaDeck == null || JostDeck == null || GaussDeck == null ||
+                    SorrelDeck == null)
                     throw new Exception("deck not initialized in artif registry");
-                ExternalDeck pickDeck = GaussDeck;
-                if (i < 6)
+                ExternalDeck pickDeck = SorrelDeck;
+                if (i < 7)
                     pickDeck = NolaDeck;
-                else if (i < 12)
+                else if (i < 14)
                     pickDeck = IsabelleDeck;
-                else if (i < 18)
+                else if (i < 21)
                     pickDeck = IlyaDeck;
-                else if (i < 25)
+                else if (i < 29)
                     pickDeck = JostDeck;
+                else if (i < 36)
+                    pickDeck = GaussDeck;
 
                 Artifacts.Add(artifact, new ExternalArtifact("TwosCompany.Artifacts." + artifact,
                     Type.GetType("TwosCompany.Artifacts." + artifact) ?? throw new Exception("artifact type not found: " + artifact),

@@ -11,11 +11,11 @@ namespace TwosCompany.Artifacts {
         public override string Description() => "At the start of combat, gain a <c=card>Freedom of Movement</c>.";
 
         public override void OnCombatStart(State state, Combat combat) {
-            this.Pulse();
             combat.QueueImmediate(new AAddCard() {
                 card = new FreedomOfMovement(),
                 destination = CardDestination.Hand,
-                amount = 1
+                amount = 1,
+                artifactPulse = this.Key(),
             });
         }
 

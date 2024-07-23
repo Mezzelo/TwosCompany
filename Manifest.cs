@@ -8,27 +8,34 @@ using TwosCompany.Cards.Isabelle;
 using TwosCompany.Cards.Ilya;
 using TwosCompany.Cards.Jost;
 using TwosCompany.Cards.Gauss;
+using TwosCompany.Cards.Sorrel;
 using Microsoft.Extensions.Logging;
 using HarmonyLib;
 using System.Reflection;
 using TwosCompany.Artifacts;
 using Microsoft.Xna.Framework.Graphics;
 using TwosCompany.ExternalAPI;
+using Nickel;
 
 namespace TwosCompany {
     public partial class Manifest : ISpriteManifest, ICardManifest, IDeckManifest, ICharacterManifest, IAnimationManifest,
         IGlossaryManifest, IStatusManifest, 
-        ICustomEventManifest, IArtifactManifest, IModManifest {
+        ICustomEventManifest, IArtifactManifest, CobaltCoreModding.Definitions.ModManifests.IModManifest {
         public DirectoryInfo? ModRootFolder { get; set; }
         public DirectoryInfo? GameRootFolder { get; set; }
         internal static Manifest Instance { get; private set; } = null!;
+        internal IModHelper Helper { get; private set; } = null!;
+
         internal static APIImplementation Api { get; private set; } = null!;
         public static IMoreDifficultiesApi? MoreDifficultiesApi = null;
+        public static IModSettingsApi? ModSettingsApi = null;
+
+        public ModSettings settings = new ModSettings();
 
         public string Name { get; init; } = "Mezz.TwosCompany";
         public IEnumerable<DependencyEntry> Dependencies => new DependencyEntry[]
         {
-            new DependencyEntry<IModManifest>("TheJazMaster.MoreDifficulties", true)
+            new DependencyEntry<CobaltCoreModding.Definitions.ModManifests.IModManifest>("TheJazMaster.MoreDifficulties", true)
         };
         public ILogger? Logger { get; set; }
 
@@ -79,6 +86,16 @@ namespace TwosCompany {
         public static String ChainColH = string.Format("<c={0:X2}{1:X2}{2:X2}>", ChainColor.R, ChainColor.G, ChainColor.B.ToString("X2"));
         public static string[] gaussEmotes = new String[] {
             "mini", "neutral", "gameover", "squint", "crystallized", "angry", "datapad", "forlorn", "happy", "nap", "serious", "side", "vengeful", "getreal",
+        };
+
+        public static ExternalCharacter? SorrelCharacter { get; private set; }
+        public static ExternalDeck? SorrelDeck { get; private set; }
+        public static System.Drawing.Color SorrelColor = System.Drawing.Color.FromArgb(117, 71, 178); // 7547B2
+        public static String SorrelColH = string.Format("<c={0:X2}{1:X2}{2:X2}>", SorrelColor.R, SorrelColor.G, SorrelColor.B);
+        public static System.Drawing.Color FrozenColor = System.Drawing.Color.FromArgb(255, 150, 243); // ff96f3
+        public static String FrozenColH = string.Format("<c={0:X2}{1:X2}{2:X2}>", FrozenColor.R, FrozenColor.G, FrozenColor.B.ToString("X2"));
+        public static string[] sorrelEmotes = new String[] {
+            "mini", "neutral", "gameover", "squint", "crystallized", "angry", "annoyed", "happy", "nap", "peaceful", "side", "vengeful",
         };
 
         private void addCharSprite(string charName, string emote, string subfolder, ISpriteRegistry artReg) {
@@ -153,11 +170,14 @@ namespace TwosCompany {
             addSprite("DroneConduitShieldDisabled", "conduitShieldDisabled", "drones", artReg);
             addSprite("DroneConduitFeedback", "conduitFeedback", "drones", artReg);
             addSprite("DroneConduitFeedbackDisabled", "conduitFeedbackDisabled", "drones", artReg);
+            addSprite("FrozenOutgoing", "frozenOutgoing", "drones", artReg);
+            addSprite("FrozenIncoming", "frozenIncoming", "drones", artReg);
 
             addSprite("IconConduit", "conduit", "icons", artReg);
             addSprite("IconConduitShield", "conduitShield", "icons", artReg);
             addSprite("IconConduitKinetic", "conduitKinetic", "icons", artReg);
             addSprite("IconConduitFeedback", "conduitFeedback", "icons", artReg);
+            addSprite("IconFrozenAttack", "frozenAttack", "icons", artReg);
 
             // hint/cardaction icons
             addSprite("IconEnergyPerCard", "energyPerCard", "icons", artReg);
@@ -217,24 +237,34 @@ namespace TwosCompany {
             addSprite("IconHyperspaceStormA", "hyperspaceStormA", "icons", artReg);
             addSprite("IconHyperspaceStormB", "hyperspaceStormB", "icons", artReg);
             addSprite("IconHeatFeedback", "heatFeedback", "icons", artReg);
+            addSprite("IconBulletTime", "bulletTime", "icons", artReg);
+            addSprite("IconDefensiveFreeze", "defensiveFreeze", "icons", artReg);
+            addSprite("IconFrozenStun", "frozenStun", "icons", artReg);
+            addSprite("IconCarveReality", "carveReality", "icons", artReg);
+            addSprite("IconInevitability", "inevitability", "icons", artReg);
+            addSprite("IconAutocorrect", "autocorrect", "icons", artReg);
             addSprite("ThermalAttacks", "thermalAttacks", "icons", artReg);
             addSprite("IconFollowUp", "followUp", "icons", artReg);
             addSprite("IconSuperposition", "superposition", "icons", artReg);
             addSprite("IconMoveEnemyRight", "moveEnemyRight", "icons", artReg);
             addSprite("IconMoveEnemyLeft", "moveEnemyLeft", "icons", artReg);
             addSprite("IconMoveEnemyZero", "moveEnemyRight", "icons", artReg);
+            addSprite("IconUnfreeze", "unfreeze", "icons", artReg);
+            addSprite("IconForceAttack", "forceAttack", "icons", artReg);
             // chars
             addSprite("NolaFrame", "char_nola", "panels", artReg);
             addSprite("IsabelleFrame", "char_isabelle", "panels", artReg);
             addSprite("IlyaFrame", "char_ilya", "panels", artReg);
             addSprite("JostFrame", "char_jost", "panels", artReg);
             addSprite("GaussFrame", "char_gauss", "panels", artReg);
+            addSprite("SorrelFrame", "char_sorrel", "panels", artReg);
 
             addSprite("NolaDeckFrame", "border_nola", "cardshared", artReg);
             addSprite("IsabelleDeckFrame", "border_isabelle", "cardshared", artReg);
             addSprite("IlyaDeckFrame", "border_ilya", "cardshared", artReg);
             addSprite("JostDeckFrame", "border_jost", "cardshared", artReg);
             addSprite("GaussDeckFrame", "border_gauss", "cardshared", artReg);
+            addSprite("SorrelDeckFrame", "border_sorrel", "cardshared", artReg);
 
             addSprite("NolaDefaultCardSprite", "default_nola", "cards", artReg);
             addSprite("IsabelleDefaultCardSprite", "default_isabelle", "cards", artReg);
@@ -257,6 +287,7 @@ namespace TwosCompany {
             addSprite("JostDefaultCardSpriteDown2Both", "default_jost_down2_both", "cards", artReg);
             addSprite("JostDefaultCardSpriteDown2Neither", "default_jost_down2_neither", "cards", artReg);
             addSprite("GaussDefaultCardSprite", "default_gauss", "cards", artReg);
+            addSprite("SorrelDefaultCardSprite", "default_sorrel", "cards", artReg);
             addSprite("AdaptationCardSpriteDown1", "AdaptationDown1", "cards", artReg);
             addSprite("AdaptationCardSpriteDown1Flip", "AdaptationDown1_flip", "cards", artReg);
             addSprite("NolaCardSpriteUp1", "NolaUp1", "cards", artReg);
@@ -266,9 +297,13 @@ namespace TwosCompany {
             addSprite("IsabelleFullbodySprite", "isabelle_end", "fullchars", artReg);
             addSprite("IlyaFullbodySprite", "ilya_end", "fullchars", artReg);
             addSprite("GaussFullbodySprite", "gauss_end", "fullchars", artReg);
+            addSprite("JostFullbodySprite", "jost_end", "fullchars", artReg);
+            addSprite("SorrelFullbodySprite", "sorrel_end", "fullchars", artReg);
 
             addSprite("CoreSceneNolaPeri", "core_scene_nola_peri", "bg", artReg);
             addSprite("ShipIsabelle", "ship_isabelle", "bg", artReg);
+
+            addSprite("MapBGJost", "mapBGJost", "map", artReg);
 
             addSprite("PerlinNoise", "perlinRoughNormalized", "fx", artReg);
 
@@ -287,6 +322,9 @@ namespace TwosCompany {
             foreach (String emote in gaussEmotes)
                 addCharSprite("gauss", emote, "characters", artReg);
 
+            foreach (String emote in sorrelEmotes)
+                addCharSprite("sorrel", emote, "characters", artReg);
+
             // artifact icons
             foreach (String artifact in ManifArtifactHelper.artifactNames.Keys)
                 addSprite("Icon" + artifact, string.Concat(artifact[0].ToString().ToLower(), artifact.AsSpan(1)), "artifacts", artReg);
@@ -296,6 +334,8 @@ namespace TwosCompany {
             addSprite("IconMetronomeMoved", "metronome_move", "artifacts", artReg);
             addSprite("IconFlawlessCoreOff", "flawlessCore_off", "artifacts", artReg);
             addSprite("IconRemoteStarterUsed", "remoteStarter_used", "artifacts", artReg);
+            for (int i = 1; i < 6; i++)
+                addSprite("IconAscension_" + i, "ascension_" + i, "artifacts", artReg);
 
 
         }
@@ -357,6 +397,17 @@ namespace TwosCompany {
             );
             registry.RegisterDeck(GaussDeck);
 
+            borderSprite = Sprites["SorrelDeckFrame"] ?? throw new Exception();
+            SorrelDeck = new ExternalDeck(
+                "Mezz.TwosCompany.SorrelDeck",
+                SorrelColor,
+                System.Drawing.Color.Black,
+                Sprites["SorrelDefaultCardSprite"] ?? ExternalSprite.GetRaw((int)Spr.cards_colorless),
+                borderSprite,
+                null
+            );
+            registry.RegisterDeck(SorrelDeck);
+
             if (MoreDifficultiesApi != null) {
                 MoreDifficultiesApi.RegisterAltStarters((Deck)NolaDeck.Id!, new StarterDeck() {
                     cards = new List<Card> { new CallAndResponse(), new HoldOn() }
@@ -374,37 +425,49 @@ namespace TwosCompany {
                 MoreDifficultiesApi.RegisterAltStarters((Deck)GaussDeck.Id!, new StarterDeck() {
                     cards = new List<Card> { new KineticConduit(), new StrikeTwice() }
                 });
+                MoreDifficultiesApi.RegisterAltStarters((Deck)SorrelDeck.Id!, new StarterDeck() {
+                    cards = new List<Card> { new DeusExMachina(), new FaceDownFate() }
+                });
             }
 
-            Vault.charsWithLore.Add((Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId("nola")), typeof(Deck)));
-            Vault.charsWithLore.Add((Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId("isabelle")), typeof(Deck)));
-            Vault.charsWithLore.Add((Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId("ilya")), typeof(Deck)));
-            Vault.charsWithLore.Add((Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId("gauss")), typeof(Deck)));
+            Vault.charsWithLore.Add(ManifHelper.GetDeck("nola"));
+            Vault.charsWithLore.Add(ManifHelper.GetDeck("isa"));
+            Vault.charsWithLore.Add(ManifHelper.GetDeck("ilya"));
+            Vault.charsWithLore.Add(ManifHelper.GetDeck("gauss"));
+            Vault.charsWithLore.Add(ManifHelper.GetDeck("jost"));
+            Vault.charsWithLore.Add(ManifHelper.GetDeck("sorrel"));
 
-            BGRunWin.charFullBodySprites.Add((Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId("nola")), typeof(Deck)),
+            BGRunWin.charFullBodySprites.Add(ManifHelper.GetDeck("nola"),
                 (Spr)(Manifest.Sprites["NolaFullbodySprite"].Id ?? throw new Exception("missing fullbody"))
 
             );
-            BGRunWin.charFullBodySprites.Add((Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId("isabelle")), typeof(Deck)),
+            BGRunWin.charFullBodySprites.Add(ManifHelper.GetDeck("isa"),
                 (Spr)(Manifest.Sprites["IsabelleFullbodySprite"].Id ?? throw new Exception("missing fullbody"))
             );
 
-            BGRunWin.charFullBodySprites.Add((Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId("ilya")), typeof(Deck)),
+            BGRunWin.charFullBodySprites.Add(ManifHelper.GetDeck("ilya"),
                 (Spr)(Manifest.Sprites["IlyaFullbodySprite"].Id ?? throw new Exception("missing fullbody"))
 
             );
-            BGRunWin.charFullBodySprites.Add((Deck)Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId("gauss")), typeof(Deck)),
+            BGRunWin.charFullBodySprites.Add(ManifHelper.GetDeck("gauss"),
                 (Spr)(Manifest.Sprites["GaussFullbodySprite"].Id ?? throw new Exception("missing fullbody"))
+            );
+            
+            BGRunWin.charFullBodySprites.Add(ManifHelper.GetDeck("jost"),
+                (Spr)(Manifest.Sprites["JostFullbodySprite"].Id ?? throw new Exception("missing fullbody"))
+            );
+            BGRunWin.charFullBodySprites.Add(ManifHelper.GetDeck("sorrel"),
+                (Spr)(Manifest.Sprites["SorrelFullbodySprite"].Id ?? throw new Exception("missing fullbody"))
             );
 
             // MethodInfo get_unlocked_characters_postfix = typeof(CharacterRegistry).GetMethod("GetUnlockedCharactersPostfix", BindingFlags.Static | BindingFlags.NonPublic);
-            /*
+            
             Harmony harmony = new Harmony("Mezz.TwosCompany.Harmony.Charpatch");
 
             harmony.Patch(
                 original: AccessTools.DeclaredMethod(typeof(StoryVars), nameof(StoryVars.GetUnlockedChars)),
                 postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.RelockChars))
-            );*/
+            );
         }
 
         void ICardManifest.LoadManifest(ICardRegistry registry) {
@@ -418,10 +481,13 @@ namespace TwosCompany {
                 "Jost", JostDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
             ManifHelper.DefineCards(ManifHelper.getDeckSum(3), ManifHelper.deckSize[4],
                 "Gauss", GaussDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
+            ManifHelper.DefineCards(ManifHelper.getDeckSum(4), ManifHelper.deckSize[5],
+                "Sorrel", SorrelDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
         }
 
         void IAnimationManifest.LoadManifest(IAnimationRegistry animReg) {
-            if (NolaDeck == null || IsabelleDeck == null || IlyaDeck == null || JostDeck == null || GaussDeck == null)
+            if (NolaDeck == null || IsabelleDeck == null || IlyaDeck == null || JostDeck == null || GaussDeck == null ||
+                SorrelDeck == null)
                 throw new Exception("missing deck");
 
             foreach (String emote in nolaEmotes)
@@ -438,6 +504,9 @@ namespace TwosCompany {
 
             foreach (String emote in gaussEmotes)
                 addEmoteAnim("gauss", emote, animReg, GaussDeck);
+
+            foreach (String emote in sorrelEmotes)
+                addEmoteAnim("sorrel", emote, animReg, SorrelDeck);
 
         }
 
@@ -523,6 +592,22 @@ namespace TwosCompany {
             );
 
             registry.RegisterCharacter(GaussCharacter);
+
+            SorrelCharacter = new ExternalCharacter("Mezz.TwosCompany.Character.Sorrel",
+                SorrelDeck ?? throw new Exception("Missing Deck"),
+                Sprites["SorrelFrame"] ?? throw new Exception("Missing Portrait"),
+                new Type[] { typeof(RaisedPalm), typeof(CurveTheBullet) },
+                new Type[0],
+                Animations["SorrelNeutralAnim"] ?? throw new Exception("missing default animation"),
+                Animations["SorrelMiniAnim"] ?? throw new Exception("missing mini animation"));
+
+            SorrelCharacter.AddNameLocalisation("Sorrel");
+            SorrelCharacter.AddDescLocalisation(
+                SorrelColH + "SORREL</c>\nAn anomaly. Her cards focus on " +
+                "<c=keyword>offensive</c> and <c=keyword>defensive</c> " + FrozenColH + "attack manipulation</c>, using the midrow."
+            );
+
+            registry.RegisterCharacter(SorrelCharacter);
         }
     }
 }

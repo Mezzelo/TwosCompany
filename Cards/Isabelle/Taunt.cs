@@ -12,7 +12,7 @@
             List<CardAction> actions = new List<CardAction>();
             actions.Add(new AStatus() {
                 status = Status.overdrive,
-                statusAmount = upgrade == Upgrade.B ? 3 : 2,
+                statusAmount = 2,
                 targetPlayer = false,
             });
             actions.Add(new AStatus() {

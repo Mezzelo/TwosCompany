@@ -19,6 +19,7 @@ namespace TwosCompany.Artifacts {
                     targetPlayer = false,
                     status = Status.heat,
                     statusAmount = Math.Max(state.ship.Get(Status.heat), 0),
+                    timer = 0.0,
                 });
             }
             // }

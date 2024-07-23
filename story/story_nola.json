@@ -1,6 +1,12 @@
 {
   "all": {
   
+    "mezz_Nola_UnlockMarker": {
+      "type": "event",
+      "lines": [
+      ],
+    },
+	
 	"mezz_Trio_CharStart_0": {
       "type": "event",
       "lookup": [
@@ -358,6 +364,29 @@
       "allPresent": [
         "nola",
         "gauss"
+      ]
+    },
+    "mezz_Duo_AboutToDieAndLoop_NolaSorrel": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "squint",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "side",
+        },
+      ],
+      "allPresent": [
+        "nola",
+        "sorrel"
       ]
     },
     "mezz_Duo_AboutToDieAndLoop_NolaRiggs": {
@@ -3362,6 +3391,21 @@
 			  "who": "ilya",
               "loopTag": "side",
 			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "jost",
+              "loopTag": "neutral",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "gauss",
+              "loopTag": "side",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "sorrel",
+              "loopTag": "side",
+			},
           ]
         },
       ],
@@ -3559,6 +3603,11 @@
 			  "who": "gauss",
               "loopTag": "happy",
 			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "sorrel",
+              "loopTag": "happy",
+			},
           ]
         },
       ],
@@ -3738,6 +3787,11 @@
 			  "$type": "Say, CobaltCore",
 			  "who": "gauss",
               "loopTag": "happy",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "sorrel",
+              "loopTag": "peaceful",
 			},
           ]
         },
@@ -4300,6 +4354,31 @@
       ],
       "allPresent": [
         "nola"
+      ]
+    },
+	
+    "mezz_Nola_MechaPossumShouts_Multi_0": {
+      "type": "combat",
+      "allPresent": [
+        "pirateBoss",
+        "nola"
+      ],
+      "priority": true,
+      "once": true,
+      "enemyIntent": "mechaPossumShout",
+      "oncePerRunTags": [
+        "MechaPossumShouts"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "smug",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "pirateBoss",
+        }
       ]
     },
 	

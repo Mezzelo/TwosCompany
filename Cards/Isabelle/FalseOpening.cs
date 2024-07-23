@@ -6,33 +6,37 @@ namespace TwosCompany.Cards.Isabelle {
     public class FalseOpening : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = upgrade == Upgrade.A ? 1 : 2,
+                cost = 0,
+                retain = true,
             };
         }
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
-            actions.Add(new AStatus() {
-                status = Status.tempShield,
-                statusAmount = 2,
-                mode = AStatusMode.Add,
-                targetPlayer = true,
-            });
-            actions.Add(new AStatus() {
-                status = Status.tempPayback,
-                statusAmount = 1,
-                mode = AStatusMode.Add,
-                targetPlayer = true,
-            });
-            actions.Add(new AStatus() {
-                status = Status.stunCharge,
-                statusAmount = 1,
-                mode = AStatusMode.Add,
-                targetPlayer = true,
+            if (upgrade == Upgrade.A)
+                actions.Add(new AStatus() {
+                    status = Status.tempShield,
+                    statusAmount = 2,
+                    mode = AStatusMode.Add,
+                    targetPlayer = true,
+                });
+            else if (upgrade == Upgrade.B) {
+                actions.Add(new AStatus() {
+                    status = Status.tempPayback,
+                    statusAmount = 1,
+                    mode = AStatusMode.Add,
+                    targetPlayer = true,
+                });
+                actions.Add(new AStatus() {
+                    status = Status.stunCharge,
+                    statusAmount = 1,
+                    mode = AStatusMode.Add,
+                    targetPlayer = true,
+                });
+            }
+            actions.Add(new AForceAttack() {
                 dialogueSelector = ".mezz_falseOpening",
             });
-            if (upgrade != Upgrade.B)
-                actions.Add(new AEndTurn());
             return actions;
         }
 

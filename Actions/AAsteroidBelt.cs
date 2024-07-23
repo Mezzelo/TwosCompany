@@ -7,7 +7,7 @@ namespace TwosCompany.Actions {
             bool hasSpawned = false;
             for (int i = -1; i < s.ship.parts.Count + 1; i++) {
                 if (!c.stuff.ContainsKey(s.ship.x + i) && ((c.stuff.ContainsKey(s.ship.x + i - 1) && i > 0) ||
-                        (c.stuff.ContainsKey(s.ship.x + i + 1) && i < s.ship.parts.Count))) {
+                        (c.stuff.ContainsKey(s.ship.x + i + 1) && i < s.ship.parts.Count - 1))) {
                     c.Queue(new ASpawn() {
                         fromX = i,
                         fromPlayer = true,
@@ -16,6 +16,7 @@ namespace TwosCompany.Actions {
                             bubbleShield = bubbled,
                         },
                         timer = 0.1,
+                        multiBayVolley = true,
                         dialogueSelector = hasSpawned ? null : ".mezz_asteroidField",
                     });
                     hasSpawned = true;

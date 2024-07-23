@@ -1,6 +1,12 @@
 {
   "all": {
 
+    "mezz_Jost_UnlockMarker": {
+      "type": "event",
+      "lines": [
+      ],
+    },
+	
     "ChoiceCardRewardOfYourColorChoice_Mezz.TwosCompany.JostDeck": {
       "type": "event",
       "oncePerRun": true,
@@ -95,6 +101,29 @@
       "allPresent": [
         "jost",
         "gauss"
+      ]
+    },
+	"mezz_Duo_AboutToDieAndLoop_JostSorrel": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "jost",
+          "loopTag": "forlorn",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "side",
+        }
+      ],
+      "allPresent": [
+        "jost",
+        "sorrel"
       ]
     },
     "mezz_Duo_AboutToDieAndLoop_JostRiggs": {
@@ -534,6 +563,44 @@
 		},
       ]
     },
+    "mezz_Jost_JustHit_Sorrel_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "jost",
+        "sorrel",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "sorrel",
+		  "loopTag": "happy",
+		},
+		{ "$type": "Say, CobaltCore",
+		  "who": "jost",
+		  "loopTag": "happy",
+		},
+      ]
+    },
+    "mezz_Jost_JustHit_Sorrel_1": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "jost",
+        "sorrel",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "sorrel",
+		  "loopTag": "happy",
+		},
+		{ "$type": "Say, CobaltCore",
+		  "who": "jost",
+		  "loopTag": "happy",
+		},
+      ]
+    },
     "mezz_Jost_JustHit_Books_0": {
       "type": "combat",
       "playerShotJustHit": true,
@@ -677,6 +744,46 @@
           "who": "jost",
           "loopTag": "forlorn",
           "flipped": true,
+        }, 
+      ]
+    },
+	
+	"mezz_Jost_CharStart_Sorrel_0": {
+      "type": "event",
+      "lookup": [
+        "zone_first"
+      ],
+      "requiredScenes": [
+        "mezz_Jost_CharStart_0",
+      ],
+      "bg": "BGRunStart",
+      "allPresent": [
+        "jost",
+		"sorrel",
+      ],
+      "once": true,
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "neutral",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "jost",
+          "flipped": true,
+          "loopTag": "forlorn",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "nap",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "jost",
+          "flipped": true,
+          "loopTag": "happy",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "happy",
         }, 
       ]
     },
@@ -872,7 +979,7 @@
         }, 
       ]
     },
-    "mezz_Jost_Lawless_Peri_0": {
+    "mezz_Jost_Lawless_Peri_0": {	
       "type": "event",
       "lookup": [
         "zone_lawless"
@@ -905,6 +1012,445 @@
         },
       ],
     },
+	
+    "RunWinMezzWho_Jost_1": {
+      "type": "event",
+      "bg": "TwosCompany.ModBG.BGRunWinCustom",
+      "once": true,
+      "lookup": [
+        "runWin_Mezz.TwosCompany.JostDeck"
+      ],
+      "allPresent": [
+        "jost"
+      ],
+      "lines": [
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 3
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "void",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "jost",
+          "loopTag": "neutral",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "jost",
+          "loopTag": "forlorn",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "jost",
+          "loopTag": "forlorn",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "void",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "jost",
+          "loopTag": "nap",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "jost",
+          "loopTag": "neutral",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "void",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "void",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "jost",
+          "loopTag": "nap",
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 0.5
+        },
+        {
+          "$type": "BGAction, CobaltCore",
+          "action": "glitch_cue"
+        },
+        {
+          "$type": "WaitForBG, CobaltCore"
+        },
+      ],
+    },
+	
+    "mezz_Jost_Memory_1": {
+      "type": "event",
+      "bg": "BGBlack",
+      "lookup": [
+        "vault",
+        "vault_Mezz.TwosCompany.JostDeck"
+      ],
+      "bgSetup": [
+        "ilya"
+      ],
+	  "choiceFunc": "MemChoiceIlya",
+      "lines": [
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1
+        },
+        {
+          "$type": "SetBG, CobaltCore",
+          "bg": "TwosCompany.ModBG.BGRunStartScripted"
+        },
+        {
+          "$type": "BGAction, CobaltCore",
+          "action": "silence_cue"
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "nap",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "forlorn",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "nap",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "neutral",
+        },
+      ],
+    },
+    "mezz_Jost_Memory_1_Start": {
+      "type": "event",
+      "lines": [
+        {
+          "$type": "Command, CobaltCore",
+          "name": "IlyaMem1"
+        },
+      ],
+    },
+    "mezz_Jost_Memory_1_Closer": {
+      "type": "event",
+      "lookup": [
+        "mezz_TC_Finale_Closer",
+      ],
+      "allPresent": [
+        "ilya"
+      ],
+      "bg": "BGTheCobalt",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "neutral",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "forlorn",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "nap",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "neutral",
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 2
+        },
+        {
+          "$type": "SetBG, CobaltCore",
+          "bg": "BGBlack"
+        },
+        {
+          "$type": "Command, CobaltCore",
+          "name": "MezzUnlockFinaleMem"
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 3
+        },
+      ],
+    },
+    "mezz_Jost_Memory_2": {
+      "type": "event",
+      "bg": "BGBlack",
+      "lookup": [
+        "vault",
+        "vault_Mezz.TwosCompany.JostDeck"
+      ],
+      "bgSetup": [
+        "gauss"
+      ],
+	  "choiceFunc": "MemChoiceGauss",
+      "lines": [
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1
+        },
+        {
+          "$type": "SetBG, CobaltCore",
+          "bg": "TwosCompany.ModBG.BGRunStartScripted"
+        },
+        {
+          "$type": "BGAction, CobaltCore",
+          "action": "silence_cue"
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "nap",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "nap",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "nap",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "side",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "forlorn",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        },
+      ],
+    },
+    "mezz_Jost_Memory_2_Start": {
+      "type": "event",
+      "lines": [
+        {
+          "$type": "Command, CobaltCore",
+          "name": "GaussMem1"
+        },
+      ],
+    },
+    "mezz_Jost_Memory_2_Closer": {
+      "type": "event",
+      "lookup": [
+        "mezz_TC_Finale_Closer",
+      ],
+      "allPresent": [
+        "gauss"
+      ],
+      "bg": "BGTheCobalt",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "serious",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "happy",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "happy",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "side",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "nap",
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 2
+        },
+        {
+          "$type": "SetBG, CobaltCore",
+          "bg": "BGBlack"
+        },
+        {
+          "$type": "Command, CobaltCore",
+          "name": "MezzUnlockFinaleMem"
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 3
+        },
+      ],
+    },	
+    "mezz_Jost_Memory_3": {
+      "type": "event",
+      "bg": "BGBlack",
+      "lookup": [
+        "vault",
+        "vault_Mezz.TwosCompany.JostDeck"
+      ],
+      "bgSetup": [
+        "isa"
+      ],
+	  "choiceFunc": "MemChoiceIsa",
+      "lines": [
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1
+        },
+        {
+          "$type": "SetBG, CobaltCore",
+          "bg": "TwosCompany.ModBG.BGRunStartScripted"
+        },
+        {
+          "$type": "BGAction, CobaltCore",
+          "action": "silence_cue"
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "nap",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "squint",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "glare",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "glare",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "squint",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "forlorn",
+        },
+      ],
+    },
+    "mezz_Jost_Memory_3_Start": {
+      "type": "event",
+      "lines": [
+        {
+          "$type": "Command, CobaltCore",
+          "name": "IsaMem1"
+        },
+      ],
+    },
+    "mezz_Jost_Memory_3_Closer": {
+      "type": "event",
+      "lookup": [
+        "mezz_TC_Finale_Closer",
+      ],
+      "allPresent": [
+        "isa"
+      ],
+      "bg": "BGTheCobalt",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "isa",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "forlorn",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "nap",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "isa",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "happy",
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 2
+        },
+        {
+          "$type": "SetBG, CobaltCore",
+          "bg": "BGBlack"
+        },
+        {
+          "$type": "Command, CobaltCore",
+          "name": "MezzUnlockFinaleMem"
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 3
+        },
+      ],
+    },	
 	
     "mezz_Jost_ArtifactAresCannon": {
       "type": "combat",

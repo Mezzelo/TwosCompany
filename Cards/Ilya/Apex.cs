@@ -15,7 +15,7 @@
             if (upgrade == Upgrade.B)
                 freezeAmount = 4;
             actions.Add(new AAttack() {
-                damage = GetDmg(s, 3),
+                damage = GetDmg(s, 2),
                 status = Status.lockdown,
                 statusAmount = 1,
                 targetPlayer = false,

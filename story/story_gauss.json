@@ -1,6 +1,12 @@
 {
   "all": {
   
+    "mezz_Gauss_UnlockMarker": {
+      "type": "event",
+      "lines": [
+      ],
+    },
+  
     "ChoiceCardRewardOfYourColorChoice_Mezz.TwosCompany.GaussDeck": {
       "type": "event",
       "oncePerRun": true,
@@ -74,6 +80,31 @@
       ]
     },
   
+    "mezz_Duo_AboutToDieAndLoop_GaussSorrel": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "side",
+        },
+      ],
+      "allPresent": [
+        "gauss",
+        "sorrel"
+      ]
+    },
     "mezz_Duo_AboutToDieAndLoop_GaussRiggs": {
       "type": "combat",
       "enemyShotJustHit": true,
@@ -626,6 +657,36 @@
       "lines": [
 		{ "$type": "Say, CobaltCore",
 		  "who": "jost",
+		  "loopTag": "happy"
+		},
+      ]
+    },
+    "mezz_Gauss_JustHit_Sorrel_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "gauss",
+        "sorrel",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "sorrel",
+		  "loopTag": "happy"
+		},
+      ]
+    },
+    "mezz_Gauss_JustHit_Sorrel_1": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "gauss",
+        "sorrel",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "sorrel",
 		  "loopTag": "happy"
 		},
       ]
@@ -3787,6 +3848,31 @@
         "gauss"
       ]
     },		
+	
+    "mezz_Gauss_MechaPossumShouts_Multi_0": {
+      "type": "combat",
+      "allPresent": [
+        "pirateBoss",
+        "gauss"
+      ],
+      "priority": true,
+      "once": true,
+      "enemyIntent": "mechaPossumShout",
+      "oncePerRunTags": [
+        "MechaPossumShouts"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "pirateBoss",
+        }
+      ]
+    },
 	
     "mezz_Gauss_Pirate_0": {
       "type": "event",

@@ -18,7 +18,7 @@ namespace TwosCompany.Cards.Jost {
 
             actions.Add(new AStatus() {
                 status = Status.shield,
-                statusAmount = upgrade == Upgrade.A ? 4 : 5,
+                statusAmount = upgrade == Upgrade.A ? 4 : 6,
                 targetPlayer = true,
                 disabled = Stance.Get(s) % 2 != 1,
                 dialogueSelector = Stance.Get(s) % 2 != 1 ? null : ".mezz_commit",
@@ -36,7 +36,7 @@ namespace TwosCompany.Cards.Jost {
             actions.Add(new ADummyAction());
 
             actions.Add(new AAttack() {
-                damage = GetDmg(s, upgrade == Upgrade.A ? 4 : 5),
+                damage = GetDmg(s, upgrade == Upgrade.A ? 4 : 6),
                 disabled = Stance.Get(s) < 2,
                 dialogueSelector = Stance.Get(s) < 2 ? null : ".mezz_commit",
             });

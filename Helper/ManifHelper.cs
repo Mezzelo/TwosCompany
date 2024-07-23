@@ -17,12 +17,13 @@ namespace TwosCompany.Helper {
             31,
             25,
             28,
+            23,
             23
         };
         public static int getDeckSum(int index) => deckSize[index] + (index > 0 ? getDeckSum(index - 1) : 0);
 
         public static Dictionary<string, string> cardNames = new Dictionary<string, string> {
-            // 0-23 Nola
+            // Nola
             { "Adaptation", "Adaptation"},
             { "Anticipation", "Anticipation"},
             { "AllHands", "All Hands"},
@@ -47,7 +48,7 @@ namespace TwosCompany.Helper {
             { "SteadyOn", "Steady On"},
             { "SuddenShift", "Sudden Shift"},
             { "WeakPoint", "Weak Point"},
-            // 22-49: Isabelle
+            // Isabelle
             { "BladeDance", "Blade Dance"},
             { "Bind", "Bind"},
             { "Cascade", "Cascade"},
@@ -79,7 +80,7 @@ namespace TwosCompany.Helper {
             { "WildStrikes", "Wild Strikes"},
             { "WildStrike", "Wild Strike"},
             { "WildDodge", "Wild Dodge"},
-            // 49 - 71: Ilya
+            // Ilya
             { "Apex", "Apex"},
             { "Backdraft", "Backdraft"},
             { "BlastShield", "Blast Shield"},
@@ -105,7 +106,7 @@ namespace TwosCompany.Helper {
             { "ThermalBlast", "Thermal Blast"},
             { "ThermalRunaway", "Thermal Runaway"},
             { "Wildfire", "Wildfire"},
-            // 72 - 95: Jost
+            // Jost
             { "Backstep", "Backstep"},
             { "BattleTempo", "Battle Tempo"},
             { "BreatheIn", "Breathe In"},
@@ -134,7 +135,7 @@ namespace TwosCompany.Helper {
             { "RushOfBattle", "Rush of Battle"},
             { "StandFirm", "Stand Firm"},
             { "SweepingStrikes", "Sweeping Strikes"}, 
-            // 96 - 117: Gauss
+            // Gauss
             { "AsteroidBelt", "Asteroid Belt" },
             { "Autocurrent", "Autocurrent" },
             { "BlindGrab", "Whatever Works" },
@@ -158,6 +159,30 @@ namespace TwosCompany.Helper {
             { "StrikeTwice", "Strike Twice" },
             { "Tempest", "Tempest" },
             { "TremblingAirs", "Trembling Airs" },
+            // sorrel
+            { "CarveReality", "Carve Reality" },
+            { "Collapse", "Waterfall" },
+            { "CurveTheBullet", "Curve the Bullet" },
+            { "DeusExMachina", "Deus Ex Machina" },
+            { "EveryFrameAPainting", "Every Frame a Painting" },
+            { "EveryonesGrudge", "Everyone's Grudge" },
+            { "Exhale", "Exhale" },
+            { "FaceDownFate", "Face Down Fate" },
+            { "FrozenInMotion", "World in Motion" },
+            { "InDueTime", "In Due Time" },
+            { "Inevitability", "Inevitability" },
+            { "Karma", "Karma" },
+            { "LikeTears", "Azoth" },
+            { "MorningDew", "Morning Dew" },
+            { "Postpone", "Postpone" },
+            { "RaisedPalm", "Raised Palm" },
+            { "RavagesOfTime", "Ravages of Time" },
+            { "Shatter", "Shatter" },
+            { "SummerBeforeFall", "Summer Before Fall" },
+            { "ThingsFallApart", "Things Fall Apart" },
+            { "TimeHealsAll", "Time Heals All" },
+            { "VoidSermon", "Void Sermon" },
+            { "WaveOfTheHand", "Wave of the Hand" },
 
         };
 
@@ -241,6 +266,30 @@ namespace TwosCompany.Helper {
             "StrengtheningStrikes",
             "SweepingStrikes",
             "Windup",
+
+            "CarveReality",
+            "Collapse",
+            "CurveTheBullet",
+            "DeusExMachina",
+            "EveryFrameAPainting",
+            "EveryonesGrudge",
+            "Exhale",
+            "FaceDownFate",
+            "FrozenInMotion",
+            "InDueTime",
+            "Inevitability",
+            "Karma",
+            "LikeTears",
+            "MorningDew",
+            "Postpone",
+            "RaisedPalm",
+            "RavagesOfTime",
+            "Shatter",
+            "SummerBeforeFall",
+            "ThingsFallApart",
+            "TimeHealsAll",
+            "VoidSermon",
+            "WaveOfTheHand",
         };
 
         public static string[] defaultJost = new string[] {
@@ -263,7 +312,7 @@ namespace TwosCompany.Helper {
             {"AsteroidBeltB", "Surround all <c=midrow>midrow objects</c> over your ship with <c=keyword>bubbled</c> <c=midrow>asteroids.</c>"},
             {"BattlePlan", "Copy your hand on top of the <c=keyword>draw pile</c> with <c=cardtrait>temp</c> and <c=cardtrait>exhaust</c>."},
             {"BattlePlanA", "Copy your hand on top of the <c=keyword>draw pile</c> with <c=cardtrait>temp</c> and <c=cardtrait>exhaust</c>."},
-            {"BattlePlanB", "Copy your hand on top of the <c=keyword>draw pile</c> with <c=cardtrait>temp</c> and <c=cardtrait>exhaust</c>."},
+            {"BattlePlanB", "Copy your hand on top of the <c=keyword>draw pile</c> with <c=cardtrait>temp</c>."},
             {"BladeDance", "Put 2 <c=cardtrait>temp</c>, <c=cardtrait>discounted</c> <c=cardtrait>exhaustable</c> <c=card>Flourishes</c> in your hand."},
             {"BladeDanceA", "Put 2 <c=cardtrait>temp</c>, <c=cardtrait>discounted</c> <c=cardtrait>exhaustable</c> <c=card>Flourish As</c> in your hand."},
             {"BladeDanceB", "Put 3 <c=cardtrait>temp</c>, <c=cardtrait>discounted</c> <c=cardtrait>exhaustable</c> <c=card>Flourishes</c> in your hand."},
@@ -279,21 +328,33 @@ namespace TwosCompany.Helper {
             {"Cascade", "Attack for <c=hurt>{1}</c> damage and move <c=keyword>{0}</c>, until you miss or fail to move."},
             {"CascadeA", "Attack for <c=hurt>{1}</c> damage and move <c=keyword>{0}</c>, until you miss or fail to move."},
             {"CascadeB", "Attack for <c=hurt>{1}</c> damage and move <c=keyword>{0}</c>, until you miss or fail to move."},
+            {"Collapse", "Combine all adjacent " + Manifest.FrozenColH + "frozen attacks</c> to their <c=keyword>{0}</c>."},
+            {"CollapseA", "Combine all adjacent " + Manifest.FrozenColH + "frozen attacks</c> to their <c=keyword>{0}</c>."},
+            {"CollapseB", "Combine all adjacent " + Manifest.FrozenColH + "frozen attacks</c> to their <c=keyword>{0}</c>."},
             {"CompoundAttack", "Add 4 <c=card>Jabs</c> to your hand. One is a <c=card>Fleche</c> in disguise."},
-            {"CompoundAttackA", "Add 3 <c=card>Jabs</c> to your hand. One is a <c=card>Fleche</c> in disguise."},
+            {"CompoundAttackA", "Add 4 <c=card>Jabs</c> to your hand. One is a <c=card>Fleche</c> in disguise."},
             {"CompoundAttackB", "Add 4 <c=card>Jab B</c>s to your hand. One is a <c=card>Fleche B</c>. Cards <c=downside>don't undisguise.</c>"},
             {"Couch", "Deal <c=hurt>damage</c> equal to total dist. moved with this card in\nhand{0}."},
-            {"CouchA", "Deal <c=hurt>damage</c> equal to <c=keyword>2x</c> total dist. moved with this card in\nhand{0}."},
+            {"CouchA", "Deal <c=hurt>damage</c> equal to total dist. moved with this card in\nhand{0}."},
             {"CouchB", "Deal <c=hurt>damage</c> equal to total dist. moved with this card in\nhand{0}."},
             {"DoubleDown", "Increase your current status effects by <c=keyword>1</c>."},
             {"DoubleDownA", "Increase your current status effects by <c=keyword>1</c>."},
             {"DoubleDownB", "<c=keyword>Double</c> your current status effects."},
+            {"EveryonesGrudge", "Set <c=status>bullet time</c> to 2 and add a <c=card>Karma</c> to the top of draw."},
+            {"EveryonesGrudgeA", "Set <c=status>bullet time</c> to 2 and add a <c=card>Karma A</c> to the top of draw."},
+            {"EveryonesGrudgeB", "Set <c=status>bullet time</c> to 2 and add a <c=card>Karma B</c> to the top of draw."},
+            {"Expand", "All " + Manifest.FrozenColH + "frozen attacks</c> expand <c=keyword>{0}</c> into 1 dmg attacks."},
+            {"ExpandA", "All " + Manifest.FrozenColH + "frozen attacks</c> expand <c=keyword>{0}</c> into 1 dmg attacks."},
+            {"ExpandB", "All " + Manifest.FrozenColH + "frozen attacks</c> expand <c=keyword>{0}</c> into 1 dmg attacks."},
             {"Foresight", "Choose <c=keyword>3</c> cards in your <c=keyword>draw pile</c> to <c=keyword>discard</c>. Draw <c=keyword>1</c> card."},
             {"ForesightA", "Choose <c=keyword>3</c> cards in your <c=keyword>draw pile</c> to <c=keyword>discard</c>. Draw <c=keyword>2</c>."},
             {"ForesightB", "<c=keyword>Exhaust 1</c> and <c=keyword>discard 2</c> cards in your <c=keyword>draw pile</c>. Draw <c=keyword>1</c> card."},
             {"Guidance", "<c=keyword>Upgrade</c> all unupgraded cards in hand to <c=card>A</c> this\ncombat."},
             {"GuidanceA", "<c=keyword>Upgrade</c> all unupgraded cards in hand to <c=card>A</c> this\ncombat."},
             {"GuidanceB", "<c=keyword>Upgrade</c> all unupgraded cards in hand to <c=card>B</c> this\ncombat."},
+            {"Karma", "Reverse all " + Manifest.FrozenColH + "frozen attacks</c>."},
+            {"KarmaA", "Reverse all " + Manifest.FrozenColH + "frozen attacks</c>."},
+            {"KarmaB", "<c=downside>Force enemy to attack</c>, then reverse all " + Manifest.FrozenColH + "frozen attacks</c>."},
             {"LatentEnergy", "Put a <c=cardtrait>temp discounted</c> <c=card>Spark</c> in your hand."},
             {"LatentEnergyA", "Put a <c=cardtrait>temp discounted</c> <c=card>Spark</c> in your hand."},
             {"LatentEnergyB", "Put a <c=cardtrait>temp discounted</c> <c=card>Spark B</c> in your hand."},
@@ -314,16 +375,22 @@ namespace TwosCompany.Helper {
             {"RuminateB", "Move <c=keyword>2</c> cards to the top of your draw pile and discount them by <c=energy>1</c>."},
             {"RushOfBattle", "Put 3 <c=cardtrait>temp</c> <c=card>Heartbeats</c> in your hand."},
             {"RushOfBattleA", "Put 3 <c=cardtrait>temp</c> <c=card>Heartbeats</c> in your hand."},
-            {"RushOfBattleB", "Put 3 <c=cardtrait>temp</c> <c=card>Heartbeats</c> in your hand. They retain until played."},
+            {"RushOfBattleB", "Put 3 <c=cardtrait>temp</c> <c=card>Heartbeats</c> in your hand. They <c=keyword>retain</c> until played."},
             {"FlexibleDodge", "<c=keyword>Flip</c> to change <c=keyword>autododge</c> direction. <c=keyword>Play</c> to avoid gaining <c=keyword>autododge</c>."},
             {"FlexibleDodgeA", "<c=keyword>Flip</c> to change <c=keyword>autododge</c> direction. <c=keyword>Play</c> to avoid gaining <c=keyword>autododge</c>."},
             {"FlexibleDodgeB", "<c=keyword>Flip</c> to change <c=keyword>autododge</c> direction. <c=keyword>Play</c> to avoid gaining <c=keyword>autododge</c>."},
-            {"Tempest", "Put 3 <c=cardtrait>temp</c> <c=card>Sparks</c> in your draw pile."},
-            {"TempestA", "Put 3 <c=cardtrait>temp</c> <c=card>Sparks</c> in your hand."},
-            {"TempestB", "Put 3 <c=cardtrait>temp discounted</c> <c=card>Sparks</c> in your draw pile."},
+            {"Shatter", "Add <c=keyword>weaken</c> to all outgoing " + Manifest.FrozenColH + "frozen attacks</c>."},
+            {"ShatterA", "Add <c=keyword>weaken</c> to all outgoing " + Manifest.FrozenColH + "frozen attacks</c>."},
+            {"ShatterB", "Add <c=downside>armorize</c> to ALL " + Manifest.FrozenColH + "frozen attacks</c>."},
+            {"Tempest", "Put 3 <c=cardtrait>temp</c> <c=card>Sparks</c> in your <c=keyword>draw pile</c>."},
+            {"TempestA", "Put 3 <c=cardtrait>temp</c> <c=card>Sparks</c> in your <c=keyword>hand</c>."},
+            {"TempestB", "Put 3 <c=cardtrait>temp discounted</c> <c=card>Sparks</c> in your <c=keyword>draw pile</c>."},
             {"TremblingAirs", "Move all " + Manifest.ChainColH +"chain lightning</c> cards to hand."},
             {"TremblingAirsA", "Move all " + Manifest.ChainColH + "chain lightning</c> cards to hand."},
             {"TremblingAirsB", "Move all " + Manifest.ChainColH + "lightning</c> cards to hand and discount them by 1."},
+            {"VoidSermon", "<c=keyword>{0}</c> the damage of all" + Manifest.FrozenColH + " frozen attacks</c>."},
+            {"VoidSermonA", "<c=keyword>{0}</c> the damage of all" + Manifest.FrozenColH + " frozen attacks</c>."},
+            {"VoidSermonB", "<c=keyword>{0}</c> the damage of all" + Manifest.FrozenColH + " frozen attacks</c>."},
             {"Wildfire", "Play your hand from <c=card>{0}</c> to <c=card>{1}</c>. Gain <c=downside>heat</c> for each card."},
             {"WildfireA", "Play your hand from <c=card>{0}</c> to <c=card>{1}</c>. Gain <c=downside>heat</c> for each, then lose 2."},
             {"WildfireB", "Play your hand from <c=card>{0}</c> to <c=card>{1}</c>. Gain <c=downside>heat</c> for each card."},
@@ -336,6 +403,7 @@ namespace TwosCompany.Helper {
             { "ilya", "Mezz.TwosCompany.IlyaDeck" },
             { "jost", "Mezz.TwosCompany.JostDeck" },
             { "gauss", "Mezz.TwosCompany.GaussDeck" },
+            { "sorrel", "Mezz.TwosCompany.SorrelDeck" },
             { "johanna", "JohannaTheTrucker.JohannaDeck" },
             { "jo", "JohannaTheTrucker.JohannaDeck" }
         };
@@ -350,8 +418,13 @@ namespace TwosCompany.Helper {
                 return (int)Manifest.JostDeck!.Id!;
             else if (deck == "gauss")
                 return (int)Manifest.GaussDeck!.Id!;
+            else if (deck == "sorrel")
+                return (int)Manifest.SorrelDeck!.Id!;
             return 0;
         }
+
+        public static Deck GetDeck(string deckString) =>
+            (Deck) Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId(deckString)), typeof(Deck));
 
         public static int numCards() {
             return cardNames.Keys.Count;

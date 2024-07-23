@@ -1,5 +1,12 @@
 {
   "all": {
+  
+    "mezz_Isa_UnlockMarker": {
+      "type": "event",
+      "lines": [
+      ],
+    },
+	
     "ChoiceCardRewardOfYourColorChoice_Mezz.TwosCompany.IsabelleDeck": {
       "type": "event",
       "oncePerRun": true,
@@ -72,7 +79,6 @@
         "isa"
       ]
     },
-  
 
     "mezz_Duo_AboutToDieAndLoop_IsaIlya": {
       "type": "combat",
@@ -141,6 +147,29 @@
       "allPresent": [
         "isa",
         "gauss"
+      ]
+    },
+	"mezz_Duo_AboutToDieAndLoop_IsaSorrel": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "side",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "angry",
+        }
+      ],
+      "allPresent": [
+        "isa",
+        "sorrel"
       ]
     },
     "mezz_Duo_AboutToDieAndLoop_IsaRiggs": {
@@ -665,11 +694,61 @@
       ],
       "lines": [
 		{ "$type": "Say, CobaltCore",
-		  "who": "gauss",
+		  "who": "isa",
 		  "loopTag": "happy",
 		},
       ]
     },
+    "mezz_Isa_JustHit_Sorrel_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "isa",
+        "sorrel",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "sorrel",
+		  "loopTag": "happy",
+		},
+      ]
+    },
+    "mezz_Isa_JustHit_Sorrel_1": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "isa",
+        "sorrel",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "sorrel",
+		  "loopTag": "happy",
+		},
+		{ "$type": "Say, CobaltCore",
+		  "who": "isa",
+		  "loopTag": "happy",
+		},
+      ]
+    },
+    "mezz_Isa_JustHit_Sorrel_2": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "isa",
+        "sorrel",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "sorrel",
+		  "loopTag": "happy",
+		},
+      ]
+    },
+	
     "mezz_Isa_JustHit_Books_0": {
       "type": "combat",
       "playerShotJustHit": true,
@@ -996,6 +1075,42 @@
           "who": "isa",
           "loopTag": "snide",
           "flipped": true,
+        }, 
+      ]
+    },
+	"mezz_Isa_CharStart_Sorrel_0": {
+      "type": "event",
+      "lookup": [
+        "zone_first"
+      ],
+      "bg": "BGRunStart",
+      "allPresent": [
+        "isa",
+		"sorrel",
+      ],
+      "once": true,
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "side",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "forlorn",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "isa",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "snide",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "happy",
         }, 
       ]
     },
@@ -2600,6 +2715,41 @@
               "$type": "Say, CobaltCore",
               "who": "isa",
 			  "loopTag": "glare"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "isa",
+			  "loopTag": "happy"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "isa"
+      ]
+    },
+	"mezz_Isa_Card_BladeDance": {
+      "type": "combat",
+      "lookup": [
+        "mezz_bladeDance"
+      ],
+      "oncePerCombatTags": [
+        "mezz_BladeDance"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "isa",
+			  "loopTag": "happy"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "isa",
+			  "loopTag": "happy"
             },
             {
               "$type": "Say, CobaltCore",
@@ -4466,6 +4616,31 @@
             }
           ]
         },
+      ]
+    },
+	
+    "mezz_Isa_MechaPossumShouts_Multi_0": {
+      "type": "combat",
+      "allPresent": [
+        "pirateBoss",
+        "isa"
+      ],
+      "priority": true,
+      "once": true,
+      "enemyIntent": "mechaPossumShout",
+      "oncePerRunTags": [
+        "MechaPossumShouts"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "snide",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "pirateBoss",
+        }
       ]
     },
 	

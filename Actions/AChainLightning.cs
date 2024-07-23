@@ -88,8 +88,8 @@ namespace TwosCompany.Actions {
             }
             else {
                 Input.Rumble(0.5);
-                bool stun = ship2.Get((Status)Manifest.Statuses?["ElectrocuteCharge"].Id!) > 0 ||
-                    ship2.Get(Status.stunCharge) > 0 || stunEnemy;
+                bool fromElectrocute = !stunEnemy && ship2.Get((Status)Manifest.Statuses?["ElectrocuteCharge"].Id!) > 0;
+                bool stunFromCharge = !stunEnemy && ship2.Get(Status.stunCharge) > 0;
                 bool piercing = false;
                 bool flag = ship2.Get(Status.libra) > 0;
                 RaycastResult raycastResult = CombatUtils.RaycastFromShipLocal(s, c, num.Value, targetPlayer);
@@ -121,7 +121,7 @@ namespace TwosCompany.Actions {
                         targetPlayer = this.targetPlayer,
                         fromX = raycastResult.worldX,
                         piercing = piercing,
-                        stun = stun,
+                        stun = stunEnemy || fromElectrocute || stunFromCharge,
                         fromDrone = false,
                         timer = this.fast ? 0.1 : 0.4,
                     });
@@ -207,6 +207,8 @@ namespace TwosCompany.Actions {
                         if (invincible) {
                             if (!c.stuff[i].bubbleShield && bubbleDown)
                                 c.stuff[i].bubbleShield = true;
+                            if (c.stuff[i] is FrozenAttack fAttack && !c.stuff[i].bubbleShield && !hadBubble)
+                                fAttack.unfreeze = true;
                             List<CardAction>? invulActions = c.stuff[i].GetActionsOnShotWhileInvincible(s, c, !this.targetPlayer, cDamage - 1);
                             if (invulActions != null) {
                                 invulActions.Reverse();
@@ -297,7 +299,7 @@ namespace TwosCompany.Actions {
                                 targetPlayer = this.targetPlayer,
                                 fromX = cRoute[n],
                                 piercing = piercing,
-                                stun = stun,
+                                stun = stunEnemy || fromElectrocute || stunFromCharge,
                                 fromDrone = true,
                                 timer = (n == cRoute.Count - 1) ? 0.4 : 0.0,
                             });
@@ -328,7 +330,7 @@ namespace TwosCompany.Actions {
 
                     timer = 0.0;
                 }
-                if (stun) {
+                if (fromElectrocute || stunFromCharge) {
                     if (ship2.Get((Status)Manifest.Statuses?["ElectrocuteCharge"].Id!) > 0) {
                         ship2.Add((Status)Manifest.Statuses?["ElectrocuteCharge"].Id!, -1);
                         ship2.Add((Status)Manifest.Statuses?["ElectrocuteChargeSpent"].Id!, 1);
@@ -343,7 +345,8 @@ namespace TwosCompany.Actions {
                 if (ship2.Get((Status)Manifest.Statuses?["HeatFeedback"].Id!) > 0) {
                     ship2.PulseStatus((Status)Manifest.Statuses?["HeatFeedback"].Id!);
                     ship2.Add((Status)Manifest.Statuses?["HeatFeedback"].Id!, -1);
-                    ship2.Add(Status.heat, 1);
+                    ship2.Add(Status.heat, 1 + ship2.Get(Status.boost));
+                    ship2.Set(Status.boost, 0);
                 }
                 if (!targetPlayer) {
                     if (flag)

@@ -13,7 +13,7 @@ namespace TwosCompany.Cards.Isabelle {
                 cardText = Loc.GetLocString(Manifest.Cards?["CompoundAttack"].DescBLocKey ?? throw new Exception("Missing card description"));
 
             return new CardData() {
-                cost = 1,
+                cost = upgrade == Upgrade.A ? 0 : 1,
                 description = cardText,
                 exhaust = upgrade == Upgrade.B
             };
@@ -22,7 +22,7 @@ namespace TwosCompany.Cards.Isabelle {
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            int count = upgrade == Upgrade.A ? 2 : 3;
+            int count = 3;
 
 
             actions.Add(new ADrawOneOfTwo() {

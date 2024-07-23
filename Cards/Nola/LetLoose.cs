@@ -14,7 +14,6 @@ namespace TwosCompany.Cards.Nola {
 
             return new CardData() {
                 cost = 1,
-                retain = upgrade != Upgrade.B,
                 description = cardText,
                 exhaust = upgrade == Upgrade.B,
             };

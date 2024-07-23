@@ -20,7 +20,7 @@ namespace TwosCompany.Cards.Isabelle {
                     GetDistanceString(state));
 
             return new CardData() {
-                cost = upgrade == Upgrade.None ? 1 : 2,
+                cost = upgrade == Upgrade.A ? 1 : (upgrade == Upgrade.B ? 3 : 2),
                 exhaust = upgrade == Upgrade.B,
                 retain = upgrade == Upgrade.B,
                 description = cardText,
@@ -42,7 +42,7 @@ namespace TwosCompany.Cards.Isabelle {
         }
         private int GetDistance(State s) {
             if (s.route is Combat)
-                return dist * (upgrade == Upgrade.A ? 2 : 1);
+                return dist;
             return 0;
         }
 

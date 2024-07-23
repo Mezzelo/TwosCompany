@@ -1,4 +1,4 @@
-# Two's Company 2.5.1 - for game version 1.1
+# Two's Company 3.0.0 - for game version 1.1.2
 
 A mod for Cobalt Core, featuring My bingus blorbos.
 

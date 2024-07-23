@@ -8,5 +8,6 @@ namespace TwosCompany {
         public ExternalDeck IlyaDeck => Manifest.IlyaDeck!;
         public ExternalDeck JostDeck => Manifest.JostDeck!;
         public ExternalDeck GaussDeck => Manifest.GaussDeck!;
+        public ExternalDeck SorrelDeck => Manifest.SorrelDeck!;
     }
 }

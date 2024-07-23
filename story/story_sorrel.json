@@ -1,0 +1,3362 @@
+{
+  "all": {
+  
+    "mezz_Sorrel_UnlockMarker": {
+      "type": "event",
+      "lines": [
+      ],
+    },
+  
+    "ChoiceCardRewardOfYourColorChoice_Mezz.TwosCompany.SorrelDeck": {
+      "type": "event",
+      "oncePerRun": true,
+      "bg": "BGBootSequence",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "neutral",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "LoseCharacterCard_Mezz.TwosCompany.SorrelDeck": {
+      "type": "event",
+      "oncePerRun": true,
+      "bg": "BGSupernova",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "nap",
+        },
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "CrystallizedFriendEvent_sorrelID": {
+      "type": "event",
+      "oncePerRun": true,
+      "bg": "BGCrystalizedFriend",
+      "lines": [
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1.5
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+		  "loopTag": "neutral"
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "CrystallizedFriendEvent_Mezz.TwosCompany.SorrelDeck": {
+      "type": "event",
+      "oncePerRun": true,
+      "bg": "BGCrystalizedFriend",
+      "lines": [
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1.5
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+		  "loopTag": "neutral"
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+
+    "mezz_Duo_AboutToDieAndLoop_SorrelRiggs": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "riggs",
+          "loopTag": "nervous",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "side",
+        },
+      ],
+      "allPresent": [
+        "sorrel",
+        "riggs"
+      ]
+    },
+    "mezz_Duo_AboutToDieAndLoop_SorrelPeri": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "nap",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "peri",
+          "loopTag": "mad",
+        }
+      ],
+      "allPresent": [
+        "sorrel",
+        "peri"
+      ]
+    },
+    "mezz_Duo_AboutToDieAndLoop_SorrelDizzy": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "dizzy",
+          "loopTag": "frown",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "angry",
+        }
+      ],
+      "allPresent": [
+        "sorrel",
+        "dizzy"
+      ]
+    },
+    "mezz_Duo_AboutToDieAndLoop_SorrelIsaac": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "angry",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "goat",
+          "loopTag": "panic",
+        }
+      ],
+      "allPresent": [
+        "sorrel",
+        "goat"
+      ]
+    },
+    "mezz_Duo_AboutToDieAndLoop_SorrelDrake": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "mad",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "angry",
+        },
+      ],
+      "allPresent": [
+        "sorrel",
+        "eunice"
+      ]
+    },
+    "mezz_Duo_AboutToDieAndLoop_SorrelMax": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "hacker",
+          "loopTag": "mad",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "angry",
+        }
+      ],
+      "allPresent": [
+        "sorrel",
+        "hacker"
+      ]
+    },
+    "mezz_Duo_AboutToDieAndLoop_SorrelBooks": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "shard",
+          "loopTag": "intense",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "happy",
+        }
+      ],
+      "allPresent": [
+        "sorrel",
+        "shard"
+      ]
+    },
+    "mezz_Duo_AboutToDieAndLoop_SorrelComp": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxHull": 2,
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "squint",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "angry",
+        }
+      ],
+      "allPresent": [
+        "sorrel",
+        "comp"
+      ]
+    },
+  
+	"mezz_Sorrel_CharStart_0": {
+      "type": "event",
+      "lookup": [
+        "zone_first"
+      ],
+      "bg": "BGRunStart",
+      "allPresent": [
+        "sorrel"
+      ],
+      "once": true,
+      "priority": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "comp",
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "worried",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "flipped": true,
+          "loopTag": "happy",
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "comp",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "flipped": true,
+          "loopTag": "peaceful",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "flipped": true,
+          "loopTag": "neutral",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "flipped": true,
+          "loopTag": "neutral",
+        }, 
+        { "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "squint",
+        }, 
+      ]
+    },
+  
+	"mezz_Sorrel_CharStart_Drake_0": {
+      "type": "event",
+      "lookup": [
+        "zone_first"
+      ],
+      "bg": "BGRunStart",
+      "allPresent": [
+        "sorrel",
+		"eunice",
+      ],
+      "once": true,
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "mad",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "squint",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "sly",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "flipped": true,
+          "loopTag": "side",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "sly",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "flipped": true,
+          "loopTag": "side",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "sly",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "flipped": true,
+          "loopTag": "side",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "slyBlush",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "flipped": true,
+          "loopTag": "side",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "squint",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "flipped": true,
+          "loopTag": "happy",
+        }, 
+      ]
+    },
+	"mezz_Sorrel_CharStart_Max_0": {
+      "type": "event",
+      "lookup": [
+        "zone_first"
+      ],
+      "bg": "BGRunStart",
+      "allPresent": [
+        "sorrel",
+		"hacker",
+      ],
+      "once": true,
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+          "who": "hacker",
+          "loopTag": "mad",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "flipped": true,
+          "loopTag": "side",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "hacker",
+          "loopTag": "squint",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "side",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "hacker",
+          "loopTag": "neutral",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "side",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "neutral",
+          "flipped": true,
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "hacker",
+          "loopTag": "mad",
+        }, 
+      ]
+    },
+	"mezz_Sorrel_CharStart_Books_0": {
+      "type": "event",
+      "lookup": [
+        "zone_first"
+      ],
+      "bg": "BGRunStart",
+      "allPresent": [
+        "sorrel",
+		"shard",
+      ],
+      "once": true,
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+          "who": "shard",
+          "loopTag": "paw",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "shard",
+          "loopTag": "squint",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "flipped": true,
+          "loopTag": "happy",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "flipped": true,
+          "loopTag": "neutral",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "flipped": true,
+          "loopTag": "side",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "shard",
+          "loopTag": "squint",
+        }, 
+		{ "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "flipped": true,
+          "loopTag": "happy",
+        }, 
+      ]
+    },
+  
+    "RunWinMezzWho_Sorrel_1": {
+      "type": "event",
+      "bg": "TwosCompany.ModBG.BGRunWinCustom",
+      "once": true,
+      "lookup": [
+        "runWin_Mezz_Glitch_Sorrel"
+      ],
+      "allPresent": [
+        "sorrel"
+      ],
+      "choiceFunc": "RunWinWho",
+      "lines": [
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1.0
+        },
+        {
+          "$type": "BGAction, CobaltCore",
+          "action": "glitch_cue"
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 3.0
+        },
+        {
+          "$type": "BGAction, CobaltCore",
+          "action": "runwinwho_reset"
+        },
+      ],
+    },
+  
+    "mezz_Sorrel_Memory_1": {
+      "type": "event",
+      "bg": "BGBlack",
+      "lookup": [
+        "vault",
+        "vault_Mezz.TwosCompany.SorrelDeck"
+      ],
+      "bgSetup": [
+        "jost"
+      ],
+	  "choiceFunc": "MemChoiceJost",
+      "lines": [
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1
+        },
+        {
+          "$type": "SetBG, CobaltCore",
+          "bg": "TwosCompany.ModBG.BGRunStartScripted"
+        },
+        {
+          "$type": "BGAction, CobaltCore",
+          "action": "silence_cue"
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "jost",
+          "loopTag": "nap",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "jost",
+          "loopTag": "squint",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "jost",
+          "loopTag": "neutral",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "jost",
+          "loopTag": "forlorn",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "jost",
+          "loopTag": "forlorn",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "jost",
+          "loopTag": "neutral",
+        },
+      ],
+    },
+    "mezz_Sorrel_Memory_1_Start": {
+      "type": "event",
+      "lines": [
+        {
+          "$type": "Command, CobaltCore",
+          "name": "JostMem1"
+        },
+      ],
+    },
+    "mezz_Sorrel_Memory_1_Closer": {
+      "type": "event",
+      "lookup": [
+        "mezz_TC_Finale_Closer",
+      ],
+      "allPresent": [
+        "jost"
+      ],
+      "bg": "BGTheCobalt",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "jost",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "jost",
+          "loopTag": "forlorn",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "jost",
+          "loopTag": "nap",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "jost",
+          "loopTag": "forlorn",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "jost",
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 2
+        },
+        {
+          "$type": "SetBG, CobaltCore",
+          "bg": "BGBlack"
+        },
+        {
+          "$type": "Command, CobaltCore",
+          "name": "MezzUnlockFinaleMem"
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 3
+        },
+      ],
+    },	
+    "mezz_Sorrel_Memory_2": {
+      "type": "event",
+      "bg": "BGBlack",
+      "lookup": [
+        "vault",
+        "vault_Mezz.TwosCompany.SorrelDeck"
+      ],
+      "bgSetup": [
+        "nola"
+      ],
+	  "choiceFunc": "MemChoiceNola",
+      "lines": [
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1
+        },
+        {
+          "$type": "SetBG, CobaltCore",
+          "bg": "TwosCompany.ModBG.BGRunStartScripted"
+        },
+        {
+          "$type": "BGAction, CobaltCore",
+          "action": "silence_cue"
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "nap",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "squint",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "squint",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "annoyed",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "nap",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "annoyed",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "squint",
+        },
+      ],
+    },
+    "mezz_Sorrel_Memory_2_Start": {
+      "type": "event",
+      "lines": [
+        {
+          "$type": "Command, CobaltCore",
+          "name": "NolaMem1"
+        },
+      ],
+    },
+    "mezz_Sorrel_Memory_2_Closer": {
+      "type": "event",
+      "lookup": [
+        "mezz_TC_Finale_Closer",
+      ],
+      "allPresent": [
+        "nola"
+      ],
+      "bg": "BGTheCobalt",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "squint",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "nap",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "vengeful",
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 2
+        },
+        {
+          "$type": "SetBG, CobaltCore",
+          "bg": "BGBlack"
+        },
+        {
+          "$type": "Command, CobaltCore",
+          "name": "MezzUnlockFinaleMem"
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 3
+        },
+      ],
+    },	
+    "mezz_Sorrel_Memory_3": {
+      "type": "event",
+      "bg": "BGBlack",
+      "lookup": [
+        "vault",
+        "vault_Mezz.TwosCompany.SorrelDeck"
+      ],
+      "bgSetup": [
+        "finale_intro"
+      ],
+      "lines": [
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 2
+        },
+        {
+          "$type": "SetBG, CobaltCore",
+          "bg": "TwosCompany.ModBG.BGRunStartScripted"
+        },
+        {
+          "$type": "BGAction, CobaltCore",
+          "action": "silence_cue"
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "nap",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "nap",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "neutral",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "neutral",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "neutral",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "nap",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "vengeful",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "nap",
+        },
+        {
+          "$type": "Command, CobaltCore",
+          "name": "SorrelMem1"
+        },
+      ],
+    },
+    "mezz_Sorrel_Memory_3_Start": {
+      "type": "event",
+      "lines": [
+        {
+          "$type": "Command, CobaltCore",
+          "name": "SorrelMem1"
+        },
+      ],
+    },
+	
+    "mezz_Sorrel_TCFinaleEvent_1": {
+      "type": "event",
+      "bg": "BGCrystalizedFriend",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "crystallized",
+		  "flipped": true,
+        },
+        {
+          "$type": "Command, CobaltCore",
+          "name": "MezzMemBGFriendPoof"
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "nap",
+		  "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "squint",
+		  "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "neutral",
+        },
+      ],
+    },
+    "mezz_Sorrel_TCFinaleEvent_2": {
+      "type": "event",
+      "bg": "BGCrystalizedFriend",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "crystallized",
+		  "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "neutral",
+        },
+        {
+          "$type": "Command, CobaltCore",
+          "name": "MezzMemBGFriendPoof"
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "squint",
+		  "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "side",
+        },
+      ],
+    },
+    "mezz_Sorrel_TCFinaleEvent_3": {
+      "type": "event",
+      "bg": "BGCrystalizedFriend",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "crystallized",
+		  "flipped": true,
+        },
+        {
+          "$type": "Command, CobaltCore",
+          "name": "MezzMemBGFriendPoof"
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "forlorn",
+		  "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "shocked",
+		  "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "neutral",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "swordhappy",
+		  "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "happy",
+        },
+      ],
+    },
+    "mezz_Sorrel_TCFinaleEvent_4": {
+      "type": "event",
+      "bg": "BGCrystalizedFriend",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "jost",
+          "loopTag": "crystallized",
+		  "flipped": true,
+        },
+        {
+          "$type": "Command, CobaltCore",
+          "name": "MezzMemBGFriendPoof"
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "jost",
+          "loopTag": "forlorn",
+		  "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "jost",
+          "loopTag": "neutral",
+		  "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "side",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "jost",
+          "loopTag": "happy",
+		  "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "happy",
+        },
+      ],
+    },
+    "mezz_Sorrel_TCFinaleEvent_5": {
+      "type": "event",
+      "bg": "BGCrystalizedFriend",
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "crystallized",
+		  "flipped": true,
+        },
+        {
+          "$type": "Command, CobaltCore",
+          "name": "MezzMemBGFriendPoof"
+        },
+        {
+          "$type": "Wait, CobaltCore",
+          "secs": 1
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "squint",
+		  "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "smug",
+		  "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "snide",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "side",
+		  "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "peaceful",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "neutral",
+		  "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "neutral",
+        },
+      ],
+    },
+	
+	"mezz_Sorrel_TCFinale_Cobalt": {
+      "type": "event",
+      "lookup": [
+        "before_theCobalt"
+      ],
+      "bg": "BGTheCobalt",
+      "allPresent": [
+        "sorrel",
+        "nola",
+        "isa",
+        "ilya",
+        "jost",
+        "gauss"
+      ],
+      "priority": true,
+      "once": false,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "jost",
+          "loopTag": "neutral",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "neutral",
+		  "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+		  "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "neutral",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "side",
+		  "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "forlorn",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "serious",
+		  "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "nap",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "side",
+		  "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "happy",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "glare",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "jost",
+          "loopTag": "nap",
+		  "flipped": true,
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "nola",
+          "loopTag": "vengeful",
+        },
+      ]
+    },
+	
+    "mezz_Sorrel_ArtifactBrokenGlasses": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "oncePerRun": true,
+      "hasArtifacts": [
+        "BrokenGlasses"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "neutral",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_ArtifactEnergyRefund": {
+      "type": "combat",
+      "minCostOfCardJustPlayed": 3,
+      "oncePerCombatTags": [
+        "EnergyRefund"
+      ],
+      "hasArtifacts": [
+        "EnergyRefund"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "neutral",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+	"mezz_Sorrel_ArtifactIonConverter": {
+      "type": "combat",
+      "hasArtifacts": [
+        "IonConverter"
+      ],
+      "lookup": [
+        "IonConverterTrigger"
+      ],
+      "oncePerRun": true,
+      "priority": true,
+      "oncePerCombatTags": [
+        "IonConverterTag"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_ArtifactNanofiberHull_0": {
+      "type": "combat",
+      "minDamageDealtToPlayerThisTurn": 1,
+      "maxDamageDealtToPlayerThisTurn": 1,
+      "hasArtifacts": [
+        "NanofiberHull"
+      ],
+      "oncePerRunTags": [
+        "NanofiberHull"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_ArtifactOverclockedGenerator": {
+      "type": "combat",
+      "hasArtifacts": [
+        "OverclockedGenerator"
+      ],
+      "oncePerRunTags": [
+        "OverclockedGeneratorTag"
+      ],
+      "lookup": [
+        "OverclockedGeneratorTrigger"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "neutral",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_ArtifactPiercer": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "hasArtifacts": [
+        "Piercer"
+      ],
+      "oncePerCombatTags": [
+        "PiercerShouts"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "neutral",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_ArtifactPowerDiversionMadeAttackFail": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "maxDamageDealtToEnemyThisAction": 0,
+      "hasArtifacts": [
+        "PowerDiversion"
+      ],
+      "lines": [
+		{
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "peri",
+              "loopTag": "mad",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "peri",
+              "loopTag": "squint",
+            }
+          ]
+        },
+		{
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "side",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "side",
+            }
+          ]
+        },
+      ],
+      "allPresent": [
+        "peri",
+		"sorrel"
+      ]
+    },
+    "mezz_Sorrel_ArtifactSimplicity": {
+      "type": "combat",
+      "oncePerRunTags": [
+        "SimplicityShouts"
+      ],
+      "hasArtifacts": [
+        "Simplicity"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "nap",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_ArtifactTiderunner": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "hasArtifacts": [
+        "TideRunner"
+      ],
+      "oncePerCombatTags": [
+        "TideRunner"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "nap"
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+	
+    "mezz_Sorrel_ArtifactAmberedThoughts": {
+      "type": "combat",
+      "lookup": [
+        "mezz_amberedThoughts"
+      ],
+      "oncePerCombatTags": [
+        "mezz_AmberedThoughts"
+      ],
+      "oncePerRun": true,
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "nap"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "nap"
+			  
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_ArtifactBlackfootSymbol": {
+      "type": "combat",
+      "lookup": [
+        "mezz_blackfootSymbol"
+      ],
+      "oncePerCombatTags": [
+        "mezz_BlackfootSymbol"
+      ],
+      "oncePerRun": true,
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "nap"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "nap"
+			  
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_ArtifactEndlessIncense": {
+      "type": "combat",
+      "turnStart": true,
+      "maxTurnsThisCombat": 1,
+      "oncePerRun": true,
+      "hasArtifacts": [
+        "TwosCompany.Artifacts.EndlessIncense"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "nap"
+			  
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "sorrel",
+      ]
+    },
+    "mezz_Sorrel_ArtifactShrinkingHourglass": {
+      "type": "combat",
+      "lookup": [
+        "mezz_shrinkingHourglass"
+      ],
+      "oncePerCombatTags": [
+        "mezz_ShrinkingHourglass"
+      ],
+      "oncePerRun": true,
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "nap"
+			  
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+	
+	"mezz_Sorrel_Card_CarveReality": {
+      "type": "combat",
+      "lookup": [
+        "mezz_carveReality"
+      ],
+      "oncePerCombatTags": [
+        "mezz_CarveReality"
+      ],
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "nap"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "nap"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+	"mezz_Sorrel_Card_DeusExMachina": {
+      "type": "combat",
+      "lookup": [
+        "mezz_deusExMachina"
+      ],
+      "oncePerCombatTags": [
+        "mezz_DeusExMachina"
+      ],
+      "oncePerRun": true,
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+	"mezz_Sorrel_Card_FaceDownFate": {
+      "type": "combat",
+      "lookup": [
+        "mezz_faceDownFate"
+      ],
+      "oncePerCombatTags": [
+        "mezz_FaceDownFate"
+      ],
+      "oncePerRun": true,
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+	"mezz_Sorrel_Card_InDueTime": {
+      "type": "combat",
+      "lookup": [
+        "mezz_inDueTime"
+      ],
+      "oncePerCombatTags": [
+        "mezz_InDueTime"
+      ],
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+	"mezz_Sorrel_Card_Karma": {
+      "type": "combat",
+      "lookup": [
+        "mezz_karma"
+      ],
+      "oncePerCombatTags": [
+        "mezz_Karma"
+      ],
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "nap"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "nap"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+	"mezz_Sorrel_Card_MorningDew": {
+      "type": "combat",
+      "lookup": [
+        "mezz_morningDew"
+      ],
+      "oncePerCombatTags": [
+        "mezz_MorningDew"
+      ],
+      "oncePerRun": true,
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "nap"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+	"mezz_Sorrel_Card_Postpone": {
+      "type": "combat",
+      "lookup": [
+        "mezz_postpone"
+      ],
+      "oncePerCombatTags": [
+        "mezz_Postpone"
+      ],
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "nap"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+	"mezz_Sorrel_Card_RaisedPalm": {
+      "type": "combat",
+      "lookup": [
+        "mezz_raisedPalm"
+      ],
+      "oncePerCombatTags": [
+        "mezz_RaisedPalm"
+      ],
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+	"mezz_Sorrel_Card_RavagesOfTime": {
+      "type": "combat",
+      "lookup": [
+        "mezz_ravagesOfTime"
+      ],
+      "oncePerCombatTags": [
+        "mezz_RavagesOfTime"
+      ],
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "nap"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+	"mezz_Sorrel_Card_Shatter": {
+      "type": "combat",
+      "lookup": [
+        "mezz_shatter"
+      ],
+      "oncePerCombatTags": [
+        "mezz_Shatter"
+      ],
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "nap"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+	"mezz_Sorrel_Card_TimeHealsAll": {
+      "type": "combat",
+      "lookup": [
+        "mezz_timeHealsAll"
+      ],
+      "oncePerCombatTags": [
+        "mezz_TimeHealsAll"
+      ],
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "nap"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+	"mezz_Sorrel_Card_WaveOfTheHand": {
+      "type": "combat",
+      "lookup": [
+        "mezz_waveOfTheHand"
+      ],
+      "oncePerCombatTags": [
+        "mezz_WaveOfTheHand"
+      ],
+      "oncePerRun": true,
+      "priority": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "nap"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+	
+	"mezz_Sorrel_BooksJustHit_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "whoDidThat": "shard",
+      "allPresent": [
+        "sorrel",
+		"shard"
+      ],
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "happy"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "happy"
+			  
+            },
+          ]
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "shard",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "shard",
+            },
+          ]
+        },
+      ]
+    },
+    "mezz_Sorrel_DrakeMiss_0": {
+      "type": "combat",
+      "playerShotJustMissed": true,
+      "oncePerCombat": true,
+      "doesNotHaveArtifacts": [
+        "Recalibrator",
+        "GrazerBeam"
+      ],
+      "allPresent": [
+        "sorrel",
+		"eunice"
+      ],
+      "whoDidThat": "eunice",
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "sorrel",
+		  "loopTag": "side",
+		},
+		{ "$type": "Say, CobaltCore",
+		  "who": "eunice",
+		  "loopTag": "mad",
+		},
+      ],
+    },
+    "mezz_Sorrel_DrakeMiss_1": {
+      "type": "combat",
+      "playerShotJustMissed": true,
+      "oncePerCombat": true,
+      "doesNotHaveArtifacts": [
+        "Recalibrator",
+        "GrazerBeam"
+      ],
+      "allPresent": [
+        "sorrel",
+		"eunice"
+      ],
+      "whoDidThat": "eunice",
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "sorrel",
+		  "loopTag": "side",
+		},
+		{ "$type": "Say, CobaltCore",
+		  "who": "eunice",
+		  "loopTag": "slyBlush",
+		},
+      ],
+    },
+    "mezz_Sorrel_PeriJustHit_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "whoDidThat": "peri",
+      "allPresent": [
+        "sorrel",
+		"peri"
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "sorrel",
+		},
+		{ "$type": "Say, CobaltCore",
+		  "who": "peri",
+		  "loopTag": "nap",
+		},
+      ]
+    },
+	
+    "mezz_Sorrel_JustHit_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "sorrel",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "sorrel",
+		},
+      ]
+    },
+    "mezz_Sorrel_JustHit_1": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "sorrel",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "sorrel",
+		},
+      ]
+    },
+    "mezz_Sorrel_JustHit_2": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "sorrel",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "sorrel",
+		},
+      ]
+    },
+    "mezz_Sorrel_JustHit_Nola_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "sorrel",
+        "nola",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "nola",
+		},
+      ]
+    },
+    "mezz_Sorrel_JustHit_Nola_1": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "sorrel",
+        "nola",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "nola",
+		},
+      ]
+    },
+    "mezz_Sorrel_JustHit_Isa_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "sorrel",
+        "isa",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "isa",
+		},
+		{ "$type": "Say, CobaltCore",
+		  "who": "sorrel",
+		  "loopTag": "happy"
+		},
+      ]
+    },
+    "mezz_Sorrel_JustHit_Isa_1": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "sorrel",
+        "isa",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "isa",
+		},
+		{ "$type": "Say, CobaltCore",
+		  "who": "sorrel",
+		  "loopTag": "happy"
+		},
+      ]
+	},
+    "mezz_Sorrel_JustHit_Jost_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "sorrel",
+        "jost",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "jost",
+		  "loopTag": "happy"
+		},
+      ]
+    },
+    "mezz_Sorrel_JustHit_Jost_1": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "sorrel",
+        "jost",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "jost",
+		  "loopTag": "happy"
+		},
+		{ "$type": "Say, CobaltCore",
+		  "who": "sorrel",
+		  "loopTag": "happy"
+		},
+      ]
+    },
+    "mezz_Sorrel_JustHit_Gauss_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "sorrel",
+        "gauss",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "gauss",
+		  "loopTag": "happy"
+		},
+      ]
+    },
+    "mezz_Sorrel_JustHit_Gauss_1": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "sorrel",
+        "gauss",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "gauss",
+		  "loopTag": "happy"
+		},
+		{ "$type": "Say, CobaltCore",
+		  "who": "sorrel",
+		  "loopTag": "happy"
+		},
+      ]
+    },
+    "mezz_Sorrel_JustHit_Books_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "sorrel",
+        "shard",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "shard",
+		  "loopTag": "happy"
+		},
+      ]
+    },
+    "mezz_Sorrel_JustHit_Drake_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "sorrel",
+        "eunice",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "eunice",
+		  "loopTag": "sly"
+		},
+      ]
+    },
+    "mezz_Sorrel_JustHit_Drake_1": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "sorrel",
+        "eunice",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "eunice",
+		  "loopTag": "sly"
+		},
+      ]
+    },
+    "mezz_Sorrel_JustHit_Peri_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "sorrel",
+        "peri",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "peri",
+		  "loopTag": "nap"
+		},
+      ]
+    },
+    "mezz_Sorrel_JustHit_Max_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "allPresent": [
+        "sorrel",
+        "hacker",
+      ],
+      "lines": [
+		{ "$type": "Say, CobaltCore",
+		  "who": "hacker",
+		},
+      ]
+    },
+
+	"mezz_Sorrel_BlockedAnEnemyAttackWithArmor": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "minDamageBlockedByPlayerArmorThisTurn": 1,
+      "oncePerCombatTags": [
+        "WowArmorISPrettyCoolHuh"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "nap"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_BlockedALotOfAttacksWithArmor": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "minDamageBlockedByPlayerArmorThisTurn": 3,
+      "oncePerCombatTags": [
+        "YowzaThatWasALOTofArmorBlock"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "nap"
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+			  "loopTag": "neutral"
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+	
+	"mezz_Sorrel_EmptyHandWithEnergy_0": {
+      "type": "combat",
+      "handEmpty": true,
+      "minEnergy": 1,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "neutral",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "nap",
+            },
+          ]
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+	"mezz_Sorrel_EmptyHandWithEnergy_1": {
+      "type": "combat",
+      "handEmpty": true,
+      "minEnergy": 1,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+		  "loopTag": "angry",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_EnemyArmorHit": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageBlockedByEnemyArmorThisTurn": 1,
+      "oncePerCombat": true,
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "sorrel",
+			  "loopTag": "angry",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "sorrel",
+			  "loopTag": "angry",
+			},
+          ]
+        },
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_EnemyArmorHitLots": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageBlockedByEnemyArmorThisTurn": 3,
+      "oncePerCombat": true,
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "sorrel",
+			  "loopTag": "angry",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "sorrel",
+			  "loopTag": "annoyed",
+			},
+          ]
+        },
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_EnemyArmorPierced_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "playerJustPiercedEnemyArmor": true,
+      "oncePerCombatTags": [
+        "EnemyArmorPierced"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_EnemyArmorPierced_1": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "playerJustPiercedEnemyArmor": true,
+      "oncePerCombatTags": [
+        "EnemyArmorPierced"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_EnemyHasBrittle": {
+      "type": "combat",
+      "enemyHasBrittlePart": true,
+      "oncePerRunTags": [
+        "yelledAboutBrittle"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_EnemyHasWeakness": {
+      "type": "combat",
+      "enemyHasWeakPart": true,
+      "oncePerRunTags": [
+        "yelledAboutWeakness"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+	"mezz_Sorrel_HandOnlyHasTrashCards": {
+      "type": "combat",
+      "handFullOfTrash": true,
+      "oncePerCombatTags": [
+        "handOnlyHasTrashCards"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "annoyed",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+	"mezz_Sorrel_HandOnlyHasUnplayableCards": {
+      "type": "combat",
+      "handFullOfUnplayableCards": true,
+      "oncePerCombatTags": [
+        "handFullOfUnplayableCards"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "nap",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_JustPlayedAToothCard": {
+      "type": "combat",
+      "whoDidThat": "tooth",
+      "oncePerRunTags": [
+        "usedAToothCard"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_JustPlayedAnEphemeralCard": {
+      "type": "combat",
+      "whoDidThat": "ephemeral",
+      "oncePerRunTags": [
+        "usedAnEphemeralCard"
+      ],
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "sorrel",
+		      "loopTag": "nap",
+			},
+			{
+			  "$type": "Say, CobaltCore",
+			  "who": "sorrel",
+              "loopTag": "nap",
+			}
+          ]
+        },
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_JustHitGeneric_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_JustHitGeneric_1": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_JustHitGeneric_2": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_JustHitGeneric_3": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_JustHitGeneric_4": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 1,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+        }
+      ],
+      "allPresent": [
+        "sorrel",
+      ]
+    },
+    "mezz_Sorrel_ManyFlips": {
+      "type": "combat",
+      "minTimesYouFlippedACardThisTurn": 4,
+      "oncePerCombat": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "side",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "nap",
+            }
+          ]
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+	"mezz_Sorrel_ManyTurns_0": {
+      "type": "combat",
+      "minTurnsThisCombat": 9,
+      "oncePerCombatTags": [
+        "manyTurns"
+      ],
+      "oncePerRun": true,
+      "turnStart": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+        },
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+	"mezz_Sorrel_ManyTurns_1": {
+      "type": "combat",
+      "minTurnsThisCombat": 9,
+      "oncePerCombatTags": [
+        "manyTurns"
+      ],
+      "oncePerRun": true,
+      "turnStart": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+        },
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_VeryManyTurns_0": {
+      "type": "combat",
+      "minTurnsThisCombat": 20,
+      "oncePerCombatTags": [
+        "veryManyTurns"
+      ],
+      "oncePerRun": true,
+      "turnStart": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_VeryManyTurns_1": {
+      "type": "combat",
+      "minTurnsThisCombat": 20,
+      "oncePerCombatTags": [
+        "veryManyTurns"
+      ],
+      "oncePerRun": true,
+      "turnStart": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "nap",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_OneHitPointThisIsFine_0": {
+      "type": "combat",
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "enemyShotJustHit": true,
+      "maxHull": 1,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "side",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_OneHitPointThisIsFine_1": {
+      "type": "combat",
+      "oncePerCombatTags": [
+        "aboutToDie"
+      ],
+      "oncePerRun": true,
+      "enemyShotJustHit": true,
+      "maxHull": 1,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "angry",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_PlayedManyCards_0": {
+      "type": "combat",
+      "handEmpty": true,
+      "minCardsPlayedThisTurn": 6,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_OverheatIlyasFault_0": {
+      "type": "combat",
+      "goingToOverheat": true,
+      "allPresent": [
+        "ilya",
+		"sorrel"
+      ],
+      "oncePerCombatTags": [
+        "OverheatIlyasFault"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "side",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "forlorn",
+        }
+      ]
+    },
+    "mezz_Sorrel_OverheatDrakesFault_0": {
+      "type": "combat",
+      "goingToOverheat": true,
+      "whoDidThat": "eunice",
+      "allPresent": [
+        "eunice",
+		"sorrel"
+      ],
+      "oncePerCombatTags": [
+        "OverheatDrakesFault"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "side",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "who": "eunice",
+          "loopTag": "slyBlush",
+        },
+      ]
+    },
+    "mezz_Sorrel_OverheatGeneric_0": {
+      "type": "combat",
+      "goingToOverheat": true,
+      "oncePerCombatTags": [
+        "OverheatGeneric"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "annoyed",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_OverheatGeneric_1": {
+      "type": "combat",
+      "goingToOverheat": true,
+      "oncePerCombatTags": [
+        "OverheatGeneric"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "annoyed",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    
+    "mezz_Sorrel_WeDidOverFiveDamage_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 6,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+            }
+          ]
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_WeDidOverThreeDamage_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisAction": 4,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "happy",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "happy",
+            }
+          ]
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+	"mezz_Sorrel_ThatsALotOfDamageToThem_0": {
+      "type": "combat",
+      "playerShotJustHit": true,
+      "minDamageDealtToEnemyThisTurn": 10,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "vengeful",
+            }
+          ]
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_ThatsALotOfDamageToUs_0": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "minDamageDealtToPlayerThisTurn": 3,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "annoyed",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+              "loopTag": "annoyed",
+            }
+          ]
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_TheyGotCorroded_0": {
+      "type": "combat",
+      "lastTurnEnemyStatuses": [
+        "corrode"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+            },
+            { "$type": "Say, CobaltCore",
+              "who": "sorrel",
+            }
+          ]
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_TookZeroDamageAtLowHealth_0": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxDamageDealtToPlayerThisTurn": 0,
+      "maxHull": 2,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+		  "loopTag": "squint",
+        },
+      ],
+      "allPresent": [
+        "sorrel",
+      ]
+    },
+    "mezz_Sorrel_WeAreCorroded_0": {
+      "type": "combat",
+      "lastTurnPlayerStatuses": [
+        "corrode"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "annoyed",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_WeDontOverlapWithEnemyAtAll_0": {
+      "type": "combat",
+      "priority": true,
+      "shipsDontOverlapAtAll": true,
+      "oncePerCombatTags": [
+        "NoOverlapBetweenShips"
+      ],
+      "oncePerRun": true,
+      "nonePresent": [
+        "crab",
+        "scrap"
+      ],
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "sorrel",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_WeDontOverlapWithEnemyAtAll_1": {
+      "type": "combat",
+      "priority": true,
+      "shipsDontOverlapAtAll": true,
+      "oncePerCombatTags": [
+        "NoOverlapBetweenShips"
+      ],
+      "oncePerRun": true,
+      "nonePresent": [
+        "crab",
+        "scrap"
+      ],
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "who": "sorrel",
+		  "loopTag": "nap",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_WeGotHurtButNotTooBad_0": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "minDamageDealtToPlayerThisTurn": 1,
+      "maxDamageDealtToPlayerThisTurn": 1,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_WeGotShotButTookNoDamage_0": {
+      "type": "combat",
+      "enemyShotJustHit": true,
+      "maxDamageDealtToPlayerThisTurn": 0,
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+            },
+            {
+              "$type": "Say, CobaltCore",
+              "who": "sorrel",
+            },
+          ]
+        },
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_WeMissedOopsie_0": {
+      "type": "combat",
+      "playerShotJustMissed": true,
+      "oncePerCombat": true,
+      "doesNotHaveArtifacts": [
+        "Recalibrator",
+        "GrazerBeam"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "side",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_WeMissedOopsie_1": {
+      "type": "combat",
+      "playerShotJustMissed": true,
+      "oncePerCombat": true,
+      "doesNotHaveArtifacts": [
+        "Recalibrator",
+        "GrazerBeam"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "side",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+    "mezz_Sorrel_WeMissedOopsie_2": {
+      "type": "combat",
+      "playerShotJustMissed": true,
+      "oncePerCombat": true,
+      "doesNotHaveArtifacts": [
+        "Recalibrator",
+        "GrazerBeam"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+        }
+      ],
+      "allPresent": [
+        "sorrel"
+      ]
+    },
+
+    "mezz_Sorrel_Knight_Midcombat_Greeting_0": {
+      "type": "event",
+      "oncePerCombat": true,
+	  "once": true,
+	  "priority": true,
+      "allPresent": [
+        "sorrel"
+      ],
+      "lookup": [
+        "knight_duel"
+      ],
+      "lines": [
+        { "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "knight",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "neutral",
+        },
+        { "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "knight",
+        },
+        { "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "knight",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "side",
+        },
+        { "$type": "Say, CobaltCore",
+          "who": "sorrel",
+          "loopTag": "angry",
+        },
+        { "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "knight",
+        },
+      ]
+    },
+    "mezz_Sorrel_Knight_Midcombat_Greeting_Infinite": {
+      "type": "event",
+      "oncePerCombat": true,
+	  "priority": true,
+      "allPresent": [
+        "sorrel"
+      ],
+      "lookup": [
+        "knight_duel"
+      ],
+      "requiredScenes": [
+        "mezz_Sorrel_Knight_Midcombat_Greeting_0"
+      ],
+      "lines": [
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+			  "flipped": true,
+			  "who": "sorrel",
+			  "loopTag": "neutral",
+            },
+            {
+              "$type": "Say, CobaltCore",
+			  "flipped": true,
+			  "who": "sorrel",
+			  "loopTag": "neutral",
+            }
+          ]
+        },
+        {
+          "$type": "SaySwitch, CobaltCore",
+          "lines": [
+            {
+              "$type": "Say, CobaltCore",
+			  "flipped": true,
+			  "who": "knight",
+            },
+            {
+              "$type": "Say, CobaltCore",
+			  "flipped": true,
+			  "who": "knight",
+            }
+          ]
+        },
+      ]
+    },
+
+    "mezz_Sorrel_ShopkeeperInfinite_0": {
+      "type": "event",
+      "lookup": [
+        "shopBefore"
+      ],
+      "bg": "BGShop",
+      "allPresent": [
+        "sorrel"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "nerd",
+        },
+        {
+          "$type": "Jump, CobaltCore",
+          "key": "NewShop"
+        }
+      ]
+    },
+    "mezz_Sorrel_ShopkeeperInfinite_1": {
+      "type": "event",
+      "lookup": [
+        "shopBefore"
+      ],
+      "bg": "BGShop",
+      "allPresent": [
+        "sorrel"
+      ],
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "sorrel",
+		  "loopTag": "peaceful",
+        },
+        {
+          "$type": "Say, CobaltCore",
+          "flipped": true,
+          "who": "nerd",
+        },
+        {
+          "$type": "Jump, CobaltCore",
+          "key": "NewShop"
+        }
+      ]
+    },
+	
+  }
+}
