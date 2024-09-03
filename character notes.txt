@@ -1,0 +1,65 @@
+rough character lore/personality notes
+by TheJazMaster's request, meant for those writing cross-mod dialogue.  spoilers, for those of you who've happened to wander into the repo and care about the story.
+
+for some context, when I say this mod features my blingus blorbos, i mean it; they're all transplanted from other contexts.  there is not an explanation for every circumstance, backstory and relationship, and I do not wish for this mod to explore them any further than they currently are.
+
+Nola - 41, she/they
+- Charismatic, intelligent.  A leader and an idealogue, with egalitarian aims.
+	- Opposed to the general hierarchical status quo, but willing to play the long game.
+	- As far as the plot of Cobalt goes, she's just trying to score some credits for herself and her friends.  The big picture doesn't mean she can't be selfish at times.
+- Seasoned as a leader, in every sense; naval, political, administrative.
+- Far from immune to hubris!  Definitely too confident for her own good.
+- Though not sociopathic, extremely ends-justifies-the-means and thus can appear so.
+	- Doesn't help that she's always cool in the face of danger; she's been plenty close to death before the events of Cobalt Core.
+
+Ilya - 29, he/they
+- Outright depressive, has trouble sleeping.  Half a natural personality inclination, half PTSD.
+	- The latter isn't something he's keen to talk about.
+- Genuine pyromaniac.  Whenever fire is involved, it dries out his otherwise sopping personality.
+- Has done bad things to survive.  It weighs on him, but there's definitely worse people out there.
+- Actually fairly charitable and decently intelligent.  Wildlife enthusiast.
+	- Those elements of his personality generally don't show, except when alone or with close friends (nola, mostly).
+	- Equal parts timid and psychotic, depending on the situation.
+- Retires from piracy shortly before the events of Cobalt Core, as shown in memories.
+
+Gauss - 23, she/her
+- Scholarly.  Though youthful and rash in ways, not ignorant of the harshness of reality, nor socially inept—she hasn't had it easy.
+- A bit of an unhinged scientist type, but moreso anti-establishment.  Grew up in the hive slums of an industrial core, is where she is in spite of her background.
+	- Both a raw hunger for knowledge/an intellectual drive and a genuine, if admittedly juvenile enjoyment of watching things explode.
+- Background in entropic condensation (flux manipulation) and AI (actual AI) research.  Largely self-learned, had no access to formal higher education.
+- Research was sponsored by pirates a few years ago, before an incident that angered a pirate warlord and subsequently cost her girlfriend's life.
+	- Owes her life to Nola/Isabelle, and holds a grudge against pirates in general.
+- More at home in a lab than on deck, but she's no stranger to it.
+
+a note: isabelle, jost & sorrel share the same anachronistic background—hence, why they're grouped together.
+they all have a tendency to use archaic terms and speak too linguistically formal/without contractions, although Isabelle is less out of time than the other two.
+
+Isabelle - 32, she/her
+- Cocky, confident.  She's the best at what she does, and she knows it.
+- Tendency to conceal her genuine good intentions under bravado and avarice.
+	- She also genuinely just does like money and luxuries, whereas most of the others don't prioritize material needs.
+- Affluent upbringing, which she rejected in favor of striking out her own path.
+	- An undercurrent of guilt and self-doubt in her psyche, which doesn't manifest unless she finds herself in trouble—and she never does.  She's the best, after all.
+- Fr*nch.  Will speak it in short phrases, generally during combat or when emotional/excited.
+- Though from the same anachronistic background as Jost and Sorrel, is sharp and more capable of adjusting to modernity.
+- Wields a falchion, favors lighter armor both on a personal level and of her ship.
+
+Jost - 18, he/him
+- A war orphan.  As worn, downtrodden and messed up as you'd expect, though empathetic beneath the general gloom.  Not looking to bring up his past.
+- Relatively soft-spoken and quiet, unless angered.
+	- A silent response is fine a lot of the time.  Won't reciprocate most antics.
+- Quite young, compared to his company.  More receptive to those closer to his age.
+- Uneducated, uses the simplest and the most archaic speech of the bunch.  Not dull, but never had the privilege to learn.
+	- Capable of reading, not much more.
+- Travels with Isabelle, and them with Sorrel in a distant past.
+	- After resolving things, is somewhat lost and purposeless.  Effectively just tagging along with the only people he knows, at the moment.
+- Wields a greatsword - a wolf's bastard sword, technically, but a greatsword for someone of his size.
+
+Sorrel - 43, she/her
+- Spiritual background, left vague as far as Cobalt goes.  A lowborn, who spent much of her life in the fields.
+- Generally terse and to the point in combat.  Apt to speak cryptically and in metaphor, as you've probably picked up.
+	- Physically imposing.  Could break you in half.  A glare is often enough to get the point across.
+- Jaded and tired, but far from apathetic.  Has fought through several conflicts in her lifetime.
+- The most out-of-time of the bunch, exacerbated by her age.  Relies more on her unexplained powers.
+- Traveled with Isabelle and Jost in some distant past, taking arms as part of an uprising.
+- Has a big axe (a bardiche), but it's not something she'd likely ever bring up in Cobalt's context.
