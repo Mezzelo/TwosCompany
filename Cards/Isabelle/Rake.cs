@@ -5,7 +5,7 @@ namespace TwosCompany.Cards.Isabelle {
     public class Rake : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = upgrade != Upgrade.B ? 4 : 2,
+                cost = upgrade != Upgrade.B ? 4 : 1,
                 exhaust = upgrade != Upgrade.B
             };
         }
@@ -13,10 +13,8 @@ namespace TwosCompany.Cards.Isabelle {
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-
-            ExternalStatus strafeStatus = Manifest.Statuses?["TempStrafe"] ?? throw new Exception("status missing: temp strafe");
             actions.Add(new AStatus() {
-                status = upgrade == Upgrade.B ? (strafeStatus.Id != null ? (Status) strafeStatus.Id : Status.strafe) : Status.strafe,
+                status = upgrade == Upgrade.B ? (Status) Manifest.Statuses["TempStrafe"].Id! : Status.strafe,
                 statusAmount = 1,
                 targetPlayer = true,
                 // dialogueSelector = ".mezz_rake",

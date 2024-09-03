@@ -5,10 +5,8 @@ namespace TwosCompany.Cards.Isabelle {
     public class Misdirection : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = upgrade == Upgrade.B ? 1 : 0,
-                retain = true,
-                buoyant = upgrade == Upgrade.A,
-                exhaust = upgrade != Upgrade.B,
+                cost = 1,
+                retain = upgrade != Upgrade.None,
                 infinite = upgrade == Upgrade.B
             };
         }
@@ -17,9 +15,17 @@ namespace TwosCompany.Cards.Isabelle {
             List<CardAction> actions = new List<CardAction>();
 
             actions.Add(new AFlipHandFixed());
-            actions.Add(new ADrawCard() {
-                count = upgrade == Upgrade.B ? 2 : 1
-            });
+            if (upgrade == Upgrade.B)
+                actions.Add(new ADrawCard() {
+                    count = 1
+                });
+            else {
+                actions.Add(new AStatus() {
+                    status = Status.overdrive,
+                    statusAmount = 1,
+                    targetPlayer = true,
+                });
+            }
 
             return actions;
         }

@@ -8,6 +8,7 @@ namespace TwosCompany.Cards.Ilya {
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 1,
+                exhaust = upgrade == Upgrade.B,
             };
         }
         public override List<CardAction> GetActions(State s, Combat c) {

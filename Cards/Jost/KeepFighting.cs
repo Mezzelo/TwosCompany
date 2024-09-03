@@ -8,10 +8,10 @@ namespace TwosCompany.Cards.Jost {
         public bool isTemp = false;
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 2,
-                temporary = isTemp,
-                exhaust = isTemp && upgrade == Upgrade.A,
-                recycle = !(isTemp && upgrade == Upgrade.A),
+                cost = upgrade == Upgrade.A ? 0 : 1,
+                recycle = upgrade != Upgrade.B,
+                retain = upgrade == Upgrade.B,
+                infinite = upgrade == Upgrade.B,
                 art = new Spr?((Spr)(Manifest.Sprites["JostDefaultCardSprite" + Stance.AppendName(state)].Id
                     ?? throw new Exception("missing card art")))
             };
@@ -27,32 +27,48 @@ namespace TwosCompany.Cards.Jost {
 
             actions.Add(new AStatus() {
                 status = Status.shield,
+                statusAmount = 3,
+                targetPlayer = true,
+                disabled = Stance.Get(s) % 2 != 1,
+                // dialogueSelector = Stance.Get(s) % 2 != 1 || this.discount > -1 ? null : ".mezz_keepFighting",
+                dialogueSelector = ".mezz_keepFighting",
+            });
+            actions.Add(new AStatus() {
+                status = Status.drawLessNextTurn,
                 statusAmount = 2,
                 targetPlayer = true,
                 disabled = Stance.Get(s) % 2 != 1,
-                dialogueSelector = Stance.Get(s) % 2 != 1 || this.discount > -1 ? null : ".mezz_keepFighting",
             });
+            /*
             actions.Add(new AAddCard() {
                 card = new KeepFighting() { isTemp = true, upgrade = (this.upgrade == Upgrade.A ? Upgrade.A : Upgrade.None), discount = disc },
                 destination = CardDestination.Hand,
                 showCardTraitTooltips = false,
                 amount = upgrade == Upgrade.B ? 2 : 1,
                 disabled = Stance.Get(s) % 2 != 1
-            });
+            }); */
             actions.Add(new ADummyAction());
 
             actions.Add(new AAttack() {
                 damage = GetDmg(s, 3),
                 disabled = Stance.Get(s) < 2,
-                dialogueSelector = Stance.Get(s) < 2 || this.discount > -1 ? null : ".mezz_keepFighting",
+                // dialogueSelector = Stance.Get(s) < 2 || this.discount > -1 ? null : ".mezz_keepFighting",
+                dialogueSelector = ".mezz_keepFighting",
             });
+            actions.Add(new AStatus() {
+                status = Status.drawLessNextTurn,
+                statusAmount = 2,
+                targetPlayer = true,
+                disabled = Stance.Get(s) < 2,
+            });
+            /*
             actions.Add(new AAddCard() {
                 card = new KeepFighting() { isTemp = true, upgrade = (this.upgrade == Upgrade.A ? Upgrade.A : Upgrade.None), discount = disc },
                 destination = CardDestination.Hand,
                 showCardTraitTooltips = false,
                 amount = upgrade == Upgrade.B ? 2 : 1,
                 disabled = Stance.Get(s) < 2,
-            });
+            }); */
             return actions;
         }
 

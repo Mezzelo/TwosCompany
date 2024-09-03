@@ -1,8 +1,8 @@
 {
     "UniqueName": "Mezz.TwosCompany",
-    "Version": "3.0.0",
+    "Version": "3.1.0",
 	"DisplayName": "Two's Company",
-	"Description": "A pack of 5 modded characters, with dialogue, memories, and story events.",
+	"Description": "A pack of 6 modded characters, with dialogue, memories, and story events.",
 	"Author": "Mezzelo",
     "RequiredApiVersion": "0.1.0",
     "ModType": "Nickel.Legacy",

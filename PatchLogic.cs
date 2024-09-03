@@ -52,11 +52,9 @@ namespace TwosCompany {
                 ship.Add((Status) control.Id!, -1);
             }
 
-            ExternalStatus strafeStatus = Manifest.Statuses?["TempStrafe"] ?? throw new Exception("status missing: temp strafe");
-            if (strafeStatus.Id == null) return true;
-            if (ship.Get((Status)strafeStatus.Id) > 0 && (__instance.dir != 0 || (ship.Get(Status.hermes) > 0 && !__instance.ignoreHermes)))
+            if (ship.Get((Status) Manifest.Statuses["TempStrafe"].Id!) > 0 && (__instance.dir != 0 || (ship.Get(Status.hermes) > 0 && !__instance.ignoreHermes)))
                 c.QueueImmediate(new AAttack() {
-                    damage = Card.GetActualDamage(s, ship.Get((Status)strafeStatus.Id)),
+                    damage = Card.GetActualDamage(s, ship.Get((Status) Manifest.Statuses["TempStrafe"].Id!)),
                     targetPlayer = !__instance.targetPlayer,
                     fast = true,
                     storyFromStrafe = true
@@ -65,6 +63,17 @@ namespace TwosCompany {
             return true;
         }
         public static void MoveEnd(AMove __instance, State s, Combat c, int __state) {
+            if (__instance.dir == 0 && __instance.ignoreHermes)
+                return;
+
+            Ship ship = __instance.targetPlayer ? s.ship : c.otherShip;
+            if (ship.Get((Status)Manifest.Statuses["MobileDefense"].Id!) > 0)
+                c.QueueImmediate(new AStatus() {
+                    status = Status.tempShield,
+                    statusAmount = ship.Get((Status) Manifest.Statuses["MobileDefense"].Id!),
+                    targetPlayer = __instance.targetPlayer,
+                    statusPulse = (Status) Manifest.Statuses["MobileDefense"].Id!,
+                });
             int dist = (__instance.targetPlayer ? s.ship.x : c.otherShip.x) - __state;
             if (dist != 0) {
                 if (__instance.targetPlayer)
@@ -76,25 +85,14 @@ namespace TwosCompany {
                     if (card is Couch couchCard && __instance.targetPlayer)
                         couchCard.dist += Math.Abs(dist);
 
-                Ship ship = __instance.targetPlayer ? s.ship : c.otherShip;
-                ExternalStatus mobileStatus = Manifest.Statuses?["MobileDefense"] ?? throw new Exception("status missing: mobile defense");
-                if (mobileStatus.Id != null)
-                    if (ship.Get((Status)mobileStatus.Id) > 0)
-                        c.QueueImmediate(new AStatus() {
-                            status = Status.tempShield,
-                            statusAmount = ship.Get((Status)mobileStatus.Id),
-                            targetPlayer = __instance.targetPlayer,
-                            statusPulse = (Status)mobileStatus.Id,
-                        });
-
                 ExternalStatus fortress = Manifest.Statuses?["Fortress"] ?? throw new Exception("status missing: fortress");
                 if (fortress.Id != null)
                     if (ship.Get((Status)fortress.Id) > 0)
                         c.QueueImmediate(new AStatus() {
-                            status = (Status)fortress.Id,
+                            status = (Status) fortress.Id,
                             statusAmount = -1,
                             targetPlayer = __instance.targetPlayer,
-                            statusPulse = (Status)fortress.Id,
+                            statusPulse = (Status) fortress.Id,
                         });
             }
             return;
@@ -316,7 +314,7 @@ namespace TwosCompany {
                     c.QueueImmediate(new AAddCard() {
                         card = new HyperspaceWind(),
                         destination = CardDestination.Hand,
-                        amount = 1,
+                        amount = s.ship.Get((Status)Manifest.Statuses["HyperspaceStorm"].Id!),
                         statusPulse = (Status)Manifest.Statuses["HyperspaceStorm"].Id!,
                         timer = 0.4,
                     });
@@ -324,7 +322,7 @@ namespace TwosCompany {
                     c.QueueImmediate(new AAddCard() {
                         card = new HyperspaceWind() { upgrade = Upgrade.A },
                         destination = CardDestination.Hand,
-                        amount = 1,
+                        amount = s.ship.Get((Status)Manifest.Statuses["HyperspaceStormA"].Id!),
                         statusPulse = (Status)Manifest.Statuses["HyperspaceStormA"].Id!,
                         timer = 0.4,
                     });
@@ -332,7 +330,7 @@ namespace TwosCompany {
                     c.QueueImmediate(new AAddCard() {
                         card = new HyperspaceWind() { upgrade = Upgrade.B },
                         destination = CardDestination.Hand,
-                        amount = 1,
+                        amount = s.ship.Get((Status)Manifest.Statuses["HyperspaceStormB"].Id!),
                         statusPulse = (Status)Manifest.Statuses["HyperspaceStormB"].Id!,
                         timer = 0.4,
                     });
@@ -773,7 +771,7 @@ namespace TwosCompany {
                             fAttack.hadBubble = fAttack.bubbleShield;
                         return true;
                     }
-                    __instance.stuff.Add(from, new FrozenAttack() { x = from, xLerped = from });
+                    __instance.stuff.Add(from, new FrozenAttack() { x = from, xLerped = from, targetPlayer = true });
                 }
             }
             /*
@@ -867,7 +865,7 @@ namespace TwosCompany {
             if (locale != "en")
                 return;
             __result.Add("char." + ManifHelper.GetDeckId("nola") + ".desc.locked",
-                Manifest.NolaColH + "NOLA</c>\nReach the final boss with with " +
+                Manifest.NolaColH + "NOLA</c>\nReach the final boss with " +
                 Manifest.IsaColH + "Isabelle</c> and " + Manifest.IlyaColH + "Ilya</c> on the same ship to unlock " + Manifest.NolaColH + "Nola</c>" + "!");
             __result.Add("char." + ManifHelper.GetDeckId("isa") + ".desc.locked",
                 Manifest.IsaColH + "ISABELLE</c>\n" +
@@ -954,7 +952,7 @@ namespace TwosCompany {
         public static void CharNamePostfix(Character __instance, string charId, State state, ref string __result) {
             if (charId.Equals(ManifHelper.charStoryNames["sorrel"]) &&
                 !Manifest.Instance.settings.unlockSorrel &&
-                !state.storyVars.unlockedChars.Contains(ManifHelper.GetDeck("sorrel"))) {
+                !state.storyVars.GetUnlockedChars().Contains(ManifHelper.GetDeck("sorrel"))) {
                 __result = "???";
             }
         }

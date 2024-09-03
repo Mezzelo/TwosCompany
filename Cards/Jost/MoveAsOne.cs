@@ -6,7 +6,7 @@ namespace TwosCompany.Cards.Jost {
     public class MoveAsOne : Card, IJostCard, IOtherAttackIncreaseCard {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 4,
+                cost = upgrade == Upgrade.A ? 3 : 4,
                 retain = upgrade == Upgrade.B,
                 art = new Spr?((Spr)(Manifest.Sprites["JostDefaultCardSpriteDown1" + Stance.AppendName(state)].Id
                     ?? throw new Exception("missing card art")))

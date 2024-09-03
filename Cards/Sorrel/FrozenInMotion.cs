@@ -23,19 +23,18 @@ namespace TwosCompany.Cards.Sorrel {
             actions.Add(new AStatus() {
                 targetPlayer = true,
                 status = Status.droneShift,
-                statusAmount = 3,
+                statusAmount = 2,
             });
             actions.Add(new AStatus() {
                 targetPlayer = false,
                 status = Status.lockdown,
-                statusAmount = upgrade == Upgrade.A ? 2 : 1,
+                statusAmount = upgrade == Upgrade.A ? 3 : (upgrade == Upgrade.B ? 1 : 2),
             });
-            if (upgrade != Upgrade.B)
-                actions.Add(new AStatus() {
-                    targetPlayer = true,
-                    status = Status.lockdown,
-                    statusAmount = 1
-                });
+            actions.Add(new AStatus() {
+                targetPlayer = true,
+                status = Status.lockdown,
+                statusAmount = upgrade == Upgrade.B ? 1 : 2
+            });
 
             return actions;
         }

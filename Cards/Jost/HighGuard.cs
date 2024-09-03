@@ -14,9 +14,8 @@ namespace TwosCompany.Cards.Jost {
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
-            ExternalStatus falseStatus = Manifest.Statuses?["FalseOpening"] ?? throw new Exception("status missing: falseopening");
             actions.Add(new AStatus() {
-                status = falseStatus.Id != null ? (Status)falseStatus.Id : Status.overdrive,
+                status = (Status) Manifest.Statuses?["FalseOpening"].Id!,
                 statusAmount = 2,
                 targetPlayer = true,
                 disabled = Stance.Get(s) % 2 != 1

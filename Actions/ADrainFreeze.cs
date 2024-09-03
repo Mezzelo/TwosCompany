@@ -33,7 +33,7 @@ namespace TwosCompany.Actions {
                 attack.attacks[0].fromDroneX = attack.x;
                 attack.attacks[0].fast = true;
                 attack.attacks[0].stunEnemy = attack.attacks[0].stunEnemy ||
-                    s.ship.Get((Status)Manifest.Statuses["FrozenStun"].Id!) > 0;
+                    s.ship.Get((Status) Manifest.Statuses["FrozenStun"].Id!) > 0;
                 attack.attacks[0].cardOnHit = null;
                 c.QueueImmediate(attack.attacks[0]);
                 attack.attacks.RemoveAt(0);

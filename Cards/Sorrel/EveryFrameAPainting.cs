@@ -6,8 +6,7 @@ namespace TwosCompany.Cards.Sorrel {
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 1,
-                buoyant = upgrade == Upgrade.A,
-                retain = true,
+                retain = upgrade == Upgrade.A,
                 exhaust = true,
             };
         }

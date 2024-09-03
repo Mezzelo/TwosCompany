@@ -295,7 +295,7 @@ namespace TwosCompany.Actions {
                         if (end && !(cable != null && n < cRoute.Count - 1 && n > 0)) {
                             RaycastResult chainRay = CombatUtils.RaycastGlobal(c, ship, true, cRoute[n]);
                             hitActions.Insert(0, new AChainHit() {
-                                damage = Math.Max(0, cDamage - (cRoute.Count > 1 && trident != null ? 1 : 0)),
+                                damage = Math.Max(0, cDamage - (cRoute.Count > 1 && trident != null ? 2 : 0)),
                                 targetPlayer = this.targetPlayer,
                                 fromX = cRoute[n],
                                 piercing = piercing,
@@ -449,7 +449,7 @@ namespace TwosCompany.Actions {
                         if (g == 0)
                             zeroDamage = cDamage;
 
-                        int hilightVal = Math.Max(0, cDamage - (cRoute.Count > 1 && trident ? 1 : 0)) +
+                        int hilightVal = Math.Max(0, cDamage - (cRoute.Count > 1 && trident ? 2 : 0)) +
                             ((g == cRoute.Count - 1 || 
                             (g == 0 && trident) ||
                             (g < cRoute.Count - 1 && cRoute[g] < cRoute[g + 1] && cRoute[g] < cRoute[0])) ?

@@ -59,8 +59,8 @@ namespace TwosCompany {
             addStatus("OffensiveStance", "Offensive Stance", "Allows you to play the <c=keyword>bottom</c> actions on " + JostColH + "Jost's</c> cards. " +
                 "<c=downside>If you end your turn with over 1 total stance, lose 1 of each stance.</c>",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xff87b2cf)), System.Drawing.Color.FromArgb(unchecked((int)0xff87b2cf)), registry, true);
-            addStatus("StandFirm", "Stand Firm", "Prevents you from switching <c=status>STANCE</c> from playing <c=card>STANCE CARDS</c>, " +
-                "or losing stance from excess stance. <c=downside>Decreases by 1 at start of turn.</c>",
+            addStatus("StandFirm", "Stand Firm", "Prevents you from switching or losing excess <c=status>STANCE</c>. " +
+                "<c=downside>Decreases by 1 at start of turn.</c>",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xffffe373)), System.Drawing.Color.FromArgb(unchecked((int)0xffffe373)), registry, true);
             addStatus("Footwork", "Footwork", "Gain {0} <c=status>DEF. STANCE</c> at the start of next turn. " +
                 "<c=downside>Decreases by 1 at start of turn.</c>",
@@ -90,11 +90,11 @@ namespace TwosCompany {
             
             addStatus("Autocurrent", "Autocurrent", "Automatically shoot a 1 damage " + ChainColH + "chain lightning</c> at the end of every turn.",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xff00e5ff)), System.Drawing.Color.FromArgb(unchecked((int)0xff00e5ff)), registry, false);
-            addStatus("HyperspaceStorm", "Hyperspace Storm", "Gain a <c=card>Hyperspace Wind</c> every turn.",
+            addStatus("HyperspaceStorm", "Hyperspace Storm", "Gain {0} <c=card>Hyperspace Wind</c> at the start of every turn.",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xff59f790)), System.Drawing.Color.FromArgb(unchecked((int)0xff59f790)), registry, false);
-            addStatus("HyperspaceStormA", "Hyperspace Storm A", "Gain a <c=card>Hyperspace Wind A</c> every turn.",
+            addStatus("HyperspaceStormA", "Hyperspace Storm A", "Gain {0} <c=card>Hyperspace Wind A</c> at the start of every turn.",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xff59f790)), System.Drawing.Color.FromArgb(unchecked((int)0xff59f790)), registry, false);
-            addStatus("HyperspaceStormB", "Hyperspace Storm B", "Gain a <c=card>Hyperspace Wind B</c> every turn.",
+            addStatus("HyperspaceStormB", "Hyperspace Storm B", "Gain {0} <c=card>Hyperspace Wind B</c> at the start of every turn.",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xff59f790)), System.Drawing.Color.FromArgb(unchecked((int)0xff59f790)), registry, false);
             addStatus("Control", "Control", "The next {0} times you would move, gain 1 <c=status>EVADE</c> instead. " +
                 "<c=downside>Decreases by 1 every time it triggers.</c>",
@@ -105,7 +105,7 @@ namespace TwosCompany {
             addStatus("FollowUp", "Follow Through", "The next {0} times you move a card to hand, immediately play it for free. " +
                 "<c=downside>Decreases by 1 every time it triggers.</c>",
                 true, System.Drawing.Color.Cyan, null, registry, true);
-            addStatus("Superposition", "Superposition", "While you have this status, you can <c=cardtrait>flop</c> <c=card>STANCE CARDS</c> " +
+            addStatus("Superposition", "Superposition", "Allows you to <c=cardtrait>flop</c> <c=card>STANCE CARDS</c> " +
                 "to swap your stacks of <c=status>STANCE</c>. " +
                 "<c=downside>Decreases by 1 at end of turn.</c>",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xffffb051)), System.Drawing.Color.FromArgb(unchecked((int)0xffffb051)), registry, true);
@@ -113,7 +113,7 @@ namespace TwosCompany {
                 "<c=midrow>midrow</c>. " +
                 "<c=downside>Decreases by 1 at end of turn.</c>",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xff7547b2)), System.Drawing.Color.FromArgb(unchecked((int)0xff7547b2)), registry, true);
-            addStatus("DefensiveFreeze", "Defensive Freeze", "If an <c=card>attack</c> would hit your ship " +
+            addStatus("DefensiveFreeze", "Defensive Freeze", "If an <c=card>attack intent</c> would hit your ship " +
                 "and you have no <c=status>BULLET TIME</c>, gain 1 <c=status>BULLET TIME</c> and lower this by 1.",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xff7547b2)), System.Drawing.Color.FromArgb(unchecked((int)0xff7547b2)), registry, true);
             addStatus("FrozenStun", "Frozen Stun", "All " + Manifest.FrozenColH + "frozen attacks</c> stun. " +

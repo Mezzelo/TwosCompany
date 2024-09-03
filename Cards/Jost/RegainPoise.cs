@@ -8,33 +8,48 @@ namespace TwosCompany.Cards.Jost {
             return new CardData() {
                 cost = 0,
                 retain = upgrade != Upgrade.B,
+                floppable = upgrade == Upgrade.A,
+                art = new Spr?((Spr)(Manifest.Sprites[upgrade != Upgrade.A ? "JostDefaultCardSpriteUnsided" : ("RegainPoiseCardSprite" + (this.flipped ? "Flip" : ""))].Id
+                    ?? throw new Exception("missing card art")))
             };
         }
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            ExternalStatus defensiveStance = Manifest.Statuses?["DefensiveStance"] ?? throw new Exception("status missing: defensivestance");
             actions.Add(new AStatus() {
-                status = (Status) defensiveStance.Id!,
+                status = (Status) Manifest.Statuses?["DefensiveStance"].Id!,
                 statusAmount = 1,
                 mode = upgrade == Upgrade.B ? AStatusMode.Add : AStatusMode.Set,
                 targetPlayer = true,
                 dialogueSelector = Stance.Get(s) == 0 ? ".mezz_offBalance" : null,
+                disabled = flipped && upgrade == Upgrade.A,
             });
-            ExternalStatus offensiveStance = Manifest.Statuses?["OffensiveStance"] ?? throw new Exception("status missing: defensivestance");
             actions.Add(new AStatus() {
-                status = (Status) offensiveStance.Id!,
+                status = (Status) Manifest.Statuses?["OffensiveStance"].Id!,
                 statusAmount = 0,
                 mode = AStatusMode.Set,
                 targetPlayer = true,
+                disabled = flipped && upgrade == Upgrade.A,
             });
-            if (upgrade == Upgrade.A)
+            if (upgrade == Upgrade.A) {
+                actions.Add(new ADummyAction());
                 actions.Add(new AStatus() {
-                    status = Status.tempShield,
-                    statusAmount = 2,
+                    status = (Status)Manifest.Statuses?["OffensiveStance"].Id!,
+                    statusAmount = 1,
+                    mode = upgrade == Upgrade.B ? AStatusMode.Add : AStatusMode.Set,
                     targetPlayer = true,
+                    dialogueSelector = Stance.Get(s) == 0 ? ".mezz_offBalance" : null,
+                    disabled = !flipped,
                 });
+                actions.Add(new AStatus() {
+                    status = (Status)Manifest.Statuses?["DefensiveStance"].Id!,
+                    statusAmount = 0,
+                    mode = AStatusMode.Set,
+                    targetPlayer = true,
+                    disabled = !flipped,
+                });
+            }
 
             return actions;
         }

@@ -60,7 +60,7 @@ namespace TwosCompany.Cards.Jost {
 
         public override void OnDraw(State s, Combat c) {
             MessengerBag? sigil = s.EnumerateAllArtifacts().OfType<MessengerBag>().FirstOrDefault();
-            if (sigil != null && sigil.heartbeats < 2) {
+            if (sigil != null && sigil.heartbeats < 1) {
                 sigil.heartbeats++;
                 s.ship.Add((Status)Manifest.Statuses?["Onslaught"].Id!, 1 + s.ship.Get(Status.boost));
                 s.ship.Set(Status.boost, 0);

@@ -24,6 +24,12 @@ namespace TwosCompany.Cards.Jost {
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
             actions.Add(new ASearchForHeartbeat());
+            actions.Add(new ADummyTooltip() {
+                action = new AAddCard() {
+                    card = new Heartbeat() { retainOverride = true },
+                    destination = CardDestination.Hand,
+                }
+            });
             return actions;
         }
 

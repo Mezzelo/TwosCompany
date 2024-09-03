@@ -21,7 +21,7 @@ namespace TwosCompany.Cards.Sorrel {
             actions.Add(new AStatus() {
                 targetPlayer = true,
                 status = Status.droneShift,
-                statusAmount = 2
+                statusAmount = 1
             });
             actions.Add(new ADrawCard() {
                 count = 2

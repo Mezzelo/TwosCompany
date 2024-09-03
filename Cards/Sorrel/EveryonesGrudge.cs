@@ -16,7 +16,6 @@ namespace TwosCompany.Cards.Sorrel {
 
             return new CardData() {
                 cost = 3,
-                retain = upgrade == Upgrade.A,
                 exhaust = true,
                 description = cardText,
             };

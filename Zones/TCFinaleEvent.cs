@@ -14,7 +14,7 @@
         };
         }
 
-        public override Route MakeRoute(State s) {
+        public override Route MakeRoute(State s, Vec coord) {
             return Dialogue.MakeDialogueRouteOrSkip(s, story, OnDone.map);
         }
     }

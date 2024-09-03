@@ -75,13 +75,13 @@ namespace TwosCompany.Helper {
             "At the start of turn 6, increase all of your current <c=status>statuses</c> by <c=keyword>1</c>.",
             "At the start of each turn, gain 1 <c=status>ONSLAUGHT</c>.",
             // 7-13: Isabelle
-            "Cards that cost <c=keyword>2</c> or <c=keyword>4</c> <c=energy>ENERGY</c> are discounted by <c=keyword>1</c> when drawn.\r\n" +
-                "Cards that cost <c=keyword>0</c> <c=energy>ENERGY</c> <c=downside>cost 1 more when drawn</c>.",
+            "The first two times you draw a 2+ cost card each turn, discount it by 1.\r\n" +
+                "<c=downside>The first time you draw a non-discounted card that costs 1 or less each turn, increase its cost by 1.</c>",
             "Whenever you move <c=keyword>3</c> spaces from playing a single card, gain 1 <c=status>TEMP SHIELD</c>. If you move <c=keyword>4+</c> spaces, gain another.",
             "Choose a card in your deck.  Whenever you play that card, gain a <c=card>Recover</c>.",
             "Whenever you end your turn in the same position you started, gain 1 <c=status>OVERDRIVE</c>.",
             "Gain 1 extra <c=energy>ENERGY</c> every turn. " +
-                "<c=downside>If you miss a shot during your turn, lose the bonus energy for next turn.</c>",
+                "<c=downside>If you miss a shot during your turn, lose 1 ENERGY instead.</c>",
             "Whenever you alternate between moving and attacking <c=keyword>6</c> times in a row, gain 1 <c=status>OVERDRIVE</c> and 1 <c=status>EVADE</c>.",
             "Gain 1 extra <c=energy>ENERGY</c> every turn. " +
                 "<c=downside>The first time you receive hull damage each turn, gain two</c> <c=card>Fears</c>.",
@@ -97,7 +97,7 @@ namespace TwosCompany.Helper {
             // 21-28: jost
             "Start each combat with 1 <c=status>DEF. STANCE</c>. " +
                 "When you start your turn with no stance, gain an <c=card>Off Balance</c> if one isn't in your hand.",
-            "On pickup, gain 2 <c=card>Heartbeats</c>. The first 2 times you draw a <c=card>Heartbeat</c> each turn, gain 1 <c=status>ONSLAUGHT</c>.",
+            "On pickup, gain 2 <c=card>Heartbeats</c>. The first time you draw a <c=card>Heartbeat</c> each turn, gain 1 <c=status>ONSLAUGHT</c>.",
             "Once per turn when you increase your total <c=status>STANCE</c>, " +
                 "gain 1 <c=status>OVERDRIVE</c>.",
             "Every <c=keyword>4</c> times you switch stance from playing a " +
@@ -118,7 +118,7 @@ namespace TwosCompany.Helper {
             "For every 4 <c=midrow>midrow objects</c> you destroy, gain a free <c=cardtrait>temp exhaustable</c> <c=card>Conduit</c>, up to " +
                 "once per turn.",
             "When you " + Manifest.ChainColH + "chain</c> across 2 or more <c=midrow>midrow objects</c>, " + Manifest.ChainColH +
-                "lightning</c> fires from the start of the chain <c=downside>at a -1 damage penalty.</c>",
+                "lightning</c> fires from the start of the chain <c=downside>at a -2 damage penalty.</c>",
             "Whenever you launch a regular <c=midrow>conduit</c>, gain 1 <c=status>SHIELD</c>, " +
                 "1 <c=status>TEMP SHIELD</c>, and turn it into a <c=downside>dual drone</c> instead.",
             // 36-41: sorrel
@@ -130,7 +130,7 @@ namespace TwosCompany.Helper {
             "<c=downside>ALL</c> attacks deal +1 damage while <c=status>BULLET TIME</c> is active.",
             "Whenever you end your turn with <c=status>BULLET TIME</c>, fire a 0 damage attack.",
             "Whenever you end your turn with 2+ <c=status>BULLET TIME</c>, gain 1 <c=statuc>TEMP SHIELD</c> and 1 <c=status>TEMP PAYBACK</c>.",
-            "After enough turns have passed, gain an <c=cardtrait>infinite retain</c> <c=card>Karma B</c>.",
+            "At the start of turn 4, gain an <c=cardtrait>infinite retain</c> <c=card>Karma B</c>. The turn count increases by 2 each use.",
         };
     }
 }

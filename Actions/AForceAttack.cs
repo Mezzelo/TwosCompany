@@ -5,24 +5,31 @@ using TwosCompany.Cards.Sorrel;
 namespace TwosCompany.Actions {
     public class AForceAttack : CardAction {
         public int? fromX;
-        public bool reverseAfter = false;
         public override void Begin(G g, State s, Combat c) {
             if (!fromX.HasValue)
-                fromX = c.otherShip.parts.Count - 1;
-            for (int i = fromX.Value; i >= 0; i--) {
-                if (reverseAfter) {
-                    c.QueueImmediate(new AReverseFrozen() {
-                        omitFromTooltips = true,
-                    });
-                    reverseAfter = false;
-                }
+                fromX = 0;
+            for (int i = 0; i < c.otherShip.parts.Count; i++) {
                 if (c.otherShip.parts[i].intent != null && c.otherShip.parts[i].intent is IntentAttack intent) {
-                    c.QueueImmediate(new AForceAttackApply() {
+                    timer = 0.0;
+                    intent.Apply(s, c, c.otherShip, i);
+                    c.otherShip.parts[i].intent = null;
+                    c.Queue(new AForceAttack() {
+                        fromX = i,
+                        timer = 0.0,
+                    });
+                    break;
+                    /*
+                    c.Queue(new AForceAttackApply() {
                        intent = intent,
                        x = i,
                        timer = 0.0,
                     });
+                    */
                 }
+            }
+            if (fromX.HasValue && fromX.Value == c.otherShip.parts.Count - 1) {
+                // if (reverseAfter) {
+                timer = 0.4;
             }
         }
 

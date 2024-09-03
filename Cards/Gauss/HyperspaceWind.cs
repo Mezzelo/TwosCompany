@@ -6,8 +6,8 @@ namespace TwosCompany.Cards.Gauss {
 
         public int costIncrease = 0;
         public bool wasPlayed = false;
-
         public int increasePerTurn = 1;
+
         public override CardData GetData(State state) {
 
             return new CardData() {
@@ -25,7 +25,7 @@ namespace TwosCompany.Cards.Gauss {
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
-            if (upgrade != Upgrade.A)
+            if (upgrade == Upgrade.None)
                 actions.Add(new ATurnIncreaseHint() {
                     amount = 1
                 });

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Media;
+using Nickel;
 using TwosCompany.Actions;
 
 namespace TwosCompany.Artifacts {
@@ -6,31 +7,54 @@ namespace TwosCompany.Artifacts {
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Boss })]
     public class AncientPhysicalCurrency : Artifact {
         public List<int> drawnCards = new List<int>();
-        public bool queued = false;
-        public override string Description() => "Cards that cost <c=keyword>2</c> or <c=keyword>4</c> <c=energy>ENERGY</c> are discounted by <c=keyword>1</c> when drawn.\r\n" +
-            "Cards that cost <c=keyword>0</c> <c=energy>ENERGY</c> <c=downside>cost 1 more when drawn</c>.";
+        public int discountCount = 2;
+        public int increaseCount = 1;
+
+        public override string Description() => "The first two times you draw a 2+ cost card each turn, discount it by 1.\r\n" +
+                "<c=downside>The first time you draw a non-discounted card that costs 1 or less each turn, increase its cost by 1.</c>";
         public override void OnRemoveArtifact(State state) => drawnCards.Clear();
         public override void OnCombatStart(State state, Combat combat) => drawnCards.Clear();
         public override void OnPlayerRecieveCardMidCombat(State state, Combat combat, Card card) {
             drawnCards.Add(card.uuid);
-            if (card.GetDataWithOverrides(state).cost == 2 || card.GetDataWithOverrides(state).cost == 4)
-                card.discount --;
-            else if (card.GetDataWithOverrides(state).cost == 0)
+            if (card.GetDataWithOverrides(state).cost > 2 && discountCount > 0) {
+                card.discount--;
+                discountCount--;
+            } else if (card.GetDataWithOverrides(state).cost < 2 && card.discount >= 0 && increaseCount > 0) {
                 card.discount++;
+                increaseCount--;
+            }
             else
                 return;
             this.Pulse();
         }
-        public override void OnTurnEnd(State state, Combat combat) => drawnCards.Clear();
+        public override void OnTurnEnd(State state, Combat combat) {
+            List<int> held = new List<int>();
+            foreach (Card card in combat.hand) {
+                if (drawnCards.Contains(card.uuid)) {
+                    held.Add(card.uuid);
+                }
+            }
+            drawnCards.Clear();
+            drawnCards.AddRange(held);
+            discountCount = 2;
+            increaseCount = 1;
+        }
+        public override void OnPlayerPlayCard(int energyCost, Deck deck, Card card, State state, Combat combat, int handPosition, int handCount) {
+            if (!card.GetDataWithOverrides(state).infinite && drawnCards.Contains(card.uuid))
+                drawnCards.Remove(card.uuid);
+        }
         public override void OnDrawCard(State state, Combat combat, int count) {
             bool changedAny = false;
             foreach (Card card in combat.hand)
                 if (!drawnCards.Contains(card.uuid)) {
                     drawnCards.Add(card.uuid);
-                    if (card.GetDataWithOverrides(state).cost == 2 || card.GetDataWithOverrides(state).cost == 4)
+                    if (card.GetDataWithOverrides(state).cost > 1 && discountCount > 0) {
                         card.discount--;
-                    else if (card.GetDataWithOverrides(state).cost == 0)
+                        discountCount--;
+                    } else if (card.GetDataWithOverrides(state).cost < 2 && card.discount >=0 && increaseCount > 0) {
                         card.discount++;
+                        increaseCount--;
+                    }
                     else
                         continue;
                     changedAny = true;
@@ -39,6 +63,10 @@ namespace TwosCompany.Artifacts {
                 this.Pulse();
         }
 
-        public override void OnCombatEnd(State state) => drawnCards.Clear();
+        public override void OnCombatEnd(State state) {
+            drawnCards.Clear();
+            discountCount = 2;
+            increaseCount = 1;
+        }
     }
 }

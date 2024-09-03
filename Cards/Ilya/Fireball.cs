@@ -4,7 +4,7 @@
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 2,
-                infinite = upgrade == Upgrade.B
+                infinite = upgrade == Upgrade.A
             };
         }
         private int GetHandSize(State s) {
@@ -26,12 +26,12 @@
                 handAmount = this.GetHandSize(s)
             });
             actions.Add(new AAttack() {
-                damage = GetDmg(s, this.GetHandSize(s) * (upgrade == Upgrade.A ? 2 : 1)),
-                xHint = upgrade == Upgrade.A ? 2 : 1,
-                fast = upgrade != Upgrade.A,
+                damage = GetDmg(s, this.GetHandSize(s) * (upgrade == Upgrade.B ? 2 : 1)),
+                xHint = upgrade == Upgrade.B? 2 : 1,
+                fast = upgrade != Upgrade.B,
                 dialogueSelector = this.GetHandSize(s) > 1 ? ".mezz_thermalBlast" : null
             });
-            if (upgrade != Upgrade.A)
+            if (upgrade != Upgrade.B)
                 actions.Add(new AAttack() {
                     damage = GetDmg(s, this.GetHandSize(s)),
                     fast = true,
@@ -44,7 +44,7 @@
                 targetPlayer = true,
                 xHint = 1
             });
-            if (upgrade == Upgrade.A)
+            if (upgrade == Upgrade.B)
                 actions.Add(new AStatus() {
                     status = Status.heat,
                     statusAmount = -1,

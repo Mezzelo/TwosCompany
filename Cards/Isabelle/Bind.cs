@@ -19,9 +19,15 @@ namespace TwosCompany.Cards.Isabelle {
             actions.Add(new ACostIncreaseAttackHint() {
                 amount = 1,
             });
+            if (upgrade == Upgrade.A)
+                actions.Add(new AStatus() {
+                    status = Status.shield,
+                    statusAmount = 1,
+                    targetPlayer = true,
+                });
             actions.Add(new AStatus() {
-                status = upgrade == Upgrade.A ? Status.shield : Status.tempShield,
-                statusAmount = 3,
+                status = Status.tempShield,
+                statusAmount = upgrade == Upgrade.A ? 2 : 3,
                 targetPlayer = true,
                 dialogueSelector = ".mezz_bind"
             });

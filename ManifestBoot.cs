@@ -222,6 +222,26 @@ namespace TwosCompany {
                         new AHurt { targetPlayer = true, hurtAmount = 1 },
                         new AStatus { targetPlayer = true, status = status, statusAmount = 1 },
                     ]);
+                    draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["BulletTime"].Id!.Value, (_, _, status) => [
+                        new AHurt { targetPlayer = true, hurtAmount = 1 },
+                        new AStatus { targetPlayer = true, status = status, statusAmount = 1 },
+                    ]);
+                    draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["DefensiveFreeze"].Id!.Value, (_, _, status) => [
+                        new AHurt { targetPlayer = true, hurtAmount = 1 },
+                        new AStatus { targetPlayer = true, status = status, statusAmount = 1 },
+                    ]);
+                    draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["FrozenStun"].Id!.Value, (_, _, status) => [
+                        new AHurt { targetPlayer = true, hurtAmount = 1 },
+                        new AStatus { targetPlayer = true, status = status, statusAmount = 1 },
+                    ]);
+                    draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["Inevitability"].Id!.Value, (_, _, status) => [
+                        new AHurt { targetPlayer = true, hurtAmount = 1 },
+                        new AStatus { targetPlayer = true, status = status, statusAmount = 1 },
+                    ]);
+                    draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["CarveReality"].Id!.Value, (_, _, status) => [
+                        new AHurt { targetPlayer = true, hurtAmount = 1 },
+                        new AStatus { targetPlayer = true, status = status, statusAmount = 1 },
+                    ]);
                 }
             });
         }

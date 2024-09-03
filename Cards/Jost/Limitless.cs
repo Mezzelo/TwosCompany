@@ -32,7 +32,7 @@ namespace TwosCompany.Cards.Jost {
             if (upgrade == Upgrade.A) {
                 actions.Add(new AStatus() {
                     status = Status.shield,
-                    statusAmount = 4,
+                    statusAmount = 3,
                     targetPlayer = true,
                 });
                 actions.Add(new AStatus() {

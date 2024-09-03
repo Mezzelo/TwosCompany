@@ -6,10 +6,10 @@ namespace TwosCompany.Cards.Sorrel {
     public class Postpone : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = upgrade == Upgrade.B ? 0 : 2,
+                cost = upgrade != Upgrade.None ? 0 : 1,
                 exhaust = upgrade == Upgrade.B,
-                recycle = upgrade != Upgrade.B,
-                retain = upgrade == Upgrade.B,
+                infinite = upgrade != Upgrade.B,
+                retain = true,
             };
         }
 
@@ -26,7 +26,7 @@ namespace TwosCompany.Cards.Sorrel {
             actions.Add(new AStatus() {
                 targetPlayer = true,
                 status = (Status) Manifest.Statuses?["BulletTime"].Id!,
-                statusAmount = upgrade == Upgrade.B ? 1 : 2,
+                statusAmount = 2,
                 mode = upgrade == Upgrade.B ? AStatusMode.Add : AStatusMode.Set,
                 dialogueSelector = ".mezz_postpone",
             });
@@ -35,13 +35,6 @@ namespace TwosCompany.Cards.Sorrel {
                 status = Status.droneShift,
                 statusAmount = upgrade == Upgrade.B ? 2 : 1,
             });
-            if (upgrade == Upgrade.A) {
-                actions.Add(new AStatus() {
-                    targetPlayer = true,
-                    status = Status.overdrive,
-                    statusAmount = 1
-                });
-            }
 
             return actions;
         }
@@ -51,17 +44,11 @@ namespace TwosCompany.Cards.Sorrel {
             costIncrease = 0;
         }
 
-        public override void OnDraw(State s, Combat c) {
-            if (upgrade != Upgrade.B && wasPlayed) {
-                wasPlayed = false;
-                this.discount += costIncrease;
-            }
-        }
-
         public override void AfterWasPlayed(State state, Combat c) {
             if (upgrade != Upgrade.B) {
                 wasPlayed = true;
                 costIncrease++;
+                this.discount += costIncrease;
             }
         }
 

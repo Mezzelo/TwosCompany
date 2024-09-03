@@ -6,6 +6,7 @@ namespace TwosCompany.Cards.Sorrel {
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 1,
+                flippable = upgrade == Upgrade.A,
                 infinite = true,
             };
         }
@@ -24,11 +25,9 @@ namespace TwosCompany.Cards.Sorrel {
                 stunEnemy = upgrade != Upgrade.B,
                 dialogueSelector = ".mezz_morningDew",
             });
-            if (upgrade != Upgrade.None)
-                actions.Add(new AStatus() {
-                    targetPlayer = true,
-                    status = upgrade == Upgrade.B ? Status.stunCharge : Status.droneShift,
-                    statusAmount = 1
+            if (upgrade == Upgrade.A)
+                actions.Add(new ADroneMove() {
+                    dir = 1,
                 });
 
             return actions;

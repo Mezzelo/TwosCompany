@@ -3,7 +3,7 @@
     public class Sideswipe : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 2,
+                cost = upgrade == Upgrade.B ? 1 : 2,
                 flippable = upgrade == Upgrade.A,
                 art = new Spr?((Spr)((flipped ? Manifest.Sprites["SideswipeCardSpriteFlip"] : Manifest.Sprites["SideswipeCardSprite"]).Id
                     ?? throw new Exception("missing flip art")))
@@ -14,12 +14,16 @@
             List<CardAction> actions = new List<CardAction>();
 
             actions.Add(new AAttack() {
-                damage = GetDmg(s, 2),
-                stunEnemy = upgrade == Upgrade.B
+                damage = GetDmg(s, upgrade == Upgrade.B ? 1 : 2),
             });
             actions.Add(new AMove() {
                 dir = -3,
                 targetPlayer = true,
+            });
+            actions.Add(new AStatus() {
+                status = Status.hermes,
+                statusAmount = 1,
+                targetPlayer = true
             });
             /*
             if (upgrade == Upgrade.B)

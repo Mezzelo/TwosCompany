@@ -1,4 +1,4 @@
-# Two's Company 3.0.0 - for game version 1.1.2
+# Two's Company 3.1.0 - for game version 1.2.1
 
 A mod for Cobalt Core, featuring My bingus blorbos.
 
@@ -12,7 +12,7 @@ Please not that this is a *legacy mod* - if using Nickel, you will need to unzip
 source available here - https://github.com/Mezzelo/TwosCompany
 changelog available here - https://github.com/Mezzelo/TwosCompany/blob/main/changelog.txt
 
-consider checking out the Rocket Rat Discord (blech) server for more mods & discussion - https://discord.com/invite/cncV5znGwA
+consider checking out the Rocket Rat Discord server for more mods & discussion - https://discord.com/invite/cncV5znGwA
 
 # Credits
 

@@ -5,7 +5,7 @@ namespace TwosCompany.Cards.Ilya {
     public class ThermalRunaway : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 2,
+                cost = 1,
                 recycle = upgrade == Upgrade.B
             };
         }

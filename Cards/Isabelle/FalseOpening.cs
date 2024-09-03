@@ -15,8 +15,8 @@ namespace TwosCompany.Cards.Isabelle {
             List<CardAction> actions = new List<CardAction>();
             if (upgrade == Upgrade.A)
                 actions.Add(new AStatus() {
-                    status = Status.tempShield,
-                    statusAmount = 2,
+                    status = Status.overdrive,
+                    statusAmount = 1,
                     mode = AStatusMode.Add,
                     targetPlayer = true,
                 });

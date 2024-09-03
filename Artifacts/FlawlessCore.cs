@@ -5,7 +5,7 @@ namespace TwosCompany.Artifacts {
     public class FlawlessCore : Artifact {
         public override string Description() =>
             "Gain 1 extra <c=energy>ENERGY</c> every turn. " +
-                "<c=downside>If you miss a shot during your turn, lose the bonus energy for next turn.</c>";
+                "<c=downside>If you miss a shot during your turn, lose 1 ENERGY instead.</c>";
 
         bool missed = false;
         public override Spr GetSprite() => (Spr)(Manifest.Sprites["IconFlawlessCore" + (missed ? "Off" : "")].Id
@@ -16,10 +16,10 @@ namespace TwosCompany.Artifacts {
 
         public override void OnTurnStart(State state, Combat combat) {
             if (missed) {
-                combat.Queue(new AEnergy() { changeAmount = -1 });
+                combat.Queue(new AEnergy() { changeAmount = -2 });
                 missed = false;
-            } else
-                this.Pulse();
+            }
+            this.Pulse();
         }
 
         public override void OnEnemyDodgePlayerAttack(State state, Combat combat) {

@@ -14,7 +14,6 @@ namespace TwosCompany.Fx {
             double num = 0.3;
             if (age < num) {
                 double num2 = age / num;
-                int num3 = 1;
                 Spr? clamped = sprites[(int) (20.0 - num2 * 20.0)];
                 double x = v.x + pos.x;
                 double y = v.y + pos.y;

@@ -18,12 +18,13 @@ namespace TwosCompany.Cards.Sorrel {
                 targetPlayer = true,
                 status = (Status)Manifest.Statuses?["BulletTime"].Id!,
                 statusAmount = upgrade == Upgrade.B ? 2 : 1,
-                mode = AStatusMode.Set,
+                mode = upgrade == Upgrade.B ? AStatusMode.Add : AStatusMode.Set,
             });
             actions.Add(new AStatus() {
                 targetPlayer = true,
                 status = Status.droneShift,
-                statusAmount = upgrade == Upgrade.A ? 3 : 2
+                statusAmount = upgrade == Upgrade.None ? 1 : 2,
+                mode = AStatusMode.Add,
             });
             actions.Add(new AForceAttack() {
                 dialogueSelector = ".mezz_faceDownFate",

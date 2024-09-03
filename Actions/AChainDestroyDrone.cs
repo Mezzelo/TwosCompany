@@ -14,7 +14,9 @@ namespace TwosCompany.Actions {
                 return;
             if (noFx) {
                 c.stuff.Remove(stuff.x);
-                if (fxOverride) {
+                if (c.cardActions.Count > 0 && c.cardActions[c.cardActions.Count - 1] is AChainDestroyDrone)
+                    timer = 0.0;
+                else if (fxOverride) {
                     stuff.DoDestroyedEffect(s, c);
                     Audio.Play(FSPRO.Event.Hits_HitDrone);
                 }

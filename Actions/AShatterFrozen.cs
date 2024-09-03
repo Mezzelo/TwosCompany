@@ -5,7 +5,7 @@ using TwosCompany.Midrow;
 namespace TwosCompany.Actions {
     public class AShatterFrozen : CardAction {
         public bool weaken = false;
-        public bool armorize = false;
+        public bool brittle = false;
         public bool onlyOutgoing = false;
 
         public override void Begin(G g, State s, Combat c) {
@@ -15,15 +15,15 @@ namespace TwosCompany.Actions {
                 foreach (AAttack attack in fAttack.attacks) {
                     if (weaken)
                         attack.weaken = true;
-                    else if (armorize)
-                        attack.armorize = true;
+                    else if (brittle)
+                        attack.brittle = true;
                 }
                 if (!onlyOutgoing) {
                     foreach (AAttack attack in fAttack.attacksHostile) {
                         if (weaken)
                             attack.weaken = true;
-                        else if (armorize)
-                            attack.armorize = true;
+                        else if (brittle)
+                            attack.brittle = true;
                     }
                 }
             }
@@ -33,8 +33,8 @@ namespace TwosCompany.Actions {
             List<Tooltip> tooltips = new List<Tooltip>();
             if (weaken)
                 tooltips.Add(new TTGlossary("parttrait.weak"));
-            else if (armorize)
-                tooltips.Add(new TTGlossary("parttrait.armor"));
+            else if (brittle)
+                tooltips.Add(new TTGlossary("parttrait.brittle"));
             return tooltips;
         }
     }

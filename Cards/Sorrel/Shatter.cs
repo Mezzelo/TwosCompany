@@ -16,8 +16,7 @@ namespace TwosCompany.Cards.Sorrel {
             return new CardData() {
                 cost = 2,
                 retain = upgrade == Upgrade.A,
-                exhaust = upgrade != Upgrade.B,
-                singleUse = upgrade == Upgrade.B,
+                exhaust = true,
                 description = cardText,
             };
         }
@@ -27,7 +26,7 @@ namespace TwosCompany.Cards.Sorrel {
             actions.Add(new AShatterFrozen() {
                 onlyOutgoing = upgrade != Upgrade.B,
                 weaken = upgrade != Upgrade.B,
-                armorize = upgrade == Upgrade.B,
+                brittle = upgrade == Upgrade.B,
                 dialogueSelector = ".mezz_shatter",
             });
             return actions;

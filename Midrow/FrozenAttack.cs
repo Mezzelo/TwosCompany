@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Xna.Framework;
 using System;
 using TwosCompany;
 using TwosCompany.Actions;
@@ -123,6 +124,12 @@ namespace TwosCompany.Midrow {
                     brittle = true;
                     tooltips.Add(new TTGlossary("parttrait.armor"));
                 }
+                if (attack.cardOnHit != null) {
+                    tooltips.Add(new TTCard() {
+                        card = attack.cardOnHit,
+                        showCardTraitTooltips = false
+                    });
+                }
             }
             foreach (AAttack attack in attacks) {
                 move += attack.moveEnemy;
@@ -142,34 +149,71 @@ namespace TwosCompany.Midrow {
                     brittle = true;
                     tooltips.Add(new TTGlossary("parttrait.armor"));
                 }
+                if (attack.cardOnHit != null) {
+                    tooltips.Add(new TTCard() {
+                        card = attack.cardOnHit,
+                        showCardTraitTooltips = false
+                    });
+                }
             }
             if (move != 0)
                 tooltips.Add(new TTGlossary("action.move" + (move > 0 ? "Right" : "Left") + "Enemy", Math.Abs(move)));
             return tooltips;
         }
 
-        public Tuple<int?, int?, bool, bool, bool> getDamage () {
+        public Tuple<int?, int?, byte, byte> getDamage () {
             int? damageIncoming = attacksHostile.Count > 0 ? 0 : null;
             int? damageOutgoing = attacks.Count > 0 ? 0 : null;
-            bool stun = false;
-            int modIncoming = 0;
-            bool statusIncoming = false;
-            bool statusOutgoing = false;
+            byte modIncoming = 0;
+            byte modOutgoing = 0;
             foreach (AAttack attack in attacksHostile) {
                 damageIncoming += attack.damage;
-                statusIncoming = statusIncoming || attack.status.HasValue;
+                if (attack.status.HasValue)
+                    modIncoming = (byte)(modIncoming | 1);
+                if (attack.stunEnemy)
+                    modIncoming = (byte)(modIncoming | 2);
+                if (attack.weaken)
+                    modIncoming = (byte)(modIncoming | 4);
+                if (attack.brittle)
+                    modIncoming = (byte)(modIncoming | 8);
+                if (attack.armorize)
+                    modIncoming = (byte)(modIncoming | 16);
+                if (attack.cardOnHit != null)
+                    modIncoming = (byte)(modIncoming | 32);
+
             }
             foreach (AAttack attack in attacks) {
                 damageOutgoing += attack.damage;
-                stun = stun || attack.stunEnemy;
-                statusOutgoing = statusOutgoing || attack.status.HasValue;
+                if (attack.status.HasValue)
+                    modOutgoing = (byte)(modOutgoing | 1);
+                if (attack.stunEnemy)
+                    modOutgoing = (byte)(modOutgoing | 2);
+                if (attack.weaken)
+                    modOutgoing = (byte)(modOutgoing | 4);
+                if (attack.brittle)
+                    modOutgoing = (byte)(modOutgoing | 8);
+                if (attack.armorize)
+                    modOutgoing = (byte)(modOutgoing | 16);
+                if (attack.cardOnHit != null)
+                    modOutgoing = (byte)(modOutgoing | 32);
             }
-            return Tuple.Create<int?, int?, bool, bool, bool>(damageIncoming, damageOutgoing, statusIncoming, statusOutgoing, stun);
+            return Tuple.Create<int?, int?, byte, byte>(
+                damageIncoming, damageOutgoing, modIncoming, modOutgoing);
         }
 
         public override void Render(G g, Vec v) {
+            if (!targetPlayer) {
+                foreach (AAttack attack in attacksHostile)
+                    attack.targetPlayer = !attack.targetPlayer;
+                foreach (AAttack attack in attacks)
+                    attack.targetPlayer = !attack.targetPlayer;
+                List<AAttack> transfer = [.. attacksHostile];
+                attacksHostile = attacks;
+                attacks = transfer;
+                targetPlayer = true;
+            }
             particleStep -= g.dt;
-            Tuple<int?, int?, bool, bool, bool> damage = getDamage();
+            Tuple<int?, int?, byte, byte> damage = getDamage();
             if (damage.Item1 != null) {
                 this.DrawWithHilight(g,
                     (Spr)(Manifest.Sprites["FrozenIncoming"]?.Id ?? throw new Exception("missing frozen attack sprite")),
@@ -187,8 +231,28 @@ namespace TwosCompany.Midrow {
                         lifetime = 0.0 + 0.5 * Mutil.NextRand()
                     });
                 }
+                double iconPos = 10.0;
+                if ((damage.Item3 & 2) > 0) {
+                    Draw.Sprite(Enum.Parse<Spr>("icons_stun"), v.x + 14.0, v.y + iconPos, color: Colors.disabledText);
+                    iconPos -= 10.0;
+                }
+                if ((damage.Item3 & 4) > 0) {
+                    Draw.Sprite(Enum.Parse<Spr>("icons_weak"), v.x + 14.0, v.y + iconPos);
+                    iconPos -= 10.0;
+                }
+                if ((damage.Item3 & 8) > 0) {
+                    Draw.Sprite(Enum.Parse<Spr>("icons_brittle"), v.x + 14.0, v.y + iconPos);
+                    iconPos -= 10.0;
+                }
+                if ((damage.Item3 & 16) > 0) {
+                    Draw.Sprite(Enum.Parse<Spr>("icons_armor"), v.x + 14.0, v.y + iconPos);
+                    iconPos -= 10.0;
+                }
+                if ((damage.Item3 & 32) > 0) {
+                    Draw.Sprite(Enum.Parse<Spr>("hints_hint_card"), v.x + 11.0, v.y + iconPos - 3.0);
+                }
                 Draw.Text(((int)damage.Item1).ToString(), v.x + 10.0, v.y + 10.0,
-                    color: damage.Item3 ? Colors.card : Colors.redd,
+                    color: (damage.Item3 & 1) > 0 ? Colors.card : Colors.redd,
                     outline: Colors.black);
             }
             if (damage.Item2 != null) {
@@ -208,11 +272,28 @@ namespace TwosCompany.Midrow {
                         lifetime = 0.0 + 0.5 * Mutil.NextRand()
                     });
                 }
-                if (damage.Item5 || g.state.ship.Get((Status)Manifest.Statuses["FrozenStun"].Id!) > 0) {
-                    Draw.Sprite(Enum.Parse<Spr>("icons_stun"), v.x + 14.0, v.y + 20.0);
+                double iconPos = 20.0;
+                if ((damage.Item4 & 2) > 0 || g.state.ship.Get((Status)Manifest.Statuses["FrozenStun"].Id!) > 0) {
+                    Draw.Sprite(Enum.Parse<Spr>("icons_stun"), v.x + 14.0, v.y + iconPos);
+                    iconPos += 10.0;
                 }
-                Draw.Text(((int)damage.Item2).ToString(), v.x + 10.0, v.y + 20.0,
-                    color: damage.Item4 ? Colors.card : Colors.droneOutline,
+                if ((damage.Item4 & 4) > 0) {
+                    Draw.Sprite(Enum.Parse<Spr>("icons_weak"), v.x + 14.0, v.y + iconPos);
+                    iconPos += 10.0;
+                }
+                if ((damage.Item4 & 8) > 0) {
+                    Draw.Sprite(Enum.Parse<Spr>("icons_brittle"), v.x + 14.0, v.y + iconPos);
+                    iconPos += 10.0;
+                }
+                if ((damage.Item4 & 16) > 0) {
+                    Draw.Sprite(Enum.Parse<Spr>("icons_armor"), v.x + 14.0, v.y + iconPos);
+                    iconPos += 10.0;
+                }
+                if ((damage.Item4 & 32) > 0) {
+                    Draw.Sprite(Enum.Parse<Spr>("hints_hint_card"), v.x + 11.0, v.y + iconPos - 3.0, color: Colors.disabledText);
+                }
+                Draw.Text(((int) damage.Item2).ToString(), v.x + 10.0, v.y + 20.0,
+                    color: (damage.Item4 & 1) > 0 ? Colors.card : Colors.droneOutline,
                     outline: Colors.black);
             }
             if (particleStep <= 0.0)

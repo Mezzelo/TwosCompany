@@ -5,7 +5,7 @@ namespace TwosCompany.Cards.Sorrel {
     public class Inevitability : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 2,
+                cost = upgrade == Upgrade.B ? 2 : 1,
                 buoyant = upgrade == Upgrade.A,
                 exhaust = true,
             };

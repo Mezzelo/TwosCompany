@@ -11,9 +11,9 @@
             List<CardAction> actions = new List<CardAction>();
 
             actions.Add(new AAttack() {
-                damage = GetDmg(s, upgrade == Upgrade.A ? 2 : 0),
+                damage = GetDmg(s, upgrade == Upgrade.B ? 2 : 0),
                 fast = true,
-                stunEnemy = upgrade == Upgrade.B
+                stunEnemy = upgrade == Upgrade.A
             });
             actions.Add(new AMove() {
                 dir = 3,
@@ -21,7 +21,7 @@
                 isRandom = true
             });
             actions.Add(new AAttack() {
-                damage = GetDmg(s, upgrade == Upgrade.A ? 2 : 3),
+                damage = GetDmg(s, upgrade == Upgrade.B ? 2 : 3),
                 fast = true,
                 stunEnemy = true
             });

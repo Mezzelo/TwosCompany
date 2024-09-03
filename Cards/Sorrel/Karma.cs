@@ -16,6 +16,7 @@ namespace TwosCompany.Cards.Sorrel {
 
             return new CardData() {
                 cost = upgrade == Upgrade.B ? 3 : 1,
+                retain = upgrade == Upgrade.A,
                 temporary = true,
                 exhaust = true,
                 infinite = storyInf,
@@ -27,7 +28,7 @@ namespace TwosCompany.Cards.Sorrel {
             List<CardAction> actions = new List<CardAction>();
             if (upgrade == Upgrade.B)
                 actions.Add(new AForceAttack() {
-                    reverseAfter = true,
+                    // reverseAfter = true,
                     dialogueSelector = ".mezz_karma",
                 });
             else

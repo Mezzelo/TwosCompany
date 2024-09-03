@@ -1185,7 +1185,7 @@
   "mezz_Isa_ArtifactNanofiberHull_1:0": ".. we can't be too reliant on those nanofibers.",
   "mezz_Gauss_ArtifactNanofiberHull_1:0": ".. can't rely on the nanotech to patch that...",
   "mezz_Nola_ArtifactOverclockedGenerator:0": "Generator kicked in, let's make it count!",
-  "mezz_Isa_ArtifactOverclockedGenerator:0": "Got some extra power. Watch this.",
+  "mezz_Isa_ArtifactOverclockedGenerator:0": "Generator's up. Watch and learn!",
   "mezz_Jost_ArtifactOverclockedGenerator:0": "Generator's on. Now's our time.",
   "mezz_Gauss_ArtifactOverclockedGenerator:0": "The overclock kicked in, don't let it go to waste.",
   "mezz_Sorrel_ArtifactOverclockedGenerator:0": "Blooming fields, for busy hands.",
@@ -1327,7 +1327,7 @@
   "mezz_Sorrel_ArtifactBlackfootSymbol:0a": "A distant sea breeze.",
   "mezz_Sorrel_ArtifactBlackfootSymbol:0b": "A shiver on the wind.",
   "mezz_Sorrel_ArtifactEndlessIncense:0a": "A moment in time, forever.",
-  "mezz_Sorrel_ArtifactEndlessIncense:0b": "Flames in the night sky.",
+  "mezz_Sorrel_ArtifactEndlessIncense:0b": "Flames across the night sky.",
   "mezz_Sorrel_ArtifactShrinkingHourglass:0a": "The world closes in.",
   "mezz_Sorrel_ArtifactShrinkingHourglass:0b": "The silver moon darkens.",
   
@@ -1399,7 +1399,7 @@
   "mezz_Nola_Card_SteadyOn:0d": "Enough running. Let's bring this to a close.",
   
   "mezz_Isa_Card_Bind:0a": "Your blade against mine.",
-  "mezz_Isa_Card_Bind:0b": "Enough games, my friend.",
+  "mezz_Isa_Card_Bind:0b": "Enough games.",
   "mezz_Isa_Card_Bind:0c": "Stand and fight!",
   "mezz_Isa_Card_Bind:0d": "Think you can take me? Ha!",
   "mezz_Isa_Card_BladeDance:0a": "Dansons, mon ami?",
@@ -1493,7 +1493,7 @@
   "mezz_Jost_Card_Commit:0b": "Now or never!",
   "mezz_Jost_Card_Commit:0c": "Let's finish this!",
   "mezz_Jost_Card_KeepFighting:0a": "Don't stop!",
-  "mezz_Jost_Card_KeepFighting:0b": "Keep.. keep going!",
+  "mezz_Jost_Card_KeepFighting:0b": "Keep going!",
   "mezz_Jost_Card_OffBalance:0a": "I should be more careful next time.",
   "mezz_Jost_Card_OffBalance:0b": "Keep it steady...",
   "mezz_Jost_Card_OffBalance:0c": "Keep control... Stay in control...",
@@ -2091,7 +2091,7 @@
   "mezz_Ilya_WeJustGainedHeat_Drake_0:0": "This can't go wrong at all.",
   "mezz_Ilya_WeJustGainedHeat_Drake_0:1": "Nope. Totally safe, what we're doing.",
   "mezz_Ilya_WeJustGainedHeat_Drake_1:0": "Let's turn the heat up, shall we?",
-  "mezz_Ilya_WeJustGainedHeat_Drake_1:1": "Lets.",
+  "mezz_Ilya_WeJustGainedHeat_Drake_1:1": "Let's.",
   "mezz_Ilya_WeJustGainedHeat_Drake_2:0": "Time to turn up the heat.",
   "mezz_Ilya_WeJustGainedHeat_Drake_2:1": "I like your style.",
   "mezz_Ilya_WeJustGainedHeat_Drake_3:0": "Time to get cooking.",
@@ -2262,7 +2262,7 @@
   "mezz_Gauss_WeMissedOopsie_0:0": "Aim's off!",
   "mezz_Gauss_WeMissedOopsie_1:0": "Missed!",
   "mezz_Gauss_WeMissedOopsie_2:0": "Damn, that's a wasted shot.",
-  "mezz_Sorrel_WeMissedOopsie_0:0": "We need not land every shot. Only enough.",
+  "mezz_Sorrel_WeMissedOopsie_0:0": "We needn't land every shot. Only enough.",
   "mezz_Sorrel_WeMissedOopsie_1:0": "No painting is perfect.",
   "mezz_Sorrel_WeMissedOopsie_2:0": "Worry not. Our opportunity will come.",
   
@@ -2295,8 +2295,6 @@
   "mezz_Nola_TheyGotCorroded_0:0b": "Stay defensive. Let the corrosion do its work.",
   "mezz_Isa_TheyGotCorroded_0:0a": "A bit of poison, for your troubles.",
   "mezz_Isa_TheyGotCorroded_0:0b": "A corroding poison. Wicked...",
-  "mezz_Ilya_TheyGotCorroded_0:0a": "Now we can melt them in two ways.",
-  "mezz_Ilya_TheyGotCorroded_0:0b": "Burn! Burn! Melt?",
   "mezz_Ilya_TheyGotCorroded_0:0a": "Now we can melt them in two ways.",
   "mezz_Ilya_TheyGotCorroded_0:0b": "Burn! Burn! Melt?",
   "mezz_Jost_TheyGotCorroded_0:0a": "Let them not suffer more than necessary.",
@@ -2382,7 +2380,7 @@
   "mezz_Jost_WeGotShotButTookNoDamage_0:0a": "Hull's safe!",
   "mezz_Jost_WeGotShotButTookNoDamage_0:0b": "No damage!",
   "mezz_Gauss_WeGotShotButTookNoDamage_0:0a": "Nice try!",
-  "mezz_Gauss_WeGotShotButTookNoDamage_0:0b": "Try harder! On second thought, don't.",
+  "mezz_Gauss_WeGotShotButTookNoDamage_0:0b": "Not a scratch!",
   "mezz_Sorrel_WeGotShotButTookNoDamage_0:0a": "Their efforts amount to nothing.",
   "mezz_Sorrel_WeGotShotButTookNoDamage_0:0b": "Futile efforts.",
   
@@ -2455,9 +2453,6 @@
   "mezz_Isa_MechaPossumShouts_Multi_0:1": "I've got something to show you, alright.",
   "mezz_Gauss_MechaPossumShouts_Multi_0:0": "I think the other one might be more practical.",
   "mezz_Gauss_MechaPossumShouts_Multi_0:1": "Don't worry, I'll show you just how practical this is.",
-  
-  "mezz_Nola_Miner:1": "I can't imagine the fuel cost on that is worthwhile. Have you considered downsizing?",
-  "mezz_Nola_Miner:2": "Have you considered dying?",
   
   "mezz_Nola_Miner:0": ".. this ship of yours seems excessive.",
   "mezz_Nola_Miner:1": "I can't imagine the fuel cost on that is worthwhile. Have you considered downsizing?",
@@ -2594,6 +2589,6 @@
   "mezz_Gauss_WizardGeneralShouts_0:0": "Zip-zap-zammo!",
   "mezz_Gauss_WizardGeneralShouts_0:1": "Hey, that's my line!",
   "mezz_Gauss_WizardGeneralShouts_1:0": "Ofouhogohoub!",
-  "mezz_Gauss_WizardGeneralShouts_1:1": "I'll show you some magic, alright.",
+  "mezz_Gauss_WizardGeneralShouts_1:1": "I'll show you some magic, alright."
   
 }

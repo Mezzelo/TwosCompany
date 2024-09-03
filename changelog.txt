@@ -1,3 +1,50 @@
+3.1.0
+Balance/fixes patch
+
+~ Bind A now gives 1 shield and 2 temp shield, instead of 3 shield.
+~ False Opening A now gives 1 overdrive instead of 2 temp shield.
+~ Misdirection reworked: default and A cost 1, give overdrive instead of drawing cards, and no longer exhaust.  Default no longer retains, A is no longer buoyant.
+~ Swapped Measure Break's A and B upgrades.
+~ En Garde reworked.  Too much changed to be meaningful to list it here lol.
+
+~ Burnout is now uncommon, from common.
+~ Heat Recycler is now common, from uncommon.
+- Imbue B now exhausts.
+~ Swapped Fireball's A and B upgrades.
++ Thermal Runaway's cost reduced to 1, from 2.
+
+~ Regain Poise A is now floppable to switch between stances, instead of giving temp shield.
+~ Breathe In now has a Heartbeat tooltip.
+~ Keep Fighting reworked: Both halves do 3 shield or attack, reduces draw by 2 instead of replicating itself.  Default and B cost 1, A costs 0.  B is infinite and retain instead of recycling.
+
+~ Hyperspace Wind B no longer has erroneous cost increase tip.
++ Static Charge's cost reduced by 1, for all variants.
+
+- Curve the Bullet gives only 1 droneshift, from 2, for all variants.
+- Face Down Fate gives 1 less droneshift, for all variants but B.  B now adds bullet time instead of setting it.
+~ Postpone reworked: Now infinite and retain instead of recycling, making it more difficult to stall infinitely.
+~ World in Motion reworked: Shifted the amount of engine lock variants give, all variants give 1 less droneshift.
+- Things Fall Apart A now moves the midrow 1 and is flippable, instead of giving droneshift.  Things Fall Apart B no longer gives a stun charge.
+~ Every Frame a Painting no longer retains by default (only A), and A is no longer buoyant.
+- Everyone's Grudge A no longer retains.
+	+ Karma A now retains.
++ Inevitability's cost reduced to 1, from 2, for default variant.
+~ Shatter B now inflicts brittle, rather than armorize, and is no longer single use.
+
+- Handful of Floren reworked: It now applies to 2+ cost cards up to twice per turn, and increases the cost of 1- cost cards up to once per turn.
+- Flawless Core nerfed: It now removes 1 energy the turn after when missing, instead of not giving its bonus energy.
+- Messenger Bag now only gives up to 1 onslaught per turn, from 2.
+- Tuning Trident's damage penalty increased to -2, from -1.
+
++ (fix) Mobile Defense now procs when running into cave walls.  Grey area, but behaviour is now consistent w/ vanilla strafe proc.
+~ (fix) Fixed forcing attack intents ignoring stuns.
+~ (fix) Fixed odd delays when destroying multiple frozen attacks at once.
+~ Frozen attacks now display whether they will inflict weaken, brittle, armorize, and/or give a card.  Incoming attacks will display if there is a stun as well.
+~ Frozen attacks now use targetPlayer (true by default).  Release and modded effects that flip the midrow should now affect them properly.
+	~ Please note that this will affect runs currently in progress, if any frozen attacks exist in your save.
+~ Minor sprite and string revisions
+
+
 3.0.0
 just a small update :)
 
