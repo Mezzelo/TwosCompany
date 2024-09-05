@@ -67,8 +67,8 @@ namespace TwosCompany.Artifacts {
         }
         public override List<Tooltip>? GetExtraTooltips() {
             List<Tooltip> list = new List<Tooltip>();
-            list.Add(new TTGlossary("status." + Manifest.Statuses?["BulletTime"].Id));
             list.Add(new TTGlossary("status.droneShift"));
+            list.Add(new TTGlossary("status." + Manifest.Statuses?["BulletTime"].Id));
             if (assignedUUID != -1 && cardImpression != null)
                 list.Add(cardImpression);
             return list;

@@ -31,5 +31,8 @@ namespace TwosCompany.Artifacts {
                 return 1;
             return 0;
         }
+        public override List<Tooltip>? GetExtraTooltips() => new List<Tooltip>() {
+            new TTGlossary("status." + Manifest.Statuses?["BulletTime"].Id),
+        };
     }
 }

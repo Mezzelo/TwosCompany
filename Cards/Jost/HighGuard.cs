@@ -7,7 +7,7 @@ namespace TwosCompany.Cards.Jost {
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 1,
-                art = new Spr?((Spr)(Manifest.Sprites["JostDefaultCardSprite" + (upgrade == Upgrade.B ? "" : "Down1") + Stance.AppendName(state)].Id
+                art = new Spr?((Spr)(Manifest.Sprites["JostDefaultCardSprite" + (upgrade != Upgrade.None ? "" : "Down1") + Stance.AppendName(state)].Id
                     ?? throw new Exception("missing card art")))
             };
         }
@@ -16,13 +16,13 @@ namespace TwosCompany.Cards.Jost {
             List<CardAction> actions = new List<CardAction>();
             actions.Add(new AStatus() {
                 status = (Status) Manifest.Statuses?["FalseOpening"].Id!,
-                statusAmount = 2,
+                statusAmount = upgrade == Upgrade.B ? 3 : 2,
                 targetPlayer = true,
                 disabled = Stance.Get(s) % 2 != 1
             });
             actions.Add(new AStatus() {
-                status = upgrade == Upgrade.B ? Status.tempShield : Status.shield,
-                statusAmount = upgrade != Upgrade.None ? 2 : 1,
+                status = Status.shield,
+                statusAmount = upgrade == Upgrade.A ? 2 : 1,
                 targetPlayer = true,
                 disabled = Stance.Get(s) % 2 != 1
             });
@@ -32,19 +32,32 @@ namespace TwosCompany.Cards.Jost {
             actions.Add(new StatCostAction() {
                 action = new AStatus() {
                     status = Status.overdrive,
-                    statusAmount = 2,
+                    statusAmount = upgrade == Upgrade.B ? 1 : 2,
                     targetPlayer = true,
                 },
                 statusReq = Status.shield,
-                statusCost = 2,
+                statusCost = upgrade == Upgrade.B ? 1 : 2,
                 first = true,
                 disabled = Stance.Get(s) < 2,
             });
-            if (upgrade == Upgrade.B)
+            if (upgrade == Upgrade.A)
                 actions.Add(new AStatus() {
                     status = Status.tempShield,
-                    statusAmount = 2,
+                    statusAmount = 1,
                     targetPlayer = true,
+                    disabled = Stance.Get(s) < 2,
+                });
+            else if (upgrade == Upgrade.B)
+                actions.Add(new StatCostAction() {
+                    action = new AStatus() {
+                        status = Status.overdrive,
+                        statusAmount = 2,
+                        targetPlayer = true,
+                    },
+                    statusReq = Status.shield,
+                    statusCost = 2,
+                    first = false,
+                    cumulative = 1,
                     disabled = Stance.Get(s) < 2,
                 });
 

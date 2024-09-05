@@ -17,7 +17,7 @@ namespace TwosCompany.Cards.Sorrel {
 
             if (upgrade == Upgrade.B)
                 actions.Add(new AForceAttack() {
-
+                    queueAfter = 2,
                 });
             actions.Add(new ADroneMove() {
                 dir = 4,

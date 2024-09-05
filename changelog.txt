@@ -1,3 +1,13 @@
+3.1.1
+critical bug hotfix
+
+- Pommel Blow's default variant is no longer flippable.
+~ High Guard A's offensive side now gives 1 temp shield.  High Guard B reworked - 3 payback overdrive on defensive side, from 2, and an additional stat cost overdrive on offensive side.  No longer gives temp shield.
+
+~ (fix) Added missing bullet time tooltip on Endless Incense, reordered tooltips on Ambered Thoughts.
+~ (fix) Karma B now works properly, and retains in Sorrel's memory.
+
+
 3.1.0
 Balance/fixes patch
 

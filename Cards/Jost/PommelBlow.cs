@@ -9,7 +9,7 @@ namespace TwosCompany.Cards.Jost {
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 1,
-                flippable = true,
+                flippable = upgrade != Upgrade.None,
                 art = new Spr?((Spr)(Manifest.Sprites["JostDefaultCardSprite" + Stance.AppendName(state)].Id
                     ?? throw new Exception("missing card art")))
             };
