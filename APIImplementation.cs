@@ -9,5 +9,9 @@ namespace TwosCompany {
         public ExternalDeck JostDeck => Manifest.JostDeck!;
         public ExternalDeck GaussDeck => Manifest.GaussDeck!;
         public ExternalDeck SorrelDeck => Manifest.SorrelDeck!;
+
+        public int? StatusId(string status) {
+            return Manifest.Statuses[status].Id;
+        }
     }
 }

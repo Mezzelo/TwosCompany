@@ -68,7 +68,7 @@ namespace TwosCompany.Cards.Nola {
             }
 
             actions.Add(new ADrawCard() {
-                count = upgrade == Upgrade.A ? 2 : 1
+                count = upgrade == Upgrade.A ? 5 : 3
             });
             return actions;
         }

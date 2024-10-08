@@ -7,5 +7,6 @@ namespace TwosCompany {
         ExternalDeck IlyaDeck { get; }
         ExternalDeck JostDeck { get; }
         ExternalDeck GaussDeck { get; }
+        int? StatusId(String status);
     }
 }

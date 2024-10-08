@@ -1,7 +1,7 @@
 ﻿using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Nola {
-    [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
+    [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class CallAndResponse : Card {
 
         public Card? storedCard;
@@ -26,20 +26,7 @@ namespace TwosCompany.Cards.Nola {
             }
             return false;
         }
-        private bool storedCardState(State s) {
-            if (storedCard == null)
-                return false;
-            /*
-            if (s.route is Combat route) {
-                foreach (Card search in route.exhausted)
-                    if (search.uuid == storedCard.uuid)
-                        return false;
-
-                if (s.FindCard(storedCard.uuid) == null)
-                    return false;
-            }*/
-            return true;
-        }
+        private bool storedCardState(State s) => storedCard != null;
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();

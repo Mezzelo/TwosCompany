@@ -441,8 +441,8 @@ namespace TwosCompany {
                 postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.CrystallizedFriendPostfix))
             );
             harmony.Patch(
-                original: AccessTools.DeclaredMethod(typeof(Events), nameof(Events.ForeignCardOffering)),
-                postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.ForeignCardOfferingPostfix))
+                original: AccessTools.DeclaredMethod(typeof(CardReward), nameof(CardReward.TakeCard)),
+                postfix: new HarmonyMethod(typeof(PatchLogic), nameof(PatchLogic.TakeCardPostfix))
             );
 
             // unfortunately can't fix run history colors without transpiler, but this does solve some other cases.

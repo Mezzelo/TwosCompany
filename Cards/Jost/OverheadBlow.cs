@@ -29,7 +29,7 @@ namespace TwosCompany.Cards.Jost {
 
             actions.Add(new ADummyAction());
 
-            actions.Add(new StatCostAction() {
+            actions.Add(new StatCostAttack() {
                 action = new AAttack() {
                     fast = upgrade == Upgrade.B,
                     damage = GetDmg(s, upgrade == Upgrade.B ? 2 : 5),
@@ -40,7 +40,7 @@ namespace TwosCompany.Cards.Jost {
                 first = true,
             });
             if (upgrade == Upgrade.B)
-                actions.Add(new StatCostAction() {
+                actions.Add(new StatCostAttack() {
                     action = new AAttack() {
                         fast = true,
                         damage = GetDmg(s, 5),

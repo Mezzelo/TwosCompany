@@ -1058,20 +1058,10 @@ namespace TwosCompany {
             }
             return;
         }
-        public static void ForeignCardOfferingPostfix(ref List<Choice> __result, State s) {
-            bool found = false;
-            foreach (Choice choice in __result) {
-                foreach (CardAction action in choice.actions) {
-                    if (action is ACardOffering cardAdd && ((int)cardAdd.limitDeck.GetValueOrDefault()) == ManifHelper.GetDeckId("jost")) {
-                        found = true;
-                        choice.actions.Add(new AAddArtifact() {
-                            artifact = new CrumpledWrit(),
-                        });
-                        break;
-                    }
-                }
-                if (found)
-                    break;
+        public static void TakeCardPostfix(G g, Card card) {
+            if ((int) card.GetMeta().deck == ManifHelper.GetDeckId("jost") &&
+                !g.state.EnumerateAllArtifacts().OfType<CrumpledWrit>().Any()) {
+                g.state.SendArtifactToChar(new CrumpledWrit());
             }
             return;
         }

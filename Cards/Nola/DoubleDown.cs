@@ -11,7 +11,7 @@
                 cardText = Loc.GetLocString(Manifest.Cards?["DoubleDown"].DescBLocKey ?? throw new Exception("Missing card description"));
 
             return new CardData() {
-                cost = 3,
+                cost = upgrade == Upgrade.B ? 3 : 2,
                 description = cardText,
                 retain = upgrade == Upgrade.A,
                 exhaust = true,
@@ -29,7 +29,7 @@
                     thisStatus.Key != Status.shield
                     && thisStatus.Key != Status.tempShield
                     // && thisStatus.Key != Status.maxShield
-                    && thisStatus.Key != Status.shard
+                    // && thisStatus.Key != Status.shard
                     // && thisStatus.Key != Status.evade
                     // && thisStatus.Key != Status.maxShard
                     )

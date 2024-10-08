@@ -19,7 +19,7 @@ using Nickel;
 
 namespace TwosCompany {
     public partial class Manifest : ISpriteManifest, ICardManifest, IDeckManifest, ICharacterManifest, IAnimationManifest,
-        IGlossaryManifest, IStatusManifest, 
+        IGlossaryManifest, IStatusManifest, IApiProviderManifest,
         ICustomEventManifest, IArtifactManifest, CobaltCoreModding.Definitions.ModManifests.IModManifest {
         public DirectoryInfo? ModRootFolder { get; set; }
         public DirectoryInfo? GameRootFolder { get; set; }
@@ -140,7 +140,6 @@ namespace TwosCompany {
             animReg.RegisterAnimation(Animations[spriteName + "Anim"]);
 
         }
-
         void ISpriteManifest.LoadManifest(ISpriteRegistry artReg) {
             if (ModRootFolder == null)
                 throw new Exception("Root Folder not set");
@@ -410,7 +409,7 @@ namespace TwosCompany {
 
             if (MoreDifficultiesApi != null) {
                 MoreDifficultiesApi.RegisterAltStarters((Deck)NolaDeck.Id!, new StarterDeck() {
-                    cards = new List<Card> { new CallAndResponse(), new HoldOn() }
+                    cards = new List<Card> { new Anticipation(), new HoldOn() }
                 });
                 MoreDifficultiesApi.RegisterAltStarters((Deck)IsabelleDeck.Id!, new StarterDeck() {
                     cards = new List<Card> { new Bind(), new MeasureBreak() }

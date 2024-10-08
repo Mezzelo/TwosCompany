@@ -24,7 +24,7 @@ namespace TwosCompany.Cards.Nola {
 
             actions.Add(new ADiscardShuffle());
             actions.Add(new ADrawCard() {
-                count = upgrade == Upgrade.B ? 4 : 2,
+                count = upgrade == Upgrade.B ? 5 : 3,
                 // dialogueSelector = ".mezz_recalibrate"
             });
             return actions;

@@ -57,7 +57,7 @@ namespace TwosCompany.Cards.Ilya {
                 },
                 statusReq = Status.heat,
                 statusCost = 1,
-                cumulative = upgrade == Upgrade.A ? 2 : 3,
+                cumulative = 3,
             });
             return actions;
         }

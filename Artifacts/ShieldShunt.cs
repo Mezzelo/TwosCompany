@@ -7,23 +7,10 @@
 
         public override void OnReceiveArtifact(State state) {
 
-            int increase = state.ship.shieldMaxBase *= 2;
-
-            state.rewardsQueue.Add(new AHullMax() {
-                amount = increase,
-                targetPlayer = true,
-                timer = 0.5
-            });
-            state.rewardsQueue.Add(new AHeal() {
-                healAmount = increase,
-                targetPlayer = true,
-                timer = 0.5
-            });
-            state.rewardsQueue.Add(new AShieldMax() {
-                amount = -state.ship.shieldMaxBase + 1,
-                targetPlayer = true,
-                timer = 0.5
-            });
+            int increase = state.ship.shieldMaxBase * 2;
+            state.ship.hullMax += increase;
+            state.ship.hull += increase;
+            state.ship.shieldMaxBase = 1;
         }
 
         public override void OnRemoveArtifact(State state) {

@@ -1,3 +1,27 @@
+3.1.2
+bugfixes and a handful of balance changes.
+
+~ Nola's alt starters changed to Anticipation and Hold On, from Call and Response and Hold On.
+~ Anticipation is now common, from uncommon.
++ Foresight now draws 3/5/3 cards, from 1/2/1.
+- Captain's Orders now exhausts, on all variants.
+~ Call and Response is now uncommon, from common.
++ Recalibrate draws 1 more card, for all variants. (2/2/4 to 3/3/5)
++ Double Down's cost reduced to 2, from 3, for default and A variants.
+
+~ (fix) Imbue A's heat cost now displays properly.
+
+~ (fix) Overhead Blow's attacks were not counted as attacks (affecting Bind, within this mod's scope)
+
+- Postpone B's cost increased to 1, from 0.
++ Void Sermon's cost decreased to 1/0/2, from 2/1/2.
+
+~ (fix) Shield Shunt now properly functions when taken as a Warp Prep replacement.
+~ (fix) Modded interactions that offer foreign cards now give Crumpled Writ when taking Jost cards.
+~ (fix) Fixed a bug omitting all injected dialogue strings.  Whoops!
+~ (fix) Mod API now actually works.  Also whoops.
+~ Added status retrieval to mod API.
+
 3.1.1
 critical bug hotfix
 

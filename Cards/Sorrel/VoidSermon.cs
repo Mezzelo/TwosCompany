@@ -17,7 +17,7 @@ namespace TwosCompany.Cards.Sorrel {
                     "Triple");
 
             return new CardData() {
-                cost = upgrade == Upgrade.A ? 1 : 2,
+                cost = upgrade == Upgrade.A ? 0 : (upgrade == Upgrade.B ? 2 : 1),
                 exhaust = true,
                 description = cardText,
             };

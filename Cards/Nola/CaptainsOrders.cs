@@ -15,6 +15,7 @@ namespace TwosCompany.Cards.Nola {
             return new CardData() {
                 cost = 3,
                 description = cardText,
+                exhaust = true,
                 retain = true
             };
         }

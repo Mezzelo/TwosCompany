@@ -1,7 +1,7 @@
 ﻿using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Nola {
-    [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
+    [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class Anticipation : Card {
         public override CardData GetData(State state) {
             string cardText;

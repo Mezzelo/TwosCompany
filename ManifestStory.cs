@@ -61,6 +61,7 @@ namespace TwosCompany {
                         if (line is SaySwitch saySwitch && parseStory.all[key].lines[i] is SaySwitch addLines) {
                             foreach (Say sayLine in addLines.lines) {
                                 string newHash = GetHash(key + ":" + counter + ":mezz_" + sayLine.who, hash);
+                                DB.currentLocale.strings.Add(key + ":" + newHash, loc[key + ":" + counter + ":mezz_" + sayLine.who]);
                                 if (ManifHelper.charStoryNames.ContainsKey(sayLine.who))
                                     sayLine.who = ManifHelper.charStoryNames[sayLine.who];
                                 sayLine.hash = newHash;

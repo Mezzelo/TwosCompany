@@ -6,7 +6,7 @@ namespace TwosCompany.Cards.Sorrel {
     public class Postpone : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = upgrade != Upgrade.None ? 0 : 1,
+                cost = upgrade == Upgrade.A ? 0 : 1,
                 exhaust = upgrade == Upgrade.B,
                 infinite = upgrade != Upgrade.B,
                 retain = true,
