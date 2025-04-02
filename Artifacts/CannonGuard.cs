@@ -27,7 +27,7 @@
 		public override int? GetDisplayNumber(State s)
 		{
 			if (pos == s.ship.x) return null;
-            return pos - s.ship.x;
+            return s.ship.x - pos;
 		}
 		
         public override List<Tooltip>? GetExtraTooltips() => new List<Tooltip>() { new TTGlossary("status.overdrive", 1) };
