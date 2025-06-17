@@ -43,7 +43,7 @@ namespace TwosCompany.Artifacts {
                 Manifest.EventHub.DisconnectFromEvent<Tuple<int, bool, bool, Combat, State>>("Mezz.TwosCompany.Movement", Movement);
                 return;
             }
-            hasMovedThisTurn = true;
+            hasMovedThisTurn = hasMovedThisTurn || evt.Item1 != 0;
         }
 
         public override void OnTurnEnd(State state, Combat combat) {
@@ -57,7 +57,7 @@ namespace TwosCompany.Artifacts {
         }
 		public override int? GetDisplayNumber(State s)
 		{
-			if (pos == s.ship.x) return null;
+			if (pos == s.ship.x && !hasMovedThisTurn) return null;
             return s.ship.x - pos;
 		}
 		
