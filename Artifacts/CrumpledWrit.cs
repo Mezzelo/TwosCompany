@@ -41,7 +41,7 @@ namespace TwosCompany.Artifacts {
                         card = new OffBalance() { discount = (discountOffBalance ? -1 : 0) },
                         destination = CardDestination.Hand,
                         artifactPulse = this.Key(),
-                        dialogueSelector = ".mezz_cannonGuard",
+                        dialogueSelector = ".mezz_crumpledWrit",
                     });
             }
         }
