@@ -230,7 +230,7 @@
         {
           "$type": "Say, CobaltCore",
           "who": "isa",
-          "loopTag": "intense",
+          "loopTag": "squint",
         }
       ],
       "allPresent": [

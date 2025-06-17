@@ -504,14 +504,14 @@
       "type": "combat",
       "playerShotJustHit": true,
       "minDamageDealtToEnemyThisAction": 1,
-      "whoDidThat": "goat",
+      "whoDidThat": "hacker",
       "allPresent": [
         "gauss",
-		"goat"
+		"hacker"
       ],
       "lines": [
 		{ "$type": "Say, CobaltCore",
-		  "who": "goat",
+		  "who": "hacker",
 		},
 		{ "$type": "Say, CobaltCore",
 		  "who": "gauss",
