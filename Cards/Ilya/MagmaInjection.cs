@@ -1,4 +1,5 @@
-﻿using TwosCompany.Actions;
+﻿using System;
+using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Ilya {
     [CardMeta(rarity = Rarity.rare, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
@@ -41,14 +42,49 @@ namespace TwosCompany.Cards.Ilya {
                     mode = AStatusMode.Set,
                     targetPlayer = true
                 });
-            }
-            else {
+            } else {
                 if (upgrade == Upgrade.A)
                     actions.Add(new AAttack() {
                         damage = GetDmg(s, 1),
                         fast = true,
                     });
-                else
+                else {
+                    if (Manifest.hasKokoro)
+                        actions.Add(Manifest.KokoroApi!.ActionCosts.MakeCostAction(
+                        Manifest.KokoroApi!.ActionCosts.MakeResourceCost(
+                            Manifest.KokoroApi!.ActionCosts.MakeStatusResource(Status.heat),
+                            amount: 1
+                        ), new AAttack() {
+                            damage = GetDmg(s, 1),
+                            fast = true,
+                        }).AsCardAction);
+                    else
+                        actions.Add(new StatCostAttack() {
+                            action = new AAttack() {
+                                damage = GetDmg(s, 1),
+                                fast = true,
+                            },
+                            statusReq = Status.heat,
+                            statusCost = 1,
+                            cumulative = 0,
+                            first = true,
+                        });
+                }
+                if (Manifest.hasKokoro) {
+                    for (int i = 0; i < 3; i++) {
+                        actions.Add(Manifest.KokoroApi!.ActionCosts.MakeCostAction(
+                        Manifest.KokoroApi!.ActionCosts.MakeResourceCost(
+                            Manifest.KokoroApi!.ActionCosts.MakeStatusResource(Status.heat),
+                            amount: 1
+                        ), new AAttack() {
+                            status = i == 0 ? null : Status.corrode,
+                            targetPlayer = false,
+                            statusAmount = i == 0 ? 0 : 1,
+                            damage = GetDmg(s, 1),
+                            fast = true,
+                        }).AsCardAction);
+                    }
+                } else {
                     actions.Add(new StatCostAttack() {
                         action = new AAttack() {
                             damage = GetDmg(s, 1),
@@ -56,53 +92,44 @@ namespace TwosCompany.Cards.Ilya {
                         },
                         statusReq = Status.heat,
                         statusCost = 1,
-                        cumulative = 0,
-                        first = true,
+                        cumulative = upgrade == Upgrade.A ? 0 : 1,
+                        first = upgrade == Upgrade.None,
                     });
-                actions.Add(new StatCostAttack() {
-                    action = new AAttack() {
-                        damage = GetDmg(s, 1),
-                        fast = true,
-                    },
-                    statusReq = Status.heat,
-                    statusCost = 1,
-                    cumulative = upgrade == Upgrade.A ? 0 : 1,
-                    first = upgrade == Upgrade.None,
-                });
-                actions.Add(new StatCostAttack() {
-                    action = new AAttack() {
+                    actions.Add(new StatCostAttack() {
+                        action = new AAttack() {
+                            damage = GetDmg(s, 1),
+                            status = Status.corrode,
+                            targetPlayer = false,
+                            statusAmount = 1,
+                            fast = true,
+                        },
+                        statusReq = Status.heat,
+                        statusCost = 1,
+                        cumulative = upgrade == Upgrade.A ? 1 : 2,
+                        first = false,
                         damage = GetDmg(s, 1),
                         status = Status.corrode,
                         targetPlayer = false,
                         statusAmount = 1,
-                        fast = true,
-                    },
-                    statusReq = Status.heat,
-                    statusCost = 1,
-                    cumulative = upgrade == Upgrade.A ? 1 : 2,
-                    first = false,
-                    damage = GetDmg(s, 1),
-                    status = Status.corrode,
-                    targetPlayer = false,
-                    statusAmount = 1,
-                });
-                actions.Add(new StatCostAttack() {
-                    action = new AAttack() {
+                    });
+                    actions.Add(new StatCostAttack() {
+                        action = new AAttack() {
+                            status = Status.corrode,
+                            targetPlayer = false,
+                            statusAmount = 1,
+                            damage = GetDmg(s, 1),
+                            fast = true,
+                        },
+                        statusReq = Status.heat,
+                        statusCost = 1,
+                        cumulative = upgrade == Upgrade.A ? 2 : 3,
+                        first = false,
+                        damage = GetDmg(s, 1),
                         status = Status.corrode,
                         targetPlayer = false,
                         statusAmount = 1,
-                        damage = GetDmg(s, 1),
-                        fast = true,
-                    },
-                    statusReq = Status.heat,
-                    statusCost = 1,
-                    cumulative = upgrade == Upgrade.A ? 2 : 3,
-                    first = false,
-                    damage = GetDmg(s, 1),
-                    status = Status.corrode,
-                    targetPlayer = false,
-                    statusAmount = 1,
-                });
+                    });
+                }
             }
             return actions;
         }

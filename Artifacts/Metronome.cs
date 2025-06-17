@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.Metrics;
 using System.Runtime.CompilerServices;
 using TwosCompany.Cards.Ilya;
+using TwosCompany.Helper;
 
 namespace TwosCompany.Artifacts {
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Common })]
@@ -9,8 +10,7 @@ namespace TwosCompany.Artifacts {
         public bool lastWasMove = false;
         public bool consecutive = false;
         public bool fromStrafe = false;
-        public override string Description() => "Whenever you alternate between moving and attacking <c=keyword>6</c> times in a row, " +
-            "gain 1 <c=status>OVERDRIVE</c> and 1 <c=status>EVADE</c>.";
+        public override string Description() => ManifArtifactHelper.artifactTexts["Metronome"];
 
         public override int? GetDisplayNumber(State s) => counter;
 
@@ -58,7 +58,7 @@ namespace TwosCompany.Artifacts {
             c.QueueImmediate(new AStatus() {
                 targetPlayer = true,
                 status = Status.evade,
-                statusAmount = 1
+                statusAmount = 2
             });
             foreach (CardAction cardAction in c.cardActions) {
                 if (cardAction is AAttack aattack && !aattack.targetPlayer && !aattack.fromDroneX.HasValue)
@@ -100,6 +100,7 @@ namespace TwosCompany.Artifacts {
             lastWasMove = true;
             fromStrafe = evt.Item3;
         }
+
         public override List<Tooltip>? GetExtraTooltips() => new List<Tooltip>() { new TTGlossary("status.overdrive", 1), new TTGlossary("status.evade", 1) };
     }
 }

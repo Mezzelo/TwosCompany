@@ -3,7 +3,7 @@ using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Isabelle {
     [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
-    public class Bind : Card, IOtherAttackIncreaseCard {
+    public class Bind : Card, IOtherAttackIncreaseCard, ITCNickelTraits {
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 0,
@@ -12,13 +12,16 @@ namespace TwosCompany.Cards.Isabelle {
         }
 
         public int costIncrease = 0;
+        public string[] GetTraits()
+            => new string[] { "EnergyPerAttackIncrease" };
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            actions.Add(new ACostIncreaseAttackHint() {
-                amount = 1,
-            });
+            if (!Manifest.hasNickel)
+                actions.Add(new ACostIncreaseAttackHint() {
+                    amount = 1,
+                });
             if (upgrade == Upgrade.A)
                 actions.Add(new AStatus() {
                     status = Status.shield,

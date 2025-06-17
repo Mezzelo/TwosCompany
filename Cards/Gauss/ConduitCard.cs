@@ -2,7 +2,7 @@
 
 namespace TwosCompany.Cards.Gauss {
     [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
-    public class ConduitCard : Card {
+    public class ConduitCard : Card, ITCNickelTraits {
 
         public int costIncrease = 0;
         public override CardData GetData(State state) {
@@ -11,10 +11,12 @@ namespace TwosCompany.Cards.Gauss {
                 infinite = upgrade == Upgrade.B,
             };
         }
+        public string[] GetTraits()
+            => upgrade == Upgrade.B ? new string[] { "AllIncrease" } : new string[] { };
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
-            if (upgrade == Upgrade.B)
+            if (!Manifest.hasNickel && upgrade == Upgrade.B)
                 actions.Add(new AAllIncreaseHint() {
                     amount = 1,
                     isCombat = upgrade != Upgrade.B,

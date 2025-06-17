@@ -6,12 +6,14 @@ using System.Reflection;
 using TwosCompany;
 using TwosCompany.Cards.Isabelle;
 using TwosCompany.Cards.Nola;
+using TwosCompany.Helper;
 
 namespace TwosCompany.Artifacts {
 
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Boss })]
     public class CommandCenter : Artifact {
-        public override string Description() => "Whenever you play <c=keyword>3</c> different colored cards in the same turn, gain 1 <c=energy>energy</c>.";
+        public override string Description() => ManifArtifactHelper.artifactTexts["CommandCenter"];
+
         public List<Deck> decks = new List<Deck>();
         public List<TTCard> cards = new List<TTCard>();
         public int count = 0;

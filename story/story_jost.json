@@ -1025,6 +1025,10 @@
       ],
       "lines": [
         {
+          "$type": "Command, CobaltCore",
+          "name": "MezzSetTCFinaleDifficulty"
+        },
+        {
           "$type": "Wait, CobaltCore",
           "secs": 3
         },

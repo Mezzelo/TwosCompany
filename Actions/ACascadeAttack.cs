@@ -17,6 +17,7 @@ namespace TwosCompany.Actions {
                 return;
             // check for hit
             bool hit = false;
+            bool isSports = false;
             for (int i = 0; i < s.ship.parts.Count; i++) {
                 if (s.ship.parts[i].type == PType.cannon && s.ship.parts[i].active) {
                     RaycastResult ray = CombatUtils.RaycastFromShipLocal(s, c, i, false);
@@ -26,8 +27,11 @@ namespace TwosCompany.Actions {
                             continue;
                         }
                         hit = true;
-                        if (ray.hitDrone && c.stuff[s.ship.x + i] != null && c.stuff[s.ship.x + i] is Football)
+                        if (ray.hitDrone && c.stuff[s.ship.x + i] != null) {
                             sportsCounter++;
+                            if (c.stuff[s.ship.x + i] is Football)
+                                isSports = true;
+                        }
                     }
                 }
             }
@@ -35,10 +39,10 @@ namespace TwosCompany.Actions {
                 damage = this.damage,
                 fast = true,
                 targetPlayer = false,
-                dialogueSelector = sportsCounter > 5 ? ".mezz_cascadeSports" : null,
+                dialogueSelector = isSports ? ".mezz_cascadeSports" : null,
             });
-            if (sportsCounter > 12 || (c.otherShip.ai != null && c.otherShip.ai is FootballFoe && sportsCounter > 5)) {
-                if (sportsCounter < 10)
+            if (sportsCounter > 12 || isSports && sportsCounter > 5) {
+                if (isSports)
                     c.Queue(new AAddCard() {
                         card = new YellowCardTrash(),
                         destination = CardDestination.Hand

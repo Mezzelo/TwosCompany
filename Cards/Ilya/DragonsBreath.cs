@@ -1,4 +1,5 @@
-﻿using TwosCompany.Actions;
+﻿using Nickel.Legacy;
+using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Ilya {
     [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
@@ -28,20 +29,47 @@ namespace TwosCompany.Cards.Ilya {
                     damage = GetDmg(s, 1),
                     moveEnemy = -1
                 });
-            else
-                actions.Add(new StatCostAttack() {
-                    action = new AAttack() {
+            else {
+                if (Manifest.hasKokoro)
+                    actions.Add(Manifest.KokoroApi!.ActionCosts.MakeCostAction(
+                    Manifest.KokoroApi!.ActionCosts.MakeResourceCost(
+                        Manifest.KokoroApi!.ActionCosts.MakeStatusResource(Status.heat),
+                        amount: 1
+                    ), new AAttack() {
                         damage = GetDmg(s, 1),
                         moveEnemy = -1,
                         fast = true,
-                    },
-                    statusReq = Status.heat,
-                    statusCost = 1,
-                    cumulative = 0,
-                    moveEnemy = -1,
-                    first = true,
-                    cardFlipped = this.flipped
-                });
+                    }).AsCardAction);
+                else
+                    actions.Add(new StatCostAttack() {
+                        action = new AAttack() {
+                            damage = GetDmg(s, 1),
+                            moveEnemy = -1,
+                            fast = true,
+                        },
+                        statusReq = Status.heat,
+                        statusCost = 1,
+                        cumulative = 0,
+                        moveEnemy = -1,
+                        first = true,
+                        cardFlipped = this.flipped
+                    });
+            }
+
+            if (Manifest.hasKokoro) {
+                for (int i = 0; i < (upgrade == Upgrade.A ? 3 : 2); i++) {
+                    actions.Add(Manifest.KokoroApi!.ActionCosts.MakeCostAction(
+                    Manifest.KokoroApi!.ActionCosts.MakeResourceCost(
+                        Manifest.KokoroApi!.ActionCosts.MakeStatusResource(Status.heat),
+                        amount: 1
+                    ), new AAttack() {
+                        damage = GetDmg(s, i > 0 ? 2 : 1),
+                        moveEnemy = -1,
+                        fast = true,
+                    }).AsCardAction);
+                }
+                return actions;
+            }
             actions.Add(new StatCostAttack() {
                 action = new AAttack() {
                     damage = GetDmg(s, 1),

@@ -1,6 +1,7 @@
 ﻿using CobaltCoreModding.Definitions.ExternalItems;
 using Microsoft.Xna.Framework.Media;
 using TwosCompany.Cards.Jost;
+using TwosCompany.Helper;
 
 namespace TwosCompany.Artifacts {
 
@@ -8,8 +9,7 @@ namespace TwosCompany.Artifacts {
     public class MessengerBag : Artifact {
         public int heartbeats = 0;
         public override int? GetDisplayNumber(State s) => heartbeats;
-        public override string Description() => "On pickup, gain 2 <c=card>Heartbeats</c>. " +
-            "The first time you draw a <c=card>Heartbeat</c> each turn, gain 1 <c=status>ONSLAUGHT</c>.";
+        public override string Description() => ManifArtifactHelper.artifactTexts["MessengerBag"];
 
         public override void OnReceiveArtifact(State state) {
             state.GetCurrentQueue().Insert(0, new AAddCard() {

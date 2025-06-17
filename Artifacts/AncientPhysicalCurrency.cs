@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Media;
 using Nickel;
 using TwosCompany.Actions;
+using TwosCompany.Helper;
 
 namespace TwosCompany.Artifacts {
 
@@ -9,9 +10,7 @@ namespace TwosCompany.Artifacts {
         public List<int> drawnCards = new List<int>();
         public int discountCount = 2;
         public int increaseCount = 1;
-
-        public override string Description() => "The first two times you draw a 2+ cost card each turn, discount it by 1.\r\n" +
-                "<c=downside>The first time you draw a non-discounted card that costs 1 or less each turn, increase its cost by 1.</c>";
+        public override string Description() => ManifArtifactHelper.artifactTexts["AncientPhysicalCurrency"];
         public override void OnRemoveArtifact(State state) => drawnCards.Clear();
         public override void OnCombatStart(State state, Combat combat) => drawnCards.Clear();
         public override void OnPlayerRecieveCardMidCombat(State state, Combat combat, Card card) {

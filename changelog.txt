@@ -1,3 +1,41 @@
+3.2.0
+more fixes/balance changes, (FINALLY) added support for Nickel & Kokoro QoL features
+
+~ Information actions are now properly displayed as traits, if using Nickel
+~ Action costs will now use Kokoro's offset rendering if it is installed
+
++ Contingency now retains on all variants, instead of only on A. Contingency A no longer exhausts.
++ Steady On's cost decreased to 0, from 1, and all variants remove 1 less evade.
+
+- Measure Break's cost increased to 2, from 1, for all variants.
+- Goad A now reduces evade by 2.
+~ Swapped Harry's default and A variants.
+
+~ Everyone's Grudge default and B variants no longer give 2 bullet time, but only cost 1 energy from 3.
+	~ Everyone's Grudge A now gives a default Karma, instead of Karma A (no retain)
++ Shatter's cost reduced to 1 from 2, for all variants.
+- Summer Before Fall B now reduces energy next turn by 3, instead of 2.
+
+- (fix) Fixed erroneous calculation on Heat Treatment B
+
+- Cannon Guard only procs if you have moved during your turn.
++ Metronome now gives 2 evade per proc, from 1.
+
++ Shield Shunt now gives triple your prior max shield as max hull, from double.
+
+- (fix) Cannon Guard should no longer give a free overdrive at the start of combat
+	~ Cannon Guard now displays distance from starting position - thanks to TheJazMaster for this addition
+~ (fix) Fixed erroneous dialogue on Crumpled Writ - thanks to TheJazMaster for this fix
+~ (fix) Fixed erroneous shield tooltip on Militia Armband
+
+~ (fix) Enflame is now considered a negative status for modded interactions, rather than positive.
+~ (fix) Fixed various broken icons & sprites
+~ (fix) minor string revisions
+
+~ When unlocking Jost's first memory, the game will set memory difficulty to your current run's difficulty, rather than defaulting to Hardest.
+	- More Difficulties is only partially supported: Easy will default to Normal, and Brutal & Cosmic will default to Hardest.
+~ Nola and Isabelle got realer.
+
 3.1.2
 bugfixes and a handful of balance changes.
 
@@ -6,8 +44,10 @@ bugfixes and a handful of balance changes.
 + Foresight now draws 3/5/3 cards, from 1/2/1.
 - Captain's Orders now exhausts, on all variants.
 ~ Call and Response is now uncommon, from common.
-+ Recalibrate draws 1 more card, for all variants. (2/2/4 to 3/3/5)
++ Recalibrate draws 1 more card, for all variants. (3/3/5, from 2/2/4)
 + Double Down's cost reduced to 2, from 3, for default and A variants.
+
+~ Lightning Strikes reworked, received the variants shuffle.  Urgent by default, A flips and B isn't urgent.  All variants cost 0.
 
 ~ (fix) Imbue A's heat cost now displays properly.
 
@@ -15,7 +55,6 @@ bugfixes and a handful of balance changes.
 
 - Postpone B's cost increased to 1, from 0.
 + Void Sermon's cost decreased to 1/0/2, from 2/1/2.
-
 ~ (fix) Shield Shunt now properly functions when taken as a Warp Prep replacement.
 ~ (fix) Modded interactions that offer foreign cards now give Crumpled Writ when taking Jost cards.
 ~ (fix) Fixed a bug omitting all injected dialogue strings.  Whoops!

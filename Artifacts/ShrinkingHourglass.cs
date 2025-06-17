@@ -1,12 +1,13 @@
 ﻿using System.Diagnostics.Metrics;
 using TwosCompany.Actions;
+using TwosCompany.Helper;
 using TwosCompany.Midrow;
 
 namespace TwosCompany.Artifacts {
 
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Common })]
     public class ShrinkingHourglass : Artifact {
-        public override string Description() => "Whenever you end your turn with <c=status>BULLET TIME</c>, fire a 0 damage attack.";
+        public override string Description() => ManifArtifactHelper.artifactTexts["ShrinkingHourglass"];
 
         public override void OnTurnEnd(State state, Combat combat) {
             if (state.ship.Get((Status) Manifest.Statuses?["BulletTime"].Id!) > 0) {

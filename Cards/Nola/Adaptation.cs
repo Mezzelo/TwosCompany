@@ -16,16 +16,31 @@ namespace TwosCompany.Cards.Nola {
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            actions.Add(new StatCostAction() {
-                action = new AStatus() {
-                    status = Status.shield,
-                    targetPlayer = true,
-                    statusAmount = upgrade == Upgrade.B ? 4 : 2,
-                },
-                statusReq = Status.evade,
-                statusCost = upgrade == Upgrade.B ? 2 : 1,
-                disabled = flipped
-            });
+
+            if (Manifest.hasKokoro) {
+                CardAction hbAction = Manifest.KokoroApi!.ActionCosts.MakeCostAction(
+                    Manifest.KokoroApi!.ActionCosts.MakeResourceCost(
+                        Manifest.KokoroApi!.ActionCosts.MakeStatusResource(Status.evade),
+                        amount: upgrade == Upgrade.B ? 2 : 1
+                    ), new AStatus() {
+                        status = Status.shield,
+                        targetPlayer = true,
+                        statusAmount = upgrade == Upgrade.B ? 4 : 2,
+                    }
+                ).AsCardAction;
+                hbAction.disabled = flipped;
+                actions.Add(hbAction);
+            } else
+                actions.Add(new StatCostAction() {
+                    action = new AStatus() {
+                        status = Status.shield,
+                        targetPlayer = true,
+                        statusAmount = upgrade == Upgrade.B ? 4 : 2,
+                    },
+                    statusReq = Status.evade,
+                    statusCost = upgrade == Upgrade.B ? 2 : 1,
+                    disabled = flipped
+                });
             if (upgrade == Upgrade.A)
                 actions.Add(new AStatus() {
                     status = Status.tempShield,
@@ -33,17 +48,33 @@ namespace TwosCompany.Cards.Nola {
                     statusAmount = 1,
                     disabled = flipped
                 });
+
             actions.Add(new ADummyAction());
-            actions.Add(new StatCostAction() {
-                action = new AStatus() {
-                    status = Status.evade,
-                    targetPlayer = true,
-                    statusAmount = upgrade == Upgrade.B ? 3 : 2,
-                },
-                statusReq = Status.shield,
-                statusCost = upgrade == Upgrade.B ? 2 : 1,
-                disabled = !flipped
-            });
+
+            if (Manifest.hasKokoro) {
+                CardAction hbAction = Manifest.KokoroApi!.ActionCosts.MakeCostAction(
+                    Manifest.KokoroApi!.ActionCosts.MakeResourceCost(
+                        Manifest.KokoroApi!.ActionCosts.MakeStatusResource(Status.shield),
+                        amount: upgrade == Upgrade.B ? 2 : 1
+                    ), new AStatus() {
+                        status = Status.evade,
+                        targetPlayer = true,
+                        statusAmount = upgrade == Upgrade.B ? 3 : 2,
+                    }
+                ).AsCardAction;
+                hbAction.disabled = !flipped;
+                actions.Add(hbAction);
+            } else
+                actions.Add(new StatCostAction() {
+                    action = new AStatus() {
+                        status = Status.evade,
+                        targetPlayer = true,
+                        statusAmount = upgrade == Upgrade.B ? 3 : 2,
+                    },
+                    statusReq = Status.shield,
+                    statusCost = upgrade == Upgrade.B ? 2 : 1,
+                    disabled = !flipped
+                });
 
             return actions;
         }

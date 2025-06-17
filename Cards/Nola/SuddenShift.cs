@@ -2,7 +2,7 @@
 
 namespace TwosCompany.Cards.Nola {
     [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
-    public class SuddenShift : Card {
+    public class SuddenShift : Card, ITCNickelTraits {
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 0,
@@ -14,13 +14,16 @@ namespace TwosCompany.Cards.Nola {
 
         public int costIncrease = 0;
         public bool wasPlayed = false;
+        public string[] GetTraits()
+            => new string[] { "EnergyPerCard" };
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            actions.Add(new AOtherPlayedHint() {
-                amount = upgrade == Upgrade.B ? 2 : 1
-            });
+            if (!Manifest.hasNickel)
+                actions.Add(new AOtherPlayedHint() {
+                    amount = upgrade == Upgrade.B ? 2 : 1
+                });
             actions.Add(new AMove() {
                 dir = upgrade == Upgrade.A ? 1 : 2,
                 targetPlayer = true,

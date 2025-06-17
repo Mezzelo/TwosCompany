@@ -8,16 +8,6 @@ namespace TwosCompany.ModBG {
 
         public double? leaveTimer;
 
-        private static Color header = Colors.textMain;
-
-        private static Color item = Colors.textBold;
-
-        private List<(Color, string)>? creditsCache;
-
-        private string? localeBuiltFor;
-
-        private Platform platformBuiltFor;
-
         private bool hasPressedFirstTime;
         private double current = 4.0;
         private double timePerCredit = 3.7;

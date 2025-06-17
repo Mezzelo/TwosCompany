@@ -15,7 +15,7 @@ namespace TwosCompany.Cards.Sorrel {
                 cardText = String.Format(Loc.GetLocString(Manifest.Cards?["EveryonesGrudge"].DescBLocKey ?? throw new Exception("Missing card description")));
 
             return new CardData() {
-                cost = 3,
+                cost = upgrade == Upgrade.A ? 3 : 1,
                 exhaust = true,
                 description = cardText,
             };
@@ -24,14 +24,15 @@ namespace TwosCompany.Cards.Sorrel {
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            actions.Add(new AStatus() {
-                targetPlayer = true,
-                status = (Status)Manifest.Statuses?["BulletTime"].Id!,
-                statusAmount = 2,
-                mode = AStatusMode.Set,
-            });
+            if (upgrade == Upgrade.A)
+                actions.Add(new AStatus() {
+                    targetPlayer = true,
+                    status = (Status) Manifest.Statuses?["BulletTime"].Id!,
+                    statusAmount = 2,
+                    mode = AStatusMode.Set,
+                });
             actions.Add(new AAddCard() {
-                card = new Karma() { upgrade = this.upgrade, },
+                card = new Karma() { upgrade = this.upgrade == Upgrade.A ? Upgrade.None : this.upgrade, },
                 destination = CardDestination.Deck,
                 amount = 1,
                 handPosition = 0,

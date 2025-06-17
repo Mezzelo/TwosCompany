@@ -1,5 +1,6 @@
 ﻿using TwosCompany.Actions;
 using TwosCompany.Cards.Isabelle;
+using TwosCompany.Helper;
 
 namespace TwosCompany.Artifacts {
 
@@ -10,8 +11,7 @@ namespace TwosCompany.Artifacts {
         public TTCard? cardImpression;
         int IAssignableArtifact.assignedUUID { set => assignedUUID = value; }
         TTCard IAssignableArtifact.cardImpression { set => cardImpression = value; }
-        public override string Description() => "Choose a card in your deck. The first time you play it each turn, gain 1 <c=status>DRONESHIFT</c>. " +
-                "You also gain 1 <c=status>BULLET TIME</c> if you do not have any.";
+        public override string Description() => ManifArtifactHelper.artifactTexts["AmberedThoughts"];
 
         public override void OnReceiveArtifact(State state) {
             state.GetCurrentQueue().Insert(0, new ACardSelect() {

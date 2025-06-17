@@ -3,13 +3,13 @@ using System.Runtime.CompilerServices;
 using TwosCompany.Cards;
 using TwosCompany.Cards.Ilya;
 using TwosCompany.Cards.Jost;
+using TwosCompany.Helper;
 
 namespace TwosCompany.Artifacts {
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Boss })]
     public class AbandonedTassels : Artifact {
         public int counter = 0;
-        public override string Description() => "The second time you play a " +
-            "<c=card>STANCE CARD</c> each turn, gain 1 <c=energy>ENERGY</c>.";
+        public override string Description() => ManifArtifactHelper.artifactTexts["AbandonedTassels"];
 
         public override int? GetDisplayNumber(State s) => counter > -1 ? counter : null;
 

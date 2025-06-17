@@ -2,6 +2,7 @@
 using System.Reflection;
 using TwosCompany.Cards.Gauss;
 using TwosCompany.Cards.Jost;
+using TwosCompany.Helper;
 
 namespace TwosCompany.Artifacts {
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Common })]
@@ -9,8 +10,7 @@ namespace TwosCompany.Artifacts {
 
         public int count = 0;
         public bool turnSpent = false;
-        public override string Description() => "For every 4 <c=midrow>midrow objects</c> you destroy, gain a free <c=cardtrait>temp exhaustable</c> <c=card>Conduit</c>," +
-            " up to once per turn.";
+        public override string Description() => ManifArtifactHelper.artifactTexts["RemoteStarter"];
         public override Spr GetSprite() => (Spr)(Manifest.Sprites["IconRemoteStarter" + (turnSpent ? "Used" : "")].Id ?? throw new Exception("missing artifact icon: remote"));
         public override int? GetDisplayNumber(State s) => count;    
 

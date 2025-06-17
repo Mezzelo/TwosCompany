@@ -52,7 +52,7 @@ namespace TwosCompany {
                 "<c=downside>Goes away at start of next turn.</c>",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xffffd33e)), System.Drawing.Color.FromArgb(unchecked((int)0xffff9e48)), registry, false);
             addStatus("Enflamed", "Enflamed", "Gain {0} <c=status>HEAT</c> every turn.",
-                true, System.Drawing.Color.FromArgb(unchecked((int)0xffff5660)), System.Drawing.Color.FromArgb(unchecked((int)0xffff5660)), registry, true);
+                false, System.Drawing.Color.FromArgb(unchecked((int)0xffff5660)), System.Drawing.Color.FromArgb(unchecked((int)0xffff5660)), registry, true);
             addStatus("DefensiveStance", "Defensive Stance", "Allows you to play the <c=keyword>top</c> actions on " + JostColH + "Jost's</c> cards. " +
                 "<c=downside>If you end your turn with over 1 total stance, lose 1 of each stance.</c>",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xff87b2cf)), System.Drawing.Color.FromArgb(unchecked((int)0xff87b2cf)), registry, true);
@@ -126,6 +126,19 @@ namespace TwosCompany {
                 "At the start of your turn, <c=keyword>un-bubble</c> all " + Manifest.FrozenColH + "frozen attacks</c>.",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xff7547b2)), System.Drawing.Color.FromArgb(unchecked((int)0xff7547b2)), registry, true);
 
+
+            if (hasKokoro) {
+                Manifest.KokoroApi!.ActionCosts.RegisterStatusResourceCostIcon(
+                    (Status)Manifest.Statuses["DefensiveStance"].Id!,
+                    (Spr)Manifest.Sprites["IconDefensiveStanceCost"].Id!,
+                    (Spr)Manifest.Sprites["IconDefensiveStanceCostOff"].Id!
+                );
+                Manifest.KokoroApi!.ActionCosts.RegisterStatusResourceCostIcon(
+                    (Status)Manifest.Statuses["OffensiveStance"].Id!,
+                    (Spr)Manifest.Sprites["IconOffensiveStanceCost"].Id!,
+                    (Spr)Manifest.Sprites["IconOffensiveStanceCostOff"].Id!
+                );
+            }
         }
         public void LoadManifest(IGlossaryRegisty registry) {
             addGlossary("EnergyPerCard", "Urgent",

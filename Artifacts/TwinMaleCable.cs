@@ -4,9 +4,7 @@ using TwosCompany.Helper;
 namespace TwosCompany.Artifacts {
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Boss })]
     public class TwinMaleCable : Artifact {
-        public override string Description() => "<c=keyword>+1</c> " + Manifest.ChainColH + "chain lightning</c> damage. " +
-            "Whenever you split " + Manifest.ChainColH + "chain lightning</c>, " +
-            "combine the split damage into the <c=redd>right end</c> instead of firing from the <c=attackFail>left end</c>.";
+        public override string Description() => ManifArtifactHelper.artifactTexts["TwinMaleCable"];
 
         public override int ModifyBaseDamage(
           int baseDamage,

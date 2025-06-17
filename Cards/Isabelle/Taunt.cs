@@ -21,13 +21,12 @@
                 targetPlayer = true,
                 dialogueSelector = ".mezz_taunt",
             });
-            if (upgrade != Upgrade.A)
-                actions.Add(new AStatus() {
-                    status = Status.evade,
-                    statusAmount = 0,
-                    mode = AStatusMode.Set,
-                    targetPlayer = true,
-                });
+            actions.Add(new AStatus() {
+                status = Status.evade,
+                statusAmount = upgrade == Upgrade.A ? -2 : 0,
+                mode = upgrade == Upgrade.A ? AStatusMode.Add : AStatusMode.Set,
+                targetPlayer = true,
+            });
             return actions;
         }
 

@@ -1,11 +1,11 @@
 ﻿using System.Diagnostics.Metrics;
 using TwosCompany.Cards.Isabelle;
+using TwosCompany.Helper;
 
 namespace TwosCompany.Artifacts {
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.EventOnly, ArtifactPool.Unreleased })]
     public class LongLostRegrets : Artifact {
-        public override string Description() => "Gain 1 extra <c=energy>ENERGY</c> every turn. " +
-            "<c=downside>The first time you receive hull damage each turn, gain two</c> <c=card>Fears</c>.";
+        public override string Description() => ManifArtifactHelper.artifactTexts["LongLostRegrets"];
 
         bool wasHit = false;
 

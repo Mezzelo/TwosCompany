@@ -3,7 +3,7 @@ using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Sorrel {
     [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
-    public class Postpone : Card {
+    public class Postpone : Card, ITCNickelTraits {
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = upgrade == Upgrade.A ? 0 : 1,
@@ -12,6 +12,8 @@ namespace TwosCompany.Cards.Sorrel {
                 retain = true,
             };
         }
+        public string[] GetTraits()
+            => upgrade == Upgrade.B ? new string[] { } : new string[] { "EnergyPerPlay" };
 
         public int costIncrease = 0;
         public bool wasPlayed = false;
@@ -19,7 +21,7 @@ namespace TwosCompany.Cards.Sorrel {
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            if (upgrade != Upgrade.B)
+            if (!Manifest.hasNickel && upgrade != Upgrade.B)
                 actions.Add(new ACostIncreasePlayedHint() {
                     amount = 1,
                 });

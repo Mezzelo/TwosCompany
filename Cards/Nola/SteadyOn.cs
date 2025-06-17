@@ -5,18 +5,33 @@ namespace TwosCompany.Cards.Nola {
     public class SteadyOn : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 1,
+                cost = 0,
             };
         }
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            actions.Add(new AStatus() {
-                status = Status.evade,
-                targetPlayer = true,
-                statusAmount = upgrade == Upgrade.A ? -1 : -2,
-            });
+            if (upgrade != Upgrade.A)
+                actions.Add(new AStatus() {
+                    status = Status.evade,
+                    targetPlayer = true,
+                    statusAmount = -1,
+                });
+            if (Manifest.hasKokoro) {
+                for (int i = 0; i < 3; i++)
+                    actions.Add(Manifest.KokoroApi!.ActionCosts.MakeCostAction(
+                        Manifest.KokoroApi!.ActionCosts.MakeResourceCost(
+                            Manifest.KokoroApi!.ActionCosts.MakeStatusResource(Status.evade),
+                        amount: 1), new AStatus() {
+                            status = upgrade == Upgrade.B && i == 2 ? Status.powerdrive : Status.overdrive,
+                            targetPlayer = true,
+                            statusAmount = 1,
+                        }
+                    ).AsCardAction);
+                return actions;
+            }
+            
             actions.Add(new StatCostAction() {
                 action = new AStatus() {
                     status = Status.overdrive,
@@ -25,7 +40,7 @@ namespace TwosCompany.Cards.Nola {
                 },
                 statusReq = Status.evade,
                 statusCost = 1,
-                cumulative = upgrade == Upgrade.A ? 1 : 2,
+                cumulative = upgrade == Upgrade.A ? 0 : 1,
             });
             actions.Add(new StatCostAction() {
                 action = new AStatus() {
@@ -36,7 +51,7 @@ namespace TwosCompany.Cards.Nola {
                 },
                 statusReq = Status.evade,
                 statusCost = 1,
-                cumulative = upgrade == Upgrade.A ? 2 : 3
+                cumulative = upgrade == Upgrade.A ? 1 : 2
             });
             actions.Add(new StatCostAction() {
                 action = new AStatus() {
@@ -46,16 +61,8 @@ namespace TwosCompany.Cards.Nola {
                 },
                 statusReq = Status.evade,
                 statusCost = 1,
-                cumulative = upgrade == Upgrade.A ? 3 : 4
+                cumulative = upgrade == Upgrade.A ? 2 : 3
             });
-            /*
-            if (upgrade == Upgrade.B)
-                actions.Add(new AStatus() {
-                    status = Status.hermes,
-                    targetPlayer = true,
-                    statusAmount = 1,
-                });
-            */
             return actions;
         }
 

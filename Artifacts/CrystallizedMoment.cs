@@ -1,12 +1,12 @@
 ﻿using System.Diagnostics.Metrics;
 using TwosCompany.Actions;
+using TwosCompany.Helper;
 
 namespace TwosCompany.Artifacts {
 
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Boss })]
     public class CrystallizedMoment : Artifact {
-        public override string Description() => "Whenever you end your turn with 2+ <c=status>BULLET TIME</c>, " +
-            "convert 1 stack into <c=status>TIMESTOP</c>.";
+        public override string Description() => ManifArtifactHelper.artifactTexts["CrystallizedMoment"];
         public override void OnTurnEnd(State state, Combat combat) {
             if (state.ship.Get((Status) Manifest.Statuses?["BulletTime"].Id!) >= 2) {
                 this.Pulse();

@@ -4,7 +4,7 @@
 
         public string story = "mezz_Sorrel_TCFinaleEvent_1";
         public override void Render(G g, Vec v) {
-            Draw.Sprite(Spr.map_question, v.x, v.y);
+            Draw.Sprite(Enum.Parse<Spr>("map_question"), v.x, v.y);
         }
 
         public override List<Tooltip> GetTooltips(G g) {

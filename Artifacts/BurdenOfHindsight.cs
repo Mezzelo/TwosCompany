@@ -8,8 +8,7 @@ namespace TwosCompany.Artifacts {
 
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Boss } )]
     public class BurdenOfHindsight : Artifact {
-        public override string Description() => "Increase damage dealt bystacks of <c=status>OFF. STANCE</c>," +
-            " and <c=card>Off Balance</c> costs 1 less energy. <c=downside>If you end your turn with any DEF. STANCE, lose 1 of each stance.</c>";
+        public override string Description() => ManifArtifactHelper.artifactTexts["BurdenOfHindsight"];
 
         public MilitiaArmband? armband;
 

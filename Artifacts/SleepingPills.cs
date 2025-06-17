@@ -1,11 +1,12 @@
-﻿namespace TwosCompany.Artifacts {
+﻿using TwosCompany.Helper;
+
+namespace TwosCompany.Artifacts {
 
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Common })]
     public class SleepingPills : Artifact {
         public int counter = 0;
         // public override void OnCombatEnd(State state) => counter = 0;
-        public override string Description() => "<c=healing>Heal 1</c> and gain 1 <c=status>SERENITY</c> whenever you <c=downside>overheat</c>" +
-            ", up to once every <c=keyword>4</c> turns.";
+        public override string Description() => ManifArtifactHelper.artifactTexts["SleepingPills"];
         public override int? GetDisplayNumber(State s) => counter == 0 ? null : counter;
 
         public override void AfterPlayerOverheat(State state, Combat combat) {

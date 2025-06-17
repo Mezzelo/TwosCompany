@@ -126,7 +126,7 @@ namespace TwosCompany.ModBG {
 
         public static void DrawBigIsosphereGlitched(G g, Spr? spr = null) {
             SpriteUtil.GlitchSpriteBounded(
-                spr ?? Spr.bg_icosphere_close, 0.0, 0.0, new Vec(480.0, 270.0), 
+                spr ?? Enum.Parse<Spr>("bg_icosphere_close"), 0.0, 0.0, new Vec(480.0, 270.0), 
                 seed: (int)Math.Round(g.state.time * 2.0), 
                 color: Colors.white.gain(0.3), duty: 0.9, jitterOddsPerLine: 0.15, blend: BlendMode.Screen);
         }

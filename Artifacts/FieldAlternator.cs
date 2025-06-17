@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using TwosCompany.Cards.Ilya;
 using TwosCompany.Cards.Jost;
+using TwosCompany.Helper;
 
 namespace TwosCompany.Artifacts {
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Common })]
@@ -10,8 +11,7 @@ namespace TwosCompany.Artifacts {
 
         public FieldAlternator() =>
             Manifest.EventHub.ConnectToEvent<Tuple<State, Combat>>("Mezz.TwosCompany.StanceSwitch", StanceSwitch);
-        public override string Description() => "Every <c=keyword>4</c> times you switch stance from playing a " +
-            "<c=card>STANCE CARD</c>, gain a <c=cardtrait>temp exhaustable</c> <c=card>Heartbeat</c>.";
+        public override string Description() => ManifArtifactHelper.artifactTexts["FieldAlternator"];
 
         public override int? GetDisplayNumber(State s) => counter;
 

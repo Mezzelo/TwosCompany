@@ -2,7 +2,7 @@
 
 namespace TwosCompany.Cards.Ilya {
     [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
-    public class FlashDraw : Card {
+    public class FlashDraw : Card, ITCNickelTraits {
 
         public int costIncrease = 0;
         public bool wasPlayed = false;
@@ -14,12 +14,14 @@ namespace TwosCompany.Cards.Ilya {
                 exhaust = upgrade != Upgrade.B
             };
         }
+        public string[] GetTraits()
+            => upgrade == Upgrade.B ? new string[] { "EnergyPerPlay" } : new string[] { };
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
 
-            if (upgrade == Upgrade.B)
+            if (!Manifest.hasNickel && upgrade == Upgrade.B)
                 actions.Add(new ACostIncreasePlayedHint() {
                     amount = 1,
                 });

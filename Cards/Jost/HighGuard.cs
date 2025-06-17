@@ -1,4 +1,5 @@
 ﻿using CobaltCoreModding.Definitions.ExternalItems;
+using System;
 using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Jost {
@@ -29,7 +30,22 @@ namespace TwosCompany.Cards.Jost {
 
             actions.Add(new ADummyAction());
 
-            actions.Add(new StatCostAction() {
+
+            if (Manifest.hasKokoro) {
+                CardAction hbAction = Manifest.KokoroApi!.ActionCosts.MakeCostAction(
+                    Manifest.KokoroApi!.ActionCosts.MakeResourceCost(
+                        Manifest.KokoroApi!.ActionCosts.MakeStatusResource(Status.shield),
+                        amount:upgrade == Upgrade.B ? 1 : 2
+                    ), new AStatus() {
+                        status = Status.overdrive,
+                        statusAmount = upgrade == Upgrade.B ? 1 : 2,
+                        targetPlayer = true,
+                    }
+                ).AsCardAction;
+                hbAction.disabled = Stance.Get(s) < 2;
+                actions.Add(hbAction);
+            } else
+                actions.Add(new StatCostAction() {
                 action = new AStatus() {
                     status = Status.overdrive,
                     statusAmount = upgrade == Upgrade.B ? 1 : 2,
@@ -48,18 +64,32 @@ namespace TwosCompany.Cards.Jost {
                     disabled = Stance.Get(s) < 2,
                 });
             else if (upgrade == Upgrade.B)
-                actions.Add(new StatCostAction() {
-                    action = new AStatus() {
-                        status = Status.overdrive,
-                        statusAmount = 2,
-                        targetPlayer = true,
-                    },
-                    statusReq = Status.shield,
-                    statusCost = 2,
-                    first = false,
-                    cumulative = 1,
-                    disabled = Stance.Get(s) < 2,
-                });
+                if (Manifest.hasKokoro) {
+                    CardAction hbAction = Manifest.KokoroApi!.ActionCosts.MakeCostAction(
+                        Manifest.KokoroApi!.ActionCosts.MakeResourceCost(
+                            Manifest.KokoroApi!.ActionCosts.MakeStatusResource(Status.shield),
+                            amount: 2
+                        ), new AStatus() {
+                            status = Status.overdrive,
+                            statusAmount = 2,
+                            targetPlayer = true,
+                        }
+                    ).AsCardAction;
+                    hbAction.disabled = Stance.Get(s) < 2;
+                    actions.Add(hbAction);
+                } else
+                    actions.Add(new StatCostAction() {
+                        action = new AStatus() {
+                            status = Status.overdrive,
+                            statusAmount = 2,
+                            targetPlayer = true,
+                        },
+                        statusReq = Status.shield,
+                        statusCost = 2,
+                        first = false,
+                        cumulative = 1,
+                        disabled = Stance.Get(s) < 2,
+                    });
 
             return actions;
         }

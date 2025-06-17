@@ -1,9 +1,11 @@
-﻿namespace TwosCompany.Artifacts {
+﻿using TwosCompany.Helper;
+
+namespace TwosCompany.Artifacts {
 
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Common })]
     public class SecondGear : Artifact {
         public int counter = 0;
-        public override string Description() => "At the start of turn 6, increase all of your current <c=status>statuses</c> by <c=keyword>1</c>.";
+        public override string Description() => ManifArtifactHelper.artifactTexts["SecondGear"];
         public override int? GetDisplayNumber(State s) => counter > 5 || counter < 1 ? null : counter;
 
         public override void OnTurnStart(State state, Combat combat) {

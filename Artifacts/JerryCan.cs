@@ -1,8 +1,10 @@
-﻿namespace TwosCompany.Artifacts {
+﻿using TwosCompany.Helper;
+
+namespace TwosCompany.Artifacts {
 
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Common })]
     public class JerryCan : Artifact {
-        public override string Description() => "At the start of combat, <c=healing>heal 1</c> and <c=downside>gain 2 HEAT</c>.";
+        public override string Description() => ManifArtifactHelper.artifactTexts["JerryCan"];
         public override void OnCombatStart(State state, Combat combat) {
             combat.QueueImmediate(new AStatus() {
             targetPlayer = true,

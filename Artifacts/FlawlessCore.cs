@@ -1,11 +1,10 @@
 ﻿using System.Diagnostics.Metrics;
+using TwosCompany.Helper;
 
 namespace TwosCompany.Artifacts {
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Boss })]
     public class FlawlessCore : Artifact {
-        public override string Description() =>
-            "Gain 1 extra <c=energy>ENERGY</c> every turn. " +
-                "<c=downside>If you miss a shot during your turn, lose 1 ENERGY instead.</c>";
+        public override string Description() => ManifArtifactHelper.artifactTexts["FlawlessCore"];
 
         bool missed = false;
         public override Spr GetSprite() => (Spr)(Manifest.Sprites["IconFlawlessCore" + (missed ? "Off" : "")].Id

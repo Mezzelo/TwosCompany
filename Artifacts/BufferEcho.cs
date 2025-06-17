@@ -1,5 +1,6 @@
 ﻿using TwosCompany.Actions;
 using TwosCompany.Cards.Isabelle;
+using TwosCompany.Helper;
 
 namespace TwosCompany.Artifacts {
 
@@ -9,8 +10,7 @@ namespace TwosCompany.Artifacts {
         public TTCard? cardImpression;
         int IAssignableArtifact.assignedUUID { set => assignedUUID = value; }
         TTCard IAssignableArtifact.cardImpression { set => cardImpression = value; }
-        public override string Description() => "Choose a card in your deck. Whenever you play that card, " +
-                "<c=cardtrait>exhaust</c> it and gain a <c=cardtrait>temp</c> copy of it.";
+        public override string Description() => ManifArtifactHelper.artifactTexts["BufferEcho"];
 
         public override void OnReceiveArtifact(State state) {
             state.GetCurrentQueue().Insert(0, new ACardSelect() {

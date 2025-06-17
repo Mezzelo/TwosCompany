@@ -14,7 +14,7 @@ namespace TwosCompany.Cards.Sorrel {
                 cardText = String.Format(Loc.GetLocString(Manifest.Cards?["Shatter"].DescBLocKey ?? throw new Exception("Missing card description")));
 
             return new CardData() {
-                cost = 2,
+                cost = 1,
                 retain = upgrade == Upgrade.A,
                 exhaust = true,
                 description = cardText,

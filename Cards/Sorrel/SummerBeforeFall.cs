@@ -35,7 +35,7 @@ namespace TwosCompany.Cards.Sorrel {
             actions.Add(new AStatus() {
                 targetPlayer = true,
                 status = Status.energyLessNextTurn,
-                statusAmount = 2,
+                statusAmount = upgrade == Upgrade.B ? 3 : 2,
             });
             if (upgrade == Upgrade.B)
                 actions.Add(new AAttack() {

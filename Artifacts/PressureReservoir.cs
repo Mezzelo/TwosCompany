@@ -1,11 +1,11 @@
 ﻿using TwosCompany.Cards.Isabelle;
+using TwosCompany.Helper;
 
 namespace TwosCompany.Artifacts {
 
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Common })]
     public class PressureReservoir : Artifact {
-        public override string Description() => "Whenever you start your turn with 2+ <c=status>HEAT</c>, " +
-            "convert 1 stack into <c=status>HEAT FEEDBACK</c>.";
+        public override string Description() => ManifArtifactHelper.artifactTexts["PressureReservoir"];
 
         public override void OnTurnStart(State state, Combat combat) {
             if (state.ship.Get(Status.heat) > 1) {

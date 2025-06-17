@@ -2,7 +2,7 @@
 
 namespace TwosCompany.Cards.Gauss {
     [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B }, dontOffer = true)]
-    public class HyperspaceWind : Card, ITurnIncreaseCard {
+    public class HyperspaceWind : Card, ITurnIncreaseCard, ITCNickelTraits {
 
         public int costIncrease = 0;
         public bool wasPlayed = false;
@@ -12,7 +12,7 @@ namespace TwosCompany.Cards.Gauss {
 
             return new CardData() {
                 cost = 0,
-                retain = upgrade != Upgrade.B,
+                retain = true,
                 flippable = true,
                 temporary = true,
                 exhaust = true,
@@ -20,12 +20,15 @@ namespace TwosCompany.Cards.Gauss {
                     ?? throw new Exception("missing flip art")))
             };
         }
+        public string[] GetTraits()
+            => upgrade != Upgrade.A ? new string[] { "TurnIncreaseCost" } : new string[] { };
+
         int ITurnIncreaseCard.increasePerTurn { get => upgrade != Upgrade.A ? increasePerTurn : 0; set => increasePerTurn = value; }
         int ITurnIncreaseCard.costIncrease { get => costIncrease; set => costIncrease = value; }
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
-            if (upgrade == Upgrade.None)
+            if (!Manifest.hasNickel && upgrade != Upgrade.A)
                 actions.Add(new ATurnIncreaseHint() {
                     amount = 1
                 });

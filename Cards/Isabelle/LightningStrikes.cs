@@ -2,7 +2,7 @@
 
 namespace TwosCompany.Cards.Isabelle {
     [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
-    public class LightningStrikes : Card {
+    public class LightningStrikes : Card, ITCNickelTraits {
 
         public int costIncrease = 0;
         public bool wasPlayed = false;
@@ -15,11 +15,13 @@ namespace TwosCompany.Cards.Isabelle {
                     ?? throw new Exception("missing flip art")))
             };
         }
+        public string[] GetTraits()
+            => upgrade == Upgrade.B ? new string[] { } : new string[] { "EnergyPerCard" };
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            if (upgrade != Upgrade.B)
+            if (!Manifest.hasNickel && upgrade != Upgrade.B)
                 actions.Add(new AOtherPlayedHint() {
                     amount = 1
                 });

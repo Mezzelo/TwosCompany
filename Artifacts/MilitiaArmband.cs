@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.Metrics;
 using TwosCompany.Actions;
+using TwosCompany.Helper;
 
 namespace TwosCompany.Artifacts {
 
@@ -7,8 +8,7 @@ namespace TwosCompany.Artifacts {
     public class MilitiaArmband : Artifact {
         public int prevTotal = 0;
         public bool procced = false;
-        public override string Description() => "Once per turn when you increase your total <c=status>STANCE</c>, " +
-            "gain 1 <c=status>OVERDRIVE</c>.";
+        public override string Description() => ManifArtifactHelper.artifactTexts["MilitiaArmband"];
 
         public override void OnPlayerPlayCard(int energyCost, Deck deck, Card card, State state, Combat combat, int handPosition, int handCount) {
             combat.Queue(new AStanceTotalCheck() {
@@ -61,8 +61,7 @@ namespace TwosCompany.Artifacts {
         }
 
         public override List<Tooltip>? GetExtraTooltips() => new List<Tooltip>() {
-            new TTGlossary("status.overdrive", 1),
-            new TTGlossary("status.shield", 1),
+            new TTGlossary("status.overdrive", 1)
         };
     }
 }

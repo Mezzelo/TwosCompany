@@ -1,12 +1,12 @@
 ﻿using TwosCompany.Actions;
+using TwosCompany.Helper;
 
 namespace TwosCompany.Artifacts {
 
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Boss })]
     public class IncendiaryRounds : Artifact {
         // public bool firstHit = true;
-        public override string Description() => "Whenever you hit your enemy, they gain your current <c=status>HEAT</c>. " +
-            "If they would <c=downside>overheat</c>, they do so immediately.";
+        public override string Description() => ManifArtifactHelper.artifactTexts["IncendiaryRounds"];
         public override void OnEnemyGetHit(State state, Combat combat, Part? part) {
             // if (firstHit) {
             //     firstHit = false;

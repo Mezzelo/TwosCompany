@@ -1,9 +1,11 @@
-﻿namespace TwosCompany.Artifacts {
+﻿using TwosCompany.Helper;
+
+namespace TwosCompany.Artifacts {
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Common })]
     public class IonEngines : Artifact {
         public int counter = 0;
 
-        public override string Description() => "For every 5 <c=midrow>midrow objects</c> you " + Manifest.ChainColH + "chain</c> through, gain 1 <c=status>EVADE</c>.";
+        public override string Description() => ManifArtifactHelper.artifactTexts["IonEngines"];
         public override int? GetDisplayNumber(State s) => counter;
 
         public IonEngines() => 

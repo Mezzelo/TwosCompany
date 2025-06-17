@@ -116,6 +116,16 @@ namespace TwosCompany {
             });
         }
 
+        public static bool MezzMemDiffSet(G g) {
+            Manifest.Instance.settings.memoryDifficulty = (SettingsDifficulty) Math.Clamp(g.state.GetDifficulty(), 0, 3);
+            if (Manifest.hasNickel) {
+                Manifest.Instance.Helper.Storage.SaveJson(
+                    Manifest.Instance.Helper.Storage.GetMainStorageFile("json"), Manifest.Instance.settings
+                );
+            }
+            return true;
+        }
+
         public static bool MezzUnlockFinaleMem(G g) {
             if (g.state.characters.Any((Character ch) => ch.deckType == ManifHelper.GetDeck("ilya")) &&
                 g.state.storyVars.memoryUnlockLevel.GetValueOrDefault(ManifHelper.GetDeck("jost")) < 2) {
@@ -141,11 +151,11 @@ namespace TwosCompany {
             if (pathY.HasValue)
                 paths.Add(pathY.Value);
             return new Tuple<Vec, Marker>(
-                            new Vec(x, y), new Marker() {
-                                paths = paths,
-                                contents = content,
-                            }
-                        );
+                new Vec(x, y), new Marker() {
+                paths = paths,
+                contents = content,
+            }
+            );
         }
 
         public static bool NolaMem1(G g) {

@@ -24,7 +24,7 @@ namespace TwosCompany.Actions {
             });
         }
         public override Icon? GetIcon(State s) {
-            return new Icon(Spr.icons_hurt, hurtAmount, Colors.hurt);
+            return new Icon(Enum.Parse<Spr>("icons_hurt"), hurtAmount, Colors.hurt);
         }
         public override List<Tooltip> GetTooltips(State s) {
             List<Tooltip> list = new List<Tooltip>();

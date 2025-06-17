@@ -1,11 +1,11 @@
 ﻿using TwosCompany.Cards.Isabelle;
+using TwosCompany.Helper;
 
 namespace TwosCompany.Artifacts {
 
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Boss })]
     public class AlphaCore : Artifact {
-        public override string Description() => "Gain 1 extra <c=energy>ENERGY</c> every turn.\r\n" +
-            "At the start of every combat, <c=downside>exhaust 4 random cards in your draw pile.<c=downside>.";
+        public override string Description() => ManifArtifactHelper.artifactTexts["AlphaCore"];
         public override void OnCombatStart(State state, Combat combat) {
             this.Pulse();
             for (int i = 0; i < 4; i++) {

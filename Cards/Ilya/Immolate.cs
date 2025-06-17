@@ -12,41 +12,77 @@ namespace TwosCompany.Cards.Ilya {
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            if (upgrade == Upgrade.B)
-                actions.Add(new StatCostAction() {
-                    action = new AStatus() {
+            if (upgrade == Upgrade.B) {
+                if (Manifest.hasKokoro)
+                    actions.Add(Manifest.KokoroApi!.ActionCosts.MakeCostAction(
+                    Manifest.KokoroApi!.ActionCosts.MakeResourceCost(
+                        Manifest.KokoroApi!.ActionCosts.MakeStatusResource(Status.heat),
+                        amount: 2
+                    ), new AStatus() {
                         status = Status.shield,
                         targetPlayer = true,
                         statusAmount = 2,
-                    },
-                    statusReq = Status.heat,
-                    statusCost = 2,
-                    cumulative = 0,
-                    first = true,
-                });
-            actions.Add(new StatCostAttack() {
-                action = new AAttack() {
+                    }).AsCardAction);
+                else
+                    actions.Add(new StatCostAction() {
+                        action = new AStatus() {
+                            status = Status.shield,
+                            targetPlayer = true,
+                            statusAmount = 2,
+                        },
+                        statusReq = Status.heat,
+                        statusCost = 2,
+                        cumulative = 0,
+                        first = true,
+                    });
+            }
+            if (Manifest.hasKokoro)
+                actions.Add(Manifest.KokoroApi!.ActionCosts.MakeCostAction(
+                Manifest.KokoroApi!.ActionCosts.MakeResourceCost(
+                    Manifest.KokoroApi!.ActionCosts.MakeStatusResource(Status.heat),
+                    amount: upgrade == Upgrade.A ? 1 : (upgrade == Upgrade.B ? 2 : 3)
+                ), new AAttack() {
                     damage = GetDmg(s, upgrade == Upgrade.A ? 2 : 6),
                     fast = upgrade == Upgrade.A,
                     dialogueSelector = upgrade == Upgrade.A ? null : ".mezz_immolate"
-                },
-                statusReq = Status.heat,
-                statusCost = upgrade == Upgrade.A ? 1 : (upgrade == Upgrade.B ? 2 : 3),
-                cumulative = upgrade == Upgrade.B ? 2 : 0,
-                first = upgrade != Upgrade.B
-            });
+                }).AsCardAction);
+            else
+                actions.Add(new StatCostAttack() {
+                    action = new AAttack() {
+                        damage = GetDmg(s, upgrade == Upgrade.A ? 2 : 6),
+                        fast = upgrade == Upgrade.A,
+                        dialogueSelector = upgrade == Upgrade.A ? null : ".mezz_immolate"
+                    },
+                    statusReq = Status.heat,
+                    statusCost = upgrade == Upgrade.A ? 1 : (upgrade == Upgrade.B ? 2 : 3),
+                    cumulative = upgrade == Upgrade.B ? 2 : 0,
+                    first = upgrade != Upgrade.B
+                });
             if (upgrade == Upgrade.A)
-                for (int i = 0; i < 2; i++)
-                    actions.Add(new StatCostAttack() {
-                        action = new AAttack() {
+                for (int i = 0; i < 2; i++) {
+                    if (Manifest.hasKokoro)
+                        actions.Add(Manifest.KokoroApi!.ActionCosts.MakeCostAction(
+                        Manifest.KokoroApi!.ActionCosts.MakeResourceCost(
+                            Manifest.KokoroApi!.ActionCosts.MakeStatusResource(Status.heat),
+                            amount: 1
+                        ), new AAttack() {
                             damage = GetDmg(s, 2),
                             fast = true,
                             dialogueSelector = i == 1 ? ".mezz_immolate" : null
-                        },
-                        statusReq = Status.heat,
-                        statusCost = 1,
-                        cumulative = i + 1,
-                    });
+                        }).AsCardAction);
+                    else
+                        actions.Add(new StatCostAttack() {
+                            action = new AAttack() {
+                                damage = GetDmg(s, 2),
+                                fast = true,
+                                dialogueSelector = i == 1 ? ".mezz_immolate" : null
+                            },
+                            statusReq = Status.heat,
+                            statusCost = 1,
+                            cumulative = i + 1,
+                        });
+                }
+
             return actions;
         }
 

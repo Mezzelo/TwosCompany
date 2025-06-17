@@ -41,7 +41,7 @@ namespace TwosCompany.Artifacts {
 
         public int counter = 0;
         public int characters = 0;
-        public override string Description() => "After enough turns have passed, gain an <c=cardtrait>infinite retain</c> <c=card>Karma B</c>.";
+        public override string Description() => ManifArtifactHelper.artifactTexts["Ascension"];
         public override int? GetDisplayNumber(State s) => counter > 3 + characters * 2 || counter < 1 ? null : counter;
         public override Spr GetSprite() {
             if (characters == 0)

@@ -2,7 +2,7 @@
 
 namespace TwosCompany.Cards.Isabelle {
     [CardMeta(rarity = Rarity.common, dontOffer = true, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
-    public class Recover : Card {
+    public class Recover : Card, ITCNickelTraits {
         public bool forTooltip = false;
         public override CardData GetData(State state) {
             return new CardData() {
@@ -17,11 +17,13 @@ namespace TwosCompany.Cards.Isabelle {
         }
 
         public int costIncrease = 0;
+        public string[] GetTraits()
+            => upgrade == Upgrade.A ? new string[] { } : new string[] { "EnergyPerCard" };
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            if (upgrade != Upgrade.A)
+            if (!Manifest.hasNickel && upgrade != Upgrade.A)
                 actions.Add(new AOtherPlayedHint() {
                     amount = 1,
                     omitFromTooltips = forTooltip

@@ -29,27 +29,54 @@ namespace TwosCompany.Cards.Jost {
 
             actions.Add(new ADummyAction());
 
-            actions.Add(new StatCostAttack() {
-                action = new AAttack() {
-                    fast = upgrade == Upgrade.B,
-                    damage = GetDmg(s, upgrade == Upgrade.B ? 2 : 5),
-                },
-                statusReq = Status.shield,
-                statusCost = upgrade == Upgrade.None ? 2 : 1,
-                disabled = Stance.Get(s) < 2,
-                first = true,
-            });
-            if (upgrade == Upgrade.B)
+            if (Manifest.hasKokoro) {
+                if (upgrade == Upgrade.B) {
+                    CardAction hbAction2 = Manifest.KokoroApi!.ActionCosts.MakeCostAction(
+                        Manifest.KokoroApi!.ActionCosts.MakeResourceCost(
+                            Manifest.KokoroApi!.ActionCosts.MakeStatusResource(Status.shield),
+                            amount: 1
+                        ), new AAttack() {
+                            fast = true,
+                            damage = GetDmg(s, 2),
+                        }
+                    ).AsCardAction;
+                    hbAction2.disabled = Stance.Get(s) < 2;
+                    actions.Add(hbAction2);
+                }
+                CardAction hbAction = Manifest.KokoroApi!.ActionCosts.MakeCostAction(
+                    Manifest.KokoroApi!.ActionCosts.MakeResourceCost(
+                        Manifest.KokoroApi!.ActionCosts.MakeStatusResource(Status.shield),
+                        amount: upgrade == Upgrade.A ? 1 : 2
+                    ), new AAttack() {
+                        fast = upgrade == Upgrade.B,
+                        damage = GetDmg(s, 5),
+                    }
+                ).AsCardAction;
+                hbAction.disabled = Stance.Get(s) < 2;
+                actions.Add(hbAction);
+            } else {
                 actions.Add(new StatCostAttack() {
                     action = new AAttack() {
-                        fast = true,
-                        damage = GetDmg(s, 5),
+                        fast = upgrade == Upgrade.B,
+                        damage = GetDmg(s, upgrade == Upgrade.B ? 2 : 5),
                     },
                     statusReq = Status.shield,
-                    statusCost = upgrade == Upgrade.A ? 1 : 2,
+                    statusCost = upgrade == Upgrade.None ? 2 : 1,
                     disabled = Stance.Get(s) < 2,
-                    cumulative = 1
+                    first = true,
                 });
+                if (upgrade == Upgrade.B)
+                    actions.Add(new StatCostAttack() {
+                        action = new AAttack() {
+                            fast = true,
+                            damage = GetDmg(s, 5),
+                        },
+                        statusReq = Status.shield,
+                        statusCost = upgrade == Upgrade.A ? 1 : 2,
+                        disabled = Stance.Get(s) < 2,
+                        cumulative = 1
+                    });
+            }
             return actions;
         }
 

@@ -3,7 +3,7 @@ using TwosCompany.Cards.Isabelle;
 
 namespace TwosCompany.Cards.Ilya {
     [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
-    public class Pressure : Card {
+    public class Pressure : Card, ITCNickelTraits {
 
         public int costIncrease = 0;
         public override CardData GetData(State state) {
@@ -12,25 +12,41 @@ namespace TwosCompany.Cards.Ilya {
                 infinite = upgrade == Upgrade.B,
             };
         }
+        public string[] GetTraits()
+            => upgrade == Upgrade.B ? new string[] { "EnergyPerPlay" } : new string[] { };
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
             if (upgrade == Upgrade.B)
-                actions.Add(new ACostIncreasePlayedHint() {
-                    amount = 1,
-                });
-            else
-                actions.Add(new StatCostAction() {
-                    action = new AHurt() {
+                if (!Manifest.hasNickel)
+                    actions.Add(new ACostIncreasePlayedHint() {
+                        amount = 1,
+                    });
+            else {
+                if (Manifest.hasKokoro)
+                    actions.Add(Manifest.KokoroApi!.ActionCosts.MakeCostAction(
+                    Manifest.KokoroApi!.ActionCosts.MakeResourceCost(
+                        Manifest.KokoroApi!.ActionCosts.MakeStatusResource(Status.heat),
+                        amount: 3
+                    ), new AHurt() {
                         hurtAmount = 1,
                         targetPlayer = true,
                         hurtShieldsFirst = false,
-                    },
-                    statusReq = Status.heat,
-                    statusCost = 3,
-                    first = true
-                });
+                    }).AsCardAction);
+                else
+                    actions.Add(new StatCostAction() {
+                        action = new AHurt() {
+                            hurtAmount = 1,
+                            targetPlayer = true,
+                            hurtShieldsFirst = false,
+                        },
+                        statusReq = Status.heat,
+                        statusCost = 3,
+                        first = true
+                    });
+            }
+
             actions.Add(new AStatus() {
                 status = Status.heat,
                 statusAmount = 1,

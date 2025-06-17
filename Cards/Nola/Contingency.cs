@@ -6,8 +6,8 @@ namespace TwosCompany.Cards.Nola {
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 0,
-                retain = upgrade == Upgrade.A,
-                exhaust = true,
+                retain = true,
+                exhaust = upgrade != Upgrade.A,
             };
         }
         private int GetHandSize(State s) {

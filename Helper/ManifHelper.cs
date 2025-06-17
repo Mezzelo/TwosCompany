@@ -340,9 +340,9 @@ namespace TwosCompany.Helper {
             {"DoubleDown", "Increase your current <c=status>statuses</c> by <c=keyword>1</c>."},
             {"DoubleDownA", "Increase your current <c=status>statuses</c> by <c=keyword>1</c>."},
             {"DoubleDownB", "<c=keyword>Double</c> your current <c=status>statuses</c>."},
-            {"EveryonesGrudge", "Set <c=status>bullet time</c> to 2 and add a <c=card>Karma</c> to the top of draw."},
-            {"EveryonesGrudgeA", "Set <c=status>bullet time</c> to 2 and add a <c=card>Karma A</c> to the top of draw."},
-            {"EveryonesGrudgeB", "Set <c=status>bullet time</c> to 2 and add a <c=card>Karma B</c> to the top of draw."},
+            {"EveryonesGrudge", "Add a <c=card>Karma</c> to the top of the draw pile."},
+            {"EveryonesGrudgeA", "Set <c=status>bullet time</c> to 2 and add a <c=card>Karma</c> to the top of the draw pile."},
+            {"EveryonesGrudgeB", "Add a <c=card>Karma B</c> to the top of the draw pile."},
             {"Expand", "All " + Manifest.FrozenColH + "frozen attacks</c> expand <c=keyword>{0}</c> into 1 dmg attacks."},
             {"ExpandA", "All " + Manifest.FrozenColH + "frozen attacks</c> expand <c=keyword>{0}</c> into 1 dmg attacks."},
             {"ExpandB", "All " + Manifest.FrozenColH + "frozen attacks</c> expand <c=keyword>{0}</c> into 1 dmg attacks."},
@@ -425,6 +425,22 @@ namespace TwosCompany.Helper {
 
         public static Deck GetDeck(string deckString) =>
             (Deck) Convert.ChangeType(Enum.ToObject(typeof(Deck), ManifHelper.GetDeckId(deckString)), typeof(Deck));
+
+        public static String GetCharColor(string deck) {
+            if (deck == "nola")
+                return Manifest.NolaColH;
+            else if (deck == "isa" || deck == "isabelle")
+                return Manifest.IsaColH;
+            else if (deck == "ilya")
+                return Manifest.IlyaColH;
+            else if (deck == "jost")
+                return Manifest.JostColH;
+            else if (deck == "gauss")
+                return Manifest.GaussColH;
+            else if (deck == "sorrel")
+                return Manifest.SorrelColH;
+            return "<c=keyword>";
+        }
 
         public static int numCards() {
             return cardNames.Keys.Count;

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using TwosCompany.Cards.Nola;
+using TwosCompany.Helper;
 
 namespace TwosCompany.Artifacts {
 
@@ -7,8 +8,7 @@ namespace TwosCompany.Artifacts {
     public class FlowBooster : Artifact {
         public int counter = 0;
         public bool shuffledThisTurn = false;
-        public override string Description() => "Every <c=keyword>3</c> turns you go without shuffling your deck, " +
-            "gain a free <c=cardtrait>temp exhaustable</c> <c=card>Foresight</c>.";
+        public override string Description() => ManifArtifactHelper.artifactTexts["FlowBooster"];
         public override int? GetDisplayNumber(State s) => counter;
 
         public override void OnPlayerDeckShuffle(State state, Combat combat) {

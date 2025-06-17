@@ -2,13 +2,13 @@
 using Microsoft.Xna.Framework.Media;
 using System.Linq;
 using TwosCompany.Cards.Jost;
+using TwosCompany.Helper;
 
 namespace TwosCompany.Artifacts {
 
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.EventOnly }, unremovable = true)]
     public class CrumpledWrit : Artifact {
-        public override string Description() => "Start each combat with 1 <c=status>DEF. STANCE</c>. " +
-            "When you start your turn with no stance, add an <c=card>Off Balance</c> to your hand if you don't already have one.";
+        public override string Description() => ManifArtifactHelper.artifactTexts["CrumpledWrit"];
 
         public bool discountOffBalance = false;
         public bool hasVengeance = false;

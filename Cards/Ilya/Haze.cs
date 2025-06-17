@@ -33,17 +33,29 @@ namespace TwosCompany.Cards.Ilya {
                 isRandom = true,
                 targetPlayer = true
             });
-            if (upgrade == Upgrade.None)
-                actions.Add(new StatCostAction() {
-                    action = new AStatus() {
+            if (upgrade == Upgrade.None) {
+                if (Manifest.hasKokoro)
+                    actions.Add(Manifest.KokoroApi!.ActionCosts.MakeCostAction(
+                    Manifest.KokoroApi!.ActionCosts.MakeResourceCost(
+                        Manifest.KokoroApi!.ActionCosts.MakeStatusResource(Status.evade),
+                        amount: 1
+                    ), new AStatus() {
                         status = Status.evade,
                         targetPlayer = true,
                         statusAmount = 1,
-                    },
-                    statusReq = Status.heat,
-                    statusCost = 1,
-                    first = true
-                });
+                    }).AsCardAction);
+                else
+                    actions.Add(new StatCostAction() {
+                        action = new AStatus() {
+                            status = Status.evade,
+                            targetPlayer = true,
+                            statusAmount = 1,
+                        },
+                        statusReq = Status.heat,
+                        statusCost = 1,
+                        first = true
+                    });
+            }
             actions.Add(new AStatus() {
                 status = upgrade != Upgrade.None ? Status.evade : Status.heat,
                 statusAmount = 1,

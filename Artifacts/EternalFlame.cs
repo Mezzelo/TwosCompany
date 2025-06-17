@@ -1,11 +1,11 @@
 ﻿using TwosCompany.Cards.Jost;
+using TwosCompany.Helper;
 
 namespace TwosCompany.Artifacts {
 
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.EventOnly, ArtifactPool.Unreleased })]
     public class EternalFlame : Artifact {
-        public override string Description() =>
-            "Start each combat with 2 <c=status>ENFLAMED</c>.";
+        public override string Description() => ManifArtifactHelper.artifactTexts["EternalFlame"];
 
         public override void OnCombatStart(State state, Combat combat) {
             this.Pulse();

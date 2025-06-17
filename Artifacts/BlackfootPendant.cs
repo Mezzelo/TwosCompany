@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using TwosCompany.Helper;
 
 namespace TwosCompany.Artifacts {
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Common })]
@@ -6,8 +7,7 @@ namespace TwosCompany.Artifacts {
         public BlackfootPendant() => Manifest.EventHub.ConnectToEvent<Tuple<int, bool, bool, Combat, State>>("Mezz.TwosCompany.Movement", Movement);
 
         public int counter = 0;
-        public override string Description() => "Whenever you move <c=keyword>3</c> spaces from playing a single card, gain 1 <c=status>TEMP SHIELD</c>. " +
-            "If you move <c=keyword>4+</c> spaces, gain another.";
+        public override string Description() => ManifArtifactHelper.artifactTexts["BlackfootPendant"];
 
         public override void OnRemoveArtifact(State state) => Manifest.EventHub.DisconnectFromEvent<Tuple<int, bool, bool, Combat, State>>("Mezz.TwosCompany.Movement", Movement);
 

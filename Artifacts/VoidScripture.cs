@@ -1,12 +1,12 @@
 ﻿using System.Diagnostics.Metrics;
 using TwosCompany.Actions;
+using TwosCompany.Helper;
 
 namespace TwosCompany.Artifacts {
 
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Common })]
     public class VoidScripture : Artifact {
-        public override string Description() => 
-            "Whenever you end your turn with 2+ <c=status>BULLET TIME</c>, gain 1 <c=statuc>TEMP SHIELD</c> and 1 <c=status>TEMP PAYBACK</c>.";
+        public override string Description() => ManifArtifactHelper.artifactTexts["VoidScripture"];
         public override void OnTurnEnd(State state, Combat combat) {
             if (state.ship.Get((Status) Manifest.Statuses?["BulletTime"].Id!) >= 2) {
                 combat.Queue(new AStatus() {

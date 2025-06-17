@@ -36,23 +36,43 @@ namespace TwosCompany.Cards.Jost {
             });
             if (upgrade != Upgrade.B) {
                 
-                    ExternalStatus defensiveStance = Manifest.Statuses?["DefensiveStance"] ?? throw new Exception("status missing: defensiveStance");
-                    actions.Add(new StatCostAction() {
-                        action = (upgrade == Upgrade.A ?
-                            new AEnergy() {
-                                changeAmount = 1,
-                                disabled = Stance.Get(s) < 2,
-                            } :
-                            new ADrawCard() {
-                                count = 1,
-                                disabled = Stance.Get(s) < 2,
-                                timer = 0.0,
-                            }),
-                        statusReq = defensiveStance.Id != null ? (Status) defensiveStance.Id : Status.overdrive,
-                        statusCost = 1,
-                        first = true,
-                        disabled = Stance.Get(s) < 2,
-                    });
+                    ExternalStatus defensiveStance = Manifest.Statuses["DefensiveStance"];
+
+                    if (Manifest.hasKokoro) {
+                        CardAction hbAction = Manifest.KokoroApi!.ActionCosts.MakeCostAction(
+                            Manifest.KokoroApi!.ActionCosts.MakeResourceCost(
+                                Manifest.KokoroApi!.ActionCosts.MakeStatusResource((Status) defensiveStance.Id!),
+                                amount: 1
+                            ), (upgrade == Upgrade.A ?
+                                new AEnergy() {
+                                    changeAmount = 1,
+                                    disabled = Stance.Get(s) < 2,
+                                } :
+                                new ADrawCard() {
+                                    count = 1,
+                                    disabled = Stance.Get(s) < 2,
+                                    timer = 0.0,
+                                })
+                        ).AsCardAction;
+                        hbAction.disabled = Stance.Get(s) < 2;
+                        actions.Add(hbAction);
+                    } else
+                        actions.Add(new StatCostAction() {
+                            action = (upgrade == Upgrade.A ?
+                                new AEnergy() {
+                                    changeAmount = 1,
+                                    disabled = Stance.Get(s) < 2,
+                                } :
+                                new ADrawCard() {
+                                    count = 1,
+                                    disabled = Stance.Get(s) < 2,
+                                    timer = 0.0,
+                                }),
+                            statusReq = (Status) defensiveStance.Id!,
+                            statusCost = 1,
+                            first = true,
+                            disabled = Stance.Get(s) < 2,
+                        });
 
             }
             return actions;

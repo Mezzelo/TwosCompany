@@ -16,8 +16,11 @@ using TwosCompany.Artifacts;
 using Microsoft.Xna.Framework.Graphics;
 using TwosCompany.ExternalAPI;
 using Nickel;
+using TwosCompany.Cards;
+using Shockah.Kokoro;
 
-namespace TwosCompany {
+namespace TwosCompany
+{
     public partial class Manifest : ISpriteManifest, ICardManifest, IDeckManifest, ICharacterManifest, IAnimationManifest,
         IGlossaryManifest, IStatusManifest, IApiProviderManifest,
         ICustomEventManifest, IArtifactManifest, CobaltCoreModding.Definitions.ModManifests.IModManifest {
@@ -29,13 +32,18 @@ namespace TwosCompany {
         internal static APIImplementation Api { get; private set; } = null!;
         public static IMoreDifficultiesApi? MoreDifficultiesApi = null;
         public static IModSettingsApi? ModSettingsApi = null;
+        public static IKokoroApi.IV2? KokoroApi = null;
 
         public ModSettings settings = new ModSettings();
+
+        public static bool hasKokoro = false;
+        public static bool hasNickel = false;
 
         public string Name { get; init; } = "Mezz.TwosCompany";
         public IEnumerable<DependencyEntry> Dependencies => new DependencyEntry[]
         {
-            new DependencyEntry<CobaltCoreModding.Definitions.ModManifests.IModManifest>("TheJazMaster.MoreDifficulties", true)
+            new DependencyEntry<CobaltCoreModding.Definitions.ModManifests.IModManifest>("TheJazMaster.MoreDifficulties", true),
+            new DependencyEntry<CobaltCoreModding.Definitions.ModManifests.IModManifest>("Shockah.Kokoro", true),
         };
         public ILogger? Logger { get; set; }
 
@@ -45,6 +53,8 @@ namespace TwosCompany {
         public static Dictionary<string, ExternalCard>? Cards = new Dictionary<string, ExternalCard>();
 
         public static Dictionary<string, ExternalArtifact> Artifacts = new Dictionary<string, ExternalArtifact>();
+
+        public static Dictionary<string, ICardTraitEntry> Traits = new Dictionary<string, ICardTraitEntry>();
 
         public static ExternalCharacter? NolaCharacter { get; private set; }
         public static ExternalDeck? NolaDeck { get; private set; }
@@ -97,6 +107,8 @@ namespace TwosCompany {
         public static string[] sorrelEmotes = new String[] {
             "mini", "neutral", "gameover", "squint", "crystallized", "angry", "annoyed", "happy", "nap", "peaceful", "side", "vengeful",
         };
+
+        public static string[] tcChars = { "Nola", "Isabelle", "Ilya", "Jost", "Gauss", "Sorrel" };
 
         private void addCharSprite(string charName, string emote, string subfolder, ISpriteRegistry artReg) {
             if (ModRootFolder == null)
@@ -250,25 +262,14 @@ namespace TwosCompany {
             addSprite("IconMoveEnemyZero", "moveEnemyRight", "icons", artReg);
             addSprite("IconUnfreeze", "unfreeze", "icons", artReg);
             addSprite("IconForceAttack", "forceAttack", "icons", artReg);
-            // chars
-            addSprite("NolaFrame", "char_nola", "panels", artReg);
-            addSprite("IsabelleFrame", "char_isabelle", "panels", artReg);
-            addSprite("IlyaFrame", "char_ilya", "panels", artReg);
-            addSprite("JostFrame", "char_jost", "panels", artReg);
-            addSprite("GaussFrame", "char_gauss", "panels", artReg);
-            addSprite("SorrelFrame", "char_sorrel", "panels", artReg);
 
-            addSprite("NolaDeckFrame", "border_nola", "cardshared", artReg);
-            addSprite("IsabelleDeckFrame", "border_isabelle", "cardshared", artReg);
-            addSprite("IlyaDeckFrame", "border_ilya", "cardshared", artReg);
-            addSprite("JostDeckFrame", "border_jost", "cardshared", artReg);
-            addSprite("GaussDeckFrame", "border_gauss", "cardshared", artReg);
-            addSprite("SorrelDeckFrame", "border_sorrel", "cardshared", artReg);
+            foreach (String charName in tcChars) {
+                addSprite(charName + "Frame", "char_" + charName.ToLower(), "panels", artReg);
+                addSprite(charName + "DeckFrame", "border_" + charName.ToLower(), "cardshared", artReg);
+                addSprite(charName + "DefaultCardSprite", "default_" + charName.ToLower(), "cards", artReg);
+                addSprite(charName + "FullbodySprite", charName.ToLower() + "_end", "fullchars", artReg);
+            }
 
-            addSprite("NolaDefaultCardSprite", "default_nola", "cards", artReg);
-            addSprite("IsabelleDefaultCardSprite", "default_isabelle", "cards", artReg);
-            addSprite("IlyaDefaultCardSprite", "default_ilya", "cards", artReg);
-            addSprite("JostDefaultCardSprite", "default_jost", "cards", artReg);
             addSprite("JostDefaultCardSpriteFlip", "default_jost_flip", "cards", artReg);
             addSprite("JostDefaultCardSpriteBoth", "default_jost_both", "cards", artReg);
             addSprite("JostDefaultCardSpriteNeither", "default_jost_neither", "cards", artReg);
@@ -285,19 +286,10 @@ namespace TwosCompany {
             addSprite("JostDefaultCardSpriteDown2Flip", "default_jost_down2_flip", "cards", artReg);
             addSprite("JostDefaultCardSpriteDown2Both", "default_jost_down2_both", "cards", artReg);
             addSprite("JostDefaultCardSpriteDown2Neither", "default_jost_down2_neither", "cards", artReg);
-            addSprite("GaussDefaultCardSprite", "default_gauss", "cards", artReg);
-            addSprite("SorrelDefaultCardSprite", "default_sorrel", "cards", artReg);
             addSprite("AdaptationCardSpriteDown1", "AdaptationDown1", "cards", artReg);
             addSprite("AdaptationCardSpriteDown1Flip", "AdaptationDown1_flip", "cards", artReg);
             addSprite("NolaCardSpriteUp1", "NolaUp1", "cards", artReg);
             addSprite("NolaCardSpriteUp1Flip", "NolaUp1_flip", "cards", artReg);
-
-            addSprite("NolaFullbodySprite", "nola_end", "fullchars", artReg);
-            addSprite("IsabelleFullbodySprite", "isabelle_end", "fullchars", artReg);
-            addSprite("IlyaFullbodySprite", "ilya_end", "fullchars", artReg);
-            addSprite("GaussFullbodySprite", "gauss_end", "fullchars", artReg);
-            addSprite("JostFullbodySprite", "jost_end", "fullchars", artReg);
-            addSprite("SorrelFullbodySprite", "sorrel_end", "fullchars", artReg);
 
             addSprite("CoreSceneNolaPeri", "core_scene_nola_peri", "bg", artReg);
             addSprite("ShipIsabelle", "ship_isabelle", "bg", artReg);
@@ -336,7 +328,6 @@ namespace TwosCompany {
             for (int i = 1; i < 6; i++)
                 addSprite("IconAscension_" + i, "ascension_" + i, "artifacts", artReg);
 
-
         }
 
         public void LoadManifest(IDeckRegistry registry) {
@@ -346,7 +337,8 @@ namespace TwosCompany {
                 "Mezz.TwosCompany.NolaDeck",
                 NolaColor,
                 System.Drawing.Color.Black,
-                Sprites["NolaDefaultCardSprite"] ?? ExternalSprite.GetRaw((int)Spr.cards_colorless),
+                Sprites["NolaDefaultCardSprite"] ?? ExternalSprite.GetRaw(
+                    (int) Enum.Parse<Spr>("cards_colorless")),
                 borderSprite,
                 null
             );
@@ -357,7 +349,8 @@ namespace TwosCompany {
                 "Mezz.TwosCompany.IsabelleDeck",
                 IsabelleColor,
                 System.Drawing.Color.Black,
-                Sprites["IsabelleDefaultCardSprite"] ?? ExternalSprite.GetRaw((int)Spr.cards_colorless),
+                Sprites["IsabelleDefaultCardSprite"] ?? ExternalSprite.GetRaw(
+                    (int)Enum.Parse<Spr>("cards_colorless")),
                 borderSprite,
                 null
             );
@@ -368,7 +361,8 @@ namespace TwosCompany {
                 "Mezz.TwosCompany.IlyaDeck",
                 IlyaColor,
                 System.Drawing.Color.Black,
-                Sprites["IlyaDefaultCardSprite"] ?? ExternalSprite.GetRaw((int)Spr.cards_colorless),
+                Sprites["IlyaDefaultCardSprite"] ?? ExternalSprite.GetRaw(
+                    (int)Enum.Parse<Spr>("cards_colorless")),
                 borderSprite,
                 null
             );
@@ -379,7 +373,8 @@ namespace TwosCompany {
                 "Mezz.TwosCompany.JostDeck",
                 JostColor,
                 System.Drawing.Color.Black,
-                Sprites["JostDefaultCardSpriteUnsided"] ?? ExternalSprite.GetRaw((int)Spr.cards_colorless),
+                Sprites["JostDefaultCardSpriteUnsided"] ?? ExternalSprite.GetRaw(
+                    (int)Enum.Parse<Spr>("cards_colorless")),
                 borderSprite,
                 null
             );
@@ -390,7 +385,8 @@ namespace TwosCompany {
                 "Mezz.TwosCompany.GaussDeck",
                 GaussColor,
                 System.Drawing.Color.Black,
-                Sprites["GaussDefaultCardSprite"] ?? ExternalSprite.GetRaw((int)Spr.cards_colorless),
+                Sprites["GaussDefaultCardSprite"] ?? ExternalSprite.GetRaw(
+                    (int)Enum.Parse<Spr>("cards_colorless")),
                 borderSprite,
                 null
             );
@@ -401,7 +397,8 @@ namespace TwosCompany {
                 "Mezz.TwosCompany.SorrelDeck",
                 SorrelColor,
                 System.Drawing.Color.Black,
-                Sprites["SorrelDefaultCardSprite"] ?? ExternalSprite.GetRaw((int)Spr.cards_colorless),
+                Sprites["SorrelDefaultCardSprite"] ?? ExternalSprite.GetRaw(
+                    (int)Enum.Parse<Spr>("cards_colorless")),
                 borderSprite,
                 null
             );
@@ -429,38 +426,15 @@ namespace TwosCompany {
                 });
             }
 
-            Vault.charsWithLore.Add(ManifHelper.GetDeck("nola"));
-            Vault.charsWithLore.Add(ManifHelper.GetDeck("isa"));
-            Vault.charsWithLore.Add(ManifHelper.GetDeck("ilya"));
-            Vault.charsWithLore.Add(ManifHelper.GetDeck("gauss"));
-            Vault.charsWithLore.Add(ManifHelper.GetDeck("jost"));
-            Vault.charsWithLore.Add(ManifHelper.GetDeck("sorrel"));
-
-            BGRunWin.charFullBodySprites.Add(ManifHelper.GetDeck("nola"),
-                (Spr)(Manifest.Sprites["NolaFullbodySprite"].Id ?? throw new Exception("missing fullbody"))
-
-            );
-            BGRunWin.charFullBodySprites.Add(ManifHelper.GetDeck("isa"),
-                (Spr)(Manifest.Sprites["IsabelleFullbodySprite"].Id ?? throw new Exception("missing fullbody"))
-            );
-
-            BGRunWin.charFullBodySprites.Add(ManifHelper.GetDeck("ilya"),
-                (Spr)(Manifest.Sprites["IlyaFullbodySprite"].Id ?? throw new Exception("missing fullbody"))
-
-            );
-            BGRunWin.charFullBodySprites.Add(ManifHelper.GetDeck("gauss"),
-                (Spr)(Manifest.Sprites["GaussFullbodySprite"].Id ?? throw new Exception("missing fullbody"))
-            );
-            
-            BGRunWin.charFullBodySprites.Add(ManifHelper.GetDeck("jost"),
-                (Spr)(Manifest.Sprites["JostFullbodySprite"].Id ?? throw new Exception("missing fullbody"))
-            );
-            BGRunWin.charFullBodySprites.Add(ManifHelper.GetDeck("sorrel"),
-                (Spr)(Manifest.Sprites["SorrelFullbodySprite"].Id ?? throw new Exception("missing fullbody"))
-            );
+            foreach (String charName in tcChars) {
+                Vault.charsWithLore.Add(ManifHelper.GetDeck(charName.ToLower()));
+                BGRunWin.charFullBodySprites.Add(ManifHelper.GetDeck(charName.ToLower()),
+                    (Spr)(Manifest.Sprites[charName + "FullbodySprite"].Id ?? throw new Exception("missing fullbody"))
+                );
+            }
 
             // MethodInfo get_unlocked_characters_postfix = typeof(CharacterRegistry).GetMethod("GetUnlockedCharactersPostfix", BindingFlags.Static | BindingFlags.NonPublic);
-            
+
             Harmony harmony = new Harmony("Mezz.TwosCompany.Harmony.Charpatch");
 
             harmony.Patch(
@@ -482,6 +456,44 @@ namespace TwosCompany {
                 "Gauss", GaussDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
             ManifHelper.DefineCards(ManifHelper.getDeckSum(4), ManifHelper.deckSize[5],
                 "Sorrel", SorrelDeck ?? throw new Exception("missing deck"), Cards, Sprites, registry);
+
+            foreach (String charName in tcChars) {
+                Cards.Add("Colorless" + charName + "Summon",
+                    new ExternalCard("Mezz.TwosCompany.Cards.Colorless" + charName + "Summon",
+                    Type.GetType("TwosCompany.Cards.Colorless" + charName + "Summon")!,
+                    charName == "Jost" ? Sprites["JostDefaultCardSpriteUnsided"] : Sprites[charName + "DefaultCardSprite"],
+                    ExternalDeck.GetRaw((int)Deck.colorless))
+                );
+                String add = "";
+                if (charName == "Ilya")
+                    add = "Get 2 <c=status>heat</c>. ";
+                else if (charName == "Jost")
+                    add = "Get 1 <c=status>def</c>. ";
+                else if (charName == "Sorrel")
+                    add = "Get 1 <c=status>b. time</c>. ";
+                if (charName == "Gauss")
+                    Cards["Colorless" + charName + "Summon"].AddLocalisation(charName + ".EXE",
+                        "Add a <c=cardtrait>temp</c> <c=card>Spark</c> & 1 of 3" +
+                            " <c=cardtrait>discount, temp</c> " + Manifest.GaussColH + "Gauss</c> cards to your hand.",
+                        "Add a <c=cardtrait>temp</c> <c=card>Spark</c> & 1 of 3" +
+                            " <c=cardtrait>discount, temp</c> " + Manifest.GaussColH + "Gauss</c> cards to your hand.",
+                        "Add a <c=cardtrait>temp</c> <c=card>Spark</c> & 1 of 5" +
+                            " <c=cardtrait>discount, temp</c> " + Manifest.GaussColH + "Gauss</c> cards to your hand."
+                    );
+                else
+                    Cards["Colorless" + charName + "Summon"].AddLocalisation(charName + ".EXE",
+                    add + "Add 1 of <c=keyword>3</c> <c=cardtrait>discount, temp</c> " + ManifHelper.GetCharColor(charName.ToLower())
+                        + charName + "</c> cards to your hand.",
+                    add + "Add 1 of <c=keyword>3</c> <c=cardtrait>discount, temp</c> " + ManifHelper.GetCharColor(charName.ToLower())
+                        + charName + "</c> cards to your hand.",
+                    add + "Add 1 of <c=keyword>5</c> <c=cardtrait>discount, temp</c> " + ManifHelper.GetCharColor(charName.ToLower())
+                        + charName + "</c> cards to your hand."
+                );
+            }
+            foreach (String charName in tcChars)
+                registry.RegisterCard(Cards["Colorless" + charName + "Summon"]);
+
+
         }
 
         void IAnimationManifest.LoadManifest(IAnimationRegistry animReg) {
@@ -607,6 +619,19 @@ namespace TwosCompany {
             );
 
             registry.RegisterCharacter(SorrelCharacter);
+            
+            Helper.Content.Characters.V2.LookupByDeck(ManifHelper.GetDeck("nola"))!.Amend(
+                new() { ExeCardType = typeof(ColorlessNolaSummon) });
+            Helper.Content.Characters.V2.LookupByDeck(ManifHelper.GetDeck("isabelle"))!.Amend(
+                new() { ExeCardType = typeof(ColorlessIsabelleSummon) });
+            Helper.Content.Characters.V2.LookupByDeck(ManifHelper.GetDeck("ilya"))!.Amend(
+                new() { ExeCardType = typeof(ColorlessIlyaSummon) });
+            Helper.Content.Characters.V2.LookupByDeck(ManifHelper.GetDeck("jost"))!.Amend(
+                new() { ExeCardType = typeof(ColorlessJostSummon) });
+            Helper.Content.Characters.V2.LookupByDeck(ManifHelper.GetDeck("gauss"))!.Amend(
+                new() { ExeCardType = typeof(ColorlessGaussSummon) });
+            Helper.Content.Characters.V2.LookupByDeck(ManifHelper.GetDeck("sorrel"))!.Amend(
+                new() { ExeCardType = typeof(ColorlessSorrelSummon) });
         }
     }
 }

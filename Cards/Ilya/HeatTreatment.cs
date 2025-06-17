@@ -10,7 +10,7 @@
         private int GetHeatAmt(State s) {
             int heatAmt = 0;
             if (s.route is Combat)
-                heatAmt = Math.Max(0, s.ship.Get(Status.heat) - (upgrade == Upgrade.B ? 0 : 2));
+                heatAmt = Math.Max(0, s.ship.Get(Status.heat) - (upgrade == Upgrade.B ? 1 : 2));
             return heatAmt;
         }
 

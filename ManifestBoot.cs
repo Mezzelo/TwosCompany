@@ -11,6 +11,7 @@ using System.Reflection;
 using Nickel.Legacy;
 using Nanoray.PluginManager;
 using Nickel;
+using Shockah.Kokoro;
 
 namespace TwosCompany {
     public partial class Manifest : IStoryManifest, INickelManifest {
@@ -18,8 +19,56 @@ namespace TwosCompany {
         internal static ICustomEventHub EventHub { get => _eventHub ?? throw new Exception(); set => _eventHub = value; }
 
         public void OnNickelLoad(IPluginPackage<Nickel.IModManifest> package, IModHelper helper) {
+            hasNickel = true;
             this.Helper = helper;
             settings = helper.Storage.LoadJson<ModSettings>(helper.Storage.GetMainStorageFile("json"));
+
+            
+            Traits.Add("EnergyPerAttack", helper.Content.Cards.RegisterTrait("EnergyPerAttack", new() {
+                Icon = (_, _) => (Spr)Manifest.Sprites["IconEnergyPerAttack"].Id!.Value,
+                Name = _ => "Patient",
+                Tooltips = (_, _) => [new TTGlossary(Manifest.Glossary["EnergyPerAttack"]?.Head!, 1)]
+            }));
+            Traits.Add("EnergyPerAttackIncrease", helper.Content.Cards.RegisterTrait("EnergyPerAttackIncrease", new() {
+                Icon = (_, _) => (Spr)Manifest.Sprites["IconEnergyPerAttackIncrease"].Id!.Value,
+                Name = _ => "Impatient",
+                Tooltips = (_, _) => [new TTGlossary(Manifest.Glossary["EnergyPerAttackIncrease"]?.Head!, 1)]
+            }));
+            Traits.Add("EnergyPerCard", helper.Content.Cards.RegisterTrait("EnergyPerCard", new() {
+                Icon = (_, _) => (Spr)Manifest.Sprites["IconEnergyPerCard"].Id!.Value,
+                Name = _ => "Urgent",
+                Tooltips = (_, _) => [new TTGlossary(Manifest.Glossary["EnergyPerCard"]?.Head!, 1)]
+            }));
+            Traits.Add("EnergyPerPlay", helper.Content.Cards.RegisterTrait("EnergyPerPlay", new() {
+                Icon = (_, _) => (Spr)Manifest.Sprites["IconEnergyPerPlay"].Id!.Value,
+                Name = _ => "Rising Cost",
+                Tooltips = (_, _) => [new TTGlossary(Manifest.Glossary["EnergyPerPlay"]?.Head!, 1)]
+            }));
+            Traits.Add("AllIncrease", helper.Content.Cards.RegisterTrait("AllIncrease", new() {
+                Icon = (_, _) => (Spr)Manifest.Sprites["IconAllIncrease"].Id!.Value,
+                Name = _ => "Intensify",
+                Tooltips = (_, _) => [new TTGlossary(Manifest.Glossary["AllIncrease"]?.Head!, 1)]
+            }));
+            Traits.Add("AllIncreaseCombat", helper.Content.Cards.RegisterTrait("AllIncreaseCombat", new() {
+                Icon = (_, _) => (Spr)Manifest.Sprites["IconAllIncreaseCombat"].Id!.Value,
+                Name = _ => "Lasting Intensify",
+                Tooltips = (_, _) => [new TTGlossary(Manifest.Glossary["AllIncreaseCombat"]?.Head!, 1)]
+            }));
+            Traits.Add("TurnIncreaseCost", helper.Content.Cards.RegisterTrait("TurnIncreaseCost", new() {
+                Icon = (_, _) => (Spr)Manifest.Sprites["IconTurnIncreaseCost"].Id!.Value,
+                Name = _ => "Timed Cost",
+                Tooltips = (_, _) => [new TTGlossary(Manifest.Glossary["TurnIncreaseCost"]?.Head!, 1)]
+            }));
+            Traits.Add("DisguisedHint", helper.Content.Cards.RegisterTrait("DisguisedHint", new() {
+                Icon = (_, _) => (Spr)Manifest.Sprites["IconDisguisedHint"].Id!.Value,
+                Name = _ => "Disguised",
+                Tooltips = (_, _) => [new TTGlossary(Manifest.Glossary["DisguisedHint"]?.Head!)]
+            }));
+            Traits.Add("DisguisedPermaHint", helper.Content.Cards.RegisterTrait("DisguisedPermaHint", new() {
+                Icon = (_, _) => (Spr)Manifest.Sprites["IconDisguisedPermaHint"].Id!.Value,
+                Name = _ => "Permanent Disguise",
+                Tooltips = (_, _) => [new TTGlossary(Manifest.Glossary["DisguisedPermaHint"]?.Head!)]
+            }));
 
             helper.ModRegistry.AwaitApi<IModSettingsApi>(
                 "Nickel.ModSettings",
@@ -40,6 +89,8 @@ namespace TwosCompany {
                             "Check this to bypass the unlock requirements for all characters in this mod. Characters can also be unlocked individually.\n" +
                             "<c=keyword>These options are reversible.</c>")
                         ]),
+                        settingsApi.MakeText(() => "Unlock overrides are <c=downside>not recommended</c> for story reasons - particularly for the last two characters listed here."
+                        ),
                         settingsApi.MakeCheckbox(
                                 () => "   NOLA",
                                 () => Manifest.Instance.settings.unlockNola,
@@ -68,21 +119,21 @@ namespace TwosCompany {
                             "<c=keyword>This option is reversible.</c>")
                         ]),
                         settingsApi.MakeCheckbox(
-                                () => "   JOST",
-                                () => Manifest.Instance.settings.unlockJost,
-                                (_, _, value) => Manifest.Instance.settings.unlockJost = value
-                        ).SetTooltips(() => [
-                            new TTText("<c=status>UNLOCK JOST</c>\n" +
-                            "Bypass the unlock requirements for " + JostColH + "Jost</c>.\n" +
-                            "<c=keyword>This option is reversible.</c>")
-                        ]),
-                        settingsApi.MakeCheckbox(
                                 () => "   GAUSS",
                                 () => Manifest.Instance.settings.unlockGauss,
                                 (_, _, value) => Manifest.Instance.settings.unlockGauss = value
                         ).SetTooltips(() => [
                             new TTText("<c=status>UNLOCK GAUSS</c>\n" +
                             "Bypass the unlock requirements for " + GaussColH + "Gauss</c>.\n" +
+                            "<c=keyword>This option is reversible.</c>")
+                        ]),
+                        settingsApi.MakeCheckbox(
+                                () => "   JOST",
+                                () => Manifest.Instance.settings.unlockJost,
+                                (_, _, value) => Manifest.Instance.settings.unlockJost = value
+                        ).SetTooltips(() => [
+                            new TTText("<c=status>UNLOCK JOST</c>\n" +
+                            "Bypass the unlock requirements for " + JostColH + "Jost</c>.\n" +
                             "<c=keyword>This option is reversible.</c>")
                         ]),
                         settingsApi.MakeCheckbox(
@@ -255,6 +306,11 @@ namespace TwosCompany {
             Harmony harmony = new Harmony("Mezz.TwosCompany.Harmony");
             if (contact.LoadedManifests.Any(manifest => manifest.Name == "TheJazMaster.MoreDifficulties"))
                 MoreDifficultiesApi = contact.GetApi<IMoreDifficultiesApi>("TheJazMaster.MoreDifficulties");
+
+            if (contact.LoadedManifests.Any(manifest => manifest.Name == "Shockah.Kokoro")) {
+                hasKokoro = true;
+                KokoroApi = contact.GetApi<IKokoroApi>("Shockah.Kokoro")!.V2;
+            }
 
             // midrow chain lightning rendering patch
             harmony.Patch(
@@ -503,7 +559,8 @@ namespace TwosCompany {
                     Type.GetType("TwosCompany.Artifacts." + artifact) ?? throw new Exception("artifact type not found: " + artifact),
                     Sprites["Icon" + artifact] ?? throw new Exception("missing MidrowProtectorProtocol sprite"),
                     ownerDeck: pickDeck));
-                Artifacts[artifact].AddLocalisation(ManifArtifactHelper.artifactNames.ElementAt(i).Value.ToUpper(), ManifArtifactHelper.artifactTexts[i]);
+                Artifacts[artifact].AddLocalisation(ManifArtifactHelper.artifactNames.ElementAt(i).Value.ToUpper(), 
+                    ManifArtifactHelper.artifactTexts[ManifArtifactHelper.artifactNames.ElementAt(i).Key]);
                 registry.RegisterArtifact(Artifacts[artifact]);
             }
         }
