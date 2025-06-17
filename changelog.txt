@@ -1,3 +1,7 @@
+3.2.1
+~ (fix) Pressure default and A variants now hurt you when used with 3 heat, mistakenly removed from these variants instead of from B.
+~ minor dialogue fixes
+
 3.2.0
 more fixes/balance changes, (FINALLY) added support for Nickel & Kokoro QoL features
 

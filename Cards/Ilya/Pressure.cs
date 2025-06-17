@@ -18,12 +18,12 @@ namespace TwosCompany.Cards.Ilya {
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            if (upgrade == Upgrade.B)
+            if (upgrade == Upgrade.B) {
                 if (!Manifest.hasNickel)
                     actions.Add(new ACostIncreasePlayedHint() {
                         amount = 1,
                     });
-            else {
+            } else {
                 if (Manifest.hasKokoro)
                     actions.Add(Manifest.KokoroApi!.ActionCosts.MakeCostAction(
                     Manifest.KokoroApi!.ActionCosts.MakeResourceCost(
