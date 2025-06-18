@@ -3616,6 +3616,45 @@
         }
       ]
     },
-  
+    "CATsummonedJostCard_Multi_0": {
+      "type": "combat",
+      "lookup": [
+        "summonTCJost"
+      ],
+      "oncePerCombatTags": [
+        "summonTCJostTag"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "comp"
+      ]
+    },
+    "CATsummonedJostCard_Multi_1": {
+      "type": "combat",
+      "lookup": [
+        "summonTCJost"
+      ],
+      "oncePerCombatTags": [
+        "summonTCJostTag"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "jost",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "jost"
+      ]
+    },
   }
 }

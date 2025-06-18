@@ -5029,5 +5029,65 @@
         },
       ]
     },
+    "CATsummonedIsabelleCard_Multi_0": {
+      "type": "combat",
+      "lookup": [
+        "summonTCIsabelle"
+      ],
+      "oncePerCombatTags": [
+        "summonTCIsabelleTag"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "squint",
+        }
+      ],
+      "allPresent": [
+        "comp"
+      ]
+    },
+    "CATsummonedIsabelleCard_Multi_1": {
+      "type": "combat",
+      "lookup": [
+        "summonTCIsabelle"
+      ],
+      "oncePerCombatTags": [
+        "summonTCIsabelleTag"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "glare",
+        }
+      ],
+      "allPresent": [
+        "isa"
+      ]
+    },
+    "CATsummonedIsabelleCard_Multi_2": {
+      "type": "combat",
+      "lookup": [
+        "summonTCIsabelle"
+      ],
+      "oncePerCombatTags": [
+        "summonTCIsabelleTag"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "isa",
+          "loopTag": "snide",
+        }
+      ],
+      "allPresent": [
+        "isa"
+      ]
+    },
   }
 }

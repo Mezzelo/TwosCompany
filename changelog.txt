@@ -1,3 +1,8 @@
+3.2.2
++ Added dialogue lines for .EXE cards
+~ (fix) Fixed .EXE cards not exhausting.
+~ (fix) Fixed Haze default variant using evade as a status cost when using Nickel, rather than heat.
+
 3.2.1
 ~ (fix) Pressure default and A variants now hurt you when used with 3 heat, mistakenly removed from these variants instead of from B.
 ~ minor dialogue fixes

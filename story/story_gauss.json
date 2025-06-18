@@ -4116,6 +4116,45 @@
         }
       ]
     },
-  
+    "CATsummonedGaussCard_Multi_0": {
+      "type": "combat",
+      "lookup": [
+        "summonTCGauss"
+      ],
+      "oncePerCombatTags": [
+        "summonTCGaussTag"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "intense",
+        }
+      ],
+      "allPresent": [
+        "comp"
+      ]
+    },
+    "CATsummonedGaussCard_Multi_1": {
+      "type": "combat",
+      "lookup": [
+        "summonTCGauss"
+      ],
+      "oncePerCombatTags": [
+        "summonTCGaussTag"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "gauss",
+          "loopTag": "happy",
+        }
+      ],
+      "allPresent": [
+        "gauss"
+      ]
+    },
   }
 }

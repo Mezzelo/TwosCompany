@@ -3357,6 +3357,45 @@
         }
       ]
     },
-	
+    "CATsummonedSorrelCard_Multi_0": {
+      "type": "combat",
+      "lookup": [
+        "summonTCSorrel"
+      ],
+      "oncePerCombatTags": [
+        "summonTCSorrelTag"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "intense",
+        }
+      ],
+      "allPresent": [
+        "comp"
+      ]
+    },
+    "CATsummonedSorrelCard_Multi_1": {
+      "type": "combat",
+      "lookup": [
+        "summonTCSorrel"
+      ],
+      "oncePerCombatTags": [
+        "summonTCSorrelTag"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "intense",
+        }
+      ],
+      "allPresent": [
+        "comp"
+      ]
+    },
   }
 }

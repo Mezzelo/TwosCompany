@@ -7,6 +7,7 @@ namespace TwosCompany.Cards
     {
         public override CardData GetData(State state) {
             return new CardData() {
+                exhaust = true,
                 art = (Spr)Manifest.Sprites["NolaDefaultCardSprite"].Id!,
                 cost = upgrade == Upgrade.A ? 0 : 1,
                 description = ColorlessLoc.GetDesc(state, upgrade == Upgrade.B ? 5 : 3, ManifHelper.GetDeck("nola")),

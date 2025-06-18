@@ -2589,6 +2589,21 @@
   "mezz_Gauss_WizardGeneralShouts_0:0": "Zip-zap-zammo!",
   "mezz_Gauss_WizardGeneralShouts_0:1": "Hey, that's my line!",
   "mezz_Gauss_WizardGeneralShouts_1:0": "Ofouhogohoub!",
-  "mezz_Gauss_WizardGeneralShouts_1:1": "I'll show you some magic, alright."
+  "mezz_Gauss_WizardGeneralShouts_1:1": "I'll show you some magic, alright.",
+  
+  "CATsummonedNolaCard_Multi_0:0": "Alright, that's it. Time to overcomplicate things!",
+  "CATsummonedNolaCard_Multi_1:0": "This calls for some strategy!",
+  "CATsummonedIsabelleCard_Multi_0:0": "Let's pretend this is.. a sword?",
+  "CATsummonedIsabelleCard_Multi_1:0": ".. hey, step off. That's my move!",
+  "CATsummonedIsabelleCard_Multi_2:0": ".. I'll take it as a compliment.",
+  "CATsummonedIlyaCard_Multi_0:0": "This can only end well!",
+  "CATsummonedIlyaCard_Multi_1:0": "I'm sure nothing can go wrong here.",
+  "CATsummonedIlyaCard_Multi_2:0": ".. not that I don't trust you, but...",
+  "CATsummonedJostCard_Multi_0:0": "What would Jost do here?",
+  "CATsummonedJostCard_Multi_1:0": "Wait a second...",
+  "CATsummonedGaussCard_Multi_0:0": "Time for some lightning!",
+  "CATsummonedGaussCard_Multi_1:0": "I like the way you think!",
+  "CATsummonedSorrelCard_Multi_0:0": ".. what a strange feeling!",
+  "CATsummonedSorrelCard_Multi_1:0": "Woah. So this is what it's like.",
   
 }

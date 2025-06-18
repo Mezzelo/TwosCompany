@@ -5,6 +5,7 @@ namespace TwosCompany.Cards {
     public class ColorlessIlyaSummon : Card {
         public override CardData GetData(State state) {
             return new CardData() {
+                exhaust = true,
                 art = (Spr)Manifest.Sprites["IlyaDefaultCardSprite"].Id!,
                 cost = upgrade == Upgrade.A ? 0 : 1,
                 description = "Get 2 <c=status>heat</c>. "

@@ -1,4 +1,4 @@
-# Two's Company 3.2.1 - for game version 1.2.4
+# Two's Company 3.2.2 - for game version 1.2.4
 
 A mod for Cobalt Core, featuring My bingus blorbos.
 
@@ -6,7 +6,7 @@ Requires EWanderer's modloader or Shockah's Nickel modloader to run. Nickel is h
 https://github.com/Shockah/Nickel/releases
 OR
 https://github.com/Ewanderer/CobaltCoreModLoader/releases
-
++
 source available here - https://github.com/Mezzelo/TwosCompany
 changelog available here - https://github.com/Mezzelo/TwosCompany/blob/main/changelog.txt
 

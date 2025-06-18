@@ -5,6 +5,7 @@ namespace TwosCompany.Cards {
     public class ColorlessJostSummon : Card {
         public override CardData GetData(State state) {
             return new CardData() {
+                exhaust = true,
                 art = (Spr)Manifest.Sprites["JostDefaultCardSpriteUnsided"].Id!,
                 flippable = true,
                 cost = upgrade == Upgrade.A ? 0 : 1,

@@ -37,7 +37,7 @@ namespace TwosCompany.Cards.Ilya {
                 if (Manifest.hasKokoro)
                     actions.Add(Manifest.KokoroApi!.ActionCosts.MakeCostAction(
                     Manifest.KokoroApi!.ActionCosts.MakeResourceCost(
-                        Manifest.KokoroApi!.ActionCosts.MakeStatusResource(Status.evade),
+                        Manifest.KokoroApi!.ActionCosts.MakeStatusResource(Status.heat),
                         amount: 1
                     ), new AStatus() {
                         status = Status.evade,

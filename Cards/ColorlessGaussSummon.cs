@@ -6,6 +6,7 @@ namespace TwosCompany.Cards {
     public class ColorlessGaussSummon : Card {
         public override CardData GetData(State state) {
             return new CardData() {
+                exhaust = true,
                 art = (Spr)Manifest.Sprites["GaussDefaultCardSprite"].Id!,
                 cost = upgrade == Upgrade.A ? 0 : 1,
                 description = "Add a <c=cardtrait>temp</c> <c=card>Spark</c> & 1 of " +

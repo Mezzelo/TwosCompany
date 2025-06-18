@@ -5,6 +5,7 @@ namespace TwosCompany.Cards {
     public class ColorlessSorrelSummon : Card {
         public override CardData GetData(State state) {
             return new CardData() {
+                exhaust = true,
                 art = (Spr)Manifest.Sprites["SorrelDefaultCardSprite"].Id!,
                 cost = upgrade == Upgrade.A ? 0 : 1,
                 description = "Get 1 <c=status>b. time</c>. Add 1 of " + (upgrade == Upgrade.B ? 5 : 3) + " <c=cardtrait>discount, temp</c> "

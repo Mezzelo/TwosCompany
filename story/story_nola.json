@@ -4595,7 +4595,44 @@
         }
       ]
     },
-	
-	
+    "CATsummonedNolaCard_Multi_0": {
+      "type": "combat",
+      "lookup": [
+        "summonTCNola"
+      ],
+      "oncePerCombatTags": [
+        "summonTCNolaTag"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "grumpy",
+        }
+      ],
+      "allPresent": [
+        "comp"
+      ]
+    },
+    "CATsummonedNolaCard_Multi_1": {
+      "type": "combat",
+      "lookup": [
+        "summonTCNola"
+      ],
+      "oncePerCombatTags": [
+        "summonTCNolaTag"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+        }
+      ],
+      "allPresent": [
+        "comp"
+      ]
+    },
 	}
 }

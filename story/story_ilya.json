@@ -5066,6 +5066,65 @@
         }
       ]
     },
-  
+    "CATsummonedIlyaCard_Multi_0": {
+      "type": "combat",
+      "lookup": [
+        "summonTCIlya"
+      ],
+      "oncePerCombatTags": [
+        "summonTCIlyaTag"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "intense",
+        }
+      ],
+      "allPresent": [
+        "comp"
+      ]
+    },
+    "CATsummonedIlyaCard_Multi_1": {
+      "type": "combat",
+      "lookup": [
+        "summonTCIlya"
+      ],
+      "oncePerCombatTags": [
+        "summonTCIlyaTag"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "comp",
+          "loopTag": "intense",
+        }
+      ],
+      "allPresent": [
+        "comp"
+      ]
+    },
+    "CATsummonedIlyaCard_Multi_2": {
+      "type": "combat",
+      "lookup": [
+        "summonTCIlya"
+      ],
+      "oncePerCombatTags": [
+        "summonTCIlyaTag"
+      ],
+      "oncePerRun": true,
+      "lines": [
+        {
+          "$type": "Say, CobaltCore",
+          "who": "ilya",
+          "loopTag": "forlorn",
+        }
+      ],
+      "allPresent": [
+        "ilya"
+      ]
+    },
   }
 }
