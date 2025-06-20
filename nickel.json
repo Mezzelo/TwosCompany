@@ -18,6 +18,11 @@
 		  "IsRequired": false
 		},
 		{
+		  "UniqueName": "TheJazMaster.CombatQoL",
+		  "Version": "1.5.0",
+		  "IsRequired": false
+		},
+		{
 		  "UniqueName": "Shockah.Kokoro",
 		  "Version": "2.0.0",
 		  "IsRequired": false
@@ -30,5 +35,5 @@
 		"GitHub": {
 			"Repository": "Mezzelo/TwosCompany"
 		}
-	},
+	}
 }
