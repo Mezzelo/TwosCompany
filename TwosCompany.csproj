@@ -6,51 +6,27 @@
     <Nullable>enable</Nullable>
 	  <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 	  <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-	  <OutputPath>C:\Users\cita\Desktop\Modding\Cobalt\Nickel\ModLibrary\TwosCompany</OutputPath>
+		<GameExePath>/home/thejazmaster/.steam/steam/steamapps/common/Cobalt Core/CobaltCore.exe</GameExePath>
+		<ModZipPath>$(MSBuildProjectDirectory)\.release\$(MSBuildProjectName)-$(Version).zip</ModZipPath>
     <Configurations>Debug;Release;Empty</Configurations>
     <BaseIntermediateOutputPath />
     <AssemblyVersion>3.1.2</AssemblyVersion>
+    <IsLegacyMod>true</IsLegacyMod>
 	<VersionPrefix>3.1.2</VersionPrefix>
     <LangVersion>preview</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
+		<PackageReference Include="Nickel.ModBuildConfig" Version="1.2.3"/>
+		<PackageReference Include="EnumByNameSourceGenerator" Version="1.1.1" PrivateAssets="All" ExcludeAssets="All" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>lib\0Harmony.dll</HintPath>
-		<Private>False</Private>
-    </Reference>
-    <Reference Include="CobaltCore">
-      <HintPath>References\CobaltCore.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="CobaltCoreModding.Definitions">
       <HintPath>References\CobaltCoreModding.Definitions.dll</HintPath>
       <Private>False</Private>
-    </Reference>
-	  <Reference Include="Nickel">
-		  <HintPath>References\Nickel.dll</HintPath>
-		  <Private>False</Private>
-	  </Reference>
-    <Reference Include="MonoGame.Framework">
-      <HintPath>lib\MonoGame.Framework.dll</HintPath>
-		<Private>False</Private>
-    </Reference>
-    <Reference Include="Nickel.Legacy">
-      <HintPath>lib\Nickel.Legacy.dll</HintPath>
-		<Private>False</Private>
-    </Reference>
-    <Reference Include="NickelCommon">
-      <HintPath>lib\NickelCommon.dll</HintPath>
-		<Private>False</Private>
-	</Reference>
-	<Reference Include="PluginManager">
-		<HintPath>lib\PluginManager.dll</HintPath>
-		<Private>False</Private>
     </Reference>
   </ItemGroup>
 

@@ -23,6 +23,7 @@ namespace TwosCompany.Actions {
 
             double chance = amount1 / ((double) amount1 + amount2);
             bool is2 = s.rngActions.Next() > chance;
+            Manifest.CombatQolApi?.MarkSafeRngAdvance(c, ExternalAPI.ICombatQolApi.RngTypes.ACTION);
             Card newCard = (is2 ? card2 : card1).CopyWithNewId();
             if (is2)
                 amount2--;

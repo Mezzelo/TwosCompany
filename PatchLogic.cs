@@ -17,6 +17,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Nickel.Legacy;
 using TwosCompany.Actions;
 using TwosCompany.Artifacts;
 using TwosCompany.Cards;
@@ -411,6 +412,17 @@ namespace TwosCompany {
         public static void PlayCardPrefix(Combat __instance, State s, Card card, bool playNoMatterWhatForFree, bool exhaustNoMatterWhat) {
             ChainData.chainTimer = 0;
             ChainData.hilights.Clear();
+
+            if (Manifest.CombatQolApi != null && card is IDisguisedCard) {
+                Card? example = null;
+                foreach (Card crd in s.deck.Concat(__instance.discard).Concat(__instance.hand).OfType<IDisguisedCard>().Cast<Card>()) {
+                    if (example != null && crd.GetType() != example.GetType()) {
+                        Manifest.CombatQolApi.InvalidateUndos(__instance, ExternalAPI.ICombatQolApi.InvalidationReason.RNG_SEED);
+                        break;
+                    }
+                    example = crd;
+                }
+            }
         }
 
         public static void PlayCardPostfix(Combat __instance, ref bool __result, State s, Card card, bool playNoMatterWhatForFree, bool exhaustNoMatterWhat) {
@@ -458,6 +470,8 @@ namespace TwosCompany {
                     if (selectCard.GetMeta().deck == card.GetMeta().deck && selectCard is not Onslaught) {
                         if (card.uuid != selectCard.uuid) {
                             fromDiscard = false;
+                            if (Manifest.CombatQolApi != null && s.deck.Count(crd => crd.GetMeta().deck == card.GetMeta().deck) == 1)
+                                Manifest.CombatQolApi.MarkCardAsOkayToBeGone(__instance, selectCard);
                             if (__instance.hand.Count >= 10) {
                                 __instance.PulseFullHandWarning();
                                 break;

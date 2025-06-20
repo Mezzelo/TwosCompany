@@ -46,11 +46,11 @@ namespace TwosCompany.ModBG {
             if (critical) {
                 color = new Color(1.0, 0.5, 1.0).gain(0.6);
             }
-            Draw.Sprite(Spr.bg_cobaltChamber_bg, 0.0, 0.0);
+            Draw.Sprite(StableSpr.bg_cobaltChamber_bg, 0.0, 0.0);
             if (dark) {
                 Draw.Rect(0.0, 0.0, 480.0, 270.0, new Color(0.0, 0.0, 0.0, 0.5));
             }
-            Spr? id = Spr.bg_cobaltChamber_crystal_glow;
+            Spr? id = StableSpr.bg_cobaltChamber_crystal_glow;
             double y = 135.0 + Math.Sin(t * 1.5) * 3.0;
             Vec? originRel = new Vec(0.5, 0.5);
             BlendState screen = BlendMode.Screen;
@@ -68,24 +68,24 @@ namespace TwosCompany.ModBG {
             }
             double num3 = (beam ? (Math.Sin(t * 70.0) * 1.0) : 0.0);
             double num4 = (beam ? 0.0 : (Math.Sin(t * 1.5) * 3.0));
-            Spr? id2 = Spr.bg_cobaltChamber_crystal;
+            Spr? id2 = StableSpr.bg_cobaltChamber_crystal;
             double x = 395.0 + num3;
             double y2 = 135.0 + num4;
             originRel = new Vec(0.5, 0.5);
             Draw.Sprite(id2, x, y2, flipX: false, flipY: false, 0.0, null, originRel);
-            Spr? id3 = Spr.bg_cobaltChamber_room_inner;
+            Spr? id3 = StableSpr.bg_cobaltChamber_room_inner;
             Color? color3 = value;
             Draw.Sprite(id3, 0.0, 0.0, flipX: false, flipY: false, 0.0, null, null, null, null, color3);
-            Spr? id4 = Spr.bg_core_scene_dizzy_isaac;
+            Spr? id4 = StableSpr.bg_core_scene_dizzy_isaac;
             originRel = new Vec(0.0, 1.0);
             Draw.Sprite(id4, 50.0, 60.0, flipX: false, flipY: false, 0.0, null, originRel);
-            Draw.Sprite(Spr.bg_cobaltChamber_room_outer, 0.0, 0.0);
-            Spr? id5 = Spr.bg_cobaltChamber_glass;
+            Draw.Sprite(StableSpr.bg_cobaltChamber_room_outer, 0.0, 0.0);
+            Spr? id5 = StableSpr.bg_cobaltChamber_glass;
             color3 = value;
             screen = BlendMode.Screen;
             Draw.Sprite(id5, 0.0, 0.0, flipX: false, flipY: false, 0.0, null, null, null, null, color3, screen);
             if (cables) {
-                Spr? id6 = Spr.bg_cobaltChamber_cables;
+                Spr? id6 = StableSpr.bg_cobaltChamber_cables;
                 screen = BlendMode.Screen;
                 Draw.Sprite(id6, 92.0, 62.0, flipX: false, flipY: false, 0.0, null, null, null, null, null, screen);
             }
@@ -95,7 +95,7 @@ namespace TwosCompany.ModBG {
                 BGComponents.Lightning(g, new Vec(395.0, 135.0), new Color(0.1, 0.4, 1.0));
             }
             if (riggs) {
-                Spr? id7 = Spr.bg_cobaltChamber_riggs;
+                Spr? id7 = StableSpr.bg_cobaltChamber_riggs;
                 double y3 = 158.0 + Math.Sin(t * 2.0) * 2.0;
                 color3 = new Color(1.0, 1.0, 1.0, 0.2);
                 Draw.Sprite(id7, 428.0, y3, flipX: false, flipY: false, 0.0, null, null, null, null, color3);
