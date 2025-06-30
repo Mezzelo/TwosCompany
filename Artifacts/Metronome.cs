@@ -5,17 +5,15 @@ using TwosCompany.Helper;
 
 namespace TwosCompany.Artifacts {
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Common })]
-    public class Metronome : Artifact {
+    public class Metronome : Artifact, IOnMoveArtifact {
         public int counter = 0;
+        public int cardStacks = 0;
         public bool lastWasMove = false;
         public bool consecutive = false;
-        public bool fromStrafe = false;
+        public bool fromEvade = false;
         public override string Description() => ManifArtifactHelper.artifactTexts["Metronome"];
 
         public override int? GetDisplayNumber(State s) => counter;
-
-        public Metronome() =>
-            Manifest.EventHub.ConnectToEvent<Tuple<int, bool, bool, Combat, State>>("Mezz.TwosCompany.Movement", Movement);
         public override Spr GetSprite() {
             if (counter == 0)
                 return (Spr)(Manifest.Sprites["IconMetronome"].Id
@@ -26,24 +24,25 @@ namespace TwosCompany.Artifacts {
             else
                 return (Spr)(Manifest.Sprites["IconMetronomeAttacked"].Id
                     ?? throw new Exception("missing artifact art: metronome"));
-
         }
 
         public override void OnReceiveArtifact(State state) {
-            Manifest.EventHub.ConnectToEvent<Tuple<int, bool, bool, Combat, State>>("Mezz.TwosCompany.Movement", Movement);
             counter = 0;
+            cardStacks = 0;
         }
 
         public override void OnRemoveArtifact(State state) {
-            Manifest.EventHub.DisconnectFromEvent<Tuple<int, bool, bool, Combat, State>>("Mezz.TwosCompany.Movement", Movement);
             counter = 0;
+            cardStacks = 0;
         }
         // public override void OnCombatEnd(State state) => counter = 0;
 
+        public override void OnCombatStart(State state, Combat combat) => cardStacks = 0;
+
         public override void OnPlayerPlayCard(int energyCost, Deck deck, Card playedCard, State state, Combat combat, int handPosition, int handCount) {
             consecutive = false;
-            fromStrafe = false;
-
+            fromEvade = false;
+            cardStacks = 0;
         }
 
         private void Proc(State s, Combat c) {
@@ -67,40 +66,46 @@ namespace TwosCompany.Artifacts {
         }
 
         public override void OnPlayerAttack(State state, Combat combat) {
-            if (!fromStrafe) {
-                if (lastWasMove || counter == 0) {
+            if (!fromEvade) {
+                bool markForSet = false;
+                if (cardStacks < 2 && (lastWasMove || counter == 0)) {
                     counter++;
+                    cardStacks++;
+                    markForSet = true;
                     if (counter > 5)
                         Proc(state, combat);
                 }
                 else if (!consecutive)
                     counter = 0;
-                lastWasMove = false;
-                consecutive = true;
+
+                if (markForSet) {
+                    lastWasMove = false;
+                    consecutive = true;
+                }
             }
         }
 
-        private void Movement(Tuple<int, bool, bool, Combat, State> evt) {
-            int distance = evt.Item1;
-            Combat c = evt.Item4;
-            State s = evt.Item5;
-
-            if (!s.characters.SelectMany(e => e.artifacts).Concat(s.artifacts).Contains(this)) {
-                Manifest.EventHub.DisconnectFromEvent<Tuple<int, bool, bool, Combat, State>>("Mezz.TwosCompany.Movement", Movement);
-                return;
-            }
-
+        public void Movement(int dist, bool targetPlayer, bool fromEvade, Combat c, State s) {
+            bool markForSet = false;
             if (!lastWasMove || counter == 0) {
-                counter++;
-                if (counter > 5)
-                    Proc(s, c);
+                if (fromEvade || cardStacks < 2) {
+                    markForSet = true;
+                    counter++;
+                    if (!fromEvade)
+                        cardStacks++;
+                    if (counter > 5)
+                        Proc(s, c);
+                }
             }
-            else
+            else if (fromEvade || cardStacks == 0)
                 counter = 0;
-            lastWasMove = true;
-            fromStrafe = evt.Item3;
+            if (markForSet) {
+                lastWasMove = true;
+                this.fromEvade = fromEvade;
+            }
         }
 
         public override List<Tooltip>? GetExtraTooltips() => new List<Tooltip>() { new TTGlossary("status.overdrive", 1), new TTGlossary("status.evade", 1) };
+
     }
 }

@@ -2,34 +2,21 @@
 
 namespace TwosCompany.Artifacts {
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Common })]
-    public class IonEngines : Artifact {
+    public class IonEngines : Artifact, IChainLightningArtifact {
         public int counter = 0;
 
         public override string Description() => ManifArtifactHelper.artifactTexts["IonEngines"];
         public override int? GetDisplayNumber(State s) => counter;
 
-        public IonEngines() => 
-            Manifest.EventHub.ConnectToEvent<Tuple<State, int>>("Mezz.TwosCompany.ChainLightning", Chain);
-
         public override void OnReceiveArtifact(State state) {
-            Manifest.EventHub.ConnectToEvent<Tuple<State, int>>("Mezz.TwosCompany.ChainLightning", Chain);
             counter = 0;
         }
 
         public override void OnRemoveArtifact(State state) {
-            Manifest.EventHub.DisconnectFromEvent<Tuple<State, int>>("Mezz.TwosCompany.ChainLightning", Chain);
             counter = 0;
         }
 
-        private void Chain(Tuple<State, int> evt) {
-            State s = evt.Item1;
-            int distance = evt.Item2;
-
-            if (!s.characters.SelectMany(e => e.artifacts).Concat(s.artifacts).Contains(this)) {
-                Manifest.EventHub.DisconnectFromEvent<Tuple<State, int>>("Mezz.TwosCompany.ChainLightning", Chain);
-                return;
-            }
-
+        public void OnChainLightning(State s, int distance) {
             counter += distance;
             while (counter > 5) {
                 counter -= 5;

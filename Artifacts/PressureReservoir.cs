@@ -27,7 +27,6 @@ namespace TwosCompany.Artifacts {
         }
 
         public override List<Tooltip>? GetExtraTooltips() => new List<Tooltip>() {
-            new TTGlossary("status.heat", 1),
             new TTGlossary("status." + Manifest.Statuses?["HeatFeedback"].Id, 1)
         };
     }

@@ -176,10 +176,11 @@ namespace TwosCompany {
 
         public void LoadManifest(ICustomEventHub eventHub) {
             _eventHub = eventHub;
-            //distance, target_player, from_evade, combat, state
+            /*
+            // distance, target_player, from_evade, combat, state
             eventHub.MakeEvent<Tuple<int, bool, bool, Combat, State>>("Mezz.TwosCompany.Movement");
             eventHub.MakeEvent<Tuple<State, Combat>>("Mezz.TwosCompany.StanceSwitch");
-            eventHub.MakeEvent<Tuple<State, int>>("Mezz.TwosCompany.ChainLightning");
+            eventHub.MakeEvent<Tuple<State, int>>("Mezz.TwosCompany.ChainLightning");*/
 
             eventHub.ConnectToEvent<Func<IManifest, IPrelaunchContactPoint>>("Nickel::OnAfterDbInitPhaseFinished", contactPointProvider => {
                 var contactPoint = contactPointProvider(this);

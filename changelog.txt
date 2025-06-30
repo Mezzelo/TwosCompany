@@ -1,3 +1,16 @@
+3.2.3
++ Cannon Guard now gives 2 temp shield on turn end when proced.
+- Metronome can now only gain 2 stacks per card played.
+
+~ Internal code reworks to the following artifacts that should fix issues when using the Combat QoL mod: Blackfoot Pendant, Cannon Guard, Metronome, Ion Engines, Field Alternator
+~ Implemented fixes from TheJazMaster that make the Onslaught status, Compound Attack and Jab/Fleche compatible with Combat QoL's undo feature.
+
+~ (fix) Fixed Cannon Guard showing seemingly arbitrary numbers when out of combat.
+~ (fix) Removed Heat from Pressure Reservoir tooltip.
++ (fix) Fixed Tuning Trident reducing entire chain's damage by 2, rather than just the beginning.
+
+~ (fix) minor string revisions
+
 3.2.2
 + Added dialogue lines for .EXE cards
 ~ (fix) Fixed .EXE cards not exhausting.
