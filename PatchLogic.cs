@@ -1128,7 +1128,7 @@ namespace TwosCompany {
                     Mutil.Remap(-1.0, 1.0, 0.0, 1.0, n), 
                     Mutil.Remap(-1.0, 1.0, 20.0, 25.0, n), 
                     showBeams: memMap.rays);
-                Draw.Sprite(Enum.Parse<Spr>("map_mock_zone_three_over"), 0.0, 0.0);
+                Draw.Sprite(StableSpr.map_mock_zone_three_over, 0.0, 0.0);
             }
         }
         public static bool MakeRoutePrefix(ref Route __result, MapBattle __instance, State s) {

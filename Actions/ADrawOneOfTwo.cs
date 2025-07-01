@@ -53,7 +53,7 @@ namespace TwosCompany.Actions {
                 });
             }
         }
-        public override Icon? GetIcon(State s) => new Icon?(new Icon(Enum.Parse<Spr>("icons_addCard"), 1, Colors.textMain));
+        public override Icon? GetIcon(State s) => new Icon?(new Icon(StableSpr.icons_addCard, 1, Colors.textMain));
         public override List<Tooltip> GetTooltips(State s) {
             List<Tooltip> list = new List<Tooltip>();
             list.Add(new TTGlossary("action.addCard", "<c=deck>hand</c>"));

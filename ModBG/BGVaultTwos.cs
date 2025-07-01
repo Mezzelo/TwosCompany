@@ -47,14 +47,14 @@ namespace TwosCompany.ModBG {
             Vec? vec3;
             if (showOverlook) {
                 for (int i = 0; i < 6; i++) {
-                    Spr? id = Enum.Parse<Spr>("bg_shipyard_scaffolding");
+                    Spr? id = StableSpr.bg_shipyard_scaffolding;
                     double x = lookAway.x + -150.0 + (double)(i * 50);
                     Color? color3 = color2.gain(0.1);
                     vec3 = null;
                     Draw.Sprite(id, x, 0.0, flipX: false, flipY: false, 0.0, null, null, vec3, null, color3);
                 }
                 for (int j = 0; j < 6; j++) {
-                    Spr? id2 = Enum.Parse<Spr>("bg_shipyard_scaffolding");
+                    Spr? id2 = StableSpr.bg_shipyard_scaffolding;
                     double x2 = lookAway.x + 480.0 + 150.0 - (double)(j * 50);
                     Color? color3 = color2.gain(0.1);
                     vec3 = new Vec(1.0);
@@ -62,19 +62,19 @@ namespace TwosCompany.ModBG {
                 }
             }
             Draw.Fill(color2.gain(0.1), BlendMode.Screen);
-            Spr? id4 = Enum.Parse<Spr>("bg_cobalt_hero_back");
+            Spr? id4 = StableSpr.bg_cobalt_hero_back;
             double x3 = vec.x;
             double y2 = vec.y - 0.0;
             vec3 = new Vec(0.5, 0.5);
             Draw.Sprite(id4, x3, y2, flipX: false, flipY: false, 0.0, null, vec3);
-            Spr? id5 = (Enum.Parse<Spr>("effects_circles_circle_128"));
+            Spr? id5 = (StableSpr.effects_circles_circle_128);
             double x4 = vec.x;
             double y3 = vec.y;
             vec3 = vec2;
             Draw.Sprite(originRel: new Vec(0.5, 0.5), color: color.gain(1.0), id: id5, x: x4, y: y3, flipX: false, flipY: false, rotation: 0.0, originPx: null, scale: vec3);
             // if (!cobaltExploded)
             {
-                Spr? id6 = Enum.Parse<Spr>("bg_cobalt_hero_front");
+                Spr? id6 = StableSpr.bg_cobalt_hero_front;
                 double x5 = vec.x;
                 double y4 = vec.y + 0.0;
                 Vec? originRel2 = new Vec(0.5, 0.5);
@@ -83,7 +83,7 @@ namespace TwosCompany.ModBG {
             Draw.Fill(new Color(0.0, 0.5, 1.0).gain(0.1), BlendMode.Screen);
             if (showOverlook) {
                 BGComponents.RegularGlowMono(g, new Vec(0.0, g.state.map.age * -100.0), new Color(0.0, 0.5, 1.0).gain(0.5));
-                Spr? id7 = Enum.Parse<Spr>("bg_shipyard_platform");
+                Spr? id7 = StableSpr.bg_shipyard_platform;
                 Vec? originRel2 = new Vec(0.0, 1.0);
                 Draw.Sprite(id7, 0.0, 200.0, flipX: true, flipY: false, 0.0, null, originRel2);
             }
@@ -95,7 +95,7 @@ namespace TwosCompany.ModBG {
                     color2 = color.gain(0.1);
                     Vec originRel3 = new Vec(0.0, 1.0);
                     Draw.Sprite(ids3, 70.0, y, flipX: false, flipY: false, 0.0, null, originRel3, null, null, color2);
-                    Spr? ids4 = Enum.Parse<Spr>("bg_hover_ship_b");
+                    Spr? ids4 = StableSpr.bg_hover_ship_b;
                     double ys2 = 165.0 + Math.Sin(g.state.time * 1.7);
                     originRel3 = new Vec(0.0, 1.0);
                     color2 = color.gain(0.1);
@@ -123,10 +123,10 @@ namespace TwosCompany.ModBG {
 
         public static void DrawMediumIsosphere(G g, Vec sunPos) {
             if (Mutil.Rand((int)(g.state.time * 5.0)) < 0.8) {
-                SpriteUtil.GlitchSprite(Enum.Parse<Spr>("effects_icosphere"), (int)sunPos.x - 85, (int)sunPos.y - 85, 240.0, new Vec(170.0, 170.0), (int)Math.Round(g.state.time * 10.0), 0.8, new Color(0.0, 0.2, 1.0).gain(1.0), BlendMode.Screen);
+                SpriteUtil.GlitchSprite(StableSpr.effects_icosphere, (int)sunPos.x - 85, (int)sunPos.y - 85, 240.0, new Vec(170.0, 170.0), (int)Math.Round(g.state.time * 10.0), 0.8, new Color(0.0, 0.2, 1.0).gain(1.0), BlendMode.Screen);
                 return;
             }
-            Spr? id = Enum.Parse<Spr>("effects_icosphere");
+            Spr? id = StableSpr.effects_icosphere;
             double x = sunPos.x;
             double y = sunPos.y;
             Vec? originRel = new Vec(0.5, 0.5);
@@ -135,7 +135,7 @@ namespace TwosCompany.ModBG {
         }
 
         public static void DrawDigitalCameraNoise(G g, double duty = 0.1, Color? color = null) {
-            SpriteUtil.GlitchSprite(Enum.Parse<Spr>("effects_glitch"), 0, 0, 240.0, new Vec(480.0, 270.0), (int)Math.Round(g.state.time * 3.0), duty, color ?? new Color(0.0, 0.2, 1.0).gain(0.2), BlendMode.Screen);
+            SpriteUtil.GlitchSprite(StableSpr.effects_glitch, 0, 0, 240.0, new Vec(480.0, 270.0), (int)Math.Round(g.state.time * 3.0), duty, color ?? new Color(0.0, 0.2, 1.0).gain(0.2), BlendMode.Screen);
         }
 
         public override void OnAction(State s, string action) {

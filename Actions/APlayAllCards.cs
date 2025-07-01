@@ -45,6 +45,6 @@
             }
             return list;
         }
-    public override Icon? GetIcon(State s) => new Icon?(new Icon(Enum.Parse<Spr>("icons_bypass"), 0, Colors.textMain));
+    public override Icon? GetIcon(State s) => new Icon?(new Icon(StableSpr.icons_bypass, 0, Colors.textMain));
     }
 }

@@ -88,7 +88,7 @@
             }
         }
 
-        public override Icon? GetIcon(State s) => new Icon?(new Icon(Enum.Parse<Spr>("icons_searchCard"), 10, Colors.textMain));
+        public override Icon? GetIcon(State s) => new Icon?(new Icon(StableSpr.icons_searchCard, 10, Colors.textMain));
     }
 
 }

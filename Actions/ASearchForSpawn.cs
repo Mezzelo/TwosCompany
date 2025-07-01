@@ -72,7 +72,7 @@ namespace TwosCompany.Actions {
             }
         }
 
-        public override Icon? GetIcon(State s) => new Icon?(new Icon(Enum.Parse<Spr>("icons_searchCard"), count, Colors.textMain));
+        public override Icon? GetIcon(State s) => new Icon?(new Icon(StableSpr.icons_searchCard, count, Colors.textMain));
     }
 
 }

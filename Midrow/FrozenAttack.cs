@@ -233,23 +233,23 @@ namespace TwosCompany.Midrow {
                 }
                 double iconPos = 10.0;
                 if ((damage.Item3 & 2) > 0) {
-                    Draw.Sprite(Enum.Parse<Spr>("icons_stun"), v.x + 14.0, v.y + iconPos, color: Colors.disabledText);
+                    Draw.Sprite(StableSpr.icons_stun, v.x + 14.0, v.y + iconPos, color: Colors.disabledText);
                     iconPos -= 10.0;
                 }
                 if ((damage.Item3 & 4) > 0) {
-                    Draw.Sprite(Enum.Parse<Spr>("icons_weak"), v.x + 14.0, v.y + iconPos);
+                    Draw.Sprite(StableSpr.icons_weak, v.x + 14.0, v.y + iconPos);
                     iconPos -= 10.0;
                 }
                 if ((damage.Item3 & 8) > 0) {
-                    Draw.Sprite(Enum.Parse<Spr>("icons_brittle"), v.x + 14.0, v.y + iconPos);
+                    Draw.Sprite(StableSpr.icons_brittle, v.x + 14.0, v.y + iconPos);
                     iconPos -= 10.0;
                 }
                 if ((damage.Item3 & 16) > 0) {
-                    Draw.Sprite(Enum.Parse<Spr>("icons_armor"), v.x + 14.0, v.y + iconPos);
+                    Draw.Sprite(StableSpr.icons_armor, v.x + 14.0, v.y + iconPos);
                     iconPos -= 10.0;
                 }
                 if ((damage.Item3 & 32) > 0) {
-                    Draw.Sprite(Enum.Parse<Spr>("hints_hint_card"), v.x + 11.0, v.y + iconPos - 3.0);
+                    Draw.Sprite(StableSpr.hints_hint_card, v.x + 11.0, v.y + iconPos - 3.0);
                 }
                 Draw.Text(((int)damage.Item1).ToString(), v.x + 10.0, v.y + 10.0,
                     color: (damage.Item3 & 1) > 0 ? Colors.card : Colors.redd,
@@ -274,23 +274,23 @@ namespace TwosCompany.Midrow {
                 }
                 double iconPos = 20.0;
                 if ((damage.Item4 & 2) > 0 || g.state.ship.Get((Status)Manifest.Statuses["FrozenStun"].Id!) > 0) {
-                    Draw.Sprite(Enum.Parse<Spr>("icons_stun"), v.x + 14.0, v.y + iconPos);
+                    Draw.Sprite(StableSpr.icons_stun, v.x + 14.0, v.y + iconPos);
                     iconPos += 10.0;
                 }
                 if ((damage.Item4 & 4) > 0) {
-                    Draw.Sprite(Enum.Parse<Spr>("icons_weak"), v.x + 14.0, v.y + iconPos);
+                    Draw.Sprite(StableSpr.icons_weak, v.x + 14.0, v.y + iconPos);
                     iconPos += 10.0;
                 }
                 if ((damage.Item4 & 8) > 0) {
-                    Draw.Sprite(Enum.Parse<Spr>("icons_brittle"), v.x + 14.0, v.y + iconPos);
+                    Draw.Sprite(StableSpr.icons_brittle, v.x + 14.0, v.y + iconPos);
                     iconPos += 10.0;
                 }
                 if ((damage.Item4 & 16) > 0) {
-                    Draw.Sprite(Enum.Parse<Spr>("icons_armor"), v.x + 14.0, v.y + iconPos);
+                    Draw.Sprite(StableSpr.icons_armor, v.x + 14.0, v.y + iconPos);
                     iconPos += 10.0;
                 }
                 if ((damage.Item4 & 32) > 0) {
-                    Draw.Sprite(Enum.Parse<Spr>("hints_hint_card"), v.x + 11.0, v.y + iconPos - 3.0, color: Colors.disabledText);
+                    Draw.Sprite(StableSpr.hints_hint_card, v.x + 11.0, v.y + iconPos - 3.0, color: Colors.disabledText);
                 }
                 Draw.Text(((int) damage.Item2).ToString(), v.x + 10.0, v.y + 20.0,
                     color: (damage.Item4 & 1) > 0 ? Colors.card : Colors.droneOutline,
