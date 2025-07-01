@@ -93,8 +93,8 @@ namespace TwosCompany.ModBG {
                             Draw.Sprite(id, 240.0, y, flipX: false, flipY: false, 0.0, null, originRel);
 
                         /*
-                        Draw.Sprite(Spr.effects_comp_board_void_2, 0.0, 0.0);
-                        SpriteUtil.GlitchSprite(Spr.effects_comp_board_void, 0, 0, 240.0, new Vec(480.0, 270.0), (int)Math.Round(g.state.time * 3.0), 1.0, Colors.white);
+                        Draw.Sprite(StableSpr.effects_comp_board_void_2, 0.0, 0.0);
+                        SpriteUtil.GlitchSprite(StableSpr.effects_comp_board_void, 0, 0, 240.0, new Vec(480.0, 270.0), (int)Math.Round(g.state.time * 3.0), 1.0, Colors.white);
                         */
                     }
                 }

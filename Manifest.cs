@@ -31,6 +31,7 @@ namespace TwosCompany
 
         internal static APIImplementation Api { get; private set; } = null!;
         public static IMoreDifficultiesApi? MoreDifficultiesApi = null;
+        public static ICombatQolApi? CombatQolApi = null;
         public static IModSettingsApi? ModSettingsApi = null;
         public static IKokoroApi.IV2? KokoroApi = null;
 
@@ -331,7 +332,6 @@ namespace TwosCompany
         }
 
         public void LoadManifest(IDeckRegistry registry) {
-            // ExternalSprite.GetRaw((int)Spr.cards_colorless),
             ExternalSprite borderSprite = Sprites["NolaDeckFrame"]!;
             NolaDeck = new ExternalDeck(
                 "Mezz.TwosCompany.NolaDeck",

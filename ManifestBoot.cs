@@ -70,6 +70,10 @@ namespace TwosCompany {
                 Tooltips = (_, _) => [new TTGlossary(Manifest.Glossary["DisguisedPermaHint"]?.Head!)]
             }));
 
+            Helper.ModRegistry.AwaitApiOrNull<ICombatQolApi>("TheJazMaster.CombatQoL", (api) => {
+                CombatQolApi = api;
+            });
+
             helper.ModRegistry.AwaitApi<IModSettingsApi>(
                 "Nickel.ModSettings",
                 settingsApi => settingsApi.RegisterModSettings(settingsApi.MakeList([
