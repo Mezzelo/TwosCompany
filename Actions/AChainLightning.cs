@@ -295,7 +295,7 @@ namespace TwosCompany.Actions {
                         if (end && !(cable != null && n < cRoute.Count - 1 && n > 0)) {
                             RaycastResult chainRay = CombatUtils.RaycastGlobal(c, ship, true, cRoute[n]);
                             hitActions.Insert(0, new AChainHit() {
-                                damage = Math.Max(0, cDamage - (cRoute.Count > 1 && trident != null ? 2 : 0)),
+                                damage = Math.Max(0, cDamage - (cRoute.Count > 1 && trident != null && n == 0 ? 2 : 0)),
                                 targetPlayer = this.targetPlayer,
                                 fromX = cRoute[n],
                                 piercing = piercing,
@@ -305,7 +305,9 @@ namespace TwosCompany.Actions {
                             });
                         }
                     }
-                    Manifest.EventHub.SignalEvent<Tuple<State, int>>("Mezz.TwosCompany.ChainLightning", new(s, cRoute.Count));
+                    foreach (Artifact enumerateAllArtifact in s.EnumerateAllArtifacts())
+                        if (enumerateAllArtifact is IChainLightningArtifact chainLightningArtifact)
+                            chainLightningArtifact.OnChainLightning(s, cRoute.Count);
                     if (evadeGain > 0)
                         c.QueueImmediate(new AStatus() {
                             targetPlayer = !targetPlayer,
@@ -449,7 +451,7 @@ namespace TwosCompany.Actions {
                         if (g == 0)
                             zeroDamage = cDamage;
 
-                        int hilightVal = Math.Max(0, cDamage - (cRoute.Count > 1 && trident ? 2 : 0)) +
+                        int hilightVal = Math.Max(0, cDamage - (cRoute.Count > 1 && trident && g == 0 ? 2 : 0)) +
                             ((g == cRoute.Count - 1 || 
                             (g == 0 && trident) ||
                             (g < cRoute.Count - 1 && cRoute[g] < cRoute[g + 1] && cRoute[g] < cRoute[0])) ?

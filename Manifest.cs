@@ -332,74 +332,67 @@ namespace TwosCompany
         }
 
         public void LoadManifest(IDeckRegistry registry) {
-            // ExternalSprite.GetRaw((int)StableSpr.cards_colorless),
-            ExternalSprite borderSprite = Sprites["NolaDeckFrame"] ?? throw new Exception();
+            ExternalSprite borderSprite = Sprites["NolaDeckFrame"]!;
             NolaDeck = new ExternalDeck(
                 "Mezz.TwosCompany.NolaDeck",
                 NolaColor,
                 System.Drawing.Color.Black,
-                Sprites["NolaDefaultCardSprite"] ?? ExternalSprite.GetRaw(
-                    (int) Enum.Parse<Spr>("cards_colorless")),
+                Sprites["NolaDefaultCardSprite"]!,
                 borderSprite,
                 null
             );
             registry.RegisterDeck(NolaDeck);
 
-            borderSprite = Sprites["IsabelleDeckFrame"] ?? throw new Exception();
+            borderSprite = Sprites["IsabelleDeckFrame"]!;
             IsabelleDeck = new ExternalDeck(
                 "Mezz.TwosCompany.IsabelleDeck",
                 IsabelleColor,
                 System.Drawing.Color.Black,
-                Sprites["IsabelleDefaultCardSprite"] ?? ExternalSprite.GetRaw(
-                    (int)Enum.Parse<Spr>("cards_colorless")),
+                Sprites["IsabelleDefaultCardSprite"]!,
                 borderSprite,
                 null
             );
             registry.RegisterDeck(IsabelleDeck);
 
-            borderSprite = Sprites["IlyaDeckFrame"] ?? throw new Exception();
+            borderSprite = Sprites["IlyaDeckFrame"]!;
             IlyaDeck = new ExternalDeck(
                 "Mezz.TwosCompany.IlyaDeck",
                 IlyaColor,
                 System.Drawing.Color.Black,
-                Sprites["IlyaDefaultCardSprite"] ?? ExternalSprite.GetRaw(
-                    (int)Enum.Parse<Spr>("cards_colorless")),
+                Sprites["IlyaDefaultCardSprite"]!,
                 borderSprite,
                 null
             );
             registry.RegisterDeck(IlyaDeck);
 
-            borderSprite = Sprites["JostDeckFrame"] ?? throw new Exception();
+            borderSprite = Sprites["JostDeckFrame"]!;
             JostDeck = new ExternalDeck(
                 "Mezz.TwosCompany.JostDeck",
                 JostColor,
                 System.Drawing.Color.Black,
-                Sprites["JostDefaultCardSpriteUnsided"] ?? ExternalSprite.GetRaw(
-                    (int)Enum.Parse<Spr>("cards_colorless")),
+                Sprites["JostDefaultCardSpriteUnsided"]!,
                 borderSprite,
                 null
             );
             registry.RegisterDeck(JostDeck);
 
-            borderSprite = Sprites["GaussDeckFrame"] ?? throw new Exception();
+            borderSprite = Sprites["GaussDeckFrame"]!;
             GaussDeck = new ExternalDeck(
                 "Mezz.TwosCompany.GaussDeck",
                 GaussColor,
                 System.Drawing.Color.Black,
-                Sprites["GaussDefaultCardSprite"] ?? ExternalSprite.GetRaw(
-                    (int)Enum.Parse<Spr>("cards_colorless")),
+                Sprites["GaussDefaultCardSprite"]!,
                 borderSprite,
                 null
             );
             registry.RegisterDeck(GaussDeck);
 
-            borderSprite = Sprites["SorrelDeckFrame"] ?? throw new Exception();
+            borderSprite = Sprites["SorrelDeckFrame"]!;
             SorrelDeck = new ExternalDeck(
                 "Mezz.TwosCompany.SorrelDeck",
                 SorrelColor,
                 System.Drawing.Color.Black,
-                Sprites["SorrelDefaultCardSprite"] ?? ExternalSprite.GetRaw(
-                    (int)Enum.Parse<Spr>("cards_colorless")),
+                Sprites["SorrelDefaultCardSprite"]!,
                 borderSprite,
                 null
             );

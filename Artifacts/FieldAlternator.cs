@@ -6,33 +6,13 @@ using TwosCompany.Helper;
 
 namespace TwosCompany.Artifacts {
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Common })]
-    public class FieldAlternator : Artifact {
+    public class FieldAlternator : Artifact, IOnStanceSwitchArtifact {
         public int counter = 0;
-
-        public FieldAlternator() =>
-            Manifest.EventHub.ConnectToEvent<Tuple<State, Combat>>("Mezz.TwosCompany.StanceSwitch", StanceSwitch);
         public override string Description() => ManifArtifactHelper.artifactTexts["FieldAlternator"];
 
         public override int? GetDisplayNumber(State s) => counter;
 
-        public override void OnReceiveArtifact(State state) {
-            Manifest.EventHub.ConnectToEvent<Tuple<State, Combat>>("Mezz.TwosCompany.StanceSwitch", StanceSwitch);
-            counter = 0;
-        }
-
-        public override void OnRemoveArtifact(State state) {
-            Manifest.EventHub.DisconnectFromEvent<Tuple<State, Combat>>("Mezz.TwosCompany.StanceSwitch", StanceSwitch);
-            counter = 0;
-        }
-
-        private void StanceSwitch(Tuple<State, Combat> evt) {
-            State s = evt.Item1;
-            Combat c = evt.Item2;
-            if (!s.characters.SelectMany(e => e.artifacts).Concat(s.artifacts).Contains(this)) {
-                Manifest.EventHub.DisconnectFromEvent<Tuple<State, Combat>>("Mezz.TwosCompany.StanceSwitch", StanceSwitch);
-                return;
-            }
-
+        public void StanceSwitch(State s, Combat c) {
             counter++;
             if (counter == 4) {
                 counter = 0;

@@ -1,5 +1,6 @@
 ﻿using CobaltCoreModding.Definitions.ExternalItems;
 using System.Collections.Generic;
+using TwosCompany.Artifacts;
 
 namespace TwosCompany.Actions {
     public class AStanceSwitch : CardAction {
@@ -35,9 +36,10 @@ namespace TwosCompany.Actions {
                     Audio.Play(FSPRO.Event.Status_ShieldUp);
                 switched = true;
             }
-            if (switched) {
-                Manifest.EventHub.SignalEvent<Tuple<State, Combat>>("Mezz.TwosCompany.StanceSwitch", new(state, c));
-            }
+            if (switched)
+                foreach (Artifact enumerateAllArtifact in state.EnumerateAllArtifacts())
+                    if (enumerateAllArtifact is IOnStanceSwitchArtifact stanceArtifact)
+                        stanceArtifact.StanceSwitch(state, c);
         }
     }
 }

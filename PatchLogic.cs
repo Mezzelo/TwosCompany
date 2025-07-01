@@ -78,23 +78,23 @@ namespace TwosCompany {
             int dist = (__instance.targetPlayer ? s.ship.x : c.otherShip.x) - __state;
             if (dist != 0) {
                 if (__instance.targetPlayer)
-                    Manifest.EventHub.SignalEvent<Tuple<int, bool, bool, Combat, State>>(
-                        "Mezz.TwosCompany.Movement", new(dist, __instance.targetPlayer, __instance.fromEvade, c, s));
+                    foreach (Artifact enumerateAllArtifact in s.EnumerateAllArtifacts())
+                        if (enumerateAllArtifact is IOnMoveArtifact moveArtifact)
+                            moveArtifact.Movement(dist, __instance.targetPlayer, __instance.fromEvade, c, s);
 
                 // this approach sucks, but i can't find where to patch card removal to unhook events
                 foreach (Card card in c.hand)
                     if (card is Couch couchCard && __instance.targetPlayer)
                         couchCard.dist += Math.Abs(dist);
 
-                ExternalStatus fortress = Manifest.Statuses?["Fortress"] ?? throw new Exception("status missing: fortress");
-                if (fortress.Id != null)
-                    if (ship.Get((Status)fortress.Id) > 0)
-                        c.QueueImmediate(new AStatus() {
-                            status = (Status) fortress.Id,
-                            statusAmount = -1,
-                            targetPlayer = __instance.targetPlayer,
-                            statusPulse = (Status) fortress.Id,
-                        });
+                ExternalStatus fortress = Manifest.Statuses["Fortress"]!;
+                if (ship.Get((Status) fortress.Id!) > 0)
+                    c.QueueImmediate(new AStatus() {
+                        status = (Status) fortress.Id,
+                        statusAmount = -1,
+                        targetPlayer = __instance.targetPlayer,
+                        statusPulse = (Status) fortress.Id,
+                    });
             }
             return;
         }

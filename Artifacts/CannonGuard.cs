@@ -6,7 +6,7 @@ using TwosCompany.Helper;
 namespace TwosCompany.Artifacts {
 
     [ArtifactMeta(pools = new ArtifactPool[] { ArtifactPool.Common })]
-    public class CannonGuard : Artifact {
+    public class CannonGuard : Artifact, IOnMoveArtifact {
 
         public int pos = 0;
         public bool markForGain = false;
@@ -26,28 +26,21 @@ namespace TwosCompany.Artifacts {
             pos = state.ship.x;
             hasMovedThisTurn = false;
         }
-        public CannonGuard() =>
-            Manifest.EventHub.ConnectToEvent<Tuple<int, bool, bool, Combat, State>>("Mezz.TwosCompany.Movement", Movement);
 
-        public override void OnReceiveArtifact(State state) {
-            Manifest.EventHub.ConnectToEvent<Tuple<int, bool, bool, Combat, State>>("Mezz.TwosCompany.Movement", Movement);
-        }
-        public override void OnRemoveArtifact(State state) {
-            Manifest.EventHub.DisconnectFromEvent<Tuple<int, bool, bool, Combat, State>>("Mezz.TwosCompany.Movement", Movement);
-        }
-
-        private void Movement(Tuple<int, bool, bool, Combat, State> evt) {
-            State s = evt.Item5;
-
-            if (!s.characters.SelectMany(e => e.artifacts).Concat(s.artifacts).Contains(this)) {
-                Manifest.EventHub.DisconnectFromEvent<Tuple<int, bool, bool, Combat, State>>("Mezz.TwosCompany.Movement", Movement);
-                return;
-            }
-            hasMovedThisTurn = hasMovedThisTurn || evt.Item1 != 0;
+        public void Movement(int dist, bool targetPlayer, bool fromEvade, Combat c, State s) {
+            hasMovedThisTurn = hasMovedThisTurn || dist != 0;
         }
 
         public override void OnTurnEnd(State state, Combat combat) {
-            markForGain = state.ship.x == pos && hasMovedThisTurn;
+            if (state.ship.x == pos && hasMovedThisTurn) {
+                markForGain = true;
+                combat.Queue(new AStatus() {
+                    targetPlayer = true,
+                    status = Status.tempShield,
+                    statusAmount = 2,
+                    artifactPulse = this.Key(),
+                });
+            }
         }
 
         public override void OnCombatStart(State state, Combat combat) {
@@ -57,10 +50,13 @@ namespace TwosCompany.Artifacts {
         }
 		public override int? GetDisplayNumber(State s)
 		{
-			if (pos == s.ship.x && !hasMovedThisTurn) return null;
+			if (!(s.route is Combat) || pos == s.ship.x && !hasMovedThisTurn) return null;
             return s.ship.x - pos;
 		}
 		
-        public override List<Tooltip>? GetExtraTooltips() => new List<Tooltip>() { new TTGlossary("status.overdrive", 1) };
+        public override List<Tooltip>? GetExtraTooltips() => new List<Tooltip>() { 
+            new TTGlossary("status.overdrive", 1),
+            new TTGlossary("status.tempShield", 1),
+        };
     }
 }

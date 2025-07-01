@@ -92,13 +92,13 @@ namespace TwosCompany.Helper {
             "Choose a card in your deck.  Whenever you play that card, gain a <c=card>Recover</c>."},
             { "CannonGuard",
                 "Whenever you end your turn in the same position you started it in after having moved," +
-                " gain 1 <c=status>OVERDRIVE</c> next turn."},
+                " gain 2 <c=status>TEMP SHIELD</c>, and gain 1 <c=status>OVERDRIVE</c> next turn."},
             { "FlawlessCore",
                 "Gain 1 extra <c=energy>ENERGY</c> every turn. " +
-                "<c=downside>If you miss a shot during your turn, lose 1 ENERGY instead.</c>"},
+                "<c=downside>If you missed a shot during your previous turn, lose 1 ENERGY instead.</c>"},
             { "Metronome",
-                "Whenever you alternate between moving and attacking <c=keyword>6</c> times in a row," +
-                " gain 1 <c=status>OVERDRIVE</c> and 2 <c=status>EVADE</c>."},
+                "Whenever you alternate between attacking and moving using <c=status>EVADE</c> <c=keyword>6</c> times in a row," +
+                " gain 1 <c=status>OVERDRIVE</c> and 2 <c=status>EVADE</c>. Each card played cannot add more than 2 stacks at a time."},
             { "LongLostRegrets",
             "Gain 1 extra <c=energy>ENERGY</c> every turn. " +
                 "<c=downside>The first time you receive hull damage each turn, gain two</c> <c=card>Fears</c>."},
@@ -110,7 +110,7 @@ namespace TwosCompany.Helper {
             { "IncendiaryRounds",
                 "Whenever you hit your enemy, they gain your current <c=status>HEAT</c>. If they would <c=downside>overheat</c>, they do so immediately."},
             { "PressureReservoir",
-                "Whenever you start your turn with 2+ <c=status>HEAT</c>, convert 1 stack into <c=status>HEAT FEEDBACK</c>."},
+                "Whenever you start your turn with 2+ <c=status>HEAT</c>, convert 1 into <c=status>HEAT FEEDBACK</c>."},
             { "ShieldShunt",
                 "On pickup, <c=downside>reduce your max shield to 1</c>, but permanently gain <c=keyword>triple</c> your prior max shield as " +
                 "<c=hull>max hull</c> and <c=healing>heal</c> the same amount."},
@@ -168,7 +168,7 @@ namespace TwosCompany.Helper {
                 "At the start of each turn, gain 1 <c=status>DRONESHIFT</c> if you have 2 or less and" +
                 " there are any " + Manifest.FrozenColH + "frozen attacks</c>."},
             { "CrystallizedMoment",
-                "Whenever you end your turn with 2+ <c=status>BULLET TIME</c>, convert 1 stack into <c=status>TIMESTOP</c>."},
+                "Whenever you end your turn with 2+ <c=status>BULLET TIME</c>, convert 1 into <c=status>TIMESTOP</c>."},
             { "EternalIncense",
                 "<c=downside>ALL</c> attacks deal +1 damage while <c=status>BULLET TIME</c> is active."},
             { "ShrinkingHourglass",
