@@ -5,7 +5,7 @@ namespace TwosCompany.Cards.Sorrel {
     public class InDueTime : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 2,
+                cost = 1,
                 exhaust = true,
             };
         }
@@ -14,20 +14,25 @@ namespace TwosCompany.Cards.Sorrel {
 
             actions.Add(new AStatus() {
                 status = (Status)Manifest.Statuses["BulletTime"].Id!,
-                statusAmount = upgrade == Upgrade.B ? 2 : 3,
+                statusAmount = upgrade == Upgrade.B ? 3 : 2,
                 mode = AStatusMode.Set,
                 targetPlayer = true,
             });
-            actions.Add(new AStatus() {
-                status = Status.droneShift,
-                statusAmount = upgrade == Upgrade.B ? 1 : 0,
-                mode = AStatusMode.Set,
+            actions.Add(new AMove() {
+                dir = upgrade == Upgrade.A ? 4 : 7,
                 targetPlayer = true,
+                isRandom = false
             });
             actions.Add(new AAttack() {
-                damage = GetDmg(s, upgrade == Upgrade.A ? 9 : 6),
+                damage = GetDmg(s, 7),
+                brittle = true,
                 stunEnemy = true,
                 dialogueSelector = ".mezz_inDueTime",
+            });
+            actions.Add(new AMove() {
+                dir = upgrade == Upgrade.A ? -4 : -7,
+                targetPlayer = true,
+                isRandom = false
             });
             return actions;
         }

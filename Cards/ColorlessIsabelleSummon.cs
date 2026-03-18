@@ -8,7 +8,7 @@ namespace TwosCompany.Cards {
                 exhaust = true,
                 art = (Spr)Manifest.Sprites["IsabelleDefaultCardSprite"].Id!,
                 cost = upgrade == Upgrade.A ? 0 : 1,
-                description = ColorlessLoc.GetDesc(state, upgrade == Upgrade.B ? 5 : 3, ManifHelper.GetDeck("isabelle")),
+                description = ColorlessLoc.GetDesc(state, upgrade == Upgrade.B ? 3 : 2, ManifHelper.GetDeck("isabelle")),
             };
         }
 
@@ -16,7 +16,7 @@ namespace TwosCompany.Cards {
             List<CardAction> actions = new List<CardAction>();
 
             actions.Add(new ACardOffering() {
-                amount = upgrade == Upgrade.B ? 5 : 3,
+                amount = upgrade == Upgrade.B ? 3 : 2,
                 limitDeck = ManifHelper.GetDeck("isabelle"),
                 makeAllCardsTemporary = true,
                 overrideUpgradeChances = false,

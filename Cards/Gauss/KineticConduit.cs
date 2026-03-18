@@ -19,7 +19,7 @@ namespace TwosCompany.Cards.Gauss {
             });
             if (upgrade == Upgrade.A)
                 actions.Add(new AStatus() {
-                    status = Status.evade,
+                    status = Status.droneShift,
                     statusAmount = 1,
                     targetPlayer = true,
                 });

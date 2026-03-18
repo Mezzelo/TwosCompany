@@ -6,7 +6,7 @@ namespace TwosCompany.Cards.Sorrel {
     public class FaceDownFate : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 1,
+                cost = upgrade == Upgrade.A ? 0 : 1,
                 exhaust = upgrade == Upgrade.B,
             };
         }
@@ -23,7 +23,7 @@ namespace TwosCompany.Cards.Sorrel {
             actions.Add(new AStatus() {
                 targetPlayer = true,
                 status = Status.droneShift,
-                statusAmount = upgrade == Upgrade.None ? 1 : 2,
+                statusAmount = upgrade == Upgrade.B ? 2 : 1,
                 mode = AStatusMode.Add,
             });
             actions.Add(new AForceAttack() {

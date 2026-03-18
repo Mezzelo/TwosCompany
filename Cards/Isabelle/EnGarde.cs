@@ -5,8 +5,7 @@ namespace TwosCompany.Cards.Isabelle {
     public class EnGarde : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = upgrade == Upgrade.None ? 2 : 1,
-                retain = upgrade == Upgrade.B,
+                cost = upgrade == Upgrade.B ? 1 : 2,
                 art = new Spr?((Spr)((flipped ? Manifest.Sprites["EnGardeCardSpriteFlip"] : Manifest.Sprites["EnGardeCardSprite"]).Id
                     ?? throw new Exception("missing flip art")))
             };
@@ -17,7 +16,7 @@ namespace TwosCompany.Cards.Isabelle {
 
             actions.Add(new AStatus() {
                 status = (Status) Manifest.Statuses["TempStrafe"].Id!,
-                statusAmount = 1,
+                statusAmount = upgrade == Upgrade.B ? 2 : 1,
                 targetPlayer = true,
             });
             actions.Add(new AStatus() {
@@ -25,12 +24,19 @@ namespace TwosCompany.Cards.Isabelle {
                 statusAmount = 1,
                 targetPlayer = true,
             });
-            if (upgrade == Upgrade.B)
+            if (upgrade == Upgrade.A)
+                actions.Add(new AStatus() {
+                    status = Status.evade,
+                    statusAmount = 1,
+                    targetPlayer = true,
+                });
+            else if (upgrade == Upgrade.B)
                 actions.Add(new AStatus() {
                     status = Status.engineStall,
                     statusAmount = 1,
                     targetPlayer = true,
                 });
+            
             return actions;
         }
         public override string Name() => "En Garde";

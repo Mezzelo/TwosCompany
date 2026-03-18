@@ -17,28 +17,8 @@ namespace TwosCompany.Cards.Ilya {
 
             actions.Add(new AAttack() {
                 damage = GetDmg(s, 1),
+                weaken = true,
             });
-            if (Manifest.hasKokoro)
-                actions.Add(Manifest.KokoroApi!.ActionCosts.MakeCostAction(
-                Manifest.KokoroApi!.ActionCosts.MakeResourceCost(
-                    Manifest.KokoroApi!.ActionCosts.MakeStatusResource(Status.heat),
-                    amount: 3
-                ), new AHurt() {
-                    hurtAmount = 1,
-                    targetPlayer = true,
-                    hurtShieldsFirst = false,
-                }).AsCardAction);
-            else
-                actions.Add(new StatCostAction() {
-                    action = new AHurt() {
-                        hurtAmount = 1,
-                        targetPlayer = true,
-                        hurtShieldsFirst = false,
-                    },
-                    statusReq = Status.heat,
-                    statusCost = 3,
-                    first = true
-                });
             if (upgrade != Upgrade.A)
                 actions.Add(new AStatus() {
                     status = Status.heat,

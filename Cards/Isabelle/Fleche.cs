@@ -15,6 +15,7 @@ namespace TwosCompany.Cards.Isabelle {
                 temporary = true,
                 exhaust = upgrade != Upgrade.B,
                 recycle = upgrade == Upgrade.B,
+                flippable = disguised,
                 art = new Spr?((Spr)((disguised ? Manifest.Sprites["JabCardSprite"] : Manifest.Sprites["FlecheCardSprite"]).Id
                     ?? throw new Exception("missing flip art")))
             };
@@ -30,19 +31,18 @@ namespace TwosCompany.Cards.Isabelle {
                         showCardTraitTooltips = false, } },
                 });
             actions.Add(new ADisguisedAttack() {
-                damage = GetDmg(s, this.disguised ? (upgrade == Upgrade.A ? 2 : 1) : (upgrade == Upgrade.A ? 5 : 4)),
+                damage = GetDmg(s, this.disguised ? (upgrade == Upgrade.A ? 2 : 1) : (upgrade == Upgrade.A ? 6 : 4)),
                 stunEnemy = this.disguised ? false : true,
-                realDamage = GetDmg(s, (upgrade == Upgrade.A ? 5 : 4)),
+                realDamage = GetDmg(s, (upgrade == Upgrade.A ? 6 : 4)),
                 realStun = true,
                 disguised = this.disguised,
                 dialogueSelector = ".mezz_fleche"
             });
-            // if (!(upgrade == Upgrade.B && !disguised))
-                actions.Add(new ADisguisedStatus() {
+            if (disguised)
+                actions.Add(new ADisguisedMove() {
                     targetPlayer = true,
-                    status = Status.evade,
-                    statusAmount = this.disguised ? 1 : -1,
-                    realAmount = -1,
+                    dir = 1,
+                    realDir = 0,
                 });
             return actions;
         }

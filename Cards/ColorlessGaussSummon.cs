@@ -10,7 +10,7 @@ namespace TwosCompany.Cards {
                 art = (Spr)Manifest.Sprites["GaussDefaultCardSprite"].Id!,
                 cost = upgrade == Upgrade.A ? 0 : 1,
                 description = "Add a <c=cardtrait>temp</c> <c=card>Spark</c> & 1 of " +
-                    (upgrade == Upgrade.B ? "5" : "3") + " <c=cardtrait>discount, temp</c> " + Manifest.GaussColH + "Gauss</c> cards to your hand.",
+                    (upgrade == Upgrade.B ? "3" : "2") + " <c=cardtrait>discount, temp</c> " + Manifest.GaussColH + "Gauss</c> cards to your hand.",
             };
         }
 
@@ -23,7 +23,7 @@ namespace TwosCompany.Cards {
             });
 
             actions.Add(new ACardOffering() {
-                amount = upgrade == Upgrade.B ? 5 : 3,
+                amount = upgrade == Upgrade.B ? 3 : 2,
                 limitDeck = ManifHelper.GetDeck("gauss"),
                 makeAllCardsTemporary = true,
                 overrideUpgradeChances = false,

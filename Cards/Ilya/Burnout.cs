@@ -24,12 +24,13 @@
                 count = GetHeatAmt(s) * (upgrade == Upgrade.None ? 1 : 2),
                 xHint = upgrade == Upgrade.None ? 1 : 2
             });
-            actions.Add(new AStatus() {
-                status = Status.heat,
-                statusAmount = upgrade == Upgrade.B ? 2 : 0,
-                mode = AStatusMode.Set,
-                targetPlayer = true
-            });
+            if (upgrade != Upgrade.B)
+                actions.Add(new AStatus() {
+                    status = Status.heat,
+                    statusAmount = 0,
+                    mode = AStatusMode.Set,
+                    targetPlayer = true
+                });
 
             return actions;
         }

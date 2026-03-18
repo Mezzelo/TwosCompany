@@ -9,8 +9,8 @@
 	  <OutputPath>C:\Users\cita\Desktop\Modding\Cobalt\Nickel\ModLibrary\TwosCompany</OutputPath>
     <Configurations>Debug;Release;Empty</Configurations>
     <BaseIntermediateOutputPath />
-    <AssemblyVersion>3.2.3</AssemblyVersion>
-	<VersionPrefix>3.2.3</VersionPrefix>
+    <AssemblyVersion>3.4.0</AssemblyVersion>
+	<VersionPrefix>3.4.0</VersionPrefix>
     <LangVersion>preview</LangVersion>
   </PropertyGroup>
 

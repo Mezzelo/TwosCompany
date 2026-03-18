@@ -8,6 +8,7 @@ namespace TwosCompany.Cards.Sorrel {
             return new CardData() {
                 cost = 2,
                 retain = true,
+                buoyant = upgrade == Upgrade.A,
             };
         }
         private int GetBTimeAmt(State s) {
@@ -39,7 +40,7 @@ namespace TwosCompany.Cards.Sorrel {
             actions.Add(new AStatus() {
                 targetPlayer = true,
                 status = Status.droneShift,
-                statusAmount = upgrade == Upgrade.A ? 3 : 2
+                statusAmount = 2
             });
             if (upgrade == Upgrade.B) {
                 actions.Add(new AStatus() {

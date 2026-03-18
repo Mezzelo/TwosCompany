@@ -1,5 +1,5 @@
 ﻿namespace TwosCompany.Artifacts {
-    interface IChainLightningArtifact {
-        void OnChainLightning(State s, int chainCount);
+    public interface IChainLightningArtifact {
+        public void OnChainLightning(State s, int chainCount);
     }
 }

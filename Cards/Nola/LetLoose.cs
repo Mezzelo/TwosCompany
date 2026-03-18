@@ -1,7 +1,7 @@
 ﻿using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Nola {
-    [CardMeta(rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
+    [CardMeta(rarity = Rarity.rare, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class LetLoose : Card {
         public override CardData GetData(State state) {
             string cardText;
@@ -13,9 +13,9 @@ namespace TwosCompany.Cards.Nola {
                 cardText = Loc.GetLocString(Manifest.Cards?["LetLoose"].DescBLocKey ?? throw new Exception("Missing card description"));
 
             return new CardData() {
-                cost = 1,
+                cost = upgrade == Upgrade.B ? 3 : 2,
                 description = cardText,
-                exhaust = upgrade == Upgrade.B,
+                exhaust = true,
             };
         }
 
@@ -30,7 +30,7 @@ namespace TwosCompany.Cards.Nola {
             actions.Add(new ALowerCardCost() {
                 amount = upgrade == Upgrade.B ? -2 : -1,
                 hand = true,
-                minimum = upgrade == Upgrade.B ? -1 : 1,
+                minimum = -1,
                 // dialogueSelector = ".mezz_letLoose"
             });
 

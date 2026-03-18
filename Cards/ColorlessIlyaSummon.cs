@@ -8,8 +8,8 @@ namespace TwosCompany.Cards {
                 exhaust = true,
                 art = (Spr)Manifest.Sprites["IlyaDefaultCardSprite"].Id!,
                 cost = upgrade == Upgrade.A ? 0 : 1,
-                description = "Get 2 <c=status>heat</c>. "
-                    + ColorlessLoc.GetDesc(state, upgrade == Upgrade.B ? 5 : 3, ManifHelper.GetDeck("ilya")),
+                description = "Gain 2 <c=status>heat</c>. "
+                    + ColorlessLoc.GetDesc(state, upgrade == Upgrade.B ? 3 : 2, ManifHelper.GetDeck("ilya")),
             };
         }
 
@@ -22,7 +22,7 @@ namespace TwosCompany.Cards {
                 targetPlayer = true,
             });
             actions.Add(new ACardOffering() {
-                amount = upgrade == Upgrade.B ? 5 : 3,
+                amount = upgrade == Upgrade.B ? 3 : 2,
                 limitDeck = ManifHelper.GetDeck("ilya"),
                 makeAllCardsTemporary = true,
                 overrideUpgradeChances = false,

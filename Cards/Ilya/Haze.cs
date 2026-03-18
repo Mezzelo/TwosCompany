@@ -1,7 +1,7 @@
 ﻿using TwosCompany.Actions;
 
 namespace TwosCompany.Cards.Ilya {
-    [CardMeta(rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
+    [CardMeta(rarity = Rarity.common, dontOffer = true, unreleased = true, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class Haze : Card {
         public override CardData GetData(State state) {
             return new CardData() {

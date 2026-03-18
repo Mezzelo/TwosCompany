@@ -116,6 +116,18 @@ namespace TwosCompany.Actions {
                     }
                 // no chain
                 if (cRoute == null) {
+                    if (brittle)
+                        hitActions.Add(new ABrittle() {
+                            worldX = raycastResult.worldX,
+                            targetPlayer = this.targetPlayer,
+                            timer = 0.0,
+                        });
+                    else if (weaken)
+                        hitActions.Add(new AWeaken() {
+                            worldX = raycastResult.worldX,
+                            targetPlayer = this.targetPlayer,
+                            timer = 0.0,
+                        });
                     hitActions.Add(new AChainHit() {
                         damage = this.damage,
                         targetPlayer = this.targetPlayer,
@@ -293,7 +305,19 @@ namespace TwosCompany.Actions {
                             }
                         }
                         if (end && !(cable != null && n < cRoute.Count - 1 && n > 0)) {
-                            RaycastResult chainRay = CombatUtils.RaycastGlobal(c, ship, true, cRoute[n]);
+                            // RaycastResult chainRay = CombatUtils.RaycastGlobal(c, ship, true, cRoute[n]);
+                            if (brittle)
+                                hitActions.Insert(0, new ABrittle() {
+                                    worldX = cRoute[n],
+                                    targetPlayer = this.targetPlayer,
+                                    timer = 0.0,
+                                });
+                            else if (weaken)
+                                hitActions.Insert(0, new AWeaken() {
+                                    worldX = cRoute[n],
+                                    targetPlayer = this.targetPlayer,
+                                    timer = 0.0,
+                                });
                             hitActions.Insert(0, new AChainHit() {
                                 damage = Math.Max(0, cDamage - (cRoute.Count > 1 && trident != null && n == 0 ? 2 : 0)),
                                 targetPlayer = this.targetPlayer,

@@ -17,11 +17,11 @@ namespace TwosCompany.Cards.Nola {
             actions.Add(new AStatus() {
                 targetPlayer = true,
                 status = onslaughtStatus.Id != null ? (Status)onslaughtStatus.Id : Status.drawNextTurn,
-                statusAmount = 3
+                statusAmount = 2
             });
             if (upgrade == Upgrade.B)
                 actions.Add(new ADrawCard() {
-                    count = 2
+                    count = 3
                 });
             return actions;
         }

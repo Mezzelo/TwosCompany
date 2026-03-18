@@ -298,6 +298,18 @@ namespace TwosCompany {
                         new AHurt { targetPlayer = true, hurtAmount = 1 },
                         new AStatus { targetPlayer = true, status = status, statusAmount = 1 },
                     ]);
+                    draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["Encore"].Id!.Value, (_, _, status) => [
+                        new AHurt { targetPlayer = true, hurtAmount = 1 },
+                        new AStatus { targetPlayer = true, status = status, statusAmount = 2 },
+                    ]);
+                    draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["Spalling"].Id!.Value, (_, _, status) => [
+                        new AHurt { targetPlayer = true, hurtAmount = 1 },
+                        new AStatus { targetPlayer = true, status = status, statusAmount = 2 },
+                    ]);
+                    draculaApi.RegisterBloodTapOptionProvider((Status)Manifest.Statuses["HeatFeedback"].Id!.Value, (_, _, status) => [
+                        new AHurt { targetPlayer = true, hurtAmount = 1 },
+                        new AStatus { targetPlayer = true, status = status, statusAmount = 4 },
+                    ]);
                 }
             });
         }

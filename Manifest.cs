@@ -263,6 +263,9 @@ namespace TwosCompany
             addSprite("IconMoveEnemyZero", "moveEnemyRight", "icons", artReg);
             addSprite("IconUnfreeze", "unfreeze", "icons", artReg);
             addSprite("IconForceAttack", "forceAttack", "icons", artReg);
+            addSprite("IconSpalling", "spalling", "icons", artReg);
+            addSprite("IconEncore", "encore", "icons", artReg);
+            addSprite("IconEncoreRetain", "encoreRetain", "icons", artReg);
 
             foreach (String charName in tcChars) {
                 addSprite(charName + "Frame", "char_" + charName.ToLower(), "panels", artReg);

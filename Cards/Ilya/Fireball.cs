@@ -1,5 +1,5 @@
 ﻿namespace TwosCompany.Cards.Ilya {
-    [CardMeta(rarity = Rarity.rare, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
+    [CardMeta(rarity = Rarity.rare, dontOffer = true, unreleased = true, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class Fireball : Card {
         public override CardData GetData(State state) {
             return new CardData() {
@@ -10,7 +10,7 @@
         private int GetHandSize(State s) {
             int handSize = 0;
             if (s.route is Combat route)
-                handSize = Math.Max(0, route.hand.Count - 3);
+                handSize = Math.Max(0, route.hand.Count - 2);
             return handSize;
         }
 
@@ -18,7 +18,7 @@
             List<CardAction> actions = new List<CardAction>();
 
             actions.Add(new ADiscard() {
-                count = 2,
+                count = 1,
             });
 
             actions.Add(new AVariableHint() {

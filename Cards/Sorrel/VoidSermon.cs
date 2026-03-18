@@ -33,6 +33,6 @@ namespace TwosCompany.Cards.Sorrel {
             return actions;
         }
 
-        public override string Name() => "Void Sermon";
+        public override string Name() => "Stars Align";
     }
 }

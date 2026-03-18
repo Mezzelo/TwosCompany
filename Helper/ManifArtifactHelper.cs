@@ -97,8 +97,8 @@ namespace TwosCompany.Helper {
                 "Gain 1 extra <c=energy>ENERGY</c> every turn. " +
                 "<c=downside>If you missed a shot during your previous turn, lose 1 ENERGY instead.</c>"},
             { "Metronome",
-                "Whenever you alternate between attacking and moving using <c=status>EVADE</c> <c=keyword>6</c> times in a row," +
-                " gain 1 <c=status>OVERDRIVE</c> and 2 <c=status>EVADE</c>. Each card played cannot add more than 2 stacks at a time."},
+                "Whenever you alternate between attacking and moving <c=keyword>6</c> times in a row," +
+                " gain 1 <c=status>OVERDRIVE</c> and 2 <c=status>EVADE</c>. Cards cannot add more than 2 stacks at a time."},
             { "LongLostRegrets",
             "Gain 1 extra <c=energy>ENERGY</c> every turn. " +
                 "<c=downside>The first time you receive hull damage each turn, gain two</c> <c=card>Fears</c>."},

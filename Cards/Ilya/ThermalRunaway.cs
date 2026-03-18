@@ -5,7 +5,7 @@ namespace TwosCompany.Cards.Ilya {
     public class ThermalRunaway : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 1,
+                cost = 2,
                 recycle = upgrade == Upgrade.B
             };
         }
@@ -33,11 +33,6 @@ namespace TwosCompany.Cards.Ilya {
                 destination = CardDestination.Hand,
                 timer = -0.5,
                 waitBeforeMoving = 0
-            });
-            actions.Add(new AStatus() {
-                status = Status.overdrive,
-                statusAmount = 1,
-                targetPlayer = true,
             });
             if (upgrade == Upgrade.A)
                 actions.Add(new AStatus() {

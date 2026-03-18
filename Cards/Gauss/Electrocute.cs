@@ -15,7 +15,7 @@ namespace TwosCompany.Cards.Gauss {
             List<CardAction> actions = new List<CardAction>();
             actions.Add(new AChainLightning() {
                 targetPlayer = false,
-                damage = GetDmg(s, upgrade == Upgrade.A ? 1 : 0),
+                damage = GetDmg(s, upgrade == Upgrade.A ? 2 : 0),
                 stunEnemy = true,
             });
             if (upgrade == Upgrade.B)

@@ -1,7 +1,7 @@
 ﻿using TwosCompany.Helper;
 
 namespace TwosCompany.Cards {
-    [CardMeta(deck = Deck.colorless, rarity = Rarity.common, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
+    [CardMeta(deck = Deck.colorless, rarity = Rarity.uncommon, upgradesTo = new Upgrade[] { Upgrade.A, Upgrade.B })]
     public class ColorlessSorrelSummon : Card {
         public override CardData GetData(State state) {
             return new CardData() {

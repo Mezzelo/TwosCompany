@@ -13,7 +13,7 @@
 
             actions.Add(new AStatus() {
                 status = Status.shield,
-                statusAmount = upgrade != Upgrade.A ? 3 : 5,
+                statusAmount = 3,
                 targetPlayer = true
             });
             actions.Add(new AHeal() {
@@ -23,11 +23,9 @@
             });
             actions.Add(new AStatus() {
                 status = Status.heat,
-                statusAmount = 3,
+                statusAmount = upgrade == Upgrade.A ? 2 : 3,
                 targetPlayer = true
             });
-            if (upgrade == Upgrade.B)
-                actions.Add(new AEndTurn());
             return actions;
         }
 

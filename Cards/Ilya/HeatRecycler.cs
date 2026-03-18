@@ -3,7 +3,7 @@
     public class HeatRecycler : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = 1,
+                cost = upgrade == Upgrade.None ? 0 : 1,
             };
         }
 

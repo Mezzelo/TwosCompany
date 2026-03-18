@@ -10,7 +10,7 @@ namespace TwosCompany.Cards {
                 flippable = true,
                 cost = upgrade == Upgrade.A ? 0 : 1,
                 description = "Get 1 <c=status>" + (flipped ? "off" : "def") + "</c>. "
-                    + ColorlessLoc.GetDesc(state, upgrade == Upgrade.B ? 5 : 3, ManifHelper.GetDeck("jost")),
+                    + ColorlessLoc.GetDesc(state, upgrade == Upgrade.B ? 3 : 2, ManifHelper.GetDeck("jost")),
             };
         }
 
@@ -23,7 +23,7 @@ namespace TwosCompany.Cards {
                 targetPlayer = true,
             });
             actions.Add(new ACardOffering() {
-                amount = upgrade == Upgrade.B ? 5 : 3,
+                amount = upgrade == Upgrade.B ? 3 : 2,
                 limitDeck = ManifHelper.GetDeck("jost"),
                 makeAllCardsTemporary = true,
                 overrideUpgradeChances = false,

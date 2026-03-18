@@ -4,57 +4,23 @@
         public override CardData GetData(State state) {
             return new CardData() {
                 cost = 1,
+                buoyant = upgrade == Upgrade.B,
             };
-        }
-        private int GetShieldAmt(State s) {
-            int shieldAmt = 0;
-            if (s.route is Combat)
-                shieldAmt = s.ship.Get(Status.shield)
-                    + (upgrade == Upgrade.B ? 1 : 0);
-
-            return shieldAmt;
         }
 
         public override List<CardAction> GetActions(State s, Combat c) {
             List<CardAction> actions = new List<CardAction>();
 
-            if (upgrade == Upgrade.B) {
-                actions.Add(new AStatus() {
-                    status = Status.shield,
-                    statusAmount = 1,
-                    targetPlayer = true,
-                });
-            }
-            actions.Add(new AVariableHint() {
-                status = Status.shield,
-            });
-
             actions.Add(new AStatus() {
                 status = Status.shield,
-                statusAmount = this.GetShieldAmt(s),
+                statusAmount = 3,
                 targetPlayer = true,
-                xHint = 1
             });
             actions.Add(new AStatus() {
                 status = Status.heat,
-                statusAmount = this.GetShieldAmt(s),
+                statusAmount = upgrade == Upgrade.A ? 1 : 2,
                 targetPlayer = true,
-                xHint = 1
             });
-            if (upgrade != Upgrade.B) {
-                actions.Add(new AStatus() {
-                    status = Status.shield,
-                    statusAmount = 1,
-                    targetPlayer = true,
-                });
-            }
-            if (upgrade == Upgrade.A) {
-                actions.Add(new AStatus() {
-                    status = Status.heat,
-                    statusAmount = -1,
-                    targetPlayer = true,
-                });
-            }
             return actions;
         }
 

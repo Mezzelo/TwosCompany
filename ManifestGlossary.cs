@@ -52,7 +52,7 @@ namespace TwosCompany {
                 "<c=downside>Goes away at start of next turn.</c>",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xffffd33e)), System.Drawing.Color.FromArgb(unchecked((int)0xffff9e48)), registry, false);
             addStatus("Enflamed", "Enflamed", "Gain {0} <c=status>HEAT</c> every turn.",
-                false, System.Drawing.Color.FromArgb(unchecked((int)0xffff5660)), System.Drawing.Color.FromArgb(unchecked((int)0xffff5660)), registry, true);
+                true, System.Drawing.Color.FromArgb(unchecked((int)0xffff5660)), System.Drawing.Color.FromArgb(unchecked((int)0xffff5660)), registry, true);
             addStatus("DefensiveStance", "Defensive Stance", "Allows you to play the <c=keyword>top</c> actions on " + JostColH + "Jost's</c> cards. " +
                 "<c=downside>If you end your turn with over 1 total stance, lose 1 of each stance.</c>",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xff87b2cf)), System.Drawing.Color.FromArgb(unchecked((int)0xff87b2cf)), registry, true);
@@ -125,6 +125,13 @@ namespace TwosCompany {
             addStatus("Inevitability", "Inevitability", "At the end of your turn, <c=keyword>bubble</c> all " + Manifest.FrozenColH + "frozen attacks</c>. " +
                 "At the start of your turn, <c=keyword>un-bubble</c> all " + Manifest.FrozenColH + "frozen attacks</c>.",
                 true, System.Drawing.Color.FromArgb(unchecked((int)0xff7547b2)), System.Drawing.Color.FromArgb(unchecked((int)0xff7547b2)), registry, true);
+            addStatus("Spalling", "Spalling", "Your next {0} attacks inflict <c=keyword>weaken</c>. <c=downside>Goes away at end of turn.</c>",
+                true, System.Drawing.Color.FromArgb(unchecked((int)0xffff3838)), System.Drawing.Color.FromArgb(unchecked((int)0xffff3838)), registry, true);
+            addStatus("Encore", "Encore", "Create a <c=cardtrait>temp</c> copy of the next card you play. <c=downside>Goes away at end of turn.</c>",
+                true, System.Drawing.Color.FromArgb(unchecked((int)0xff2c9ecc)), System.Drawing.Color.FromArgb(unchecked((int)0xff2c9ecc)), registry, true);
+            addStatus("EncoreRetain", "Encore B", "Create a <c=cardtrait>temp</c>, <c=cardtrait>exhaustable</c>, <c=cardtrait>retained</c> " +
+                "copy of the next {0} cards you play. <c=downside>Goes away at end of turn.</c>",
+                true, System.Drawing.Color.FromArgb(unchecked((int)0xff2c9ecc)), System.Drawing.Color.FromArgb(unchecked((int)0xff2c9ecc)), registry, true);
 
 
             if (hasKokoro) {

@@ -3,7 +3,7 @@
     public class WeakPoint : Card {
         public override CardData GetData(State state) {
             return new CardData() {
-                cost = upgrade == Upgrade.A ? 3 : 4,
+                cost = upgrade == Upgrade.A ? 2 : 3,
                 exhaust = true,
             };
         }

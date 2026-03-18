@@ -1,3 +1,37 @@
+3.4.0
+~ New cards: Encore, Patience, Burning In, Here and Now, Rend
+	~ Cards removed: Call & Response, Sudden Shift, Fireball, Haze, Scars
+	~ (removed cards still exist, to preserve save compatibility - just aren't offered or shown in codex)
+
++ Hold On! B now gives 2 temp strafe, from 1.
+~ Onslaught now only gives 2 onslaught, for all variants.  Onslaught B now draws 3 cards, from 2.
++ Weak Point's cost reduced by 1, for all variants
+~ Let Loose is now rare, from uncommon
+	~ Let Loose's cost increased by 1 and no longer reduces to a minimum amount of energy, on all variants.  It also now exhausts on all variants.
+~ Guidance is now uncommon, from rare.
+
+- Jab now moves 1 randomly, instead of giving evade.
++ En Garde A now gives 1 evade, rather than being 1 cost.  En Garde B now gives 2 temp strafe, from 1.
+
+~ Cauterize A now gives 2 heat, instead of 5 shield.  Cauterize B now no longer ends turn.
+- Galvanize reworked: Now a simple 3 shield 2 heat card.  A lowers heat generation to 1, B makes it buoyant.
++ Heat Recycler now costs 0, from 1, for its default variant.
+- Burnout B no longer sets heat to 2.
+- Thermal Runaway's cost increased to 2, from 1, and all variants no longer gives overdrive.
++ Embers now no longer cause damage when accruing heat, and they now additionally inflict weaken
+
++ Electrocute A's damage increased to 2, from 1
+~ Spark A now refreshes instead of giving evade.  Spark B now fires a 1 and 0 damage chain lightning, instead of giving refresh.
+
+~ Face Down Fate A is now 0 cost, instead of giving 2 droneshift.
+~ Raised Palm A is now buoyant, instead of giving an additional droneshift.
+~ Void Sermon renamed to Stars Align
+~ In Due Time reworked: Now moves you very far, fires, then moves back instead of losing all midshift.
+
+~ Fixed .EXE cards all being uncommon: Now, only Nola & Sorrel are uncommon, remaining EXE cards have had their options reduced accordingly.
+~ (fix) minor string revisions
+~ (fix) Missile crash bug fixed, in an official capacity now.  Thanks to Teuria for having put out a fix in the interim.
+
 3.2.3
 + Cannon Guard now gives 2 temp shield on turn end when proced.
 - Metronome can now only gain 2 stacks per card played.

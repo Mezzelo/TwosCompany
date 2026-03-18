@@ -30,7 +30,7 @@ namespace TwosCompany.Cards.Nola {
                 actions.Add(new AStatus() {
                     targetPlayer = true,
                     status = strafeStatus.Id != null ? (Status)strafeStatus.Id : Status.strafe,
-                    statusAmount = 1
+                    statusAmount = 2
                 });
             }
             return actions;

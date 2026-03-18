@@ -13,7 +13,8 @@ namespace TwosCompany.Cards.Isabelle {
                 cost = 1,
                 temporary = true,
                 exhaust = upgrade != Upgrade.B,
-                recycle = upgrade == Upgrade.B
+                recycle = upgrade == Upgrade.B,
+                flippable = true,
             };
         }
 
@@ -30,10 +31,9 @@ namespace TwosCompany.Cards.Isabelle {
                 omitFromTooltips = forTooltip,
                 dialogueSelector = ".mezz_jab"
             });
-            actions.Add(new AStatus() {
+            actions.Add(new AMove() {
+                dir = 1,
                 targetPlayer = true,
-                status = Status.evade,
-                statusAmount = 1,
                 omitFromTooltips = forTooltip
             });
             return actions;
